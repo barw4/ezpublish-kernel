@@ -46,36 +46,36 @@ class BorderFilterLoaderTest extends TestCase
         $image
             ->expects($this->once())
             ->method('palette')
-            ->will($this->returnValue($palette));
+            ->willReturn($palette);
         $palette
             ->expects($this->once())
             ->method('color')
             ->with(BorderFilterLoader::DEFAULT_BORDER_COLOR)
-            ->will($this->returnValue($this->createMock(ColorInterface::class)));
+            ->willReturn($this->createMock(ColorInterface::class));
 
         $box = $this->createMock(BoxInterface::class);
         $image
             ->expects($this->once())
             ->method('getSize')
-            ->will($this->returnValue($box));
+            ->willReturn($box);
         $box
             ->expects($this->any())
             ->method('getWidth')
-            ->will($this->returnValue(100));
+            ->willReturn(100);
         $box
             ->expects($this->any())
             ->method('getHeight')
-            ->will($this->returnValue(100));
+            ->willReturn(100);
 
         $drawer = $this->createMock(DrawerInterface::class);
         $image
             ->expects($this->once())
             ->method('draw')
-            ->will($this->returnValue($drawer));
+            ->willReturn($drawer);
         $drawer
             ->expects($this->any())
             ->method('line')
-            ->will($this->returnValue($drawer));
+            ->willReturn($drawer);
 
         $loader = new BorderFilterLoader();
         $this->assertSame($image, $loader->load($image, $options));
@@ -93,36 +93,36 @@ class BorderFilterLoaderTest extends TestCase
         $image
             ->expects($this->once())
             ->method('palette')
-            ->will($this->returnValue($palette));
+            ->willReturn($palette);
         $palette
             ->expects($this->once())
             ->method('color')
             ->with($color)
-            ->will($this->returnValue($this->createMock(ColorInterface::class)));
+            ->willReturn($this->createMock(ColorInterface::class));
 
         $box = $this->createMock(BoxInterface::class);
         $image
             ->expects($this->once())
             ->method('getSize')
-            ->will($this->returnValue($box));
+            ->willReturn($box);
         $box
             ->expects($this->any())
             ->method('getWidth')
-            ->will($this->returnValue(1000));
+            ->willReturn(1000);
         $box
             ->expects($this->any())
             ->method('getHeight')
-            ->will($this->returnValue(1000));
+            ->willReturn(1000);
 
         $drawer = $this->createMock(DrawerInterface::class);
         $image
             ->expects($this->once())
             ->method('draw')
-            ->will($this->returnValue($drawer));
+            ->willReturn($drawer);
         $drawer
             ->expects($this->any())
             ->method('line')
-            ->will($this->returnValue($drawer));
+            ->willReturn($drawer);
 
         $loader = new BorderFilterLoader();
         $this->assertSame($image, $loader->load($image, $options));

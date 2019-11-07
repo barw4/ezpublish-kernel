@@ -118,8 +118,7 @@ class ContentExtensionTest extends FileSystemTwigIntegrationTestCase
         // Signature: ConfigResolverInterface->getParameter( $paramName, $namespace = null, $scope = null )
         $mock->expects($this->any())
             ->method('getParameter')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         [
                             'languages',
@@ -128,7 +127,6 @@ class ContentExtensionTest extends FileSystemTwigIntegrationTestCase
                             ['fre-FR', 'eng-US'],
                         ],
                     ]
-                )
             );
 
         return $mock;
@@ -141,7 +139,7 @@ class ContentExtensionTest extends FileSystemTwigIntegrationTestCase
         $this->fieldHelperMock
             ->expects($this->once())
             ->method('isFieldEmpty')
-            ->will($this->returnValue($isEmpty));
+            ->willReturn($isEmpty);
 
         return $field;
     }
@@ -155,7 +153,7 @@ class ContentExtensionTest extends FileSystemTwigIntegrationTestCase
 
         $mock->expects($this->any())
             ->method('getContentTypeService')
-            ->will($this->returnValue($this->getContentTypeServiceMock()));
+            ->willReturn($this->getContentTypeServiceMock());
 
         return $mock;
     }
@@ -169,8 +167,7 @@ class ContentExtensionTest extends FileSystemTwigIntegrationTestCase
 
         $mock->expects($this->any())
             ->method('loadContentType')
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function ($contentTypeId) {
                         return new ContentType(
                             [
@@ -180,7 +177,6 @@ class ContentExtensionTest extends FileSystemTwigIntegrationTestCase
                             ]
                         );
                     }
-                )
             );
 
         return $mock;

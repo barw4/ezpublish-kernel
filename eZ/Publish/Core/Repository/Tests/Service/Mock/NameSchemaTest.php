@@ -43,8 +43,8 @@ class NameSchemaTest extends BaseServiceMockTest
             $this->equalTo($contentType),
             $this->equalTo($content->fields),
             $this->equalTo($content->versionInfo->languageCodes)
-        )->will(
-            $this->returnValue(42)
+        )->willReturn(
+            42
         );
 
         $result = $serviceMock->resolveUrlAliasSchema($content, $contentType);
@@ -73,8 +73,8 @@ class NameSchemaTest extends BaseServiceMockTest
             $this->equalTo($contentType),
             $this->equalTo($content->fields),
             $this->equalTo($content->versionInfo->languageCodes)
-        )->will(
-            $this->returnValue(42)
+        )->willReturn(
+            42
         );
 
         $result = $serviceMock->resolveUrlAliasSchema($content, $contentType);
@@ -103,8 +103,8 @@ class NameSchemaTest extends BaseServiceMockTest
             $this->equalTo($contentType),
             $this->equalTo($content->fields),
             $this->equalTo($content->versionInfo->languageCodes)
-        )->will(
-            $this->returnValue(42)
+        )->willReturn(
+            42
         );
 
         $result = $serviceMock->resolveNameSchema($content, [], [], $contentType);
@@ -146,8 +146,8 @@ class NameSchemaTest extends BaseServiceMockTest
             $this->equalTo($contentType),
             $this->equalTo($mergedFields),
             $this->equalTo($languages)
-        )->will(
-            $this->returnValue(42)
+        )->willReturn(
+            42
         );
 
         $result = $serviceMock->resolveNameSchema($content, $fields, $languages, $contentType);
@@ -189,8 +189,8 @@ class NameSchemaTest extends BaseServiceMockTest
                 $contentType,
                 $content->fields,
                 $languageCode
-            )->will(
-                $this->returnValue($fieldTitles[$languageCode])
+            )->willReturn(
+                $fieldTitles[$languageCode]
             );
         }
 

@@ -44,13 +44,13 @@ class LocationCreateStructTest extends ValueObjectVisitorBaseTest
             ->expects($this->once())
             ->method('loadLocation')
             ->with(42)
-            ->will($this->returnValue(new Location(['pathString' => '/1/2/42'])));
+            ->willReturn(new Location(['pathString' => '/1/2/42']));
 
         $this->getRouterMock()
             ->expects($this->once())
             ->method('generate')
             ->with('ezpublish_rest_loadLocation', ['locationPath' => '1/2/42'])
-            ->will($this->returnValue('/content/locations/1/2/42'));
+            ->willReturn('/content/locations/1/2/42');
 
         $visitor->visit(
             $this->getVisitorMock(),

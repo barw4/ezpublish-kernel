@@ -29,7 +29,7 @@ class InlineFragmentRendererTest extends DecoratedFragmentRendererTest
             ->expects($this->once())
             ->method('render')
             ->with($reference, $request, $options)
-            ->will($this->returnValue($expectedReturn));
+            ->willReturn($expectedReturn);
 
         $renderer = new InlineFragmentRenderer($this->innerRenderer);
         $this->assertSame($expectedReturn, $renderer->render($reference, $request, $options));

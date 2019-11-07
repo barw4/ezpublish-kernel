@@ -51,7 +51,7 @@ class ContentParamConverterTest extends AbstractParamConverterTest
             ->expects($this->once())
             ->method('loadContent')
             ->with($id)
-            ->will($this->returnValue($valueObject));
+            ->willReturn($valueObject);
 
         $request = new Request([], [], [self::PROPERTY_NAME => $id]);
         $config = $this->createConfiguration(self::CONTENT_CLASS, 'content');
@@ -68,7 +68,7 @@ class ContentParamConverterTest extends AbstractParamConverterTest
 
         $config->expects($this->once())
             ->method('isOptional')
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $this->assertFalse($this->converter->apply($request, $config));
         $this->assertNull($request->attributes->get('content'));

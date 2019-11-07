@@ -47,13 +47,11 @@ class FlysystemTest extends TestCase
             ->expects($this->once())
             ->method('getMetadata')
             ->with($spiCreateStruct->id)
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [
                         'timestamp' => 1307155200,
                         'size' => 123,
                     ]
-                )
             );
 
         $spiBinaryFile = $this->handler->create($spiCreateStruct);
@@ -79,13 +77,11 @@ class FlysystemTest extends TestCase
             ->expects($this->once())
             ->method('getMetadata')
             ->with('prefix/my/file.png')
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [
                         'timestamp' => 1307155200,
                         'size' => 123,
                     ]
-                )
             );
 
         $spiBinaryFile = $this->handler->load('prefix/my/file.png');
@@ -103,12 +99,10 @@ class FlysystemTest extends TestCase
             ->expects($this->once())
             ->method('getMetadata')
             ->with('prefix/my/file.png')
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [
                         'size' => 123,
                     ]
-                )
             );
 
         $spiBinaryFile = $this->handler->load('prefix/my/file.png');
@@ -135,7 +129,7 @@ class FlysystemTest extends TestCase
             ->expects($this->once())
             ->method('has')
             ->with('prefix/my/file.png')
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         self::assertTrue($this->handler->exists('prefix/my/file.png'));
     }
@@ -146,7 +140,7 @@ class FlysystemTest extends TestCase
             ->expects($this->once())
             ->method('has')
             ->with('prefix/my/file.png')
-            ->will($this->returnValue(false));
+            ->willReturn(false);
 
         self::assertFalse($this->handler->exists('prefix/my/file.png'));
     }
@@ -157,7 +151,7 @@ class FlysystemTest extends TestCase
             ->expects($this->once())
             ->method('getMimeType')
             ->with('file.txt')
-            ->will($this->returnValue('text/plain'));
+            ->willReturn('text/plain');
 
         self::assertEquals('text/plain', $this->handler->getMimeType('file.txt'));
     }

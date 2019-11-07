@@ -165,8 +165,8 @@ class PolicyUpdateTest extends BaseTest
 
         $roleServiceMock->expects($this->any())
             ->method('newPolicyUpdateStruct')
-            ->will(
-                $this->returnValue(new PolicyUpdateStruct())
+            ->willReturn(
+                new PolicyUpdateStruct()
             );
 
         return $roleServiceMock;

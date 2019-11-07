@@ -34,7 +34,7 @@ class LocationListTest extends BaseTest
                 array('_media-type' => 'application/vnd.ez.api.Location+xml'),
                 'application/vnd.ez.api.Location+xml'
             )
-            ->will($this->returnValue('foo'));
+            ->willReturn('foo');
 
         $result = $locationListParser->parse($inputArray, $this->getParsingDispatcherMock());
 

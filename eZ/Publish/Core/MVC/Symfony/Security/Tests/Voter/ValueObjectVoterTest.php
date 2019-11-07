@@ -113,7 +113,7 @@ class ValueObjectVoterTest extends TestCase
             ->expects($this->once())
             ->method('canUser')
             ->with($attribute->module, $attribute->function, $attribute->limitations['valueObject'], $targets)
-            ->will($this->returnValue($repositoryCanUser));
+            ->willReturn($repositoryCanUser);
 
         $this->assertSame(
             $expectedResult,

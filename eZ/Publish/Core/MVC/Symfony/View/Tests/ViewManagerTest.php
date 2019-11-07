@@ -118,12 +118,10 @@ class ViewManagerTest extends TestCase
         $this->viewConfigurator
             ->expects($this->once())
             ->method('configure')
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function (View $view) use ($templateIdentifier) {
                         $view->setTemplateIdentifier($templateIdentifier);
                     }
-                )
             );
 
         // Configuring template engine behaviour
@@ -134,7 +132,7 @@ class ViewManagerTest extends TestCase
             ->with(
                 $templateIdentifier,
                 $params + ['content' => $content, 'viewbaseLayout' => $this->viewBaseLayout])
-            ->will($this->returnValue($expectedTemplateResult));
+            ->willReturn($expectedTemplateResult);
 
         self::assertSame($expectedTemplateResult, $this->viewManager->renderContent($content, 'customViewType', $params));
     }
@@ -153,12 +151,10 @@ class ViewManagerTest extends TestCase
         $this->viewConfigurator
             ->expects($this->once())
             ->method('configure')
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function (View $view) use ($closure) {
                         $view->setTemplateIdentifier($closure);
                     }
-                )
             );
 
         // Configuring template engine behaviour
@@ -186,12 +182,10 @@ class ViewManagerTest extends TestCase
         $this->viewConfigurator
             ->expects($this->once())
             ->method('configure')
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function (View $view) use ($templateIdentifier) {
                         $view->setTemplateIdentifier($templateIdentifier);
                     }
-                )
             );
 
         $languages = ['eng-GB'];
@@ -199,19 +193,19 @@ class ViewManagerTest extends TestCase
             ->expects($this->any())
             ->method('getParameter')
             ->with('languages')
-            ->will($this->returnValue($languages));
+            ->willReturn($languages);
 
         $contentService = $this->createMock(APIContentService::class);
 
         $contentService->expects($this->any())
             ->method('loadContentByContentInfo')
             ->with($location->contentInfo, $languages)
-            ->will($this->returnValue($content));
+            ->willReturn($content);
 
         $this->repositoryMock
             ->expects($this->any())
             ->method('getContentService')
-            ->will($this->returnValue($contentService));
+            ->willReturn($contentService);
 
         // Configuring template engine behaviour
         $expectedTemplateResult = 'This is location rendering';
@@ -219,7 +213,7 @@ class ViewManagerTest extends TestCase
             ->expects($this->once())
             ->method('render')
             ->with($templateIdentifier, $params + ['location' => $location, 'content' => $content, 'viewbaseLayout' => $this->viewBaseLayout])
-            ->will($this->returnValue($expectedTemplateResult));
+            ->willReturn($expectedTemplateResult);
 
         self::assertSame($expectedTemplateResult, $this->viewManager->renderLocation($location, 'customViewType', $params));
     }
@@ -235,12 +229,10 @@ class ViewManagerTest extends TestCase
         $this->viewConfigurator
             ->expects($this->once())
             ->method('configure')
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function (View $view) use ($templateIdentifier) {
                         $view->setTemplateIdentifier($templateIdentifier);
                     }
-                )
             );
 
         $contentService = $this->createMock(ContentService::class);
@@ -248,17 +240,15 @@ class ViewManagerTest extends TestCase
         $contentService->expects($this->any())
             ->method('loadContentByContentInfo')
             ->with($content->contentInfo)
-            ->will(
-                $this->returnValue($content)
+            ->willReturn(
+                $content
             );
 
         $this->repositoryMock
             ->expects($this->any())
             ->method('getContentService')
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     $contentService
-                )
             );
 
         // Configuring template engine behaviour
@@ -269,7 +259,7 @@ class ViewManagerTest extends TestCase
             ->with(
                 $templateIdentifier,
                 $params + ['location' => $location, 'content' => $content, 'viewbaseLayout' => $this->viewBaseLayout])
-            ->will($this->returnValue($expectedTemplateResult));
+            ->willReturn($expectedTemplateResult);
 
         self::assertSame($expectedTemplateResult, $this->viewManager->renderLocation($location, 'customViewType', $params));
     }
@@ -287,12 +277,10 @@ class ViewManagerTest extends TestCase
         $this->viewConfigurator
             ->expects($this->once())
             ->method('configure')
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function (View $view) use ($closure) {
                         $view->setTemplateIdentifier($closure);
                     }
-                )
             );
 
         $contentService = $this->createMock(ContentService::class);
@@ -300,17 +288,15 @@ class ViewManagerTest extends TestCase
         $contentService->expects($this->any())
             ->method('loadContentByContentInfo')
             ->with($content->contentInfo)
-            ->will(
-                $this->returnValue($content)
+            ->willReturn(
+                $content
             );
 
         $this->repositoryMock
             ->expects($this->any())
             ->method('getContentService')
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     $contentService
-                )
             );
 
         // Configuring template engine behaviour

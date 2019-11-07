@@ -48,7 +48,7 @@ class DecoratedFragmentRendererTest extends TestCase
             ->expects($this->once())
             ->method('analyseLink')
             ->with('/foo')
-            ->will($this->returnValue('/bar/foo'));
+            ->willReturn('/bar/foo');
 
         $innerRenderer = $this->createMock(RoutableFragmentRenderer::class);
         $innerRenderer
@@ -66,7 +66,7 @@ class DecoratedFragmentRendererTest extends TestCase
         $this->innerRenderer
             ->expects($this->once())
             ->method('getName')
-            ->will($this->returnValue($name));
+            ->willReturn($name);
 
         $renderer = new DecoratedFragmentRenderer($this->innerRenderer);
         $this->assertSame($name, $renderer->getName());
@@ -82,7 +82,7 @@ class DecoratedFragmentRendererTest extends TestCase
             ->expects($this->once())
             ->method('render')
             ->with($url, $request, $options)
-            ->will($this->returnValue($expectedReturn));
+            ->willReturn($expectedReturn);
 
         $renderer = new DecoratedFragmentRenderer($this->innerRenderer);
         $this->assertSame($expectedReturn, $renderer->render($url, $request, $options));
@@ -100,7 +100,7 @@ class DecoratedFragmentRendererTest extends TestCase
             ->expects($this->once())
             ->method('render')
             ->with($reference, $request, $options)
-            ->will($this->returnValue($expectedReturn));
+            ->willReturn($expectedReturn);
 
         $renderer = new DecoratedFragmentRenderer($this->innerRenderer);
         $this->assertSame($expectedReturn, $renderer->render($reference, $request, $options));

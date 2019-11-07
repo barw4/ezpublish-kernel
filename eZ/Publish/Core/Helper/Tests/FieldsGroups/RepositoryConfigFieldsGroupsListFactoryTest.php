@@ -25,7 +25,7 @@ class RepositoryConfigFieldsGroupsListFactoryTest extends TestCase
         $this->getTranslatorMock()
             ->expects($this->any())
             ->method('trans')
-            ->will($this->returnArgument(0));
+            ->willReturnArgument(0);
 
         $factory = new RepositoryConfigFieldsGroupsListFactory($this->getRepositoryConfigMock());
         $list = $factory->build($this->getTranslatorMock());

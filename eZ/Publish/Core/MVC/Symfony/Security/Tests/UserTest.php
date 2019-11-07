@@ -39,7 +39,7 @@ class UserTest extends TestCase
         $apiUser
             ->expects($this->once())
             ->method('getUserId')
-            ->will($this->returnValue(42));
+            ->willReturn(42);
 
         $user = new User($apiUser, $roles);
         $this->assertSame($apiUser, $user->getAPIUser());
@@ -60,7 +60,7 @@ class UserTest extends TestCase
         $apiUser
             ->expects($this->once())
             ->method('getUserId')
-            ->will($this->returnValue($userId));
+            ->willReturn($userId);
         $roles = ['ROLE_USER'];
 
         $user = new User($apiUser, $roles);
@@ -69,7 +69,7 @@ class UserTest extends TestCase
         $apiUser2
             ->expects($this->once())
             ->method('getUserId')
-            ->will($this->returnValue($userId));
+            ->willReturn($userId);
         $user2 = new User($apiUser2, []);
 
         $this->assertTrue($user->isEqualTo($user2));
@@ -81,7 +81,7 @@ class UserTest extends TestCase
         $apiUser
             ->expects($this->once())
             ->method('getUserId')
-            ->will($this->returnValue(123));
+            ->willReturn(123);
         $roles = ['ROLE_USER'];
 
         $user = new User($apiUser, $roles);
@@ -90,7 +90,7 @@ class UserTest extends TestCase
         $apiUser2
             ->expects($this->once())
             ->method('getUserId')
-            ->will($this->returnValue(456));
+            ->willReturn(456);
         $user2 = new User($apiUser2, []);
 
         $this->assertFalse($user->isEqualTo($user2));
@@ -127,7 +127,7 @@ class UserTest extends TestCase
             ->expects($this->any())
             ->method('__get')
             ->with('contentInfo')
-            ->will($this->returnValue($userContentInfo));
+            ->willReturn($userContentInfo);
 
         $user = new User($apiUser);
         $this->assertSame($fullName, (string)$user);

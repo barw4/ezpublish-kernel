@@ -299,7 +299,7 @@ class PageServiceTest extends TestCase
             ->expects($this->once())
             ->method('getValidBlockItems')
             ->with($block)
-            ->will($this->returnValue($items));
+            ->willReturn($items);
         $this->pageService->setStorageGateway($this->storageGateway);
         // Calling assertion twice to test cache (comes along with storage gateway's getValidBlockItems() that should be called only once. See above)
         $this->assertSame($items, $this->pageService->getValidBlockItems($block));
@@ -320,7 +320,7 @@ class PageServiceTest extends TestCase
             ->expects($this->once())
             ->method('getLastValidBlockItem')
             ->with($block)
-            ->will($this->returnValue($lastValidItem));
+            ->willReturn($lastValidItem);
         $this->pageService->setStorageGateway($this->storageGateway);
         // Calling assertion twice to test cache (comes along with storage gateway's getLastValidBlockItem() that should be called only once. See above)
         $this->assertSame($lastValidItem, $this->pageService->getLastValidBlockItem($block));
@@ -344,7 +344,7 @@ class PageServiceTest extends TestCase
             ->expects($this->once())
             ->method('getWaitingBlockItems')
             ->with($block)
-            ->will($this->returnValue($items));
+            ->willReturn($items);
         $this->pageService->setStorageGateway($this->storageGateway);
         // Calling assertion twice to test cache (comes along with storage gateway's getWaitingBlockItems() that should be called only once. See above)
         $this->assertSame($items, $this->pageService->getWaitingBlockItems($block));
@@ -368,7 +368,7 @@ class PageServiceTest extends TestCase
             ->expects($this->once())
             ->method('getArchivedBlockItems')
             ->with($block)
-            ->will($this->returnValue($items));
+            ->willReturn($items);
         $this->pageService->setStorageGateway($this->storageGateway);
         // Calling assertion twice to test cache (comes along with storage gateway's getArchivedBlockItems() that should be called only once. See above)
         $this->assertSame($items, $this->pageService->getArchivedBlockItems($block));
@@ -391,13 +391,13 @@ class PageServiceTest extends TestCase
             ->expects($this->once())
             ->method('getContentIdByBlockId')
             ->with($blockId)
-            ->will($this->returnValue($contentId));
+            ->willReturn($contentId);
 
         $this->contentService
             ->expects($this->once())
             ->method('loadContent')
             ->with($contentId)
-            ->will($this->returnValue($content));
+            ->willReturn($content);
 
         // Calling assertion twice to test cache (comes along with storage gateway's
         // getLocationIdByBlockId() that should be called only once. See above)

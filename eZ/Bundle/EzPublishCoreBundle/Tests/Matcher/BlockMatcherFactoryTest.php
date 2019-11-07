@@ -25,22 +25,18 @@ class BlockMatcherFactoryTest extends BaseMatcherFactoryTest
         $container
             ->expects($this->atLeastOnce())
             ->method('has')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         [$matcherServiceIdentifier, true],
                     ]
-                )
             );
         $container
             ->expects($this->atLeastOnce())
             ->method('get')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         [$matcherServiceIdentifier, ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->createMock(MatcherInterface::class)],
                     ]
-                )
             );
 
         $matcherFactory = new BlockMatcherFactory($resolverMock, $this->createMock(Repository::class));
@@ -58,8 +54,7 @@ class BlockMatcherFactoryTest extends BaseMatcherFactoryTest
             ->expects($this->once())
             ->method('getParameter')
             ->with('block_view')
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [
                         'full' => [
                             'matchRule' => [
@@ -70,7 +65,6 @@ class BlockMatcherFactoryTest extends BaseMatcherFactoryTest
                             ],
                         ],
                     ]
-                )
             );
         $matcherFactory = new BlockMatcherFactory($resolverMock, $this->createMock(Repository::class));
         $matcherFactory->setContainer($container);
@@ -97,8 +91,7 @@ class BlockMatcherFactoryTest extends BaseMatcherFactoryTest
         $resolverMock
             ->expects($this->atLeastOnce())
             ->method('getParameter')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         [
                             'block_view', null, null,
@@ -115,7 +108,6 @@ class BlockMatcherFactoryTest extends BaseMatcherFactoryTest
                         ],
                         ['block_view', 'ezsettings', $siteAccessName, $updatedMatchConfig],
                     ]
-                )
             );
         $matcherFactory = new BlockMatcherFactory($resolverMock, $this->createMock(Repository::class));
         $matcherFactory->setContainer($container);

@@ -93,10 +93,8 @@ class ContentUpdaterTest extends TestCase
         $converterRegMock->expects($this->once())
             ->method('getConverter')
             ->with('ezstring')
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     ($converterMock = $this->createMock(Converter::class))
-                )
             );
 
         $updater = $this->getContentUpdater();
@@ -158,8 +156,8 @@ class ContentUpdaterTest extends TestCase
             ->expects($this->once())
             ->method('getContentIdsByContentTypeId')
             ->with(23)
-            ->will(
-                $this->returnValue([11, 22])
+            ->willReturn(
+                [11, 22]
             );
 
         $updater->applyUpdates(23, $actions);

@@ -203,8 +203,7 @@ class HandlerContentTest extends AbstractTestCase
         $mapperMock->expects($this->any())
             ->method('extractContentInfoFromRows')
             ->with($this->isType('array'))
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function ($rows) {
                         $contentInfoObjs = [];
                         foreach ($rows as $row) {
@@ -217,7 +216,6 @@ class HandlerContentTest extends AbstractTestCase
 
                         return array_values($contentInfoObjs);
                     }
-                )
             );
 
         return $mapperMock;

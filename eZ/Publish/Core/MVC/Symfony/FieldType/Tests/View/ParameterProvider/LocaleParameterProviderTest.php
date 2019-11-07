@@ -48,12 +48,12 @@ class LocaleParameterProviderTest extends TestCase
         $parameterBagMock->expects($this->any())
             ->method('has')
             ->with($this->equalTo('_locale'))
-            ->will($this->returnValue($hasLocale));
+            ->willReturn($hasLocale);
 
         $parameterBagMock->expects($this->any())
             ->method('get')
             ->with($this->equalTo('_locale'))
-            ->will($this->returnValue('fr_FR'));
+            ->willReturn('fr_FR');
 
         $requestMock = $this->createMock(Request::class);
         $requestMock->attributes = $parameterBagMock;
@@ -70,7 +70,7 @@ class LocaleParameterProviderTest extends TestCase
         $mock->expects($this->any())
             ->method('convertToPOSIX')
             ->with($this->equalTo('cro-HR'))
-            ->will($this->returnValue('hr_HR'));
+            ->willReturn('hr_HR');
 
         return $mock;
     }

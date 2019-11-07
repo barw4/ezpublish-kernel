@@ -52,7 +52,7 @@ class TolerantIOServiceTest extends IOServiceTest
             ->expects($this->once())
             ->method('getUri')
             ->with($prefixedUri)
-            ->will($this->returnValue("/$prefixedUri"));
+            ->willReturn("/$prefixedUri");
 
         $binaryFile = parent::testLoadBinaryFileNotFound();
         self::assertEquals(

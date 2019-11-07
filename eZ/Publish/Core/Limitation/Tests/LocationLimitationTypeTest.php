@@ -129,7 +129,7 @@ class LocationLimitationTypeTest extends Base
             $this->getPersistenceMock()
                 ->expects($this->any())
                 ->method('locationHandler')
-                ->will($this->returnValue($this->locationHandlerMock));
+                ->willReturn($this->locationHandlerMock);
 
             foreach ($limitation->limitationValues as $key => $value) {
                 $this->locationHandlerMock
@@ -170,7 +170,7 @@ class LocationLimitationTypeTest extends Base
             $this->getPersistenceMock()
                 ->expects($this->any())
                 ->method('locationHandler')
-                ->will($this->returnValue($this->locationHandlerMock));
+                ->willReturn($this->locationHandlerMock);
 
             foreach ($limitation->limitationValues as $key => $value) {
                 $this->locationHandlerMock
@@ -219,19 +219,19 @@ class LocationLimitationTypeTest extends Base
         $contentMock
             ->expects($this->once())
             ->method('getVersionInfo')
-            ->will($this->returnValue($versionInfoMock));
+            ->willReturn($versionInfoMock);
 
         $versionInfoMock
             ->expects($this->once())
             ->method('getContentInfo')
-            ->will($this->returnValue(new ContentInfo(['published' => true])));
+            ->willReturn(new ContentInfo(['published' => true]));
 
         $versionInfoMock2 = $this->createMock(APIVersionInfo::class);
 
         $versionInfoMock2
             ->expects($this->once())
             ->method('getContentInfo')
-            ->will($this->returnValue(new ContentInfo(['published' => true])));
+            ->willReturn(new ContentInfo(['published' => true]));
 
         return [
             // ContentInfo, with targets, no access
@@ -360,13 +360,13 @@ class LocationLimitationTypeTest extends Base
             $this->getPersistenceMock()
                 ->expects($this->once())
                 ->method('locationHandler')
-                ->will($this->returnValue($this->locationHandlerMock));
+                ->willReturn($this->locationHandlerMock);
 
             $this->locationHandlerMock
                 ->expects($this->once())
                 ->method($object instanceof ContentInfo && $object->published ? 'loadLocationsByContent' : 'loadParentLocationsForDraftContent')
                 ->with($object->id)
-                ->will($this->returnValue($persistenceLocations));
+                ->willReturn($persistenceLocations);
         }
 
         $value = $limitationType->evaluate(

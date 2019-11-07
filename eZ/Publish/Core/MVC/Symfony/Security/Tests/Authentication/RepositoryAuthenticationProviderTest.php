@@ -53,13 +53,13 @@ class RepositoryAuthenticationProviderTest extends TestCase
         $user
             ->expects($this->any())
             ->method('getPassword')
-            ->will($this->returnValue($password));
+            ->willReturn($password);
 
         $tokenUser = $this->createMock(UserInterface::class);
         $tokenUser
             ->expects($this->any())
             ->method('getPassword')
-            ->will($this->returnValue($password));
+            ->willReturn($password);
         $token = new UsernamePasswordToken($tokenUser, 'foo', 'bar');
 
         $method = new \ReflectionMethod($this->authProvider, 'checkAuthentication');
@@ -79,7 +79,7 @@ class RepositoryAuthenticationProviderTest extends TestCase
         $apiUser
             ->expects($this->once())
             ->method('getUserId')
-            ->will($this->returnValue(456));
+            ->willReturn(456);
         $tokenUser = new User($apiUser);
         $token = new UsernamePasswordToken($tokenUser, 'foo', 'bar');
 
@@ -91,7 +91,7 @@ class RepositoryAuthenticationProviderTest extends TestCase
         $user
             ->expects($this->any())
             ->method('getAPIUser')
-            ->will($this->returnValue($renewedApiUser));
+            ->willReturn($renewedApiUser);
 
         $method = new \ReflectionMethod($this->authProvider, 'checkAuthentication');
         $method->setAccessible(true);
@@ -113,7 +113,7 @@ class RepositoryAuthenticationProviderTest extends TestCase
         $user
             ->expects($this->once())
             ->method('getAPIUser')
-            ->will($this->returnValue($apiUser));
+            ->willReturn($apiUser);
 
         $this->repository
             ->expects($this->once())
@@ -144,7 +144,7 @@ class RepositoryAuthenticationProviderTest extends TestCase
         $this->repository
             ->expects($this->once())
             ->method('getUserService')
-            ->will($this->returnValue($userService));
+            ->willReturn($userService);
 
         $method = new \ReflectionMethod($this->authProvider, 'checkAuthentication');
         $method->setAccessible(true);
@@ -164,11 +164,11 @@ class RepositoryAuthenticationProviderTest extends TestCase
             ->expects($this->once())
             ->method('loadUserByCredentials')
             ->with($userName, $password)
-            ->will($this->returnValue($apiUser));
+            ->willReturn($apiUser);
         $this->repository
             ->expects($this->once())
             ->method('getUserService')
-            ->will($this->returnValue($userService));
+            ->willReturn($userService);
         $this->repository
             ->expects($this->once())
             ->method('setCurrentUser')

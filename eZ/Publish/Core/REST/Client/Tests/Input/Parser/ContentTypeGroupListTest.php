@@ -34,7 +34,7 @@ class ContentTypeGroupListTest extends BaseTest
                 array('_media-type' => 'application/vnd.ez.api.ContentTypeGroup+xml'),
                 'application/vnd.ez.api.ContentTypeGroup+xml'
             )
-            ->will($this->returnValue('foo'));
+            ->willReturn('foo');
 
         $result = $groupListParser->parse($inputArray, $this->getParsingDispatcherMock());
 

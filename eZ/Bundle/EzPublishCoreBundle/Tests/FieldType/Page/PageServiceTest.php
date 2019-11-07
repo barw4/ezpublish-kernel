@@ -39,7 +39,7 @@ class PageServiceTest extends BaseTest
             ->expects($this->once())
             ->method('getValidBlockItems')
             ->with($block)
-            ->will($this->returnValue($items));
+            ->willReturn($items);
 
         $this->contentService
             ->expects($this->exactly(count($items)))

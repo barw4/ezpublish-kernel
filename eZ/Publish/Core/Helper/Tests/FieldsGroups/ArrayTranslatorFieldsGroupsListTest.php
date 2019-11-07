@@ -20,11 +20,11 @@ class ArrayTranslatorFieldsGroupsListTest extends TestCase
         $this->getTranslatorMock()
             ->expects($this->any())
             ->method('trans')
-            ->will(
-                $this->returnValueMap([
+            ->willReturnMap(
+                [
                     ['slayer', [], 'ezplatform_fields_groups', null, 'Slayer'],
                     ['system_of_a_down', [], 'ezplatform_fields_groups', null, 'System of a down'],
-                ])
+                ]
             );
 
         $list = $this->buildList($groups, $default);
@@ -53,7 +53,7 @@ class ArrayTranslatorFieldsGroupsListTest extends TestCase
         $this->getTranslatorMock()
             ->expects($this->any())
             ->method('trans')
-            ->will($this->returnArgument(0));
+            ->willReturnArgument(0);
 
         $list = $this->buildList($groups, $default);
 

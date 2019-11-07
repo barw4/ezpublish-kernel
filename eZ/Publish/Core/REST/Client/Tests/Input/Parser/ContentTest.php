@@ -71,11 +71,11 @@ class ContentTest extends BaseTest
             ->with(
                 $this->equalTo(array()),
                 $this->isInstanceOf(ParsingDispatcher::class)
-            )->will($this->returnValue($versionInfoMock));
+            )->willReturn($versionInfoMock);
 
         $this->getFieldTypeParserMock()->expects($this->exactly(2))
             ->method('parseFieldValue')
-            ->will($this->returnValue('MockedValue'));
+            ->willReturn('MockedValue');
 
         $result = $relationParser->parse($inputArray, $this->getParsingDispatcherMock());
 

@@ -451,7 +451,7 @@ class UrlTest extends BaseServiceMockTest
                 $this->equalTo('view'),
                 $this->equalTo($object)
             )
-            ->will($this->returnValue($hasAccess));
+            ->willReturn($hasAccess);
     }
 
     protected function configureUrlUpdatePermission($object, $hasAccess = false)
@@ -464,7 +464,7 @@ class UrlTest extends BaseServiceMockTest
                 $this->equalTo('update'),
                 $this->equalTo($object)
             )
-            ->will($this->returnValue($hasAccess));
+            ->willReturn($hasAccess);
     }
 
     protected function configurePermissions(array $permissions)

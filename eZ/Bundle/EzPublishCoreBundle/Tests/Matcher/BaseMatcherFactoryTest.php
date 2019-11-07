@@ -30,8 +30,7 @@ abstract class BaseMatcherFactoryTest extends TestCase
         ->expects($this->atLeastOnce())
         ->method('getParameter')
         ->with($this->logicalOr('location_view', 'content_view', 'block_view'))
-        ->will(
-            $this->returnValue(
+        ->willReturn(
                 [
                     'full' => [
                         'matchRule' => [
@@ -50,7 +49,6 @@ abstract class BaseMatcherFactoryTest extends TestCase
                         ],
                     ],
                 ]
-            )
         );
 
         return $resolverMock;

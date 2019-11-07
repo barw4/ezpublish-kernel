@@ -52,8 +52,7 @@ class FieldTypeMockTest extends TestCase
         $stub
             ->expects($this->any())
             ->method('getSettingsSchema')
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [
                         'true' => [
                             'default' => true,
@@ -84,7 +83,6 @@ class FieldTypeMockTest extends TestCase
                         ],
                         'nodefault' => [],
                     ]
-                )
             );
 
         $fieldSettings = $initialSettings;
@@ -196,8 +194,8 @@ class FieldTypeMockTest extends TestCase
         $stub
             ->expects($this->any())
             ->method('getValidatorConfigurationSchema')
-            ->will(
-                $this->returnValue([])
+            ->willReturn(
+                []
             );
 
         $validatorConfiguration = null;
@@ -226,8 +224,7 @@ class FieldTypeMockTest extends TestCase
         $stub
             ->expects($this->any())
             ->method('getValidatorConfigurationSchema')
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [
                         'TestValidator' => [
                             'valueClick' => [
@@ -238,7 +235,6 @@ class FieldTypeMockTest extends TestCase
                             ],
                         ],
                     ]
-                )
             );
 
         $validatorConfiguration = $initialConfiguration;

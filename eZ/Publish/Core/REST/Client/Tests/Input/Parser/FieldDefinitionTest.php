@@ -71,21 +71,21 @@ class FieldDefinitionTest extends BaseTest
                 $this->equalTo('ezkeyword'),
                 $this->equalTo(array('ValueMock'))
             )
-            ->will($this->returnValue('ParsedValueMock'));
+            ->willReturn('ParsedValueMock');
 
         $this->fieldTypeParserMock->expects($this->once())
             ->method('parseFieldSettings')
             ->with(
                 $this->equalTo('ezkeyword'),
                 $this->equalTo(array('SettingsMock'))
-            )->will($this->returnValue('ParsedSettingsMock'));
+            )->willReturn('ParsedSettingsMock');
 
         $this->fieldTypeParserMock->expects($this->once())
             ->method('parseValidatorConfiguration')
             ->with(
                 $this->equalTo('ezkeyword'),
                 $this->equalTo(array('ValidatorMock'))
-            )->will($this->returnValue('ParsedValidatorMock'));
+            )->willReturn('ParsedValidatorMock');
 
         $result = $fieldDefinitionParser->parse($inputArray, $this->getParsingDispatcherMock());
 

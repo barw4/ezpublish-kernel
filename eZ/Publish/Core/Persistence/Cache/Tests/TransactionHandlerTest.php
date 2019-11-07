@@ -62,7 +62,7 @@ class TransactionHandlerTest extends AbstractCacheHandlerTest
         $this->persistenceHandlerMock
             ->expects($this->once())
             ->method('transactionHandler')
-            ->will($this->returnValue($innerHandlerMock));
+            ->willReturn($innerHandlerMock);
 
         $innerHandlerMock
             ->expects($this->once())
@@ -89,7 +89,7 @@ class TransactionHandlerTest extends AbstractCacheHandlerTest
         $this->persistenceHandlerMock
             ->expects($this->once())
             ->method('transactionHandler')
-            ->will($this->returnValue($innerHandlerMock));
+            ->willReturn($innerHandlerMock);
 
         $innerHandlerMock
             ->expects($this->once())
@@ -116,7 +116,7 @@ class TransactionHandlerTest extends AbstractCacheHandlerTest
         $this->persistenceHandlerMock
             ->expects($this->once())
             ->method('transactionHandler')
-            ->will($this->returnValue($innerHandlerMock));
+            ->willReturn($innerHandlerMock);
 
         $innerHandlerMock
             ->expects($this->once())

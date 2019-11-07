@@ -37,12 +37,10 @@ class EmailAddressTest extends FieldTypeTest
         $transformationProcessorMock->expects($this->any())
             ->method('transformByGroup')
             ->with($this->anything(), 'lowercase')
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function ($value, $group) {
                         return strtolower($value);
                     }
-                )
             );
 
         $fieldType = new EmailAddressType();

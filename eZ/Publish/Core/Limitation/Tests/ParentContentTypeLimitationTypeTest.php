@@ -141,14 +141,14 @@ class ParentContentTypeLimitationTypeTest extends Base
             $this->getPersistenceMock()
                 ->expects($this->any())
                 ->method('contentTypeHandler')
-                ->will($this->returnValue($this->contentTypeHandlerMock));
+                ->willReturn($this->contentTypeHandlerMock);
 
             foreach ($limitation->limitationValues as $key => $value) {
                 $this->contentTypeHandlerMock
                     ->expects($this->at($key))
                     ->method('load')
                     ->with($value)
-                    ->will($this->returnValue(42));
+                    ->willReturn(42);
             }
         }
 
@@ -183,7 +183,7 @@ class ParentContentTypeLimitationTypeTest extends Base
             $this->getPersistenceMock()
                 ->expects($this->any())
                 ->method('contentTypeHandler')
-                ->will($this->returnValue($this->contentTypeHandlerMock));
+                ->willReturn($this->contentTypeHandlerMock);
 
             foreach ($limitation->limitationValues as $key => $value) {
                 $this->contentTypeHandlerMock
@@ -227,7 +227,7 @@ class ParentContentTypeLimitationTypeTest extends Base
         $contentMock
             ->expects($this->once())
             ->method('getVersionInfo')
-            ->will($this->returnValue($this->getTestEvaluateVersionInfoMock()));
+            ->willReturn($this->getTestEvaluateVersionInfoMock());
 
         return $contentMock;
     }
@@ -239,7 +239,7 @@ class ParentContentTypeLimitationTypeTest extends Base
         $versionInfoMock
             ->expects($this->once())
             ->method('getContentInfo')
-            ->will($this->returnValue(new ContentInfo(['published' => true])));
+            ->willReturn(new ContentInfo(['published' => true]));
 
         return $versionInfoMock;
     }
@@ -448,13 +448,13 @@ class ParentContentTypeLimitationTypeTest extends Base
         $this->getPersistenceMock()
             ->expects($this->at($callNo + ($persistenceCalled ? 1 : 0)))
             ->method('contentHandler')
-            ->will($this->returnValue($this->contentHandlerMock));
+            ->willReturn($this->contentHandlerMock);
 
         $this->contentHandlerMock
             ->expects($this->at($callNo))
             ->method('loadContentInfo')
             ->with($contentId)
-            ->will($this->returnValue($contentInfo));
+            ->willReturn($contentInfo);
     }
 
     /**
@@ -492,13 +492,13 @@ class ParentContentTypeLimitationTypeTest extends Base
                     $this->getPersistenceMock()
                         ->expects($this->once($index))
                         ->method('locationHandler')
-                        ->will($this->returnValue($this->locationHandlerMock));
+                        ->willReturn($this->locationHandlerMock);
 
                     $this->locationHandlerMock
                         ->expects($this->at($index))
                         ->method('load')
                         ->with($target->parentLocationId)
-                        ->will($this->returnValue($location = $persistence['locations'][$index]));
+                        ->willReturn($location = $persistence['locations'][$index]);
 
                     $contentId = $location->contentId;
                 } else {
@@ -515,25 +515,25 @@ class ParentContentTypeLimitationTypeTest extends Base
         } else {
             $this->getPersistenceMock()
                 ->method('locationHandler')
-                ->will($this->returnValue($this->locationHandlerMock));
+                ->willReturn($this->locationHandlerMock);
 
             $this->getPersistenceMock()
                 ->method('contentHandler')
-                ->will($this->returnValue($this->contentHandlerMock));
+                ->willReturn($this->contentHandlerMock);
 
             $this->locationHandlerMock
                 ->method(
                     $object instanceof ContentInfo && $object->published ? 'loadLocationsByContent' : 'loadParentLocationsForDraftContent'
                 )
                 ->with($object->id)
-                ->will($this->returnValue($persistence['locations']));
+                ->willReturn($persistence['locations']);
 
             foreach ($persistence['locations'] as $location) {
                 if (!empty($persistence['parentLocations'][$location->parentId])) {
                     $this->locationHandlerMock
                             ->method('load')
                             ->with($location->parentId)
-                            ->will($this->returnValue($persistence['parentLocations'][$location->parentId]));
+                            ->willReturn($persistence['parentLocations'][$location->parentId]);
                 }
 
                 if (!empty($persistence['parentLocations'][$location->parentId])) {

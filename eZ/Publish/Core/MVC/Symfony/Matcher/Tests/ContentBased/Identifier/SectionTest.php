@@ -37,8 +37,7 @@ class SectionTest extends BaseTest
         $sectionServiceMock = $this->createMock(SectionService::class);
         $sectionServiceMock->expects($this->once())
             ->method('loadSection')
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     $this
                         ->getMockBuilder(Section::class)
                         ->setConstructorArgs(
@@ -47,18 +46,17 @@ class SectionTest extends BaseTest
                             ]
                         )
                         ->getMockForAbstractClass()
-                )
             );
 
         $repository = $this->getRepositoryMock();
         $repository
             ->expects($this->once())
             ->method('getSectionService')
-            ->will($this->returnValue($sectionServiceMock));
+            ->willReturn($sectionServiceMock);
         $repository
             ->expects($this->any())
             ->method('getPermissionResolver')
-            ->will($this->returnValue($this->getPermissionResolverMock()));
+            ->willReturn($this->getPermissionResolverMock());
 
         return $repository;
     }
@@ -81,10 +79,8 @@ class SectionTest extends BaseTest
         $location
             ->expects($this->once())
             ->method('getContentInfo')
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     $this->getContentInfoMock()
-                )
             );
         $this->assertSame(
             $expectedResult,

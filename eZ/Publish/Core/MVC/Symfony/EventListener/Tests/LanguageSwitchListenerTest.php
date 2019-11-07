@@ -58,7 +58,7 @@ class LanguageSwitchListenerTest extends TestCase
             ->expects($this->once())
             ->method('getTranslationSiteAccess')
             ->with($language)
-            ->will($this->returnValue($expectedSiteAccess));
+            ->willReturn($expectedSiteAccess);
 
         $listener = new LanguageSwitchListener($this->translationHelper);
         $listener->onRouteReferenceGeneration($event);
@@ -76,7 +76,7 @@ class LanguageSwitchListenerTest extends TestCase
             ->expects($this->once())
             ->method('getTranslationSiteAccess')
             ->with($language)
-            ->will($this->returnValue(null));
+            ->willReturn(null);
 
         $listener = new LanguageSwitchListener($this->translationHelper);
         $listener->onRouteReferenceGeneration($event);

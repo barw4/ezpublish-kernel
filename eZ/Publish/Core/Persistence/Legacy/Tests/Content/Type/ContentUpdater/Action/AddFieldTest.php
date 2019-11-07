@@ -96,31 +96,31 @@ class AddFieldTest extends TestCase
             ->expects($this->once())
             ->method('listVersionNumbers')
             ->with($this->equalTo($contentId))
-            ->will($this->returnValue($versionNumbers));
+            ->willReturn($versionNumbers);
 
         $this->getContentGatewayMock()
             ->expects($this->once())
             ->method('loadVersionedNameData')
             ->with($this->equalTo([['id' => $contentId, 'version' => 1]]))
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $this->getContentGatewayMock()
             ->expects($this->at(2))
             ->method('load')
             ->with($contentId, 1)
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $this->getContentMapperMock()
             ->expects($this->once())
             ->method('extractContentFromRows')
             ->with([], [])
-            ->will($this->returnValue([$content]));
+            ->willReturn([$content]);
 
         $action
             ->expects($this->once())
             ->method('insertField')
             ->with($content, $this->getFieldReference(null, 1, 'cro-HR'))
-            ->will($this->returnValue('fieldId1'));
+            ->willReturn('fieldId1');
 
         $action->apply($contentId);
     }
@@ -136,37 +136,37 @@ class AddFieldTest extends TestCase
             ->expects($this->once())
             ->method('listVersionNumbers')
             ->with($this->equalTo($contentId))
-            ->will($this->returnValue($versionNumbers));
+            ->willReturn($versionNumbers);
 
         $this->getContentGatewayMock()
             ->expects($this->once())
             ->method('loadVersionedNameData')
             ->with($this->equalTo([['id' => $contentId, 'version' => 1]]))
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $this->getContentGatewayMock()
             ->expects($this->at(2))
             ->method('load')
             ->with($contentId, 1)
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $this->getContentMapperMock()
             ->expects($this->once())
             ->method('extractContentFromRows')
             ->with([], [])
-            ->will($this->returnValue([$content]));
+            ->willReturn([$content]);
 
         $action
             ->expects($this->at(0))
             ->method('insertField')
             ->with($content, $this->getFieldReference(null, 1, 'eng-GB'))
-            ->will($this->returnValue('fieldId1'));
+            ->willReturn('fieldId1');
 
         $action
             ->expects($this->at(1))
             ->method('insertField')
             ->with($content, $this->getFieldReference(null, 1, 'ger-DE'))
-            ->will($this->returnValue('fieldId2'));
+            ->willReturn('fieldId2');
 
         $action->apply($contentId);
     }
@@ -183,49 +183,49 @@ class AddFieldTest extends TestCase
             ->expects($this->once())
             ->method('listVersionNumbers')
             ->with($this->equalTo($contentId))
-            ->will($this->returnValue($versionNumbers));
+            ->willReturn($versionNumbers);
 
         $this->getContentGatewayMock()
             ->expects($this->once())
             ->method('loadVersionedNameData')
             ->with($this->equalTo([['id' => $contentId, 'version' => 1], ['id' => $contentId, 'version' => 2]]))
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $this->getContentGatewayMock()
             ->expects($this->at(2))
             ->method('load')
             ->with($contentId, 1)
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $this->getContentMapperMock()
             ->expects($this->at(0))
             ->method('extractContentFromRows')
             ->with([], [])
-            ->will($this->returnValue([$content1]));
+            ->willReturn([$content1]);
 
         $this->getContentGatewayMock()
             ->expects($this->at(3))
             ->method('load')
             ->with($contentId, 2)
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $this->getContentMapperMock()
             ->expects($this->at(1))
             ->method('extractContentFromRows')
             ->with([], [])
-            ->will($this->returnValue([$content2]));
+            ->willReturn([$content2]);
 
         $action
             ->expects($this->at(0))
             ->method('insertField')
             ->with($content1, $this->getFieldReference(null, 1, 'eng-GB'))
-            ->will($this->returnValue('fieldId1'));
+            ->willReturn('fieldId1');
 
         $action
             ->expects($this->at(1))
             ->method('insertField')
             ->with($content2, $this->getFieldReference('fieldId1', 2, 'eng-GB'))
-            ->will($this->returnValue('fieldId1'));
+            ->willReturn('fieldId1');
 
         $action->apply($contentId);
     }
@@ -242,61 +242,61 @@ class AddFieldTest extends TestCase
             ->expects($this->once())
             ->method('listVersionNumbers')
             ->with($this->equalTo($contentId))
-            ->will($this->returnValue($versionNumbers));
+            ->willReturn($versionNumbers);
 
         $this->getContentGatewayMock()
             ->expects($this->once())
             ->method('loadVersionedNameData')
             ->with($this->equalTo([['id' => $contentId, 'version' => 1], ['id' => $contentId, 'version' => 2]]))
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $this->getContentGatewayMock()
             ->expects($this->at(2))
             ->method('load')
             ->with($contentId, 1)
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $this->getContentMapperMock()
             ->expects($this->at(0))
             ->method('extractContentFromRows')
             ->with([], [])
-            ->will($this->returnValue([$content1]));
+            ->willReturn([$content1]);
 
         $this->getContentGatewayMock()
             ->expects($this->at(3))
             ->method('load')
             ->with($contentId, 2)
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $this->getContentMapperMock()
             ->expects($this->at(1))
             ->method('extractContentFromRows')
             ->with([], [])
-            ->will($this->returnValue([$content2]));
+            ->willReturn([$content2]);
 
         $action
             ->expects($this->at(0))
             ->method('insertField')
             ->with($content1, $this->getFieldReference(null, 1, 'eng-GB'))
-            ->will($this->returnValue('fieldId1'));
+            ->willReturn('fieldId1');
 
         $action
             ->expects($this->at(1))
             ->method('insertField')
             ->with($content1, $this->getFieldReference(null, 1, 'ger-DE'))
-            ->will($this->returnValue('fieldId2'));
+            ->willReturn('fieldId2');
 
         $action
             ->expects($this->at(2))
             ->method('insertField')
             ->with($content2, $this->getFieldReference('fieldId1', 2, 'eng-GB'))
-            ->will($this->returnValue('fieldId1'));
+            ->willReturn('fieldId1');
 
         $action
             ->expects($this->at(3))
             ->method('insertField')
             ->with($content2, $this->getFieldReference('fieldId2', 2, 'ger-DE'))
-            ->will($this->returnValue('fieldId2'));
+            ->willReturn('fieldId2');
 
         $action->apply($contentId);
     }
@@ -329,13 +329,13 @@ class AddFieldTest extends TestCase
                 $field,
                 $this->isInstanceOf(StorageFieldValue::class)
             )
-            ->will($this->returnValue(23));
+            ->willReturn(23);
 
         $this->getContentStorageHandlerMock()
             ->expects($this->once())
             ->method('storeFieldData')
             ->with($versionInfo, $field)
-            ->will($this->returnValue(false));
+            ->willReturn(false);
 
         $this->getContentGatewayMock()->expects($this->never())->method('updateField');
 
@@ -378,13 +378,13 @@ class AddFieldTest extends TestCase
                 $field,
                 $this->isInstanceOf(StorageFieldValue::class)
             )
-            ->will($this->returnValue(23));
+            ->willReturn(23);
 
         $this->getContentStorageHandlerMock()
             ->expects($this->once())
             ->method('storeFieldData')
             ->with($versionInfo, $field)
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $this->getContentGatewayMock()
             ->expects($this->once())
@@ -438,7 +438,7 @@ class AddFieldTest extends TestCase
             ->expects($this->once())
             ->method('storeFieldData')
             ->with($versionInfo, $field)
-            ->will($this->returnValue(false));
+            ->willReturn(false);
 
         $this->getContentGatewayMock()->expects($this->never())->method('updateField');
 
@@ -486,7 +486,7 @@ class AddFieldTest extends TestCase
             ->expects($this->once())
             ->method('storeFieldData')
             ->with($versionInfo, $field)
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $this->getContentGatewayMock()
             ->expects($this->once())

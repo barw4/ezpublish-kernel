@@ -56,25 +56,23 @@ class AssetFactoryTest extends BaseTest
         $this->parser
             ->expects($this->any())
             ->method('isDynamicSetting')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         ['$foo$', true],
                         [$fooValues[0], false],
                         [$fooValues[1], false],
                     ]
-                )
             );
         $this->parser
             ->expects($this->once())
             ->method('parseDynamicSetting')
             ->with($input)
-            ->will($this->returnValue(['param' => 'foo', 'namespace' => null, 'scope' => null]));
+            ->willReturn(['param' => 'foo', 'namespace' => null, 'scope' => null]);
         $this->configResolver
             ->expects($this->once())
             ->method('getParameter')
             ->with('foo', null, null)
-            ->will($this->returnValue($fooValues));
+            ->willReturn($fooValues);
 
         $refFactory = new ReflectionObject($assetFactory);
         $refMethod = $refFactory->getMethod('parseInput');
@@ -93,24 +91,22 @@ class AssetFactoryTest extends BaseTest
         $this->parser
             ->expects($this->any())
             ->method('isDynamicSetting')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         ['$foo$', true],
                         ['bar', false],
                     ]
-                )
             );
         $this->parser
             ->expects($this->once())
             ->method('parseDynamicSetting')
             ->with($input)
-            ->will($this->returnValue(['param' => 'foo', 'namespace' => null, 'scope' => null]));
+            ->willReturn(['param' => 'foo', 'namespace' => null, 'scope' => null]);
         $this->configResolver
             ->expects($this->once())
             ->method('getParameter')
             ->with('foo', null, null)
-            ->will($this->returnValue($fooValue));
+            ->willReturn($fooValue);
 
         $refFactory = new ReflectionObject($assetFactory);
         $refMethod = $refFactory->getMethod('parseInput');

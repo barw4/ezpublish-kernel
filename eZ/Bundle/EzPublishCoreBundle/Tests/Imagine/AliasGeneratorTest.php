@@ -157,7 +157,7 @@ class AliasGeneratorTest extends TestCase
             ->expects($this->once())
             ->method('isStored')
             ->with($originalPath, $variationName)
-            ->will($this->returnValue(false));
+            ->willReturn(false);
 
         $this->logger
             ->expects($this->once())
@@ -168,12 +168,12 @@ class AliasGeneratorTest extends TestCase
             ->expects($this->once())
             ->method('find')
             ->with($originalPath)
-            ->will($this->returnValue($binary));
+            ->willReturn($binary);
         $this->filterManager
             ->expects($this->once())
             ->method('applyFilter')
             ->with($binary, $variationName)
-            ->will($this->returnValue($binary));
+            ->willReturn($binary);
         $this->ioResolver
             ->expects($this->once())
             ->method('store')
@@ -212,7 +212,7 @@ class AliasGeneratorTest extends TestCase
             ->expects($this->never())
             ->method('isStored')
             ->with($originalPath, $variationName)
-            ->will($this->returnValue(false));
+            ->willReturn(false);
 
         $this->logger
             ->expects($this->once())
@@ -222,7 +222,7 @@ class AliasGeneratorTest extends TestCase
             ->expects($this->once())
             ->method('resolve')
             ->with($originalPath, $variationName)
-            ->will($this->returnValue($expectedUrl));
+            ->willReturn($expectedUrl);
 
         $expected = new ImageVariation(
             [
@@ -264,7 +264,7 @@ class AliasGeneratorTest extends TestCase
             ->expects($this->once())
             ->method('isStored')
             ->with($originalPath, $variationName)
-            ->will($this->returnValue(false));
+            ->willReturn(false);
 
         $this->logger
             ->expects($this->once())
@@ -275,24 +275,24 @@ class AliasGeneratorTest extends TestCase
             ->expects($this->once())
             ->method('find')
             ->with($originalPath)
-            ->will($this->returnValue($binary));
+            ->willReturn($binary);
 
         // Filter manager is supposed to be called 3 times to generate references, and then passed variation.
         $this->filterManager
             ->expects($this->at(0))
             ->method('applyFilter')
             ->with($binary, $reference2)
-            ->will($this->returnValue($binary));
+            ->willReturn($binary);
         $this->filterManager
             ->expects($this->at(1))
             ->method('applyFilter')
             ->with($binary, $reference1)
-            ->will($this->returnValue($binary));
+            ->willReturn($binary);
         $this->filterManager
             ->expects($this->at(2))
             ->method('applyFilter')
             ->with($binary, $variationName)
-            ->will($this->returnValue($binary));
+            ->willReturn($binary);
 
         $this->ioResolver
             ->expects($this->once())
@@ -327,7 +327,7 @@ class AliasGeneratorTest extends TestCase
             ->expects($this->once())
             ->method('isStored')
             ->with($originalPath, $variationName)
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $this->logger
             ->expects($this->once())
@@ -382,7 +382,7 @@ class AliasGeneratorTest extends TestCase
             ->expects($this->once())
             ->method('isStored')
             ->with($originalPath, $variationName)
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $this->logger
             ->expects($this->once())
@@ -440,7 +440,7 @@ class AliasGeneratorTest extends TestCase
             ->expects($this->once())
             ->method('resolve')
             ->with($originalPath, $variationName)
-            ->will($this->returnValue($expectedUrl));
+            ->willReturn($expectedUrl);
 
         $this->variationPathGenerator
             ->expects($this->once())
@@ -464,20 +464,20 @@ class AliasGeneratorTest extends TestCase
             ->expects($this->once())
             ->method('load')
             ->with('file contents mock')
-            ->will($this->returnValue($this->image));
+            ->willReturn($this->image);
         $this->image
             ->expects($this->once())
             ->method('getSize')
-            ->will($this->returnValue($this->box));
+            ->willReturn($this->box);
 
         $this->box
             ->expects($this->once())
             ->method('getWidth')
-            ->will($this->returnValue($imageWidth));
+            ->willReturn($imageWidth);
         $this->box
             ->expects($this->once())
             ->method('getHeight')
-            ->will($this->returnValue($imageHeight));
+            ->willReturn($imageHeight);
 
         $expected = new ImageVariation(
             [

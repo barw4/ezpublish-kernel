@@ -98,25 +98,23 @@ class ContentHandlerTest extends AbstractInMemoryCacheHandlerTest
         $this->persistenceHandlerMock
             ->expects($this->exactly(2))
             ->method('contentHandler')
-            ->will($this->returnValue($innerHandlerMock));
+            ->willReturn($innerHandlerMock);
 
         $innerHandlerMock
             ->expects($this->once())
             ->method('loadReverseRelations')
             ->with(2, APIRelation::FIELD | APIRelation::ASSET)
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [
                         new SPIRelation(['sourceContentId' => 42]),
                     ]
-                )
             );
 
         $innerHandlerMock
             ->expects($this->once())
             ->method('deleteContent')
             ->with(2)
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $this->cacheMock
             ->expects($this->never())

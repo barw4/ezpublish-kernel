@@ -35,19 +35,19 @@ class StorageConnectionFactoryTest extends TestCase
             ->expects($this->once())
             ->method('getParameter')
             ->with('repository')
-            ->will($this->returnValue($repositoryAlias));
+            ->willReturn($repositoryAlias);
 
         $container = $this->getContainerMock();
         $container
             ->expects($this->once())
             ->method('has')
             ->with("doctrine.dbal.{$doctrineConnection}_connection")
-            ->will($this->returnValue(true));
+            ->willReturn(true);
         $container
             ->expects($this->once())
             ->method('get')
             ->with("doctrine.dbal.{$doctrineConnection}_connection")
-            ->will($this->returnValue($this->getMockBuilder('Doctrine\DBAL\Connection')->disableOriginalConstructor()->getMock()));
+            ->willReturn($this->getMockBuilder('Doctrine\DBAL\Connection')->disableOriginalConstructor()->getMock());
 
         $repositoryConfigurationProvider = new RepositoryConfigurationProvider($configResolver, $repositories);
         $factory = new StorageConnectionFactory($repositoryConfigurationProvider);
@@ -87,7 +87,7 @@ class StorageConnectionFactoryTest extends TestCase
             ->expects($this->once())
             ->method('getParameter')
             ->with('repository')
-            ->will($this->returnValue('inexistent_repository'));
+            ->willReturn('inexistent_repository');
 
         $repositoryConfigurationProvider = new RepositoryConfigurationProvider($configResolver, $repositories);
         $factory = new StorageConnectionFactory($repositoryConfigurationProvider);
@@ -111,19 +111,19 @@ class StorageConnectionFactoryTest extends TestCase
         $repositoryConfigurationProviderMock
             ->expects($this->once())
             ->method('getRepositoryConfig')
-            ->will($this->returnValue($repositoryConfig));
+            ->willReturn($repositoryConfig);
 
         $container = $this->getContainerMock();
         $container
             ->expects($this->once())
             ->method('has')
             ->with('doctrine.dbal.my_doctrine_connection_connection')
-            ->will($this->returnValue(false));
+            ->willReturn(false);
         $container
             ->expects($this->once())
             ->method('getParameter')
             ->with('doctrine.connections')
-            ->will($this->returnValue([]));
+            ->willReturn([]);
         $factory = new StorageConnectionFactory($repositoryConfigurationProviderMock);
         $factory->setContainer($container);
         $factory->getConnection();

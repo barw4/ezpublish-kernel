@@ -46,7 +46,7 @@ class OptionsLoaderTest extends TestCase
         $this->getRouteCollectionMapperMock()->expects($this->once())
             ->method('mapCollection')
             ->with(new RouteCollection())
-            ->will($this->returnValue($optionsRouteCollection));
+            ->willReturn($optionsRouteCollection);
 
         self::assertSame(
             $optionsRouteCollection,
@@ -69,7 +69,7 @@ class OptionsLoaderTest extends TestCase
         $mock->expects($this->any())
             ->method('import')
             ->with($this->anything(), $this->anything())
-            ->will($this->returnValue(new RouteCollection()));
+            ->willReturn(new RouteCollection());
 
         return $mock;
     }

@@ -31,7 +31,7 @@ class DefaultAuthenticationSuccessHandlerTest extends TestCase
             ->expects($this->once())
             ->method('getParameter')
             ->with('default_page')
-            ->will($this->returnValue($defaultPage));
+            ->willReturn($defaultPage);
         $successHandler->setConfigResolver($configResolver);
         $options = $refOptions->getValue($successHandler);
         $this->assertSame($defaultPage, $options['default_target_path']);

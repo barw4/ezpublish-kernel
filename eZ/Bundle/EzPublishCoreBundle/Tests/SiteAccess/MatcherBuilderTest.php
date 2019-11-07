@@ -55,7 +55,7 @@ class MatcherBuilderTest extends TestCase
             ->expects($this->once())
             ->method('get')
             ->with($serviceId)
-            ->will($this->returnValue($this->createMock(Matcher::class)));
+            ->willReturn($this->createMock(Matcher::class));
         $matcherBuilder = new MatcherBuilder($this->container);
         $matcherBuilder->buildMatcher("@$serviceId", [], new SimplifiedRequest());
     }
@@ -72,7 +72,7 @@ class MatcherBuilderTest extends TestCase
             ->expects($this->once())
             ->method('get')
             ->with($serviceId)
-            ->will($this->returnValue($matcher));
+            ->willReturn($matcher);
 
         $matchingConfig = ['foo' => 'bar'];
         $request = new SimplifiedRequest();

@@ -34,7 +34,7 @@ class RepositoryConfigurationProviderTest extends TestCase
             ->expects($this->once())
             ->method('getParameter')
             ->with('repository')
-            ->will($this->returnValue($repositoryAlias));
+            ->willReturn($repositoryAlias);
 
         $this->assertSame(
             ['alias' => $repositoryAlias] + $repositoryConfig,
@@ -62,7 +62,7 @@ class RepositoryConfigurationProviderTest extends TestCase
             ->expects($this->once())
             ->method('getParameter')
             ->with('repository')
-            ->will($this->returnValue(null));
+            ->willReturn(null);
 
         $this->assertSame(
             ['alias' => $repositoryAlias] + $repositoryConfig,
@@ -89,7 +89,7 @@ class RepositoryConfigurationProviderTest extends TestCase
             ->expects($this->once())
             ->method('getParameter')
             ->with('repository')
-            ->will($this->returnValue('undefined_repository'));
+            ->willReturn('undefined_repository');
 
         $provider = new RepositoryConfigurationProvider($configResolver, $repositories);
         $provider->getRepositoryConfig();

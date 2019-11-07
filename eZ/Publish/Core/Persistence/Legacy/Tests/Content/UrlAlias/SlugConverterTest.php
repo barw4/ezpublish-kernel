@@ -60,12 +60,12 @@ class SlugConverterTest extends TestCase
         $transformationProcessor->expects($this->atLeastOnce())
             ->method('transform')
             ->with($text, ['test_command1'])
-            ->will($this->returnValue($transformedText));
+            ->willReturn($transformedText);
 
         $slugConverter->expects($this->once())
             ->method('cleanupText')
             ->with($this->equalTo($transformedText), $this->equalTo('test_cleanup1'))
-            ->will($this->returnValue($slug));
+            ->willReturn($slug);
 
         $this->assertEquals(
             $slug,
@@ -90,12 +90,12 @@ class SlugConverterTest extends TestCase
         $transformationProcessor->expects($this->atLeastOnce())
             ->method('transform')
             ->with($defaultText, ['test_command1'])
-            ->will($this->returnValue($transformedText));
+            ->willReturn($transformedText);
 
         $slugConverter->expects($this->once())
             ->method('cleanupText')
             ->with($this->equalTo($transformedText), $this->equalTo('test_cleanup1'))
-            ->will($this->returnValue($slug));
+            ->willReturn($slug);
 
         $this->assertEquals(
             $slug,
@@ -120,12 +120,12 @@ class SlugConverterTest extends TestCase
         $transformationProcessor->expects($this->atLeastOnce())
             ->method('transform')
             ->with($text, ['test_command2'])
-            ->will($this->returnValue($transformedText));
+            ->willReturn($transformedText);
 
         $slugConverter->expects($this->once())
             ->method('cleanupText')
             ->with($this->equalTo($transformedText), $this->equalTo('test_cleanup2'))
-            ->will($this->returnValue($slug));
+            ->willReturn($slug);
 
         $this->assertEquals(
             $slug,

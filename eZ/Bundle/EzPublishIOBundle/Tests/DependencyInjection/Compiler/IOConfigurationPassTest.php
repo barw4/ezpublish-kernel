@@ -81,7 +81,7 @@ class IOConfigurationPassTest extends AbstractCompilerPassTestCase
         $this->binarydataConfigurationFactoryMock
             ->expects($this->once())
             ->method('getParentServiceId')
-            ->will($this->returnValue('test.io.binarydata_handler.test_handler'));
+            ->willReturn('test.io.binarydata_handler.test_handler');
 
         $this->compile();
 
@@ -101,7 +101,7 @@ class IOConfigurationPassTest extends AbstractCompilerPassTestCase
         $this->metadataConfigurationFactoryMock
             ->expects($this->once())
             ->method('getParentServiceId')
-            ->will($this->returnValue('test.io.metadata_handler.test_handler'));
+            ->willReturn('test.io.metadata_handler.test_handler');
 
         $this->compile();
 

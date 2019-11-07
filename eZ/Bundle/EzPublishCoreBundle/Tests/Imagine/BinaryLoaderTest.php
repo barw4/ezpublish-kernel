@@ -63,7 +63,7 @@ class BinaryLoaderTest extends TestCase
             ->expects($this->once())
             ->method('loadBinaryFile')
             ->with($path)
-            ->will($this->returnValue(new MissingBinaryFile()));
+            ->willReturn(new MissingBinaryFile());
 
         $this->binaryLoader->find($path);
     }
@@ -97,26 +97,26 @@ class BinaryLoaderTest extends TestCase
             ->expects($this->once())
             ->method('loadBinaryFile')
             ->with($path)
-            ->will($this->returnValue($binaryFile));
+            ->willReturn($binaryFile);
 
         $format = 'jpg';
         $this->extensionGuesser
             ->expects($this->once())
             ->method('guess')
             ->with($mimeType)
-            ->will($this->returnValue($format));
+            ->willReturn($format);
 
         $this->ioService
             ->expects($this->once())
             ->method('getFileContents')
             ->with($binaryFile)
-            ->will($this->returnValue($content));
+            ->willReturn($content);
 
         $this->ioService
             ->expects($this->once())
             ->method('getMimeType')
             ->with($binaryFile->id)
-            ->will($this->returnValue($mimeType));
+            ->willReturn($mimeType);
 
         $expected = new Binary($content, $mimeType, $format);
         $this->assertEquals($expected, $this->binaryLoader->find($path));

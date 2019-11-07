@@ -68,7 +68,7 @@ class StorageHandlerTest extends TestCase
         $storageRegistryMock->expects($this->once())
             ->method('getStorage')
             ->with($this->equalTo('foobar'))
-            ->will($this->returnValue($storageMock));
+            ->willReturn($storageMock);
 
         $field = new Field();
         $field->type = 'foobar';
@@ -88,7 +88,7 @@ class StorageHandlerTest extends TestCase
 
         $storageMock->expects($this->once())
             ->method('hasFieldData')
-            ->will($this->returnValue(true));
+            ->willReturn(true);
         $storageMock->expects($this->once())
             ->method('getFieldData')
             ->with(
@@ -100,7 +100,7 @@ class StorageHandlerTest extends TestCase
         $storageRegistryMock->expects($this->once())
             ->method('getStorage')
             ->with($this->equalTo('foobar'))
-            ->will($this->returnValue($storageMock));
+            ->willReturn($storageMock);
 
         $field = new Field();
         $field->type = 'foobar';
@@ -120,14 +120,14 @@ class StorageHandlerTest extends TestCase
 
         $storageMock->expects($this->once())
             ->method('hasFieldData')
-            ->will($this->returnValue(false));
+            ->willReturn(false);
         $storageMock->expects($this->never())
             ->method('getFieldData');
 
         $storageRegistryMock->expects($this->once())
             ->method('getStorage')
             ->with($this->equalTo('foobar'))
-            ->will($this->returnValue($storageMock));
+            ->willReturn($storageMock);
 
         $field = new Field();
         $field->type = 'foobar';
@@ -156,7 +156,7 @@ class StorageHandlerTest extends TestCase
         $storageRegistryMock->expects($this->once())
             ->method('getStorage')
             ->with($this->equalTo('foobar'))
-            ->will($this->returnValue($storageMock));
+            ->willReturn($storageMock);
 
         $handler = $this->getStorageHandler();
         $handler->deleteFieldData('foobar', new VersionInfo(), [1, 2, 3]);

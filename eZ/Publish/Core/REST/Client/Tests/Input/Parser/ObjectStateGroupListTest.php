@@ -34,7 +34,7 @@ class ObjectStateGroupListTest extends BaseTest
                 array('_media-type' => 'application/vnd.ez.api.ObjectStateGroup+xml'),
                 'application/vnd.ez.api.ObjectStateGroup+xml'
             )
-            ->will($this->returnValue('foo'));
+            ->willReturn('foo');
 
         $result = $groupListParser->parse($inputArray, $this->getParsingDispatcherMock());
 

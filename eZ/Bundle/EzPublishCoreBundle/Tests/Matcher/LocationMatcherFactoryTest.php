@@ -25,18 +25,15 @@ class LocationMatcherFactoryTest extends BaseMatcherFactoryTest
         $container
             ->expects($this->atLeastOnce())
             ->method('has')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         [$matcherServiceIdentifier, true],
                     ]
-                )
             );
         $container
             ->expects($this->atLeastOnce())
             ->method('get')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         [
                             $matcherServiceIdentifier,
@@ -44,7 +41,6 @@ class LocationMatcherFactoryTest extends BaseMatcherFactoryTest
                             $this->createMock(ViewMatcherInterface::class),
                         ],
                     ]
-                )
             );
 
         $matcherFactory = new LocationMatcherFactory($resolverMock, $this->createMock(Repository::class));
@@ -62,8 +58,7 @@ class LocationMatcherFactoryTest extends BaseMatcherFactoryTest
             ->expects($this->once())
             ->method('getParameter')
             ->with('location_view')
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [
                         'full' => [
                             'matchRule' => [
@@ -74,7 +69,6 @@ class LocationMatcherFactoryTest extends BaseMatcherFactoryTest
                             ],
                         ],
                     ]
-                )
             );
         $matcherFactory = new LocationMatcherFactory($resolverMock, $this->createMock(Repository::class));
         $matcherFactory->setContainer($container);
@@ -101,8 +95,7 @@ class LocationMatcherFactoryTest extends BaseMatcherFactoryTest
         $resolverMock
             ->expects($this->atLeastOnce())
             ->method('getParameter')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         [
                             'location_view', null, null,
@@ -119,7 +112,6 @@ class LocationMatcherFactoryTest extends BaseMatcherFactoryTest
                         ],
                         ['location_view', 'ezsettings', $siteAccessName, $updatedMatchConfig],
                     ]
-                )
             );
         $matcherFactory = new LocationMatcherFactory($resolverMock, $this->createMock(Repository::class));
         $matcherFactory->setContainer($container);

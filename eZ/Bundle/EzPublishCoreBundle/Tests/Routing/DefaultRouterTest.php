@@ -77,7 +77,7 @@ class DefaultRouterTest extends TestCase
             ->expects($this->once())
             ->method('match')
             ->with($semanticPathinfo)
-            ->will($this->returnValue($matchedParameters));
+            ->willReturn($matchedParameters);
         $this->assertSame($matchedParameters, $router->matchRequest($request));
     }
 
@@ -96,7 +96,7 @@ class DefaultRouterTest extends TestCase
             ->expects($this->once())
             ->method('match')
             ->with($pathinfo)
-            ->will($this->returnValue($matchedParameters));
+            ->willReturn($matchedParameters);
         $this->assertSame($matchedParameters, $router->matchRequest($request));
     }
 
@@ -110,14 +110,14 @@ class DefaultRouterTest extends TestCase
             ->expects($this->once())
             ->method('generate')
             ->with(__METHOD__)
-            ->will($this->returnValue($url));
+            ->willReturn($url);
 
         /** @var DefaultRouter|\PHPUnit\Framework\MockObject\MockObject $router */
         $router = $this->generateRouter(['getGenerator']);
         $router
             ->expects($this->any())
             ->method('getGenerator')
-            ->will($this->returnValue($generator));
+            ->willReturn($generator);
 
         $this->assertSame($url, $router->generate(__METHOD__));
     }
@@ -152,14 +152,14 @@ class DefaultRouterTest extends TestCase
             ->expects($this->once())
             ->method('generate')
             ->with($routeName)
-            ->will($this->returnValue($urlGenerated));
+            ->willReturn($urlGenerated);
 
         /** @var DefaultRouter|\PHPUnit\Framework\MockObject\MockObject $router */
         $router = $this->generateRouter(['getGenerator']);
         $router
             ->expects($this->any())
             ->method('getGenerator')
-            ->will($this->returnValue($generator));
+            ->willReturn($generator);
 
         // If matcher is URILexer, we make it act as it's supposed to, prepending the siteaccess.
         if ($isMatcherLexer) {
@@ -170,7 +170,7 @@ class DefaultRouterTest extends TestCase
                     ->expects($this->once())
                     ->method('analyseLink')
                     ->with($relevantUri)
-                    ->will($this->returnValue("/$saName$relevantUri"));
+                    ->willReturn("/$saName$relevantUri");
             } else {
                 // Non-siteaccess aware route, it's not supposed to be analysed
                 $matcher
@@ -239,12 +239,12 @@ class DefaultRouterTest extends TestCase
         $versatileMatcher
             ->expects($this->once())
             ->method('getRequest')
-            ->will($this->returnValue($simplifiedRequest));
+            ->willReturn($simplifiedRequest);
         $siteAccessRouter
             ->expects($this->once())
             ->method('matchByName')
             ->with($siteAccessName)
-            ->will($this->returnValue(new SiteAccess($siteAccessName, 'foo', $versatileMatcher)));
+            ->willReturn(new SiteAccess($siteAccessName, 'foo', $versatileMatcher));
 
         $generator = $this->createMock(UrlGeneratorInterface::class);
         $generator
@@ -255,7 +255,7 @@ class DefaultRouterTest extends TestCase
             ->expects($this->at(1))
             ->method('generate')
             ->with($routeName)
-            ->will($this->returnValue($urlGenerated));
+            ->willReturn($urlGenerated);
         $generator
             ->expects($this->at(2))
             ->method('setContext')

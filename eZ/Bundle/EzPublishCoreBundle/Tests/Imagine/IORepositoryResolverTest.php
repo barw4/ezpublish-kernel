@@ -104,7 +104,7 @@ class IORepositoryResolverTest extends TestCase
             ->expects($this->once())
             ->method('exists')
             ->with($aliasPath)
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $this->assertTrue($this->imageResolver->isStored($path, $filter));
     }
@@ -125,7 +125,7 @@ class IORepositoryResolverTest extends TestCase
             ->expects($this->once())
             ->method('exists')
             ->with($aliasPath)
-            ->will($this->returnValue(false));
+            ->willReturn(false);
 
         $this->assertFalse($this->imageResolver->isStored($path, $filter));
     }
@@ -142,7 +142,7 @@ class IORepositoryResolverTest extends TestCase
         $this->ioService
             ->expects($this->any())
             ->method('loadBinaryFile')
-            ->will($this->returnValue(new BinaryFile(['uri' => $variationPath])));
+            ->willReturn(new BinaryFile(['uri' => $variationPath]));
 
         $this->variationPathGenerator
             ->expects($this->any())
@@ -163,7 +163,7 @@ class IORepositoryResolverTest extends TestCase
             ->expects($this->once())
             ->method('loadBinaryFile')
             ->with($path)
-            ->will($this->returnValue(new MissingBinaryFile()));
+            ->willReturn(new MissingBinaryFile());
 
         $this->imageResolver->resolve($path, 'some_filter');
     }
@@ -249,7 +249,7 @@ class IORepositoryResolverTest extends TestCase
         $this->ioService
             ->expects($this->once())
             ->method('newBinaryCreateStructFromLocalFile')
-            ->will($this->returnValue($createStruct));
+            ->willReturn($createStruct);
 
         $this->ioService
             ->expects($this->once())
@@ -267,33 +267,29 @@ class IORepositoryResolverTest extends TestCase
             ->expects($this->once())
             ->method('getParameter')
             ->with('image_variations')
-            ->will($this->returnValue($filters));
+            ->willReturn($filters);
 
         $this->variationPathGenerator
             ->expects($this->exactly(count($filters)))
             ->method('getVariationPath')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         ['foo/bar/test.jpg', 'filter1', 'foo/bar/test_filter1.jpg '],
                         ['foo/bar/test.jpg', 'filter2', 'foo/bar/test_filter2.jpg '],
                         ['foo/bar/test.jpg', 'chaud_cacao', 'foo/bar/test_chaud_cacao.jpg'],
                     ]
-                )
             );
 
         $fileToDelete = 'foo/bar/test_chaud_cacao.jpg';
         $this->ioService
             ->expects($this->exactly(count($filters)))
             ->method('exists')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         ['foo/bar/test_filter1.jpg', false],
                         ['foo/bar/test_filter2.jpg', false],
                         [$fileToDelete, true],
                     ]
-                )
             );
 
         $binaryFile = new BinaryFile(['id' => $fileToDelete]);
@@ -301,7 +297,7 @@ class IORepositoryResolverTest extends TestCase
             ->expects($this->once())
             ->method('loadBinaryFile')
             ->with($fileToDelete)
-            ->will($this->returnValue($binaryFile));
+            ->willReturn($binaryFile);
 
         $this->ioService
             ->expects($this->once())
@@ -320,33 +316,29 @@ class IORepositoryResolverTest extends TestCase
             ->expects($this->never())
             ->method('getParameter')
             ->with('image_variations')
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $this->variationPathGenerator
             ->expects($this->exactly(count($filters)))
             ->method('getVariationPath')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         ['foo/bar/test.jpg', 'filter1', 'foo/bar/test_filter1.jpg '],
                         ['foo/bar/test.jpg', 'filter2', 'foo/bar/test_filter2.jpg '],
                         ['foo/bar/test.jpg', 'chaud_cacao', 'foo/bar/test_chaud_cacao.jpg'],
                     ]
-                )
             );
 
         $fileToDelete = 'foo/bar/test_chaud_cacao.jpg';
         $this->ioService
             ->expects($this->exactly(count($filters)))
             ->method('exists')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         ['foo/bar/test_filter1.jpg', false],
                         ['foo/bar/test_filter2.jpg', false],
                         [$fileToDelete, true],
                     ]
-                )
             );
 
         $binaryFile = new BinaryFile(['id' => $fileToDelete]);
@@ -354,7 +346,7 @@ class IORepositoryResolverTest extends TestCase
             ->expects($this->once())
             ->method('loadBinaryFile')
             ->with($fileToDelete)
-            ->will($this->returnValue($binaryFile));
+            ->willReturn($binaryFile);
 
         $this->ioService
             ->expects($this->once())

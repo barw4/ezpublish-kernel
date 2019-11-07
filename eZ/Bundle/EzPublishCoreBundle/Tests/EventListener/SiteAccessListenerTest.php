@@ -90,7 +90,7 @@ class SiteAccessListenerTest extends TestCase
                 ->expects($this->once())
                 ->method('analyseURI')
                 ->with($uri)
-                ->will($this->returnValue($semanticPathinfo));
+                ->willReturn($semanticPathinfo);
         } else {
             $matcher = $this->createMock(SiteAccess\Matcher::class);
         }

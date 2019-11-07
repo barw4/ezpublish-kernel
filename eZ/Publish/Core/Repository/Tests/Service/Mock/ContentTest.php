@@ -158,14 +158,14 @@ class ContentTest extends BaseServiceMockTest
             ->with(
                 $this->equalTo(42),
                 $this->equalTo(null)
-            )->will(
-                $this->returnValue(new SPIVersionInfo())
+            )->willReturn(
+                new SPIVersionInfo()
             );
 
         $domainMapperMock->expects($this->once())
             ->method('buildVersionInfoDomainObject')
             ->with(new SPIVersionInfo())
-            ->will($this->returnValue($versionInfoMock));
+            ->willReturn($versionInfoMock);
 
         $repository->expects($this->once())
             ->method('canUser')
@@ -173,7 +173,7 @@ class ContentTest extends BaseServiceMockTest
                 $this->equalTo('content'),
                 $this->equalTo('read'),
                 $this->equalTo($versionInfoMock)
-            )->will($this->returnValue(true));
+            )->willReturn(true);
 
         $result = $contentServiceMock->loadVersionInfoById(42);
 
@@ -284,14 +284,14 @@ class ContentTest extends BaseServiceMockTest
             ->with(
                 $this->equalTo(42),
                 $this->equalTo(24)
-            )->will(
-                $this->returnValue(new SPIVersionInfo())
+            )->willReturn(
+                new SPIVersionInfo()
             );
 
         $domainMapperMock->expects($this->once())
             ->method('buildVersionInfoDomainObject')
             ->with(new SPIVersionInfo())
-            ->will($this->returnValue($versionInfoMock));
+            ->willReturn($versionInfoMock);
 
         $repository->expects($this->once())
             ->method('canUser')
@@ -299,7 +299,7 @@ class ContentTest extends BaseServiceMockTest
                 $this->equalTo('content'),
                 $this->equalTo('versionread'),
                 $this->equalTo($versionInfoMock)
-            )->will($this->returnValue(false));
+            )->willReturn(false);
 
         $contentServiceMock->loadVersionInfoById(42, 24);
     }
@@ -327,14 +327,14 @@ class ContentTest extends BaseServiceMockTest
             ->with(
                 $this->equalTo(42),
                 $this->equalTo(24)
-            )->will(
-                $this->returnValue(new SPIVersionInfo())
+            )->willReturn(
+                new SPIVersionInfo()
             );
 
         $domainMapperMock->expects($this->once())
             ->method('buildVersionInfoDomainObject')
             ->with(new SPIVersionInfo())
-            ->will($this->returnValue($versionInfoMock));
+            ->willReturn($versionInfoMock);
 
         $repository->expects($this->once())
             ->method('canUser')
@@ -342,7 +342,7 @@ class ContentTest extends BaseServiceMockTest
                 $this->equalTo('content'),
                 $this->equalTo('read'),
                 $this->equalTo($versionInfoMock)
-            )->will($this->returnValue(true));
+            )->willReturn(true);
 
         $result = $contentServiceMock->loadVersionInfoById(42, 24);
 
@@ -372,14 +372,14 @@ class ContentTest extends BaseServiceMockTest
             ->with(
                 $this->equalTo(42),
                 $this->equalTo(24)
-            )->will(
-                $this->returnValue(new SPIVersionInfo())
+            )->willReturn(
+                new SPIVersionInfo()
             );
 
         $domainMapperMock->expects($this->once())
             ->method('buildVersionInfoDomainObject')
             ->with(new SPIVersionInfo())
-            ->will($this->returnValue($versionInfoMock));
+            ->willReturn($versionInfoMock);
 
         $repository->expects($this->once())
             ->method('canUser')
@@ -387,7 +387,7 @@ class ContentTest extends BaseServiceMockTest
                 $this->equalTo('content'),
                 $this->equalTo('versionread'),
                 $this->equalTo($versionInfoMock)
-            )->will($this->returnValue(true));
+            )->willReturn(true);
 
         $result = $contentServiceMock->loadVersionInfoById(42, 24);
 
@@ -416,8 +416,8 @@ class ContentTest extends BaseServiceMockTest
         )->with(
             $this->equalTo(42),
             $this->equalTo(7)
-        )->will(
-            $this->returnValue('result')
+        )->willReturn(
+            'result'
         );
 
         $result = $contentServiceMock->loadVersionInfo(
@@ -437,7 +437,7 @@ class ContentTest extends BaseServiceMockTest
         $content
             ->expects($this->once())
             ->method('getVersionInfo')
-            ->will($this->returnValue($versionInfo));
+            ->willReturn($versionInfo);
         $versionInfo
             ->expects($this->once())
             ->method('isPublished')
@@ -447,13 +447,13 @@ class ContentTest extends BaseServiceMockTest
             ->expects($this->once())
             ->method('internalLoadContent')
             ->with($contentId)
-            ->will($this->returnValue($content));
+            ->willReturn($content);
 
         $repository
             ->expects($this->once())
             ->method('canUser')
             ->with('content', 'read', $content)
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $this->assertSame($content, $contentService->loadContent($contentId));
     }
@@ -469,24 +469,22 @@ class ContentTest extends BaseServiceMockTest
         $content
             ->expects($this->once())
             ->method('getVersionInfo')
-            ->will($this->returnValue($versionInfo));
+            ->willReturn($versionInfo);
         $contentId = 123;
         $contentService
             ->expects($this->once())
             ->method('internalLoadContent')
             ->with($contentId)
-            ->will($this->returnValue($content));
+            ->willReturn($content);
 
         $repository
             ->expects($this->exactly(2))
             ->method('canUser')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         ['content', 'read', $content, null, true],
                         ['content', 'versionread', $content, null, true],
                     ]
-                )
             );
 
         $this->assertSame($content, $contentService->loadContent($contentId));
@@ -505,13 +503,13 @@ class ContentTest extends BaseServiceMockTest
             ->expects($this->once())
             ->method('internalLoadContent')
             ->with($contentId)
-            ->will($this->returnValue($content));
+            ->willReturn($content);
 
         $repository
             ->expects($this->once())
             ->method('canUser')
             ->with('content', 'read', $content)
-            ->will($this->returnValue(false));
+            ->willReturn(false);
 
         $contentService->loadContent($contentId);
     }
@@ -530,24 +528,22 @@ class ContentTest extends BaseServiceMockTest
         $content
             ->expects($this->once())
             ->method('getVersionInfo')
-            ->will($this->returnValue($versionInfo));
+            ->willReturn($versionInfo);
         $contentId = 123;
         $contentService
             ->expects($this->once())
             ->method('internalLoadContent')
             ->with($contentId)
-            ->will($this->returnValue($content));
+            ->willReturn($content);
 
         $repository
             ->expects($this->exactly(2))
             ->method('canUser')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         ['content', 'read', $content, null, true],
                         ['content', 'versionread', $content, null, false],
                     ]
-                )
             );
 
         $contentService->loadContent($contentId);
@@ -570,14 +566,14 @@ class ContentTest extends BaseServiceMockTest
                 ->expects($this->once())
                 ->method('loadContentInfoByRemoteId')
                 ->with($id)
-                ->will($this->returnValue($spiContentInfo));
+                ->willReturn($spiContentInfo);
         } elseif (!empty($languages) && $useAlwaysAvailable) {
             $spiContentInfo = new SPIContentInfo(['alwaysAvailable' => false]);
             $contentHandler
                 ->expects($this->once())
                 ->method('loadContentInfo')
                 ->with($id)
-                ->will($this->returnValue($spiContentInfo));
+                ->willReturn($spiContentInfo);
         }
 
         $spiContent = new SPIContent([
@@ -663,8 +659,8 @@ class ContentTest extends BaseServiceMockTest
             $this->equalTo(['cro-HR']),
             $this->equalTo(7),
             $this->equalTo(false)
-        )->will(
-            $this->returnValue('result')
+        )->willReturn(
+            'result'
         );
 
         $result = $contentServiceMock->loadContentByContentInfo(
@@ -695,8 +691,8 @@ class ContentTest extends BaseServiceMockTest
             $this->equalTo(['cro-HR']),
             $this->equalTo(7),
             $this->equalTo(false)
-        )->will(
-            $this->returnValue('result')
+        )->willReturn(
+            'result'
         );
 
         $result = $contentServiceMock->loadContentByVersionInfo(
@@ -727,17 +723,17 @@ class ContentTest extends BaseServiceMockTest
         $contentInfo->expects($this->any())
             ->method('__get')
             ->with('id')
-            ->will($this->returnValue(42));
+            ->willReturn(42);
 
         $contentService->expects($this->once())
             ->method('internalLoadContentInfo')
             ->with(42)
-            ->will($this->returnValue($contentInfo));
+            ->willReturn($contentInfo);
 
         $repository->expects($this->once())
             ->method('canUser')
             ->with('content', 'remove')
-            ->will($this->returnValue(false));
+            ->willReturn(false);
 
         /* @var \eZ\Publish\API\Repository\Values\Content\ContentInfo $contentInfo */
         $contentService->deleteContent($contentInfo);
@@ -755,7 +751,7 @@ class ContentTest extends BaseServiceMockTest
         $repository->expects($this->once())
             ->method('canUser')
             ->with('content', 'remove')
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $contentService = $this->getPartlyMockedContentService(['internalLoadContentInfo']);
         /** @var \PHPUnit\Framework\MockObject\MockObject $urlAliasHandler */
@@ -770,12 +766,12 @@ class ContentTest extends BaseServiceMockTest
         $contentService->expects($this->once())
             ->method('internalLoadContentInfo')
             ->with(42)
-            ->will($this->returnValue($contentInfo));
+            ->willReturn($contentInfo);
 
         $contentInfo->expects($this->any())
             ->method('__get')
             ->with('id')
-            ->will($this->returnValue(42));
+            ->willReturn(42);
 
         $repository->expects($this->once())->method('beginTransaction');
 
@@ -786,7 +782,7 @@ class ContentTest extends BaseServiceMockTest
         $locationHandler->expects($this->once())
             ->method('loadLocationsByContent')
             ->with(42)
-            ->will($this->returnValue($spiLocations));
+            ->willReturn($spiLocations);
 
         $contentHandler->expects($this->once())
             ->method('deleteContent')
@@ -817,7 +813,7 @@ class ContentTest extends BaseServiceMockTest
         $repository->expects($this->once())
             ->method('canUser')
             ->with('content', 'remove')
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $contentService = $this->getPartlyMockedContentService(['internalLoadContentInfo']);
         /** @var \PHPUnit\Framework\MockObject\MockObject $locationHandler */
@@ -828,12 +824,12 @@ class ContentTest extends BaseServiceMockTest
         $contentService->expects($this->once())
             ->method('internalLoadContentInfo')
             ->with(42)
-            ->will($this->returnValue($contentInfo));
+            ->willReturn($contentInfo);
 
         $contentInfo->expects($this->any())
             ->method('__get')
             ->with('id')
-            ->will($this->returnValue(42));
+            ->willReturn(42);
 
         $repository->expects($this->once())->method('beginTransaction');
 
@@ -861,7 +857,7 @@ class ContentTest extends BaseServiceMockTest
             ->expects($this->once())
             ->method('canUser')
             ->with('content', 'versionremove')
-            ->will($this->returnValue(true));
+            ->willReturn(true);
         $repository
             ->expects($this->never())
             ->method('beginTransaction');
@@ -876,18 +872,16 @@ class ContentTest extends BaseServiceMockTest
             ->expects($this->any())
             ->method('__get')
             ->with('id')
-            ->will($this->returnValue(42));
+            ->willReturn(42);
 
         $versionInfo
             ->expects($this->any())
             ->method('__get')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         ['versionNo', 123],
                         ['contentInfo', $contentInfo],
                     ]
-                )
             );
         $versionInfo
             ->expects($this->once())
@@ -898,7 +892,7 @@ class ContentTest extends BaseServiceMockTest
             ->expects($this->once())
             ->method('listVersions')
             ->with(42)
-            ->will($this->returnValue(['version']));
+            ->willReturn(['version']);
 
         /* @var \eZ\Publish\API\Repository\Values\Content\VersionInfo $versionInfo */
         $contentService->deleteVersion($versionInfo);
@@ -961,16 +955,16 @@ class ContentTest extends BaseServiceMockTest
 
         $repositoryMock->expects($this->once())
             ->method('getCurrentUserReference')
-            ->will($this->returnValue(new UserReference(169)));
+            ->willReturn(new UserReference(169));
 
         $contentTypeServiceMock->expects($this->once())
             ->method('loadContentType')
             ->with($this->equalTo(123))
-            ->will($this->returnValue($contentType));
+            ->willReturn($contentType);
 
         $repositoryMock->expects($this->once())
             ->method('getContentTypeService')
-            ->will($this->returnValue($contentTypeServiceMock));
+            ->willReturn($contentTypeServiceMock);
 
         $repositoryMock->expects($this->once())
             ->method('canUser')
@@ -979,7 +973,7 @@ class ContentTest extends BaseServiceMockTest
                 $this->equalTo('create'),
                 $this->isInstanceOf(get_class($contentCreateStruct)),
                 $this->equalTo([])
-            )->will($this->returnValue(false));
+            )->willReturn(false);
 
         $mockedService->createContent(
             new ContentCreateStruct(
@@ -1022,16 +1016,16 @@ class ContentTest extends BaseServiceMockTest
 
         $repositoryMock->expects($this->once())
             ->method('getCurrentUserReference')
-            ->will($this->returnValue(new UserReference(169)));
+            ->willReturn(new UserReference(169));
 
         $contentTypeServiceMock->expects($this->once())
             ->method('loadContentType')
             ->with($this->equalTo(123))
-            ->will($this->returnValue($contentType));
+            ->willReturn($contentType);
 
         $repositoryMock->expects($this->once())
             ->method('getContentTypeService')
-            ->will($this->returnValue($contentTypeServiceMock));
+            ->willReturn($contentTypeServiceMock);
 
         $repositoryMock->expects($this->once())
             ->method('canUser')
@@ -1040,12 +1034,12 @@ class ContentTest extends BaseServiceMockTest
                 $this->equalTo('create'),
                 $this->isInstanceOf(get_class($contentCreateStruct)),
                 $this->equalTo([])
-            )->will($this->returnValue(true));
+            )->willReturn(true);
 
         $mockedService->expects($this->once())
             ->method('loadContentByRemoteId')
             ->with($contentCreateStruct->remoteId)
-            ->will($this->returnValue('Hello...'));
+            ->willReturn('Hello...');
 
         $mockedService->createContent(
             new ContentCreateStruct(
@@ -1220,12 +1214,10 @@ class ContentTest extends BaseServiceMockTest
         $languageHandlerMock->expects($this->any())
             ->method('loadByLanguageCode')
             ->with($this->isType('string'))
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function () {
                         return new Language(['id' => 4242]);
                     }
-                )
             );
 
         $repositoryMock->expects($this->once())->method('beginTransaction');
@@ -1233,11 +1225,11 @@ class ContentTest extends BaseServiceMockTest
         $contentTypeServiceMock->expects($this->once())
             ->method('loadContentType')
             ->with($this->equalTo($contentType->id))
-            ->will($this->returnValue($contentType));
+            ->willReturn($contentType);
 
         $repositoryMock->expects($this->once())
             ->method('getContentTypeService')
-            ->will($this->returnValue($contentTypeServiceMock));
+            ->willReturn($contentTypeServiceMock);
 
         $that = $this;
         $repositoryMock->expects($this->once())
@@ -1247,67 +1239,57 @@ class ContentTest extends BaseServiceMockTest
                 $this->equalTo('create'),
                 $this->isInstanceOf(APIContentCreateStruct::class),
                 $this->equalTo($locationCreateStructs)
-            )->will(
-                $this->returnCallback(
+            )->willReturnCallback(
                     function () use ($that, $contentCreateStruct) {
                         $that->assertEquals($contentCreateStruct, func_get_arg(2));
 
                         return true;
                     }
-                )
             );
 
         $domainMapperMock->expects($this->once())
             ->method('getUniqueHash')
             ->with($this->isInstanceOf(APIContentCreateStruct::class))
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function ($object) use ($that, $contentCreateStruct) {
                         $that->assertEquals($contentCreateStruct, $object);
 
                         return 'hash';
                     }
-                )
             );
 
         $fieldTypeMock->expects($this->any())
             ->method('acceptValue')
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function ($valueString) {
                         return new ValueStub($valueString);
                     }
-                )
             );
 
         $fieldTypeMock->expects($this->any())
             ->method('toPersistenceValue')
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function (ValueStub $value) {
                         return (string)$value;
                     }
-                )
             );
 
         $emptyValue = self::EMPTY_FIELD_VALUE;
         $fieldTypeMock->expects($this->any())
             ->method('isEmptyValue')
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function (ValueStub $value) use ($emptyValue) {
                         return $emptyValue === (string)$value;
                     }
-                )
             );
 
         $fieldTypeMock->expects($this->any())
             ->method('validate')
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $this->getFieldTypeRegistryMock()->expects($this->any())
             ->method('getFieldType')
-            ->will($this->returnValue($fieldTypeMock));
+            ->willReturn($fieldTypeMock);
 
         $relationProcessorMock
             ->expects($this->exactly(count($fieldDefinitions) * count($languageCodes)))
@@ -1333,7 +1315,7 @@ class ContentTest extends BaseServiceMockTest
                 $this->equalTo($contentType),
                 $this->equalTo($values),
                 $this->equalTo($languageCodes)
-            )->will($this->returnValue([]));
+            )->willReturn([]);
 
         $relationProcessorMock->expects($this->any())
             ->method('processFieldRelations')
@@ -1348,7 +1330,7 @@ class ContentTest extends BaseServiceMockTest
         if (!$withObjectStates) {
             $objectStateHandlerMock->expects($this->once())
                 ->method('loadAllGroups')
-                ->will($this->returnValue([]));
+                ->willReturn([]);
         }
 
         if ($execute) {
@@ -1381,7 +1363,7 @@ class ContentTest extends BaseServiceMockTest
             $contentHandlerMock->expects($this->once())
                 ->method('create')
                 ->with($this->logicalOr($spiContentCreateStruct, $spiContentCreateStruct2))
-                ->will($this->returnValue($spiContent));
+                ->willReturn($spiContent);
 
             $repositoryMock->expects($this->once())->method('commit');
             $domainMapperMock->expects($this->once())
@@ -1847,8 +1829,7 @@ class ContentTest extends BaseServiceMockTest
         $languageHandlerMock->expects($this->any())
             ->method('loadByLanguageCode')
             ->with($this->isType('string'))
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function ($languageCode) {
                         if ($languageCode === 'Klingon') {
                             throw new NotFoundException('Language', 'Klingon');
@@ -1856,17 +1837,16 @@ class ContentTest extends BaseServiceMockTest
 
                         return new Language(['id' => 4242]);
                     }
-                )
             );
 
         $contentTypeServiceMock->expects($this->once())
             ->method('loadContentType')
             ->with($this->equalTo($contentType->id))
-            ->will($this->returnValue($contentType));
+            ->willReturn($contentType);
 
         $repositoryMock->expects($this->once())
             ->method('getContentTypeService')
-            ->will($this->returnValue($contentTypeServiceMock));
+            ->willReturn($contentTypeServiceMock);
 
         $that = $this;
         $repositoryMock->expects($this->once())
@@ -1876,27 +1856,23 @@ class ContentTest extends BaseServiceMockTest
                 $this->equalTo('create'),
                 $this->isInstanceOf(APIContentCreateStruct::class),
                 $this->equalTo([])
-            )->will(
-                $this->returnCallback(
+            )->willReturnCallback(
                     function () use ($that, $contentCreateStruct) {
                         $that->assertEquals($contentCreateStruct, func_get_arg(2));
 
                         return true;
                     }
-                )
             );
 
         $domainMapperMock->expects($this->once())
             ->method('getUniqueHash')
             ->with($this->isInstanceOf(APIContentCreateStruct::class))
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function ($object) use ($that, $contentCreateStruct) {
                         $that->assertEquals($contentCreateStruct, $object);
 
                         return 'hash';
                     }
-                )
             );
 
         $mockedService->createContent($contentCreateStruct, []);
@@ -1930,11 +1906,11 @@ class ContentTest extends BaseServiceMockTest
         $contentTypeServiceMock->expects($this->once())
             ->method('loadContentType')
             ->with($this->equalTo(123))
-            ->will($this->returnValue($contentType));
+            ->willReturn($contentType);
 
         $repositoryMock->expects($this->once())
             ->method('getContentTypeService')
-            ->will($this->returnValue($contentTypeServiceMock));
+            ->willReturn($contentTypeServiceMock);
 
         $repositoryMock->expects($this->once())
             ->method('canUser')
@@ -1943,7 +1919,7 @@ class ContentTest extends BaseServiceMockTest
                 $this->equalTo('create'),
                 $this->isInstanceOf(get_class($contentCreateStruct)),
                 $this->equalTo([])
-            )->will($this->returnValue(true));
+            )->willReturn(true);
 
         $mockedService->expects($this->once())
             ->method('loadContentByRemoteId')
@@ -2085,22 +2061,20 @@ class ContentTest extends BaseServiceMockTest
         $languageHandlerMock->expects($this->any())
             ->method('loadByLanguageCode')
             ->with($this->isType('string'))
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function () {
                         return new Language(['id' => 4242]);
                     }
-                )
             );
 
         $contentTypeServiceMock->expects($this->once())
             ->method('loadContentType')
             ->with($this->equalTo($contentType->id))
-            ->will($this->returnValue($contentType));
+            ->willReturn($contentType);
 
         $repositoryMock->expects($this->once())
             ->method('getContentTypeService')
-            ->will($this->returnValue($contentTypeServiceMock));
+            ->willReturn($contentTypeServiceMock);
 
         $that = $this;
         $repositoryMock->expects($this->once())
@@ -2110,57 +2084,49 @@ class ContentTest extends BaseServiceMockTest
                 $this->equalTo('create'),
                 $this->isInstanceOf(APIContentCreateStruct::class),
                 $this->equalTo([])
-            )->will(
-                $this->returnCallback(
+            )->willReturnCallback(
                     function () use ($that, $contentCreateStruct) {
                         $that->assertEquals($contentCreateStruct, func_get_arg(2));
 
                         return true;
                     }
-                )
             );
 
         $domainMapperMock->expects($this->once())
             ->method('getUniqueHash')
             ->with($this->isInstanceOf(APIContentCreateStruct::class))
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function ($object) use ($that, $contentCreateStruct) {
                         $that->assertEquals($contentCreateStruct, $object);
 
                         return 'hash';
                     }
-                )
             );
 
         $fieldTypeMock->expects($this->any())
             ->method('acceptValue')
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function ($valueString) {
                         return new ValueStub($valueString);
                     }
-                )
             );
 
         $emptyValue = self::EMPTY_FIELD_VALUE;
         $fieldTypeMock->expects($this->any())
             ->method('isEmptyValue')
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function (ValueStub $value) use ($emptyValue) {
                         return $emptyValue === (string)$value;
                     }
-                )
             );
 
         $fieldTypeMock->expects($this->any())
             ->method('validate')
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $this->getFieldTypeRegistryMock()->expects($this->any())
             ->method('getFieldType')
-            ->will($this->returnValue($fieldTypeMock));
+            ->willReturn($fieldTypeMock);
 
         return $contentCreateStruct;
     }
@@ -2277,22 +2243,20 @@ class ContentTest extends BaseServiceMockTest
         $languageHandlerMock->expects($this->any())
             ->method('loadByLanguageCode')
             ->with($this->isType('string'))
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function () {
                         return new Language(['id' => 4242]);
                     }
-                )
             );
 
         $contentTypeServiceMock->expects($this->once())
             ->method('loadContentType')
             ->with($this->equalTo($contentType->id))
-            ->will($this->returnValue($contentType));
+            ->willReturn($contentType);
 
         $repositoryMock->expects($this->once())
             ->method('getContentTypeService')
-            ->will($this->returnValue($contentTypeServiceMock));
+            ->willReturn($contentTypeServiceMock);
 
         $that = $this;
         $repositoryMock->expects($this->once())
@@ -2302,32 +2266,28 @@ class ContentTest extends BaseServiceMockTest
                 $this->equalTo('create'),
                 $this->isInstanceOf(APIContentCreateStruct::class),
                 $this->equalTo([])
-            )->will(
-                $this->returnCallback(
+            )->willReturnCallback(
                     function () use ($that, $contentCreateStruct) {
                         $that->assertEquals($contentCreateStruct, func_get_arg(2));
 
                         return true;
                     }
-                )
             );
 
         $domainMapperMock->expects($this->once())
             ->method('getUniqueHash')
             ->with($this->isInstanceOf(APIContentCreateStruct::class))
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function ($object) use ($that, $contentCreateStruct) {
                         $that->assertEquals($contentCreateStruct, $object);
 
                         return 'hash';
                     }
-                )
             );
 
         $this->getFieldTypeRegistryMock()->expects($this->any())
             ->method('getFieldType')
-            ->will($this->returnValue($fieldTypeMock));
+            ->willReturn($fieldTypeMock);
 
         $relationProcessorMock
             ->expects($this->any())
@@ -2353,22 +2313,18 @@ class ContentTest extends BaseServiceMockTest
             foreach ($fieldValues[$fieldDefinition->identifier] as $languageCode => $value) {
                 $fieldTypeMock->expects($this->at($validateCount++))
                     ->method('acceptValue')
-                    ->will(
-                        $this->returnCallback(
+                    ->willReturnCallback(
                             function ($valueString) {
                                 return new ValueStub($valueString);
                             }
-                        )
                     );
 
                 $fieldTypeMock->expects($this->at($validateCount++))
                     ->method('isEmptyValue')
-                    ->will(
-                        $this->returnCallback(
+                    ->willReturnCallback(
                             function (ValueStub $value) use ($emptyValue) {
                                 return $emptyValue === (string)$value;
                             }
-                        )
                     );
 
                 if (self::EMPTY_FIELD_VALUE === (string)$value) {
@@ -2380,7 +2336,7 @@ class ContentTest extends BaseServiceMockTest
                     ->with(
                         $this->equalTo($fieldDefinition),
                         $this->equalTo($value)
-                    )->will($this->returnArgument(1));
+                    )->willReturnArgument(1);
 
                 $allFieldErrors[$fieldDefinition->id][$languageCode] = $value;
             }
@@ -2484,16 +2440,16 @@ class ContentTest extends BaseServiceMockTest
         $locationServiceMock->expects($this->at(0))
             ->method('loadLocation')
             ->with($this->equalTo(321))
-            ->will($this->returnValue($parentLocation));
+            ->willReturn($parentLocation);
 
         $locationServiceMock->expects($this->at(1))
             ->method('loadLocation')
             ->with($this->equalTo(654))
-            ->will($this->returnValue($parentLocation));
+            ->willReturn($parentLocation);
 
         $repositoryMock->expects($this->atLeastOnce())
             ->method('getLocationService')
-            ->will($this->returnValue($locationServiceMock));
+            ->willReturn($locationServiceMock);
 
         $domainMapperMock->expects($this->at(1))
             ->method('buildSPILocationCreateStruct')
@@ -2503,7 +2459,7 @@ class ContentTest extends BaseServiceMockTest
                 $this->equalTo(true),
                 $this->equalTo(null),
                 $this->equalTo(null)
-            )->will($this->returnValue($spiLocationCreateStruct));
+            )->willReturn($spiLocationCreateStruct);
 
         $domainMapperMock->expects($this->at(2))
             ->method('buildSPILocationCreateStruct')
@@ -2513,7 +2469,7 @@ class ContentTest extends BaseServiceMockTest
                 $this->equalTo(false),
                 $this->equalTo(null),
                 $this->equalTo(null)
-            )->will($this->returnValue($spiLocationCreateStruct));
+            )->willReturn($spiLocationCreateStruct);
 
         $spiContentCreateStruct = new SPIContentCreateStruct(
             [
@@ -2545,7 +2501,7 @@ class ContentTest extends BaseServiceMockTest
         $handlerMock->expects($this->once())
             ->method('create')
             ->with($this->logicalOr($spiContentCreateStruct, $spiContentCreateStruct2))
-            ->will($this->returnValue($spiContent));
+            ->willReturn($spiContent);
 
         $domainMapperMock->expects($this->once())
             ->method('buildContentDomainObject')
@@ -2617,22 +2573,20 @@ class ContentTest extends BaseServiceMockTest
         $languageHandlerMock->expects($this->any())
             ->method('loadByLanguageCode')
             ->with($this->isType('string'))
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function () {
                         return new Language(['id' => 4242]);
                     }
-                )
             );
 
         $contentTypeServiceMock->expects($this->once())
             ->method('loadContentType')
             ->with($this->equalTo($contentType->id))
-            ->will($this->returnValue($contentType));
+            ->willReturn($contentType);
 
         $repositoryMock->expects($this->once())
             ->method('getContentTypeService')
-            ->will($this->returnValue($contentTypeServiceMock));
+            ->willReturn($contentTypeServiceMock);
 
         $that = $this;
         $repositoryMock->expects($this->once())
@@ -2642,37 +2596,33 @@ class ContentTest extends BaseServiceMockTest
                 $this->equalTo('create'),
                 $this->isInstanceOf(APIContentCreateStruct::class),
                 $this->equalTo($locationCreateStructs)
-            )->will(
-                $this->returnCallback(
+            )->willReturnCallback(
                     function () use ($that, $contentCreateStruct) {
                         $that->assertEquals($contentCreateStruct, func_get_arg(2));
 
                         return true;
                     }
-                )
             );
 
         $domainMapperMock->expects($this->once())
             ->method('getUniqueHash')
             ->with($this->isInstanceOf(APIContentCreateStruct::class))
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function ($object) use ($that, $contentCreateStruct) {
                         $that->assertEquals($contentCreateStruct, $object);
 
                         return 'hash';
                     }
-                )
             );
 
         $locationServiceMock->expects($this->once())
             ->method('loadLocation')
             ->with($this->equalTo(321))
-            ->will($this->returnValue($parentLocation));
+            ->willReturn($parentLocation);
 
         $repositoryMock->expects($this->any())
             ->method('getLocationService')
-            ->will($this->returnValue($locationServiceMock));
+            ->willReturn($locationServiceMock);
 
         $domainMapperMock->expects($this->any())
             ->method('buildSPILocationCreateStruct')
@@ -2682,7 +2632,7 @@ class ContentTest extends BaseServiceMockTest
                 $this->equalTo(true),
                 $this->equalTo(null),
                 $this->equalTo(null)
-            )->will($this->returnValue($spiLocationCreateStruct));
+            )->willReturn($spiLocationCreateStruct);
 
         $mockedService->createContent(
             $contentCreateStruct,
@@ -2780,7 +2730,7 @@ class ContentTest extends BaseServiceMockTest
         $handlerMock->expects($this->once())
             ->method('create')
             ->with($this->equalTo($spiContentCreateStruct))
-            ->will($this->returnValue($spiContent));
+            ->willReturn($spiContent);
 
         $domainMapperMock->expects($this->once())
             ->method('buildContentDomainObject')
@@ -2887,8 +2837,8 @@ class ContentTest extends BaseServiceMockTest
                 $this->equalTo(42),
                 $this->equalTo(null),
                 $this->equalTo(7)
-            )->will(
-                $this->returnValue($content)
+            )->willReturn(
+                $content
             );
 
         $mockedService->updateContent($versionInfo, $contentUpdateStruct);
@@ -2925,8 +2875,8 @@ class ContentTest extends BaseServiceMockTest
                 $this->equalTo(42),
                 $this->equalTo(null),
                 $this->equalTo(7)
-            )->will(
-                $this->returnValue($content)
+            )->willReturn(
+                $content
             );
 
         $permissionResolverMock->expects($this->once())
@@ -2936,7 +2886,7 @@ class ContentTest extends BaseServiceMockTest
                 $this->equalTo('edit'),
                 $this->equalTo($content),
                 $this->isType('array')
-            )->will($this->returnValue(false));
+            )->willReturn(false);
 
         $mockedService->updateContent($versionInfo, $contentUpdateStruct);
     }
@@ -3141,12 +3091,10 @@ class ContentTest extends BaseServiceMockTest
         $languageHandlerMock->expects($this->any())
             ->method('loadByLanguageCode')
             ->with($this->isType('string'))
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function () {
                         return new Language(['id' => 4242]);
                     }
-                )
             );
 
         $mockedService->expects($this->once())
@@ -3155,8 +3103,8 @@ class ContentTest extends BaseServiceMockTest
                 $this->equalTo(42),
                 $this->equalTo(null),
                 $this->equalTo(7)
-            )->will(
-                $this->returnValue($content)
+            )->willReturn(
+                $content
             );
 
         $repositoryMock->expects($this->once())->method('beginTransaction');
@@ -3168,59 +3116,53 @@ class ContentTest extends BaseServiceMockTest
                 $this->equalTo('edit'),
                 $this->equalTo($content),
                 $this->isType('array')
-            )->will($this->returnValue(true));
+            )->willReturn(true);
 
         $contentTypeServiceMock->expects($this->once())
             ->method('loadContentType')
             ->with($this->equalTo(24))
-            ->will($this->returnValue($contentType));
+            ->willReturn($contentType);
 
         $repositoryMock->expects($this->once())
             ->method('getContentTypeService')
-            ->will($this->returnValue($contentTypeServiceMock));
+            ->willReturn($contentTypeServiceMock);
 
         $repositoryMock->expects($this->once())
             ->method('getCurrentUserReference')
-            ->will($this->returnValue(new UserReference(169)));
+            ->willReturn(new UserReference(169));
 
         $fieldTypeMock->expects($this->any())
             ->method('acceptValue')
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function ($valueString) {
                         return new ValueStub($valueString);
                     }
-                )
             );
 
         $emptyValue = self::EMPTY_FIELD_VALUE;
         $fieldTypeMock->expects($this->any())
             ->method('toPersistenceValue')
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function (ValueStub $value) {
                         return (string)$value;
                     }
-                )
             );
 
         $fieldTypeMock->expects($this->any())
             ->method('isEmptyValue')
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function (ValueStub $value) use ($emptyValue) {
                         return $emptyValue === (string)$value;
                     }
-                )
             );
 
         $fieldTypeMock->expects($this->any())
             ->method('validate')
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $this->getFieldTypeRegistryMock()->expects($this->any())
             ->method('getFieldType')
-            ->will($this->returnValue($fieldTypeMock));
+            ->willReturn($fieldTypeMock);
 
         $relationProcessorMock
             ->expects($this->exactly(count($fieldDefinitions) * count($languageCodes)))
@@ -3246,13 +3188,13 @@ class ContentTest extends BaseServiceMockTest
                 $this->equalTo($content),
                 $this->equalTo($values),
                 $this->equalTo($languageCodes)
-            )->will($this->returnValue([]));
+            )->willReturn([]);
 
         $existingRelations = ['RELATIONS!!!'];
         $mockedService->expects($this->once())
             ->method('loadRelations')
             ->with($content->versionInfo)
-            ->will($this->returnValue($existingRelations));
+            ->willReturn($existingRelations);
         $relationProcessorMock->expects($this->any())
             ->method('processFieldRelations')
             ->with(
@@ -3308,7 +3250,7 @@ class ContentTest extends BaseServiceMockTest
                     7,
                     $this->logicalOr($spiContentUpdateStruct, $spiContentUpdateStructTs1, $spiContentUpdateStructTs2, $spiContentUpdateStructTs3)
                 )
-                ->will($this->returnValue($spiContent));
+                ->willReturn($spiContent);
 
             $repositoryMock->expects($this->once())->method('commit');
             $domainMapperMock->expects($this->once())
@@ -4630,8 +4572,7 @@ class ContentTest extends BaseServiceMockTest
         $languageHandlerMock->expects($this->any())
             ->method('loadByLanguageCode')
             ->with($this->isType('string'))
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function ($languageCode) {
                         if ($languageCode === 'Klingon') {
                             throw new NotFoundException('Language', 'Klingon');
@@ -4639,7 +4580,6 @@ class ContentTest extends BaseServiceMockTest
 
                         return new Language(['id' => 4242]);
                     }
-                )
             );
 
         $mockedService->expects($this->once())
@@ -4648,8 +4588,8 @@ class ContentTest extends BaseServiceMockTest
                 $this->equalTo(42),
                 $this->equalTo(null),
                 $this->equalTo(7)
-            )->will(
-                $this->returnValue($content)
+            )->willReturn(
+                $content
             );
 
         $permissionResolverMock->expects($this->once())
@@ -4659,7 +4599,7 @@ class ContentTest extends BaseServiceMockTest
                 $this->equalTo('edit'),
                 $this->equalTo($content),
                 $this->isType('array')
-            )->will($this->returnValue(true));
+            )->willReturn(true);
 
         $contentUpdateStruct = new ContentUpdateStruct(
             [
@@ -4707,8 +4647,7 @@ class ContentTest extends BaseServiceMockTest
         $languageHandlerMock->expects($this->any())
             ->method('loadByLanguageCode')
             ->with($this->isType('string'))
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function ($languageCode) {
                         if ($languageCode === 'Klingon') {
                             throw new NotFoundException('Language', 'Klingon');
@@ -4716,7 +4655,6 @@ class ContentTest extends BaseServiceMockTest
 
                         return new Language(['id' => 4242]);
                     }
-                )
             );
 
         $mockedService->expects($this->once())
@@ -4725,8 +4663,8 @@ class ContentTest extends BaseServiceMockTest
                 $this->equalTo(42),
                 $this->equalTo(null),
                 $this->equalTo(7)
-            )->will(
-                $this->returnValue($content)
+            )->willReturn(
+                $content
             );
 
         $permissionResolverMock->expects($this->once())
@@ -4736,16 +4674,16 @@ class ContentTest extends BaseServiceMockTest
                 $this->equalTo('edit'),
                 $this->equalTo($content),
                 $this->isType('array')
-            )->will($this->returnValue(true));
+            )->willReturn(true);
 
         $contentTypeServiceMock->expects($this->once())
             ->method('loadContentType')
             ->with($this->equalTo(24))
-            ->will($this->returnValue($contentType));
+            ->willReturn($contentType);
 
         $repositoryMock->expects($this->once())
             ->method('getContentTypeService')
-            ->will($this->returnValue($contentTypeServiceMock));
+            ->willReturn($contentTypeServiceMock);
 
         $contentUpdateStruct = new ContentUpdateStruct(
             [
@@ -4889,12 +4827,10 @@ class ContentTest extends BaseServiceMockTest
         $languageHandlerMock->expects($this->any())
             ->method('loadByLanguageCode')
             ->with($this->isType('string'))
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function () {
                         return new Language(['id' => 4242]);
                     }
-                )
             );
 
         $mockedService->expects($this->once())
@@ -4903,8 +4839,8 @@ class ContentTest extends BaseServiceMockTest
                 $this->equalTo(42),
                 $this->equalTo(null),
                 $this->equalTo(7)
-            )->will(
-                $this->returnValue($content)
+            )->willReturn(
+                $content
             );
 
         $permissionResolver->expects($this->once())
@@ -4914,36 +4850,32 @@ class ContentTest extends BaseServiceMockTest
                 $this->equalTo('edit'),
                 $this->equalTo($content),
                 $this->isType('array')
-            )->will($this->returnValue(true));
+            )->willReturn(true);
 
         $contentTypeServiceMock->expects($this->once())
             ->method('loadContentType')
             ->with($this->equalTo(24))
-            ->will($this->returnValue($contentType));
+            ->willReturn($contentType);
 
         $repositoryMock->expects($this->once())
             ->method('getContentTypeService')
-            ->will($this->returnValue($contentTypeServiceMock));
+            ->willReturn($contentTypeServiceMock);
 
         $fieldTypeMock->expects($this->any())
             ->method('acceptValue')
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function ($valueString) {
                         return new ValueStub($valueString);
                     }
-                )
             );
 
         $emptyValue = self::EMPTY_FIELD_VALUE;
         $fieldTypeMock->expects($this->any())
             ->method('isEmptyValue')
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function (ValueStub $value) use ($emptyValue) {
                         return $emptyValue === (string)$value;
                     }
-                )
             );
 
         $fieldTypeMock->expects($this->any())
@@ -4955,7 +4887,7 @@ class ContentTest extends BaseServiceMockTest
 
         $this->getFieldTypeRegistryMock()->expects($this->any())
             ->method('getFieldType')
-            ->will($this->returnValue($fieldTypeMock));
+            ->willReturn($fieldTypeMock);
 
         $contentUpdateStruct = new ContentUpdateStruct(
             [
@@ -5093,12 +5025,10 @@ class ContentTest extends BaseServiceMockTest
         $languageHandlerMock->expects($this->any())
             ->method('loadByLanguageCode')
             ->with($this->isType('string'))
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function () {
                         return new Language(['id' => 4242]);
                     }
-                )
             );
 
         $mockedService->expects($this->once())
@@ -5107,8 +5037,8 @@ class ContentTest extends BaseServiceMockTest
                 $this->equalTo(42),
                 $this->equalTo(null),
                 $this->equalTo(7)
-            )->will(
-                $this->returnValue($content)
+            )->willReturn(
+                $content
             );
 
         $permissionResolverMock->expects($this->once())
@@ -5118,16 +5048,16 @@ class ContentTest extends BaseServiceMockTest
                 $this->equalTo('edit'),
                 $this->equalTo($content),
                 $this->isType('array')
-            )->will($this->returnValue(true));
+            )->willReturn(true);
 
         $contentTypeServiceMock->expects($this->once())
             ->method('loadContentType')
             ->with($this->equalTo(24))
-            ->will($this->returnValue($contentType));
+            ->willReturn($contentType);
 
         $repositoryMock->expects($this->once())
             ->method('getContentTypeService')
-            ->will($this->returnValue($contentTypeServiceMock));
+            ->willReturn($contentTypeServiceMock);
 
         $fieldValues = $this->determineValuesForUpdate(
             $initialLanguageCode,
@@ -5141,22 +5071,18 @@ class ContentTest extends BaseServiceMockTest
 
         $fieldTypeMock->expects($this->exactly(count($fieldValues) * count($languageCodes)))
             ->method('acceptValue')
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function ($valueString) {
                         return new ValueStub($valueString);
                     }
-                )
             );
 
         $fieldTypeMock->expects($this->exactly(count($fieldValues) * count($languageCodes)))
             ->method('isEmptyValue')
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function (ValueStub $value) use ($emptyValue) {
                         return $emptyValue === (string)$value;
                     }
-                )
             );
 
         $fieldTypeMock
@@ -5166,7 +5092,7 @@ class ContentTest extends BaseServiceMockTest
 
         $this->getFieldTypeRegistryMock()->expects($this->any())
             ->method('getFieldType')
-            ->will($this->returnValue($fieldTypeMock));
+            ->willReturn($fieldTypeMock);
 
         $contentUpdateStruct = new ContentUpdateStruct(
             [
@@ -5410,7 +5336,7 @@ class ContentTest extends BaseServiceMockTest
 
         $repository->expects($this->once())
             ->method('getLocationService')
-            ->will($this->returnValue($locationServiceMock))
+            ->willReturn($locationServiceMock)
         ;
 
         $locationServiceMock->expects($this->once())
@@ -5418,13 +5344,13 @@ class ContentTest extends BaseServiceMockTest
             ->with(
                 $locationCreateStruct->parentLocationId
             )
-            ->will($this->returnValue($location))
+            ->willReturn($location)
         ;
 
         $contentInfo->expects($this->any())
             ->method('__get')
             ->with('sectionId')
-            ->will($this->returnValue(42));
+            ->willReturn(42);
 
         $repository->expects($this->once())
             ->method('canUser')
@@ -5434,7 +5360,7 @@ class ContentTest extends BaseServiceMockTest
                 $contentInfo,
                 [$location]
             )
-            ->will($this->returnValue(false));
+            ->willReturn(false);
 
         /* @var \eZ\Publish\API\Repository\Values\Content\ContentInfo $contentInfo */
         $contentService->copyContent($contentInfo, $locationCreateStruct);
@@ -5473,34 +5399,30 @@ class ContentTest extends BaseServiceMockTest
 
         $repositoryMock->expects($this->exactly(3))
             ->method('getLocationService')
-            ->will($this->returnValue($locationServiceMock));
+            ->willReturn($locationServiceMock);
 
         $locationServiceMock->expects($this->once())
             ->method('loadLocation')
             ->with($locationCreateStruct->parentLocationId)
-            ->will($this->returnValue($location))
+            ->willReturn($location)
         ;
 
         $contentInfoMock->expects($this->any())
             ->method('__get')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         ['isHidden', true],
                         ['id', 42],
                     ]
-                )
             );
         $versionInfoMock = $this->createMock(APIVersionInfo::class);
 
         $versionInfoMock->expects($this->any())
             ->method('__get')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         ['versionNo', 123],
                     ]
-                )
             );
 
         $versionInfoMock->expects($this->once())
@@ -5509,7 +5431,7 @@ class ContentTest extends BaseServiceMockTest
 
         $versionInfoMock->expects($this->once())
             ->method('getContentInfo')
-            ->will($this->returnValue($contentInfoMock));
+            ->willReturn($contentInfoMock);
 
         /** @var \PHPUnit\Framework\MockObject\MockObject $contentHandlerMock */
         $contentHandlerMock = $this->getPersistenceMock()->contentHandler();
@@ -5537,7 +5459,7 @@ class ContentTest extends BaseServiceMockTest
         $contentHandlerMock->expects($this->once())
             ->method('copy')
             ->with(42, null)
-            ->will($this->returnValue($spiContent));
+            ->willReturn($spiContent);
 
         $this->mockGetDefaultObjectStates();
         $this->mockSetDefaultObjectStates();
@@ -5545,7 +5467,7 @@ class ContentTest extends BaseServiceMockTest
         $domainMapperMock->expects($this->once())
             ->method('buildVersionInfoDomainObject')
             ->with($spiVersionInfo)
-            ->will($this->returnValue($versionInfoMock));
+            ->willReturn($versionInfoMock);
 
         /* @var \eZ\Publish\API\Repository\Values\Content\VersionInfo $versionInfoMock */
         $content = $this->mockPublishVersion(123456, 126666, true);
@@ -5561,11 +5483,11 @@ class ContentTest extends BaseServiceMockTest
             ->with(
                 $content->id
             )
-            ->will($this->returnValue($content));
+            ->willReturn($content);
 
         $contentService->expects($this->once())
             ->method('getUnixTimestamp')
-            ->will($this->returnValue(126666));
+            ->willReturn(126666);
 
         /* @var \eZ\Publish\API\Repository\Values\Content\ContentInfo $contentInfoMock */
         $contentService->copyContent($contentInfoMock, $locationCreateStruct, null);
@@ -5604,40 +5526,38 @@ class ContentTest extends BaseServiceMockTest
 
         $repositoryMock->expects($this->exactly(3))
             ->method('getLocationService')
-            ->will($this->returnValue($locationServiceMock));
+            ->willReturn($locationServiceMock);
 
         $locationServiceMock->expects($this->once())
             ->method('loadLocation')
             ->with($locationCreateStruct->parentLocationId)
-            ->will($this->returnValue($location))
+            ->willReturn($location)
         ;
 
         $contentInfoMock->expects($this->any())
             ->method('__get')
-            ->will(
-                $this->returnValueMap([
+            ->willReturnMap(
+                [
                     ['isHidden', true],
                     ['id', 42],
-                ])
+                ]
             );
 
         $versionInfoMock = $this->createMock(APIVersionInfo::class);
 
         $versionInfoMock->expects($this->any())
             ->method('__get')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         ['versionNo', 123],
                     ]
-                )
             );
         $versionInfoMock->expects($this->once())
             ->method('isDraft')
             ->willReturn(true);
         $versionInfoMock->expects($this->once())
             ->method('getContentInfo')
-            ->will($this->returnValue($contentInfoMock));
+            ->willReturn($contentInfoMock);
 
         /** @var \PHPUnit\Framework\MockObject\MockObject $contentHandlerMock */
         $contentHandlerMock = $this->getPersistenceMock()->contentHandler();
@@ -5665,7 +5585,7 @@ class ContentTest extends BaseServiceMockTest
         $contentHandlerMock->expects($this->once())
             ->method('copy')
             ->with(42, 123)
-            ->will($this->returnValue($spiContent));
+            ->willReturn($spiContent);
 
         $this->mockGetDefaultObjectStates();
         $this->mockSetDefaultObjectStates();
@@ -5673,7 +5593,7 @@ class ContentTest extends BaseServiceMockTest
         $domainMapperMock->expects($this->once())
             ->method('buildVersionInfoDomainObject')
             ->with($spiVersionInfo)
-            ->will($this->returnValue($versionInfoMock));
+            ->willReturn($versionInfoMock);
 
         /* @var \eZ\Publish\API\Repository\Values\Content\VersionInfo $versionInfoMock */
         $content = $this->mockPublishVersion(123456, 126666, true);
@@ -5689,11 +5609,11 @@ class ContentTest extends BaseServiceMockTest
             ->with(
                 $content->id
             )
-            ->will($this->returnValue($content));
+            ->willReturn($content);
 
         $contentService->expects($this->once())
             ->method('getUnixTimestamp')
-            ->will($this->returnValue(126666));
+            ->willReturn(126666);
 
         /* @var \eZ\Publish\API\Repository\Values\Content\ContentInfo $contentInfoMock */
         $contentService->copyContent($contentInfoMock, $locationCreateStruct, $versionInfoMock);
@@ -5731,20 +5651,20 @@ class ContentTest extends BaseServiceMockTest
 
         $repositoryMock->expects($this->once())
             ->method('getLocationService')
-            ->will($this->returnValue($locationServiceMock))
+            ->willReturn($locationServiceMock)
         ;
 
         $locationServiceMock->expects($this->once())
             ->method('loadLocation')
             ->with($locationCreateStruct->parentLocationId)
-            ->will($this->returnValue($location))
+            ->willReturn($location)
         ;
 
         $contentInfoMock = $this->createMock(APIContentInfo::class);
         $contentInfoMock->expects($this->any())
             ->method('__get')
             ->with('id')
-            ->will($this->returnValue(42));
+            ->willReturn(42);
 
         $this->mockGetDefaultObjectStates();
 
@@ -5823,30 +5743,26 @@ class ContentTest extends BaseServiceMockTest
         /* @var \PHPUnit\Framework\MockObject\MockObject $objectStateHandlerMock */
         $objectStateHandlerMock->expects($this->once())
             ->method('loadAllGroups')
-            ->will($this->returnValue($objectStateGroups));
+            ->willReturn($objectStateGroups);
 
         $objectStateHandlerMock->expects($this->at(1))
             ->method('loadObjectStates')
             ->with($this->equalTo(10))
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [
                         new SPIObjectState(['id' => 11, 'groupId' => 10]),
                         new SPIObjectState(['id' => 12, 'groupId' => 10]),
                     ]
-                )
             );
 
         $objectStateHandlerMock->expects($this->at(2))
             ->method('loadObjectStates')
             ->with($this->equalTo(20))
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [
                         new SPIObjectState(['id' => 21, 'groupId' => 20]),
                         new SPIObjectState(['id' => 22, 'groupId' => 20]),
                     ]
-                )
             );
     }
 
@@ -5894,39 +5810,33 @@ class ContentTest extends BaseServiceMockTest
         $contentMock = $this->mockBuildContentDomainObject($spiContent);
         $contentMock->expects($this->any())
             ->method('__get')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         ['id', 42],
                         ['contentInfo', $contentInfoMock],
                         ['versionInfo', $versionInfoMock],
                     ]
-                )
             );
         $contentMock->expects($this->any())
             ->method('getVersionInfo')
-            ->will($this->returnValue($versionInfoMock));
+            ->willReturn($versionInfoMock);
         $versionInfoMock->expects($this->any())
             ->method('getContentInfo')
-            ->will($this->returnValue($contentInfoMock));
+            ->willReturn($contentInfoMock);
         $versionInfoMock->expects($this->any())
             ->method('__get')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         ['languageCodes', ['eng-GB']],
                     ]
-                )
             );
         $contentInfoMock->expects($this->any())
             ->method('__get')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         ['alwaysAvailable', true],
                         ['mainLanguageCode', 'eng-GB'],
                     ]
-                )
             );
 
         $currentTime = time();
@@ -5946,7 +5856,7 @@ class ContentTest extends BaseServiceMockTest
                 123,
                 $metadataUpdateStruct
             )
-            ->will($this->returnValue($spiContent));
+            ->willReturn($spiContent);
 
         /* @var \eZ\Publish\API\Repository\Values\Content\Content $contentMock */
         $this->mockPublishUrlAliasesForContent($contentMock);
@@ -5968,22 +5878,22 @@ class ContentTest extends BaseServiceMockTest
         $location->expects($this->at(0))
             ->method('__get')
             ->with('id')
-            ->will($this->returnValue(123));
+            ->willReturn(123);
         $location->expects($this->at(1))
             ->method('__get')
             ->with('parentLocationId')
-            ->will($this->returnValue(456));
+            ->willReturn(456);
 
         $urlAliasNames = ['eng-GB' => 'hello'];
         $nameSchemaServiceMock->expects($this->once())
             ->method('resolveUrlAliasSchema')
             ->with($content)
-            ->will($this->returnValue($urlAliasNames));
+            ->willReturn($urlAliasNames);
 
         $locationServiceMock->expects($this->once())
             ->method('loadLocations')
             ->with($content->getVersionInfo()->getContentInfo())
-            ->will($this->returnValue([$location]));
+            ->willReturn([$location]);
 
         $urlAliasHandlerMock->expects($this->once())
             ->method('publishUrlAliasForLocation')
@@ -5992,12 +5902,12 @@ class ContentTest extends BaseServiceMockTest
         $location->expects($this->at(2))
             ->method('__get')
             ->with('id')
-            ->will($this->returnValue(123));
+            ->willReturn(123);
 
         $location->expects($this->at(3))
             ->method('__get')
             ->with('parentLocationId')
-            ->will($this->returnValue(456));
+            ->willReturn(456);
 
         $urlAliasHandlerMock->expects($this->once())
             ->method('archiveUrlAliasesForDeletedTranslations')

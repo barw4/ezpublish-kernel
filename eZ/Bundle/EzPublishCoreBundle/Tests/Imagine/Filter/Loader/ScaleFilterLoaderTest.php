@@ -60,13 +60,13 @@ class ScaleFilterLoaderTest extends TestCase
         $image
             ->expects($this->once())
             ->method('getSize')
-            ->will($this->returnValue($box));
+            ->willReturn($box);
 
         $this->innerLoader
             ->expects($this->once())
             ->method('load')
             ->with($image, $this->equalTo(['heighten' => $height]))
-            ->will($this->returnValue($image));
+            ->willReturn($image);
 
         $this->assertSame($image, $this->loader->load($image, [$width, $height]));
     }
@@ -83,13 +83,13 @@ class ScaleFilterLoaderTest extends TestCase
         $image
             ->expects($this->once())
             ->method('getSize')
-            ->will($this->returnValue($box));
+            ->willReturn($box);
 
         $this->innerLoader
             ->expects($this->once())
             ->method('load')
             ->with($image, $this->equalTo(['widen' => $width]))
-            ->will($this->returnValue($image));
+            ->willReturn($image);
 
         $this->assertSame($image, $this->loader->load($image, [$width, $height]));
     }

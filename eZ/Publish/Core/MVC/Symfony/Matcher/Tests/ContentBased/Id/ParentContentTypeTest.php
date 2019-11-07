@@ -37,33 +37,33 @@ class ParentContentTypeTest extends BaseTest
         $parentLocation = $this->getLocationMock();
         $parentLocation->expects($this->once())
             ->method('getContentInfo')
-            ->will(
-                $this->returnValue($parentContentInfo)
+            ->willReturn(
+                $parentContentInfo
             );
 
         $locationServiceMock = $this->createMock(LocationService::class);
 
         $locationServiceMock->expects($this->atLeastOnce())
             ->method('loadLocation')
-            ->will(
-                $this->returnValue($parentLocation)
+            ->willReturn(
+                $parentLocation
             );
         // The following is used in the case of a match by contentInfo
         $locationServiceMock->expects($this->any())
             ->method('loadLocation')
-            ->will(
-                $this->returnValue($this->getLocationMock())
+            ->willReturn(
+                $this->getLocationMock()
             );
 
         $repository = $this->getRepositoryMock();
         $repository
             ->expects($this->any())
             ->method('getLocationService')
-            ->will($this->returnValue($locationServiceMock));
+            ->willReturn($locationServiceMock);
         $repository
             ->expects($this->any())
             ->method('getPermissionResolver')
-            ->will($this->returnValue($this->getPermissionResolverMock()));
+            ->willReturn($this->getPermissionResolverMock());
 
         return $repository;
     }

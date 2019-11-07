@@ -29,7 +29,7 @@ class UrlStorageTest extends TestCase
             ->expects($this->once())
             ->method('getUrlIdMap')
             ->with(['http://ez.no'])
-            ->will($this->returnValue(['http://ez.no' => 12]));
+            ->willReturn(['http://ez.no' => 12]);
 
         $gateway
             ->expects($this->once())
@@ -54,13 +54,13 @@ class UrlStorageTest extends TestCase
             ->expects($this->once())
             ->method('getUrlIdMap')
             ->with(['http://ez.no'])
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $gateway
             ->expects($this->once())
             ->method('insertUrl')
             ->with('http://ez.no')
-            ->will($this->returnValue(12));
+            ->willReturn(12);
 
         $gateway
             ->expects($this->once())
@@ -111,7 +111,7 @@ class UrlStorageTest extends TestCase
             ->expects($this->once())
             ->method('getIdUrlMap')
             ->with([12])
-            ->will($this->returnValue([12 => 'http://ez.no']));
+            ->willReturn([12 => 'http://ez.no']);
 
         $storage = $this->getPartlyMockedStorage($gateway);
         $storage->getFieldData($versionInfo, $field, $this->getContext());
@@ -130,7 +130,7 @@ class UrlStorageTest extends TestCase
             ->expects($this->once())
             ->method('getIdUrlMap')
             ->with([12])
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $storage = $this->getPartlyMockedStorage($gateway);
         $logger = $this->getLoggerMock();

@@ -53,8 +53,8 @@ class UrlWildcardTest extends BaseServiceMockTest
         )->with(
             $this->equalTo('content'),
             $this->equalTo('urltranslator')
-        )->will(
-            $this->returnValue(false)
+        )->willReturn(
+            false
         );
 
         $this->expectException(UnauthorizedException::class);
@@ -78,8 +78,8 @@ class UrlWildcardTest extends BaseServiceMockTest
         )->with(
             $this->equalTo('content'),
             $this->equalTo('urltranslator')
-        )->will(
-            $this->returnValue(true)
+        )->willReturn(
+            true
         );
 
         $this->urlWildcardHandler->expects(
@@ -119,8 +119,8 @@ class UrlWildcardTest extends BaseServiceMockTest
         )->with(
             $this->equalTo('content'),
             $this->equalTo('urltranslator')
-        )->will(
-            $this->returnValue(true)
+        )->willReturn(
+            true
         );
 
         $this->urlWildcardHandler->expects(
@@ -167,8 +167,8 @@ class UrlWildcardTest extends BaseServiceMockTest
         )->with(
             $this->equalTo('content'),
             $this->equalTo('urltranslator')
-        )->will(
-            $this->returnValue(true)
+        )->willReturn(
+            true
         );
 
         $repositoryMock = $this->getRepositoryMock();
@@ -189,8 +189,7 @@ class UrlWildcardTest extends BaseServiceMockTest
             $this->equalTo($sourceUrl),
             $this->equalTo($destinationUrl),
             $this->equalTo($forward)
-        )->will(
-            $this->returnValue(
+        )->willReturn(
                 new SPIURLWildcard(
                     [
                         'id' => 123456,
@@ -199,7 +198,6 @@ class UrlWildcardTest extends BaseServiceMockTest
                         'forward' => $forward,
                     ]
                 )
-            )
         );
 
         $urlWildCard = $mockedService->create($sourceUrl, $destinationUrl, $forward);
@@ -233,8 +231,8 @@ class UrlWildcardTest extends BaseServiceMockTest
         )->with(
             $this->equalTo('content'),
             $this->equalTo('urltranslator')
-        )->will(
-            $this->returnValue(true)
+        )->willReturn(
+            true
         );
 
         $repositoryMock = $this->getRepositoryMock();
@@ -287,8 +285,8 @@ class UrlWildcardTest extends BaseServiceMockTest
             $this->equalTo('content'),
             $this->equalTo('urltranslator'),
             $this->equalTo($wildcard)
-        )->will(
-            $this->returnValue(false)
+        )->willReturn(
+            false
         );
 
         $repositoryMock = $this->getRepositoryMock();
@@ -318,8 +316,8 @@ class UrlWildcardTest extends BaseServiceMockTest
             $this->equalTo('content'),
             $this->equalTo('urltranslator'),
             $this->equalTo($wildcard)
-        )->will(
-            $this->returnValue(true)
+        )->willReturn(
+            true
         );
 
         $repositoryMock = $this->getRepositoryMock();
@@ -356,8 +354,8 @@ class UrlWildcardTest extends BaseServiceMockTest
             $this->equalTo('content'),
             $this->equalTo('urltranslator'),
             $this->equalTo($wildcard)
-        )->will(
-            $this->returnValue(true)
+        )->willReturn(
+            true
         );
 
         $repositoryMock = $this->getRepositoryMock();
@@ -418,8 +416,7 @@ class UrlWildcardTest extends BaseServiceMockTest
             'load'
         )->with(
             $this->equalTo('Luigi')
-        )->will(
-            $this->returnValue(
+        )->willReturn(
                 new SPIURLWildcard(
                     [
                         'id' => 'Luigi',
@@ -428,7 +425,6 @@ class UrlWildcardTest extends BaseServiceMockTest
                         'forward' => true,
                     ]
                 )
-            )
         );
 
         $urlWildcard = $mockedService->load('Luigi');
@@ -462,8 +458,8 @@ class UrlWildcardTest extends BaseServiceMockTest
         )->with(
             $this->equalTo(0),
             $this->equalTo(-1)
-        )->will(
-            $this->returnValue([])
+        )->willReturn(
+            []
         );
 
         $mockedService->loadAll();
@@ -485,8 +481,7 @@ class UrlWildcardTest extends BaseServiceMockTest
         )->with(
             $this->equalTo(12),
             $this->equalTo(34)
-        )->will(
-            $this->returnValue(
+        )->willReturn(
                 [
                     new SPIURLWildcard(
                         [
@@ -497,7 +492,6 @@ class UrlWildcardTest extends BaseServiceMockTest
                         ]
                     ),
                 ]
-            )
         );
 
         $urlWildcards = $mockedService->loadAll(12, 34);

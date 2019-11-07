@@ -95,7 +95,7 @@ class SessionSetDynamicNameListenerTest extends TestCase
         $this->session
             ->expects($this->once())
             ->method('isStarted')
-            ->will($this->returnValue(false));
+            ->willReturn(false);
         $this->sessionStorage
             ->expects($this->once())
             ->method('setOptions')
@@ -104,7 +104,7 @@ class SessionSetDynamicNameListenerTest extends TestCase
             ->expects($this->once())
             ->method('getParameter')
             ->with('session')
-            ->will($this->returnValue($configuredSessionStorageOptions));
+            ->willReturn($configuredSessionStorageOptions);
 
         $listener = new SessionSetDynamicNameListener($this->configResolver, $this->session, $this->sessionStorage);
         $listener->onSiteAccessMatch(new PostSiteAccessMatchEvent($siteAccess, new Request(), HttpKernelInterface::MASTER_REQUEST));
@@ -149,11 +149,11 @@ class SessionSetDynamicNameListenerTest extends TestCase
         $this->session
             ->expects($this->once())
             ->method('isStarted')
-            ->will($this->returnValue(false));
+            ->willReturn(false);
         $this->session
             ->expects($this->once())
             ->method('getName')
-            ->will($this->returnValue('some_default_name'));
+            ->willReturn('some_default_name');
         $this->sessionStorage
             ->expects($this->once())
             ->method('setOptions')
@@ -162,7 +162,7 @@ class SessionSetDynamicNameListenerTest extends TestCase
             ->expects($this->once())
             ->method('getParameter')
             ->with('session')
-            ->will($this->returnValue($configuredSessionStorageOptions));
+            ->willReturn($configuredSessionStorageOptions);
 
         $listener = new SessionSetDynamicNameListener($this->configResolver, $this->session, $this->sessionStorage);
         $listener->onSiteAccessMatch(new PostSiteAccessMatchEvent(new SiteAccess(), new Request(), HttpKernelInterface::MASTER_REQUEST));

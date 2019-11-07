@@ -71,8 +71,7 @@ class TrashHandlerTest extends TestCase
             ->expects($this->at(0))
             ->method('getSubtreeContent')
             ->with(20)
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [
                         [
                             'contentobject_id' => 10,
@@ -87,14 +86,13 @@ class TrashHandlerTest extends TestCase
                             'parent_node_id' => 41,
                         ],
                     ]
-                )
             );
 
         $this->locationGateway
             ->expects($this->at(1))
             ->method('countLocationsByContentId')
             ->with(10)
-            ->will($this->returnValue(1));
+            ->willReturn(1);
 
         $this->locationGateway
             ->expects($this->at(2))
@@ -105,7 +103,7 @@ class TrashHandlerTest extends TestCase
             ->expects($this->at(3))
             ->method('countLocationsByContentId')
             ->with(11)
-            ->will($this->returnValue(2));
+            ->willReturn(2);
 
         $this->locationGateway
             ->expects($this->at(4))
@@ -121,13 +119,13 @@ class TrashHandlerTest extends TestCase
             ->expects($this->at(5))
             ->method('loadTrashByLocation')
             ->with(20)
-            ->will($this->returnValue($array = ['data…']));
+            ->willReturn($array = ['data…']);
 
         $this->locationMapper
             ->expects($this->once())
             ->method('createLocationFromRow')
             ->with($array, null, new Trashed())
-            ->will($this->returnValue(new Trashed(['id' => 20])));
+            ->willReturn(new Trashed(['id' => 20]));
 
         $trashedObject = $handler->trashSubtree(20);
         self::assertInstanceOf(Trashed::class, $trashedObject);
@@ -145,8 +143,7 @@ class TrashHandlerTest extends TestCase
             ->expects($this->at(0))
             ->method('getSubtreeContent')
             ->with(20)
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [
                         [
                             'contentobject_id' => 10,
@@ -161,14 +158,13 @@ class TrashHandlerTest extends TestCase
                             'parent_node_id' => 41,
                         ],
                     ]
-                )
             );
 
         $this->locationGateway
             ->expects($this->at(1))
             ->method('countLocationsByContentId')
             ->with(10)
-            ->will($this->returnValue(2));
+            ->willReturn(2);
 
         $this->locationGateway
             ->expects($this->at(2))
@@ -179,7 +175,7 @@ class TrashHandlerTest extends TestCase
             ->expects($this->at(3))
             ->method('countLocationsByContentId')
             ->with(11)
-            ->will($this->returnValue(1));
+            ->willReturn(1);
 
         $this->locationGateway
             ->expects($this->at(4))
@@ -206,8 +202,7 @@ class TrashHandlerTest extends TestCase
             ->expects($this->at(0))
             ->method('getSubtreeContent')
             ->with(20)
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [
                         [
                             'contentobject_id' => 10,
@@ -222,14 +217,13 @@ class TrashHandlerTest extends TestCase
                             'parent_node_id' => 41,
                         ],
                     ]
-                )
             );
 
         $this->locationGateway
             ->expects($this->at(1))
             ->method('countLocationsByContentId')
             ->with(10)
-            ->will($this->returnValue(1));
+            ->willReturn(1);
 
         $this->locationGateway
             ->expects($this->at(2))
@@ -240,7 +234,7 @@ class TrashHandlerTest extends TestCase
             ->expects($this->at(3))
             ->method('countLocationsByContentId')
             ->with(11)
-            ->will($this->returnValue(2));
+            ->willReturn(2);
 
         $this->locationGateway
             ->expects($this->at(4))
@@ -251,14 +245,12 @@ class TrashHandlerTest extends TestCase
             ->expects($this->at(5))
             ->method('getFallbackMainNodeData')
             ->with(11, 21)
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [
                         'node_id' => 100,
                         'contentobject_version' => 101,
                         'parent_node_id' => 102,
                     ]
-                )
             );
 
         $this->locationHandler
@@ -275,13 +267,13 @@ class TrashHandlerTest extends TestCase
             ->expects($this->at(6))
             ->method('loadTrashByLocation')
             ->with(20)
-            ->will($this->returnValue($array = ['data…']));
+            ->willReturn($array = ['data…']);
 
         $this->locationMapper
             ->expects($this->once())
             ->method('createLocationFromRow')
             ->with($array, null, new Trashed())
-            ->will($this->returnValue(new Trashed(['id' => 20])));
+            ->willReturn(new Trashed(['id' => 20]));
 
         $trashedObject = $handler->trashSubtree(20);
         self::assertInstanceOf(Trashed::class, $trashedObject);
@@ -299,10 +291,8 @@ class TrashHandlerTest extends TestCase
             ->expects($this->at(0))
             ->method('untrashLocation')
             ->with(69, 23)
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     new Trashed(['id' => 70])
-                )
             );
 
         self::assertSame(70, $handler->recover(69, 23));
@@ -319,7 +309,7 @@ class TrashHandlerTest extends TestCase
             ->expects($this->at(0))
             ->method('loadTrashByLocation')
             ->with(69)
-            ->will($this->returnValue($array = ['data…']));
+            ->willReturn($array = ['data…']);
 
         $this->locationMapper
             ->expects($this->at(0))
@@ -358,8 +348,8 @@ class TrashHandlerTest extends TestCase
         $this->locationGateway
             ->expects($this->at($i++))
             ->method('listTrashed')
-            ->will(
-                $this->returnValue($expectedTrashed)
+            ->willReturn(
+                $expectedTrashed
             );
 
         $trashedItemIds = [];
@@ -369,8 +359,7 @@ class TrashHandlerTest extends TestCase
             $this->locationMapper
                 ->expects($this->at($iLocation++))
                 ->method('createLocationFromRow')
-                ->will(
-                    $this->returnValue(
+                ->willReturn(
                         new Trashed(
                             [
                                 'id' => $trashedElement['node_id'],
@@ -378,7 +367,6 @@ class TrashHandlerTest extends TestCase
                                 'pathString' => $trashedElement['path_string'],
                             ]
                         )
-                    )
                 );
             $this->locationGateway
                 ->expects($this->at($i++))
@@ -389,7 +377,7 @@ class TrashHandlerTest extends TestCase
                 ->expects($this->at($i++))
                 ->method('countLocationsByContentId')
                 ->with($trashedElement['contentobject_id'])
-                ->will($this->returnValue(0));
+                ->willReturn(0);
 
             $this->contentHandler
                 ->expects($this->at($iContent++))
@@ -424,21 +412,18 @@ class TrashHandlerTest extends TestCase
             ->expects($this->once())
             ->method('loadTrashByLocation')
             ->with($trashItemId)
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [
                         'node_id' => $trashItemId,
                         'contentobject_id' => $contentId,
                         'path_string' => '/1/2/69',
                     ]
-                )
             );
 
         $this->locationMapper
             ->expects($this->once())
             ->method('createLocationFromRow')
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     new Trashed(
                         [
                             'id' => $trashItemId,
@@ -446,7 +431,6 @@ class TrashHandlerTest extends TestCase
                             'pathString' => '/1/2/69',
                         ]
                     )
-                )
             );
 
         $this->locationGateway
@@ -458,7 +442,7 @@ class TrashHandlerTest extends TestCase
             ->expects($this->once())
             ->method('countLocationsByContentId')
             ->with($contentId)
-            ->will($this->returnValue(0));
+            ->willReturn(0);
 
         $this->contentHandler
             ->expects($this->once())
@@ -486,21 +470,18 @@ class TrashHandlerTest extends TestCase
             ->expects($this->once())
             ->method('loadTrashByLocation')
             ->with($trashItemId)
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [
                         'node_id' => $trashItemId,
                         'contentobject_id' => $contentId,
                         'path_string' => '/1/2/69',
                     ]
-                )
             );
 
         $this->locationMapper
             ->expects($this->once())
             ->method('createLocationFromRow')
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     new Trashed(
                         [
                             'id' => $trashItemId,
@@ -508,7 +489,6 @@ class TrashHandlerTest extends TestCase
                             'pathString' => '/1/2/69',
                         ]
                     )
-                )
             );
 
         $this->locationGateway
@@ -520,7 +500,7 @@ class TrashHandlerTest extends TestCase
             ->expects($this->once())
             ->method('countLocationsByContentId')
             ->with($contentId)
-            ->will($this->returnValue(1));
+            ->willReturn(1);
 
         $this->contentHandler
             ->expects($this->never())

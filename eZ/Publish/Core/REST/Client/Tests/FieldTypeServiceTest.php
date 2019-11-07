@@ -29,7 +29,7 @@ class FieldTypeServiceTest extends TestCase
         $fieldTypeMock = $this->createMock(FieldType::class);
         $fieldTypeMock->expects($this->once())
             ->method('getFieldTypeIdentifier')
-            ->will($this->returnValue('my-type'));
+            ->willReturn('my-type');
 
         $fieldTypeService = $this->getFieldTypeService();
 
@@ -45,7 +45,7 @@ class FieldTypeServiceTest extends TestCase
         $fieldTypeMock = $this->createMock(FieldType::class);
         $fieldTypeMock->expects($this->once())
             ->method('getFieldTypeIdentifier')
-            ->will($this->returnValue('my-type'));
+            ->willReturn('my-type');
 
         $fieldTypeService = $this->getFieldTypeService();
 
@@ -72,12 +72,12 @@ class FieldTypeServiceTest extends TestCase
         $myFieldTypeMock = $this->createMock(FieldType::class);
         $myFieldTypeMock->expects($this->once())
             ->method('getFieldTypeIdentifier')
-            ->will($this->returnValue('my-type'));
+            ->willReturn('my-type');
 
         $yourFieldTypeMock = $this->createMock(FieldType::class);
         $yourFieldTypeMock->expects($this->once())
             ->method('getFieldTypeIdentifier')
-            ->will($this->returnValue('your-type'));
+            ->willReturn('your-type');
 
         $fieldTypeService = $this->getFieldTypeService();
 

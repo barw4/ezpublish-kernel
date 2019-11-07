@@ -33,7 +33,7 @@ class EzPublishCoreCollectorTest extends TestCase
         $collector
             ->expects($this->once())
             ->method('getName')
-            ->will($this->returnValue($name));
+            ->willReturn($name);
 
         $this->mainCollector->addCollector($collector);
         $this->assertSame($collector, $this->mainCollector->getCollector($name));
@@ -56,13 +56,13 @@ class EzPublishCoreCollectorTest extends TestCase
         $collector1
             ->expects($this->once())
             ->method('getName')
-            ->will($this->returnValue($nameCollector1));
+            ->willReturn($nameCollector1);
         $collector2 = $this->getDataCollectorMock();
         $nameCollector2 = 'collector2';
         $collector2
             ->expects($this->once())
             ->method('getName')
-            ->will($this->returnValue($nameCollector2));
+            ->willReturn($nameCollector2);
 
         $allCollectors = [
             $nameCollector1 => $collector1,
@@ -83,7 +83,7 @@ class EzPublishCoreCollectorTest extends TestCase
         $collector
             ->expects($this->once())
             ->method('getName')
-            ->will($this->returnValue($name));
+            ->willReturn($name);
         $this->mainCollector->addCollector($collector);
         $this->assertNull($this->mainCollector->getToolbarTemplate($name));
     }
@@ -95,7 +95,7 @@ class EzPublishCoreCollectorTest extends TestCase
         $collector
             ->expects($this->once())
             ->method('getName')
-            ->will($this->returnValue($name));
+            ->willReturn($name);
         $toolbarTemplate = 'toolbar.html.twig';
 
         $this->mainCollector->addCollector($collector, 'foo', $toolbarTemplate);
@@ -109,7 +109,7 @@ class EzPublishCoreCollectorTest extends TestCase
         $collector
             ->expects($this->once())
             ->method('getName')
-            ->will($this->returnValue($name));
+            ->willReturn($name);
         $this->mainCollector->addCollector($collector);
         $this->assertNull($this->mainCollector->getPanelTemplate($name));
     }
@@ -121,7 +121,7 @@ class EzPublishCoreCollectorTest extends TestCase
         $collector
             ->expects($this->once())
             ->method('getName')
-            ->will($this->returnValue($name));
+            ->willReturn($name);
         $panelTemplate = 'toolbar.html.twig';
 
         $this->mainCollector->addCollector($collector, $panelTemplate, 'foo');
@@ -135,13 +135,13 @@ class EzPublishCoreCollectorTest extends TestCase
         $collector1
             ->expects($this->once())
             ->method('getName')
-            ->will($this->returnValue($nameCollector1));
+            ->willReturn($nameCollector1);
         $collector2 = $this->getDataCollectorMock();
         $nameCollector2 = 'collector2';
         $collector2
             ->expects($this->once())
             ->method('getName')
-            ->will($this->returnValue($nameCollector2));
+            ->willReturn($nameCollector2);
 
         $allCollectors = [
             $nameCollector1 => $collector1,

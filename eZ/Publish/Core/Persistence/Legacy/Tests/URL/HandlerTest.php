@@ -187,7 +187,7 @@ class HandlerTest extends TestCase
             ->expects($this->once())
             ->method('findUsages')
             ->with($url->id)
-            ->will($this->returnValue($ids));
+            ->willReturn($ids);
 
         $this->assertEquals($ids, $this->handler->findUsages($url->id));
     }

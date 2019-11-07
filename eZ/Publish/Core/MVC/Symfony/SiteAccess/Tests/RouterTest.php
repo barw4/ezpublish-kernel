@@ -274,7 +274,7 @@ class RouterTest extends TestCase
             ->expects($this->once())
             ->method('reverseMatch')
             ->with($matchedSiteAccess)
-            ->will($this->returnValue($reverseMatchedMatcher));
+            ->willReturn($reverseMatchedMatcher);
 
         $siteAccess = $router->matchByName($matchedSiteAccess);
         $this->assertInstanceOf(SiteAccess::class, $siteAccess);
@@ -300,7 +300,7 @@ class RouterTest extends TestCase
             ->expects($this->once())
             ->method('buildMatcher')
             ->with($matcherClass, $matcherConfig, $request)
-            ->will($this->returnValue($this->createMock(Matcher::class)));
+            ->willReturn($this->createMock(Matcher::class));
 
         $logger
             ->expects($this->once())

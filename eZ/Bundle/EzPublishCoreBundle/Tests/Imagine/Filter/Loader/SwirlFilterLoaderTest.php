@@ -39,7 +39,7 @@ class SwirlFilterLoaderTest extends TestCase
             ->expects($this->once())
             ->method('apply')
             ->with($image)
-            ->will($this->returnValue($image));
+            ->willReturn($image);
 
         $this->assertSame($image, $this->loader->load($image));
     }
@@ -59,7 +59,7 @@ class SwirlFilterLoaderTest extends TestCase
             ->expects($this->once())
             ->method('apply')
             ->with($image)
-            ->will($this->returnValue($image));
+            ->willReturn($image);
 
         $this->assertSame($image, $this->loader->load($image, [$degrees]));
     }

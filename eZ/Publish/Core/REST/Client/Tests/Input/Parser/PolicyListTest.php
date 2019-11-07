@@ -34,7 +34,7 @@ class PolicyListTest extends BaseTest
                 array('_media-type' => 'application/vnd.ez.api.Policy+xml'),
                 'application/vnd.ez.api.Policy+xml'
             )
-            ->will($this->returnValue('foo'));
+            ->willReturn('foo');
 
         $result = $policyListParser->parse($inputArray, $this->getParsingDispatcherMock());
 

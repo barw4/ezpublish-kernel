@@ -61,7 +61,7 @@ class LocationSearchHitAdapterTest extends TestCase
             ->expects($this->once())
             ->method('findLocations')
             ->with($this->equalTo($countQuery))
-            ->will($this->returnValue($searchResult));
+            ->willReturn($searchResult);
 
         $adapter = $this->getAdapter($query, $this->searchService);
         $this->assertSame($nbResults, $adapter->getNbResults());
@@ -101,7 +101,7 @@ class LocationSearchHitAdapterTest extends TestCase
             ->expects($this->once())
             ->method('findLocations')
             ->with($this->equalTo($searchQuery))
-            ->will($this->returnValue($searchResult));
+            ->willReturn($searchResult);
 
         $adapter = $this->getAdapter($query, $this->searchService);
         $this->assertSame($finalResult, $adapter->getSlice($offset, $limit));

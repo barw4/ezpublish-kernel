@@ -42,7 +42,7 @@ class ProviderTest extends TestCase
         $this->repository
             ->expects($this->any())
             ->method('getUserService')
-            ->will($this->returnValue($this->userService));
+            ->willReturn($this->userService);
         $this->userProvider = new Provider($this->repository);
     }
 
@@ -75,7 +75,7 @@ class ProviderTest extends TestCase
             ->expects($this->once())
             ->method('loadUserByLogin')
             ->with($username)
-            ->will($this->returnValue($apiUser));
+            ->willReturn($apiUser);
 
         $this->userService
             ->expects($this->once())
@@ -118,7 +118,7 @@ class ProviderTest extends TestCase
         $user
             ->expects($this->once())
             ->method('getAPIUser')
-            ->will($this->returnValue($apiUser));
+            ->willReturn($apiUser);
         $user
             ->expects($this->once())
             ->method('setAPIUser')
@@ -128,7 +128,7 @@ class ProviderTest extends TestCase
             ->expects($this->once())
             ->method('loadUser')
             ->with($userId)
-            ->will($this->returnValue($refreshedAPIUser));
+            ->willReturn($refreshedAPIUser);
 
         $this->repository
             ->expects($this->once())
@@ -159,7 +159,7 @@ class ProviderTest extends TestCase
         $user
             ->expects($this->once())
             ->method('getAPIUser')
-            ->will($this->returnValue($apiUser));
+            ->willReturn($apiUser);
 
         $this->userService
             ->expects($this->once())

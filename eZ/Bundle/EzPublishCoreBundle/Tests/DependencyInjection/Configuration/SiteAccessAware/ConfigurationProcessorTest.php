@@ -142,13 +142,11 @@ class ConfigurationProcessorTest extends TestCase
         $mapper
             ->expects($this->exactly(count($config[$saNodeName])))
             ->method('mapConfig')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         [$sa1Config, $sa1Name, $contextualizer, null],
                         [$sa2Config, $sa2Name, $contextualizer, null],
                     ]
-                )
             );
 
         $processor->mapConfig($config, $mapper);
@@ -196,13 +194,11 @@ class ConfigurationProcessorTest extends TestCase
         $mapper
             ->expects($this->exactly(count($config[$saNodeName])))
             ->method('mapConfig')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         [$sa1Config, $sa1Name, $contextualizer, null],
                         [$sa2Config, $sa2Name, $contextualizer, null],
                     ]
-                )
             );
 
         $processor->mapConfig($config, $mapper);

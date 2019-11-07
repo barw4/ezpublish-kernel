@@ -59,10 +59,8 @@ class ChainConfigResolverTest extends TestCase
         $resolver
             ->expects($this->once())
             ->method('sortResolvers')
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [$high, $medium, $low]
-                )
             );
 
         $resolver->addResolver($low, 10);
@@ -94,19 +92,15 @@ class ChainConfigResolverTest extends TestCase
         $resolver
             ->expects($this->at(0))
             ->method('sortResolvers')
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [$high, $medium, $low]
-                )
             );
         // The second time sortResolvers() is called, we're supposed to get the newly added router ($highest)
         $resolver
             ->expects($this->at(1))
             ->method('sortResolvers')
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [$highest, $high, $medium, $low]
-                )
             );
 
         $resolver->addResolver($low, 10);
@@ -189,7 +183,7 @@ class ChainConfigResolverTest extends TestCase
             ->expects($this->once())
             ->method('getParameter')
             ->with($paramName, $namespace, $scope)
-            ->will($this->returnValue($expectedValue));
+            ->willReturn($expectedValue);
 
         $this->chainResolver->addResolver($resolver);
         $this->assertSame($expectedValue, $this->chainResolver->getParameter($paramName, $namespace, $scope));
@@ -220,7 +214,7 @@ class ChainConfigResolverTest extends TestCase
             ->expects($this->once())
             ->method('hasParameter')
             ->with($paramName, $namespace, $scope)
-            ->will($this->returnValue(false));
+            ->willReturn(false);
         $this->chainResolver->addResolver($resolver1);
 
         $resolver2 = $this->createMock(ConfigResolverInterface::class);
@@ -228,7 +222,7 @@ class ChainConfigResolverTest extends TestCase
             ->expects($this->once())
             ->method('hasParameter')
             ->with($paramName, $namespace, $scope)
-            ->will($this->returnValue(true));
+            ->willReturn(true);
         $this->chainResolver->addResolver($resolver2);
 
         $resolver3 = $this->createMock(ConfigResolverInterface::class);
@@ -251,7 +245,7 @@ class ChainConfigResolverTest extends TestCase
             ->expects($this->once())
             ->method('hasParameter')
             ->with($paramName, $namespace, $scope)
-            ->will($this->returnValue(false));
+            ->willReturn(false);
         $this->chainResolver->addResolver($resolver);
 
         $this->assertFalse($this->chainResolver->hasParameter($paramName, $namespace, $scope));

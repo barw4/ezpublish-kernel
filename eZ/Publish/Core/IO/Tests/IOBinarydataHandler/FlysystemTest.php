@@ -113,7 +113,7 @@ class FlysystemTest extends TestCase
             ->expects($this->once())
             ->method('read')
             ->with('prefix/my/file.png')
-            ->will($this->returnValue('This is my contents'));
+            ->willReturn('This is my contents');
 
         self::assertEquals(
             'This is my contents',
@@ -146,7 +146,7 @@ class FlysystemTest extends TestCase
             ->expects($this->once())
             ->method('readStream')
             ->with('prefix/my/file.png')
-            ->will($this->returnValue($resource));
+            ->willReturn($resource);
 
         self::assertEquals(
             $resource,

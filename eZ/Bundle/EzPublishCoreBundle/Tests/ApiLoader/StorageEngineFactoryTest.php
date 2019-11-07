@@ -67,7 +67,7 @@ class StorageEngineFactoryTest extends TestCase
             ->expects($this->once())
             ->method('getParameter')
             ->with('repository')
-            ->will($this->returnValue($repositoryAlias));
+            ->willReturn($repositoryAlias);
 
         $this->assertSame($expectedStorageEngine, $factory->buildStorageEngine());
     }
@@ -108,7 +108,7 @@ class StorageEngineFactoryTest extends TestCase
             ->expects($this->once())
             ->method('getParameter')
             ->with('repository')
-            ->will($this->returnValue($repositoryAlias));
+            ->willReturn($repositoryAlias);
 
         $this->assertSame($this->getPersistenceHandlerMock(), $factory->buildStorageEngine());
     }

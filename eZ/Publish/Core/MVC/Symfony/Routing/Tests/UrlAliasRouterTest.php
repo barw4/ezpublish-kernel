@@ -178,11 +178,11 @@ class UrlAliasRouterTest extends TestCase
             ->expects($this->once())
             ->method('lookup')
             ->with($pathInfo)
-            ->will($this->returnValue($urlAlias));
+            ->willReturn($urlAlias);
         $this->urlALiasGenerator
             ->expects($this->once())
             ->method('loadLocation')
-            ->will($this->returnValue(new Location(['contentInfo' => new ContentInfo(['id' => 456])])));
+            ->willReturn(new Location(['contentInfo' => new ContentInfo(['id' => 456])]));
 
         $expected = [
             '_route' => UrlAliasRouter::URL_ALIAS_ROUTE_NAME,
@@ -213,16 +213,16 @@ class UrlAliasRouterTest extends TestCase
             ->expects($this->once())
             ->method('isUriPrefixExcluded')
             ->with($pathInfo)
-            ->will($this->returnValue(false));
+            ->willReturn(false);
         $this->urlAliasService
             ->expects($this->once())
             ->method('lookup')
             ->with($pathInfo)
-            ->will($this->returnValue($urlAlias));
+            ->willReturn($urlAlias);
         $this->urlALiasGenerator
             ->expects($this->once())
             ->method('loadLocation')
-            ->will($this->returnValue(new Location(['contentInfo' => new ContentInfo(['id' => 456])])));
+            ->willReturn(new Location(['contentInfo' => new ContentInfo(['id' => 456])]));
 
         $expected = [
             '_route' => UrlAliasRouter::URL_ALIAS_ROUTE_NAME,
@@ -255,16 +255,16 @@ class UrlAliasRouterTest extends TestCase
             ->expects($this->once())
             ->method('isUriPrefixExcluded')
             ->with($pathInfo)
-            ->will($this->returnValue(true));
+            ->willReturn(true);
         $this->urlAliasService
             ->expects($this->once())
             ->method('lookup')
             ->with($pathInfo)
-            ->will($this->returnValue($urlAlias));
+            ->willReturn($urlAlias);
         $this->urlALiasGenerator
             ->expects($this->once())
             ->method('loadLocation')
-            ->will($this->returnValue(new Location(['contentInfo' => new ContentInfo(['id' => 456])])));
+            ->willReturn(new Location(['contentInfo' => new ContentInfo(['id' => 456])]));
 
         $expected = [
             '_route' => UrlAliasRouter::URL_ALIAS_ROUTE_NAME,
@@ -296,16 +296,16 @@ class UrlAliasRouterTest extends TestCase
             ->expects($this->once())
             ->method('isUriPrefixExcluded')
             ->with($pathInfo)
-            ->will($this->returnValue(true));
+            ->willReturn(true);
         $this->urlAliasService
             ->expects($this->once())
             ->method('lookup')
             ->with($pathInfo)
-            ->will($this->returnValue($urlAlias));
+            ->willReturn($urlAlias);
         $this->urlALiasGenerator
             ->expects($this->once())
             ->method('loadLocation')
-            ->will($this->returnValue(new Location(['contentInfo' => new ContentInfo(['id' => 456])])));
+            ->willReturn(new Location(['contentInfo' => new ContentInfo(['id' => 456])]));
 
         $expected = [
             '_route' => UrlAliasRouter::URL_ALIAS_ROUTE_NAME,
@@ -342,16 +342,16 @@ class UrlAliasRouterTest extends TestCase
             ->expects($this->once())
             ->method('lookup')
             ->with($pathInfo)
-            ->will($this->returnValue($urlAlias));
+            ->willReturn($urlAlias);
         $this->urlALiasGenerator
             ->expects($this->once())
             ->method('generate')
             ->with($destinationLocation)
-            ->will($this->returnValue($newPathInfo));
+            ->willReturn($newPathInfo);
         $this->urlALiasGenerator
             ->expects($this->once())
             ->method('loadLocation')
-            ->will($this->returnValue($destinationLocation));
+            ->willReturn($destinationLocation);
 
         $expected = [
             '_route' => UrlAliasRouter::URL_ALIAS_ROUTE_NAME,
@@ -386,11 +386,11 @@ class UrlAliasRouterTest extends TestCase
             ->expects($this->once())
             ->method('lookup')
             ->with($pathInfo)
-            ->will($this->returnValue($urlAlias));
+            ->willReturn($urlAlias);
         $this->urlALiasGenerator
             ->expects($this->once())
             ->method('loadLocation')
-            ->will($this->returnValue(new Location(['contentInfo' => new ContentInfo(['id' => 456])])));
+            ->willReturn(new Location(['contentInfo' => new ContentInfo(['id' => 456])]));
 
         $expected = [
             '_route' => UrlAliasRouter::URL_ALIAS_ROUTE_NAME,
@@ -427,23 +427,23 @@ class UrlAliasRouterTest extends TestCase
             ->expects($this->once())
             ->method('lookup')
             ->with($pathInfo)
-            ->will($this->returnValue($urlAlias));
+            ->willReturn($urlAlias);
         $this->urlALiasGenerator
             ->expects($this->once())
             ->method('loadLocation')
             ->with($destinationId)
-            ->will(
-                $this->returnValue($destinationLocation)
+            ->willReturn(
+                $destinationLocation
             );
         $this->urlALiasGenerator
             ->expects($this->once())
             ->method('generate')
             ->with($destinationLocation)
-            ->will($this->returnValue($newPathInfo));
+            ->willReturn($newPathInfo);
         $this->urlALiasGenerator
             ->expects($this->once())
             ->method('loadLocation')
-            ->will($this->returnValue($destinationLocation));
+            ->willReturn($destinationLocation);
 
         $expected = [
             '_route' => UrlAliasRouter::URL_ALIAS_ROUTE_NAME,
@@ -490,7 +490,7 @@ class UrlAliasRouterTest extends TestCase
             ->expects($this->once())
             ->method('lookup')
             ->with($pathInfo)
-            ->will($this->returnValue($urlAlias));
+            ->willReturn($urlAlias);
 
         $expected = [
             '_route' => UrlAliasRouter::URL_ALIAS_ROUTE_NAME,
@@ -517,7 +517,7 @@ class UrlAliasRouterTest extends TestCase
             ->expects($this->once())
             ->method('lookup')
             ->with($pathInfo)
-            ->will($this->returnValue($urlAlias));
+            ->willReturn($urlAlias);
 
         $expected = [
             '_route' => UrlAliasRouter::URL_ALIAS_ROUTE_NAME,
@@ -545,12 +545,12 @@ class UrlAliasRouterTest extends TestCase
             ->expects($this->once())
             ->method('isUriPrefixExcluded')
             ->with($pathInfo)
-            ->will($this->returnValue(false));
+            ->willReturn(false);
         $this->urlAliasService
             ->expects($this->once())
             ->method('lookup')
             ->with($pathInfo)
-            ->will($this->returnValue($urlAlias));
+            ->willReturn($urlAlias);
 
         $expected = [
             '_route' => UrlAliasRouter::URL_ALIAS_ROUTE_NAME,
@@ -582,7 +582,7 @@ class UrlAliasRouterTest extends TestCase
             ->expects($this->once())
             ->method('lookup')
             ->with($pathInfo)
-            ->will($this->returnValue($urlAlias));
+            ->willReturn($urlAlias);
 
         $expected = [
             '_route' => UrlAliasRouter::URL_ALIAS_ROUTE_NAME,
@@ -606,7 +606,7 @@ class UrlAliasRouterTest extends TestCase
             ->expects($this->once())
             ->method('lookup')
             ->with($pathInfo)
-            ->will($this->returnValue($urlAlias));
+            ->willReturn($urlAlias);
 
         $expected = [
             '_route' => UrlAliasRouter::URL_ALIAS_ROUTE_NAME,
@@ -631,12 +631,12 @@ class UrlAliasRouterTest extends TestCase
             ->expects($this->once())
             ->method('isUriPrefixExcluded')
             ->with($pathInfo)
-            ->will($this->returnValue(false));
+            ->willReturn(false);
         $this->urlAliasService
             ->expects($this->once())
             ->method('lookup')
             ->with($pathInfo)
-            ->will($this->returnValue($urlAlias));
+            ->willReturn($urlAlias);
 
         $expected = [
             '_route' => UrlAliasRouter::URL_ALIAS_ROUTE_NAME,
@@ -664,7 +664,7 @@ class UrlAliasRouterTest extends TestCase
             ->expects($this->once())
             ->method('generate')
             ->with($location, $parameters, $referenceType)
-            ->will($this->returnValue($generatedLink));
+            ->willReturn($generatedLink);
         $this->assertSame($generatedLink, $this->router->generate($location, $parameters, $referenceType));
     }
 
@@ -695,12 +695,12 @@ class UrlAliasRouterTest extends TestCase
             ->expects($this->once())
             ->method('loadLocation')
             ->with($locationId)
-            ->will($this->returnValue($location));
+            ->willReturn($location);
         $this->urlALiasGenerator
             ->expects($this->once())
             ->method('generate')
             ->with($location, $parameters, $referenceType)
-            ->will($this->returnValue($generatedLink));
+            ->willReturn($generatedLink);
         $this->assertSame(
             $generatedLink,
             $this->router->generate(
@@ -722,7 +722,7 @@ class UrlAliasRouterTest extends TestCase
             ->expects($this->once())
             ->method('generate')
             ->with($location, $parameters, $referenceType)
-            ->will($this->returnValue($generatedLink));
+            ->willReturn($generatedLink);
         $this->assertSame(
             $generatedLink,
             $this->router->generate(
@@ -746,17 +746,17 @@ class UrlAliasRouterTest extends TestCase
             ->expects($this->once())
             ->method('loadContentInfo')
             ->with($contentId)
-            ->will($this->returnValue($contentInfo));
+            ->willReturn($contentInfo);
         $this->locationService
             ->expects($this->once())
             ->method('loadLocation')
             ->with($contentInfo->mainLocationId)
-            ->will($this->returnValue($location));
+            ->willReturn($location);
         $this->urlALiasGenerator
             ->expects($this->once())
             ->method('generate')
             ->with($location, $parameters, $referenceType)
-            ->will($this->returnValue($generatedLink));
+            ->willReturn($generatedLink);
         $this->assertSame(
             $generatedLink,
             $this->router->generate(
@@ -780,7 +780,7 @@ class UrlAliasRouterTest extends TestCase
             ->expects($this->once())
             ->method('loadContentInfo')
             ->with($contentId)
-            ->will($this->returnValue($contentInfo));
+            ->willReturn($contentInfo);
 
         $this->router->generate(
             UrlAliasRouter::URL_ALIAS_ROUTE_NAME,

@@ -59,7 +59,7 @@ class VersionInfoTest extends BaseTest
             ->expects($this->once())
             ->method('parseHref')
             ->with('/content/objects/10', 'contentId')
-            ->will($this->returnValue(10));
+            ->willReturn(10);
 
         $result = $relationParser->parse($inputArray, $this->getParsingDispatcherMock());
 

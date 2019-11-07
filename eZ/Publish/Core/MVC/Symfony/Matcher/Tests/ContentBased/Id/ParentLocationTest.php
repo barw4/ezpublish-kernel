@@ -125,21 +125,19 @@ class ParentLocationTest extends BaseTest
         $locationServiceMock->expects($this->once())
             ->method('loadLocation')
             ->with(42)
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     $this->getLocationMock(['parentLocationId' => $parentLocationId])
-                )
             );
 
         $repository = $this->getRepositoryMock();
         $repository
             ->expects($this->once())
             ->method('getLocationService')
-            ->will($this->returnValue($locationServiceMock));
+            ->willReturn($locationServiceMock);
         $repository
             ->expects($this->any())
             ->method('getPermissionResolver')
-            ->will($this->returnValue($this->getPermissionResolverMock()));
+            ->willReturn($this->getPermissionResolverMock());
 
         return $repository;
     }

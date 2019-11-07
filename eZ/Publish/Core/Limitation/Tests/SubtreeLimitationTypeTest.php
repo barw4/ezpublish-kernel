@@ -135,7 +135,7 @@ class SubtreeLimitationTypeTest extends Base
             $this->getPersistenceMock()
                 ->expects($this->any())
                 ->method('locationHandler')
-                ->will($this->returnValue($this->locationHandlerMock));
+                ->willReturn($this->locationHandlerMock);
 
             foreach ($limitation->limitationValues as $key => $value) {
                 $pathArray = explode('/', trim($value, '/'));
@@ -143,10 +143,8 @@ class SubtreeLimitationTypeTest extends Base
                     ->expects($this->at($key))
                     ->method('load')
                     ->with(end($pathArray))
-                    ->will(
-                        $this->returnValue(
+                    ->willReturn(
                             new SPILocation(['pathString' => $value])
-                        )
                     );
             }
         }
@@ -182,7 +180,7 @@ class SubtreeLimitationTypeTest extends Base
             $this->getPersistenceMock()
                 ->expects($this->any())
                 ->method('locationHandler')
-                ->will($this->returnValue($this->locationHandlerMock));
+                ->willReturn($this->locationHandlerMock);
 
             foreach ($limitation->limitationValues as $key => $value) {
                 $pathArray = explode('/', trim($value, '/'));
@@ -212,7 +210,7 @@ class SubtreeLimitationTypeTest extends Base
         $this->getPersistenceMock()
             ->expects($this->any())
             ->method('locationHandler')
-            ->will($this->returnValue($this->locationHandlerMock));
+            ->willReturn($this->locationHandlerMock);
 
         foreach ($limitation->limitationValues as $key => $value) {
             $pathArray = explode('/', trim($value, '/'));
@@ -220,10 +218,8 @@ class SubtreeLimitationTypeTest extends Base
                 ->expects($this->at($key))
                 ->method('load')
                 ->with(end($pathArray))
-                ->will(
-                    $this->returnValue(
+                ->willReturn(
                         new SPILocation(['pathString' => '/1/5/42'])
-                    )
                 );
         }
 
@@ -261,7 +257,7 @@ class SubtreeLimitationTypeTest extends Base
         $contentMock
             ->expects($this->once())
             ->method('getVersionInfo')
-            ->will($this->returnValue($versionInfoMock));
+            ->willReturn($versionInfoMock);
 
         $versionInfoMock
             ->expects($this->once())
@@ -419,25 +415,25 @@ class SubtreeLimitationTypeTest extends Base
                 $this->getPersistenceMock()
                     ->expects($this->at($key))
                     ->method('locationHandler')
-                    ->will($this->returnValue($this->locationHandlerMock));
+                    ->willReturn($this->locationHandlerMock);
 
                 $this->locationHandlerMock
                     ->expects($this->at($key))
                     ->method('load')
                     ->with($target->parentLocationId)
-                    ->will($this->returnValue($persistenceLocations[$key]));
+                    ->willReturn($persistenceLocations[$key]);
             }
         } else {
             $this->getPersistenceMock()
                 ->expects($this->once())
                 ->method('locationHandler')
-                ->will($this->returnValue($this->locationHandlerMock));
+                ->willReturn($this->locationHandlerMock);
 
             $this->locationHandlerMock
                 ->expects($this->once())
                 ->method($object instanceof ContentInfo && $object->published ? 'loadLocationsByContent' : 'loadParentLocationsForDraftContent')
                 ->with($object->id)
-                ->will($this->returnValue($persistenceLocations));
+                ->willReturn($persistenceLocations);
         }
 
         $value = $limitationType->evaluate(

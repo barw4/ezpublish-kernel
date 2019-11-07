@@ -51,7 +51,7 @@ class DoctrineDatabaseTest extends TestCase
                 $this->isInstanceOf(
                     Type::class
                 )
-            )->will($this->returnValue([]));
+            )->willReturn([]);
 
         $updaterMock->expects($this->once())
             ->method('applyUpdates')

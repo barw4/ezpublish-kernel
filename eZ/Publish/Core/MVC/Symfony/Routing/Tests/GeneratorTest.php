@@ -71,14 +71,14 @@ class GeneratorTest extends TestCase
             ->expects($this->once())
             ->method('doGenerate')
             ->with($urlResource, $parameters)
-            ->will($this->returnValue($uri));
+            ->willReturn($uri);
 
         $fullUri = $baseUrl . $uri;
         $matcher
             ->expects($this->once())
             ->method('analyseLink')
             ->with($uri)
-            ->will($this->returnValue($uri));
+            ->willReturn($uri);
 
         if ($referenceType === UrlGeneratorInterface::ABSOLUTE_URL) {
             $fullUri = $requestContext->getScheme() . '://' . $requestContext->getHost() . $baseUrl . $uri;
@@ -104,14 +104,14 @@ class GeneratorTest extends TestCase
             ->expects($this->once())
             ->method('doGenerate')
             ->with($urlResource, $parameters)
-            ->will($this->returnValue($uri));
+            ->willReturn($uri);
 
         $fullUri = $baseUrl . $uri;
         $matcher
             ->expects($this->once())
             ->method('analyseLink')
             ->with($uri)
-            ->will($this->returnValue($uri));
+            ->willReturn($uri);
 
         if ($referenceType === UrlGeneratorInterface::ABSOLUTE_URL) {
             $fullUri = $requestContext->getScheme() . '://' . $requestContext->getHost() . $baseUrl . $uri;
@@ -122,7 +122,7 @@ class GeneratorTest extends TestCase
             ->expects($this->once())
             ->method('matchByName')
             ->with($siteAccessName)
-            ->will($this->returnValue(null));
+            ->willReturn(null);
         $this->logger
             ->expects($this->once())
             ->method('notice');

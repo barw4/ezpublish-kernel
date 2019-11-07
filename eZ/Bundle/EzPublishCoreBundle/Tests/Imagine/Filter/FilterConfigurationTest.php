@@ -39,7 +39,7 @@ class FilterConfigurationTest extends TestCase
             ->expects($this->exactly(2))
             ->method('getParameter')
             ->with('image_variations')
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $this->assertSame($fooConfig, $this->filterConfiguration->get('foo'));
         $this->assertSame($barConfig, $this->filterConfiguration->get('bar'));
@@ -59,7 +59,7 @@ class FilterConfigurationTest extends TestCase
             ->expects($this->once())
             ->method('getParameter')
             ->with('image_variations')
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $this->filterConfiguration->get('foobar');
     }
@@ -81,7 +81,7 @@ class FilterConfigurationTest extends TestCase
             ->expects($this->once())
             ->method('getParameter')
             ->with('image_variations')
-            ->will($this->returnValue($variations));
+            ->willReturn($variations);
 
         $this->filterConfiguration->get('some_variation');
     }
@@ -101,7 +101,7 @@ class FilterConfigurationTest extends TestCase
             ->expects($this->once())
             ->method('getParameter')
             ->with('image_variations')
-            ->will($this->returnValue($variations));
+            ->willReturn($variations);
 
         $this->assertSame(
             [
@@ -131,7 +131,7 @@ class FilterConfigurationTest extends TestCase
             ->expects($this->once())
             ->method('getParameter')
             ->with('image_variations')
-            ->will($this->returnValue($variations));
+            ->willReturn($variations);
 
         $this->assertSame(
             [
@@ -159,7 +159,7 @@ class FilterConfigurationTest extends TestCase
             ->expects($this->once())
             ->method('getParameter')
             ->with('image_variations')
-            ->will($this->returnValue($variations));
+            ->willReturn($variations);
 
         $this->assertSame(
             [
@@ -190,7 +190,7 @@ class FilterConfigurationTest extends TestCase
             ->expects($this->once())
             ->method('getParameter')
             ->with('image_variations')
-            ->will($this->returnValue($variations));
+            ->willReturn($variations);
 
         $this->assertSame(
             [
@@ -222,7 +222,7 @@ class FilterConfigurationTest extends TestCase
             ->expects($this->once())
             ->method('getParameter')
             ->with('image_variations')
-            ->will($this->returnValue($variations));
+            ->willReturn($variations);
 
         $this->assertEquals(
             [

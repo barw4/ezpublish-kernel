@@ -109,7 +109,7 @@ class RequestEventListenerTest extends TestCase
             ->expects($this->once())
             ->method('handle')
             ->with($this->equalTo($expectedForwardRequest))
-            ->will($this->returnValue($response));
+            ->willReturn($response);
 
         $event = new GetResponseEvent($this->httpKernel, $request, HttpKernelInterface::MASTER_REQUEST);
         $this->requestEventListener->onKernelRequestForward($event);
@@ -187,7 +187,7 @@ class RequestEventListenerTest extends TestCase
             ->expects($this->once())
             ->method('analyseLink')
             ->with($semanticPathinfo)
-            ->will($this->returnValue($expectedURI));
+            ->willReturn($expectedURI);
 
         $event = new GetResponseEvent($this->httpKernel, $request, HttpKernelInterface::MASTER_REQUEST);
         $this->requestEventListener->onKernelRequestRedirect($event);

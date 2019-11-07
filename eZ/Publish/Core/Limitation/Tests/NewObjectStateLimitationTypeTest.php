@@ -126,7 +126,7 @@ class NewObjectStateLimitationTypeTest extends Base
             $this->getPersistenceMock()
                 ->expects($this->any())
                 ->method('objectStateHandler')
-                ->will($this->returnValue($this->objectStateHandlerMock));
+                ->willReturn($this->objectStateHandlerMock);
 
             foreach ($limitation->limitationValues as $key => $value) {
                 $this->objectStateHandlerMock
@@ -167,7 +167,7 @@ class NewObjectStateLimitationTypeTest extends Base
             $this->getPersistenceMock()
                 ->expects($this->any())
                 ->method('objectStateHandler')
-                ->will($this->returnValue($this->objectStateHandlerMock));
+                ->willReturn($this->objectStateHandlerMock);
 
             foreach ($limitation->limitationValues as $key => $value) {
                 $this->objectStateHandlerMock

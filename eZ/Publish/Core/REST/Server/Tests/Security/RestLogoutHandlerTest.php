@@ -38,7 +38,7 @@ class RestLogoutHandlerTest extends TestCase
         $this->session
             ->expects($this->once())
             ->method('getName')
-            ->will($this->returnValue($sessionId));
+            ->willReturn($sessionId);
         $request = new Request();
         $request->setSession($this->session);
         $request->attributes->set('is_rest_request', true);
@@ -46,7 +46,7 @@ class RestLogoutHandlerTest extends TestCase
             ->expects($this->once())
             ->method('getParameter')
             ->with('session')
-            ->will($this->returnValue([]));
+            ->willReturn([]);
         $response = new Response();
         $response->headers = $this->createMock(ResponseHeaderBag::class);
         $response->headers
@@ -67,7 +67,7 @@ class RestLogoutHandlerTest extends TestCase
         $this->session
             ->expects($this->once())
             ->method('getName')
-            ->will($this->returnValue($sessionId));
+            ->willReturn($sessionId);
         $request = new Request();
         $request->setSession($this->session);
         $request->attributes->set('is_rest_request', true);
@@ -79,7 +79,7 @@ class RestLogoutHandlerTest extends TestCase
             ->expects($this->once())
             ->method('getParameter')
             ->with('session')
-            ->will($this->returnValue($sessionSettings));
+            ->willReturn($sessionSettings);
         $response = new Response();
         $response->headers = $this->createMock(ResponseHeaderBag::class);
         $response->headers

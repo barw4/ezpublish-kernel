@@ -36,7 +36,7 @@ class ParsingDispatcherTest extends TestCase
             ->expects($this->at(0))
             ->method('parse')
             ->with([42], $dispatcher)
-            ->will($this->returnValue(23));
+            ->willReturn(23);
 
         $this->assertSame(
             23,
@@ -56,7 +56,7 @@ class ParsingDispatcherTest extends TestCase
             ->expects($this->at(0))
             ->method('parse')
             ->with([42], $dispatcher)
-            ->will($this->returnValue(23));
+            ->willReturn(23);
 
         $this->assertSame(
             23,
@@ -90,7 +90,7 @@ class ParsingDispatcherTest extends TestCase
             ->expects($this->at(0))
             ->method('parse')
             ->with([42], $dispatcher)
-            ->will($this->returnValue(23));
+            ->willReturn(23);
 
         $this->assertSame(
             23,

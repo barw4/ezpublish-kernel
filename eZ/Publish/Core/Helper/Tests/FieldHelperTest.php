@@ -53,7 +53,7 @@ class FieldHelperTest extends TestCase
             ->expects($this->any())
             ->method('__get')
             ->with('contentInfo')
-            ->will($this->returnValue($contentInfo));
+            ->willReturn($contentInfo);
 
         $fieldDefIdentifier = 'my_field_definition';
         $textLineFT = new TextLineType();
@@ -68,7 +68,7 @@ class FieldHelperTest extends TestCase
             ->expects($this->once())
             ->method('getFieldDefinition')
             ->with($fieldDefIdentifier)
-            ->will($this->returnValue($fieldDefinition));
+            ->willReturn($fieldDefinition);
 
         $content
             ->expects($this->any())
@@ -79,13 +79,13 @@ class FieldHelperTest extends TestCase
             ->expects($this->once())
             ->method('getTranslatedField')
             ->with($content, $fieldDefIdentifier)
-            ->will($this->returnValue($emptyField));
+            ->willReturn($emptyField);
 
         $this->fieldTypeServiceMock
             ->expects($this->any())
             ->method('getFieldType')
             ->with('ezstring')
-            ->will($this->returnValue($textLineFT));
+            ->willReturn($textLineFT);
 
         $this->assertTrue($this->fieldHelper->isFieldEmpty($content, $fieldDefIdentifier));
     }
@@ -99,7 +99,7 @@ class FieldHelperTest extends TestCase
             ->expects($this->any())
             ->method('__get')
             ->with('contentInfo')
-            ->will($this->returnValue($contentInfo));
+            ->willReturn($contentInfo);
 
         $fieldDefIdentifier = 'my_field_definition';
         $textLineFT = new TextLineType();
@@ -114,7 +114,7 @@ class FieldHelperTest extends TestCase
             ->expects($this->once())
             ->method('getFieldDefinition')
             ->with($fieldDefIdentifier)
-            ->will($this->returnValue($fieldDefinition));
+            ->willReturn($fieldDefinition);
 
         $content
             ->expects($this->any())
@@ -125,13 +125,13 @@ class FieldHelperTest extends TestCase
             ->expects($this->once())
             ->method('getTranslatedField')
             ->with($content, $fieldDefIdentifier)
-            ->will($this->returnValue($emptyField));
+            ->willReturn($emptyField);
 
         $this->fieldTypeServiceMock
             ->expects($this->any())
             ->method('getFieldType')
             ->with('ezstring')
-            ->will($this->returnValue($textLineFT));
+            ->willReturn($textLineFT);
 
         $this->assertFalse($this->fieldHelper->isFieldEmpty($content, $fieldDefIdentifier));
     }

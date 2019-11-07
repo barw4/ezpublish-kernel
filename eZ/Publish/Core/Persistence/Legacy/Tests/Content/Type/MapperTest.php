@@ -448,12 +448,10 @@ class MapperTest extends TestCase
                 $this->isInstanceOf(
                     StorageFieldDefinition::class
                 )
-            )->will(
-                $this->returnCallback(
+            )->willReturnCallback(
                     function () {
                         return new FieldDefinition();
                     }
-                )
             );
 
         return $mapper;

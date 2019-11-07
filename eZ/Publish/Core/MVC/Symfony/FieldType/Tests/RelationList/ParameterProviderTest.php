@@ -30,7 +30,7 @@ class ParameterProviderTest extends TestCase
         $contentServiceMock
             ->method('loadContentInfoList')
             ->with($desinationContentIds)
-            ->will($this->returnCallback(function ($arg) {
+            ->willReturnCallback(function ($arg) {
                 $return = [];
                 if (in_array(123, $arg)) {
                     $return[123] = new ContentInfo(['status' => ContentInfo::STATUS_DRAFT]);
@@ -45,7 +45,7 @@ class ParameterProviderTest extends TestCase
                 }
 
                 return $return;
-            }));
+            });
 
         $parameterProvider = new ParameterProvider($contentServiceMock);
         $parameters = $parameterProvider->getViewParameters(new Field([

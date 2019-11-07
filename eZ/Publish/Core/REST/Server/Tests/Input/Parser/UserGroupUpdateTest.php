@@ -236,7 +236,7 @@ class UserGroupUpdateTest extends BaseTest
         $fieldTypeParserMock->expects($this->any())
             ->method('parseFieldValue')
             ->with(4, 'name', [])
-            ->will($this->returnValue('foo'));
+            ->willReturn('foo');
 
         return $fieldTypeParserMock;
     }
@@ -252,8 +252,8 @@ class UserGroupUpdateTest extends BaseTest
 
         $userServiceMock->expects($this->any())
             ->method('newUserGroupUpdateStruct')
-            ->will(
-                $this->returnValue(new UserGroupUpdateStruct())
+            ->willReturn(
+                new UserGroupUpdateStruct()
             );
 
         return $userServiceMock;
@@ -271,8 +271,7 @@ class UserGroupUpdateTest extends BaseTest
         $userServiceMock->expects($this->any())
             ->method('loadLocation')
             ->with($this->equalTo(5))
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     new Location(
                         [
                             'contentInfo' => new ContentInfo(
@@ -282,7 +281,6 @@ class UserGroupUpdateTest extends BaseTest
                             ),
                         ]
                     )
-                )
             );
 
         return $userServiceMock;
@@ -299,14 +297,14 @@ class UserGroupUpdateTest extends BaseTest
 
         $contentServiceMock->expects($this->any())
             ->method('newContentUpdateStruct')
-            ->will(
-                $this->returnValue(new ContentUpdateStruct())
+            ->willReturn(
+                new ContentUpdateStruct()
             );
 
         $contentServiceMock->expects($this->any())
             ->method('newContentMetadataUpdateStruct')
-            ->will(
-                $this->returnValue(new ContentMetadataUpdateStruct())
+            ->willReturn(
+                new ContentMetadataUpdateStruct()
             );
 
         return $contentServiceMock;

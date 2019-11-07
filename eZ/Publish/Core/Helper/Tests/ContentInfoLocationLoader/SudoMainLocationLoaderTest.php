@@ -50,18 +50,18 @@ class SudoMainLocationLoaderTest extends TestCase
         $this->getRepositoryMock()
             ->expects($this->any())
             ->method('getPermissionResolver')
-            ->will($this->returnValue($this->getPermissionResolverMock()));
+            ->willReturn($this->getPermissionResolverMock());
 
         $this->getRepositoryMock()
             ->expects($this->any())
             ->method('getLocationService')
-            ->will($this->returnValue($this->getLocationServiceMock()));
+            ->willReturn($this->getLocationServiceMock());
 
         $this->getLocationServiceMock()
             ->expects($this->once())
             ->method('loadLocation')
             ->with(42)
-            ->will($this->returnValue($location));
+            ->willReturn($location);
 
         $this->assertSame($location, $this->loader->loadLocation($contentInfo));
     }
@@ -77,12 +77,12 @@ class SudoMainLocationLoaderTest extends TestCase
         $this->getRepositoryMock()
             ->expects($this->any())
             ->method('getPermissionResolver')
-            ->will($this->returnValue($this->getPermissionResolverMock()));
+            ->willReturn($this->getPermissionResolverMock());
 
         $this->getRepositoryMock()
             ->expects($this->any())
             ->method('getLocationService')
-            ->will($this->returnValue($this->getLocationServiceMock()));
+            ->willReturn($this->getLocationServiceMock());
 
         $this->getLocationServiceMock()
             ->expects($this->once())

@@ -65,7 +65,7 @@ class PermissionsCriterionHandlerTest extends BaseServiceMockTest
         $handler
             ->expects($this->once())
             ->method('getPermissionsCriterion')
-            ->will($this->returnValue($permissionsCriterion));
+            ->willReturn($permissionsCriterion);
 
         /* @var \eZ\Publish\API\Repository\Values\Content\Query\Criterion $criterionMock */
         $result = $handler->addPermissionsCriterion($criterionMock);
@@ -102,7 +102,7 @@ class PermissionsCriterionHandlerTest extends BaseServiceMockTest
         $handler
             ->expects($this->once())
             ->method('getPermissionsCriterion')
-            ->will($this->returnValue($permissionsCriterionMock));
+            ->willReturn($permissionsCriterionMock);
 
         /* @var \eZ\Publish\API\Repository\Values\Content\Query\Criterion $criterionMock */
         $result = $handler->addPermissionsCriterion($givenCriterion);
@@ -120,7 +120,7 @@ class PermissionsCriterionHandlerTest extends BaseServiceMockTest
         $limitationMock
             ->expects($this->any())
             ->method('getIdentifier')
-            ->will($this->returnValue('limitationIdentifier'));
+            ->willReturn('limitationIdentifier');
 
         $policy1 = new Policy(['limitations' => [$limitationMock]]);
         $policy2 = new Policy(['limitations' => [$limitationMock, $limitationMock]]);
@@ -326,24 +326,24 @@ class PermissionsCriterionHandlerTest extends BaseServiceMockTest
                 $this->isInstanceOf(APILimitation::class),
                 $this->equalTo($userMock)
             )
-            ->will($this->returnValue($criterionMock));
+            ->willReturn($criterionMock);
 
         $limitationServiceMock
             ->expects($this->exactly($limitationCount))
             ->method('getLimitationType')
             ->with($this->equalTo('limitationIdentifier'))
-            ->will($this->returnValue($limitationTypeMock));
+            ->willReturn($limitationTypeMock);
 
         $permissionResolverMock
             ->expects($this->once())
             ->method('hasAccess')
             ->with($this->equalTo('content'), $this->equalTo('read'))
-            ->will($this->returnValue($permissionSets));
+            ->willReturn($permissionSets);
 
         $permissionResolverMock
             ->expects($this->once())
             ->method('getCurrentUserReference')
-            ->will($this->returnValue($userMock));
+            ->willReturn($userMock);
     }
 
     /**
@@ -385,7 +385,7 @@ class PermissionsCriterionHandlerTest extends BaseServiceMockTest
             ->expects($this->once())
             ->method('hasAccess')
             ->with($this->equalTo('testModule'), $this->equalTo('testFunction'))
-            ->will($this->returnValue($permissionSets));
+            ->willReturn($permissionSets);
         $handler = $this->getPermissionsCriterionHandlerMock(null);
 
         $permissionsCriterion = $handler->getPermissionsCriterion('testModule', 'testFunction');

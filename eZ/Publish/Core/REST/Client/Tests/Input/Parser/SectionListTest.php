@@ -34,7 +34,7 @@ class SectionListTest extends BaseTest
                 array('_media-type' => 'application/vnd.ez.api.Section+xml'),
                 'application/vnd.ez.api.Section+xml'
             )
-            ->will($this->returnValue('foo'));
+            ->willReturn('foo');
 
         $result = $sectionParser->parse($inputArray, $this->getParsingDispatcherMock());
 

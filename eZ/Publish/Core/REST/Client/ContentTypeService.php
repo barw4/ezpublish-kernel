@@ -868,5 +868,4 @@ class ContentTypeService implements APIContentTypeService, Sessionable
         throw new \RuntimeException('Not implemented yet');
     }
 
-
 }

@@ -43,7 +43,7 @@ class PageTest extends FieldTypeTest
             $this->pageServiceMock = $this->createMock(PageService::class);
             $this->pageServiceMock->expects($this->any())
                 ->method('getAvailableZoneLayouts')
-                ->will($this->returnValue(['2ZonesLayout1', '2ZonesLayout2']));
+                ->willReturn(['2ZonesLayout1', '2ZonesLayout2']);
         }
 
         return $this->pageServiceMock;

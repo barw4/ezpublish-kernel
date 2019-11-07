@@ -88,8 +88,8 @@ class ContentTypeHandlerTest extends TestCase
                     GroupCreateStruct::class
                 )
             )
-            ->will(
-                $this->returnValue(new Group())
+            ->willReturn(
+                new Group()
             );
 
         $gatewayMock = $this->getGatewayMock();
@@ -100,7 +100,7 @@ class ContentTypeHandlerTest extends TestCase
                     Group::class
                 )
             )
-            ->will($this->returnValue(23));
+            ->willReturn(23);
 
         $handler = $this->getHandler();
         $group = $handler->createGroup(
@@ -145,8 +145,8 @@ class ContentTypeHandlerTest extends TestCase
             ->method('loadGroup')
             ->with(
                 $this->equalTo(23)
-            )->will(
-                $this->returnValue(new Group())
+            )->willReturn(
+                new Group()
             );
 
         $res = $handlerMock->updateGroup(
@@ -168,7 +168,7 @@ class ContentTypeHandlerTest extends TestCase
         $gatewayMock->expects($this->once())
             ->method('countTypesInGroup')
             ->with($this->equalTo(23))
-            ->will($this->returnValue(0));
+            ->willReturn(0);
         $gatewayMock->expects($this->once())
             ->method('deleteGroup')
             ->with($this->equalTo(23));
@@ -189,7 +189,7 @@ class ContentTypeHandlerTest extends TestCase
         $gatewayMock->expects($this->once())
             ->method('countTypesInGroup')
             ->with($this->equalTo(23))
-            ->will($this->returnValue(42));
+            ->willReturn(42);
         $gatewayMock->expects($this->never())
             ->method('deleteGroup');
 
@@ -206,13 +206,13 @@ class ContentTypeHandlerTest extends TestCase
         $gatewayMock->expects($this->once())
             ->method('loadGroupData')
             ->with($this->equalTo([23]))
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $mapperMock = $this->getMapperMock();
         $mapperMock->expects($this->once())
             ->method('extractGroupsFromRows')
             ->with($this->equalTo([]))
-            ->will($this->returnValue([new Group()]));
+            ->willReturn([new Group()]);
 
         $handler = $this->getHandler();
         $res = $handler->loadGroup(23);
@@ -232,13 +232,13 @@ class ContentTypeHandlerTest extends TestCase
         $gatewayMock->expects($this->once())
             ->method('loadGroupDataByIdentifier')
             ->with($this->equalTo('content'))
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $mapperMock = $this->getMapperMock();
         $mapperMock->expects($this->once())
             ->method('extractGroupsFromRows')
             ->with($this->equalTo([]))
-            ->will($this->returnValue([new Group()]));
+            ->willReturn([new Group()]);
 
         $handler = $this->getHandler();
         $res = $handler->loadGroupByIdentifier('content');
@@ -257,13 +257,13 @@ class ContentTypeHandlerTest extends TestCase
         $gatewayMock = $this->getGatewayMock();
         $gatewayMock->expects($this->once())
             ->method('loadAllGroupsData')
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $mapperMock = $this->getMapperMock();
         $mapperMock->expects($this->once())
             ->method('extractGroupsFromRows')
             ->with($this->equalTo([]))
-            ->will($this->returnValue([new Group()]));
+            ->willReturn([new Group()]);
 
         $handler = $this->getHandler();
         $res = $handler->loadAllGroups();
@@ -283,13 +283,13 @@ class ContentTypeHandlerTest extends TestCase
         $gatewayMock->expects($this->once())
             ->method('loadTypesDataForGroup')
             ->with($this->equalTo(23), $this->equalTo(0))
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $mapperMock = $this->getMapperMock();
         $mapperMock->expects($this->once())
             ->method('extractTypesFromRows')
             ->with($this->equalTo([]))
-            ->will($this->returnValue([new Type()]));
+            ->willReturn([new Type()]);
 
         $handler = $this->getHandler();
         $res = $handler->loadContentTypes(23, 0);
@@ -340,16 +340,14 @@ class ContentTypeHandlerTest extends TestCase
                 $this->equalTo(23),
                 $this->equalTo(1)
             )
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $mapperMock = $this->getMapperMock();
         $mapperMock->expects($this->once())
             ->method('extractTypesFromRows')
             ->with($this->equalTo([]))
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [new Type()]
-                )
             );
 
         $handler = $this->getHandler();
@@ -376,16 +374,14 @@ class ContentTypeHandlerTest extends TestCase
                 $this->equalTo(23),
                 $this->equalTo(1)
             )
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $mapperMock = $this->getMapperMock();
         $mapperMock->expects($this->once())
             ->method('extractTypesFromRows')
             ->with($this->equalTo([]))
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     []
-                )
             );
 
         $handler = $this->getHandler();
@@ -405,15 +401,13 @@ class ContentTypeHandlerTest extends TestCase
                 $this->equalTo(23),
                 $this->equalTo(0)
             )
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $mapperMock = $this->getMapperMock();
         $mapperMock->expects($this->once())
             ->method('extractTypesFromRows')
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [new Type()]
-                )
             );
 
         $handler = $this->getHandler();
@@ -439,15 +433,13 @@ class ContentTypeHandlerTest extends TestCase
                 $this->equalTo('blogentry'),
                 $this->equalTo(0)
             )
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $mapperMock = $this->getMapperMock();
         $mapperMock->expects($this->once())
             ->method('extractTypesFromRows')
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [new Type()]
-                )
             );
 
         $handler = $this->getHandler();
@@ -473,15 +465,13 @@ class ContentTypeHandlerTest extends TestCase
                 $this->equalTo('someLongHash'),
                 $this->equalTo(0)
             )
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $mapperMock = $this->getMapperMock();
         $mapperMock->expects($this->once())
             ->method('extractTypesFromRows')
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [new Type()]
-                )
             );
 
         $handler = $this->getHandler();
@@ -517,7 +507,7 @@ class ContentTypeHandlerTest extends TestCase
                     Type::class
                 )
             )
-            ->will($this->returnValue(23));
+            ->willReturn(23);
         $gatewayMock->expects($this->once())
             ->method('insertGroupAssignment')
             ->with(
@@ -533,7 +523,7 @@ class ContentTypeHandlerTest extends TestCase
                 $this->isInstanceOf(FieldDefinition::class),
                 $this->isInstanceOf(StorageFieldDefinition::class)
             )
-            ->will($this->returnValue(42));
+            ->willReturn(42);
 
         $mapperMock->expects($this->exactly(2))
             ->method('toStorageFieldDefinition')
@@ -601,7 +591,7 @@ class ContentTypeHandlerTest extends TestCase
                 $this->equalTo(23),
                 $this->equalTo(1)
             )
-            ->will($this->returnValue(new Type()));
+            ->willReturn(new Type());
 
         $res = $handlerMock->update(23, 1, new UpdateStruct());
 
@@ -624,8 +614,8 @@ class ContentTypeHandlerTest extends TestCase
             'countInstancesOfType'
         )->with(
             $this->equalTo(23)
-        )->will(
-            $this->returnValue(0)
+        )->willReturn(
+            0
         );
 
         $gatewayMock->expects(
@@ -657,8 +647,8 @@ class ContentTypeHandlerTest extends TestCase
             'countInstancesOfType'
         )->with(
             $this->equalTo(23)
-        )->will(
-            $this->returnValue(1)
+        )->willReturn(
+            1
         );
 
         $gatewayMock->expects($this->never())->method('delete');
@@ -680,8 +670,8 @@ class ContentTypeHandlerTest extends TestCase
                 $this->isInstanceOf(
                     Type::class
                 )
-            )->will(
-                $this->returnValue(new CreateStruct())
+            )->willReturn(
+                new CreateStruct()
             );
 
         $handlerMock = $this->getMockBuilder(Handler::class)
@@ -693,10 +683,8 @@ class ContentTypeHandlerTest extends TestCase
             ->method('load')
             ->with(
                 $this->equalTo(23, 0)
-            )->will(
-                $this->returnValue(
+            )->willReturn(
                     new Type()
-                )
             );
         $handlerMock->expects($this->once())
             ->method('internalCreate')
@@ -711,8 +699,8 @@ class ContentTypeHandlerTest extends TestCase
                         'modified'
                     )
                 )
-            )->will(
-                $this->returnValue(new Type())
+            )->willReturn(
+                new Type()
             );
 
         $res = $handlerMock->createDraft(42, 23);
@@ -736,8 +724,8 @@ class ContentTypeHandlerTest extends TestCase
                 $this->isInstanceOf(
                     Type::class
                 )
-            )->will(
-                $this->returnValue(new CreateStruct(['identifier' => 'testCopy']))
+            )->willReturn(
+                new CreateStruct(['identifier' => 'testCopy'])
             );
 
         $handlerMock = $this->getMockBuilder(Handler::class)
@@ -749,10 +737,8 @@ class ContentTypeHandlerTest extends TestCase
             ->method('load')
             ->with(
                 $this->equalTo(23, 0)
-            )->will(
-                $this->returnValue(
+            )->willReturn(
                     new Type()
-                )
             );
         $handlerMock->expects($this->once())
             ->method('internalCreate')
@@ -778,12 +764,12 @@ class ContentTypeHandlerTest extends TestCase
                         'identifier'
                     )
                 )
-            )->will(
-                $this->returnValue(new Type([
+            )->willReturn(
+                new Type([
                     'id' => 24,
                     'identifier' => md5(uniqid(get_class($handlerMock), true)),
                     'status' => Type::STATUS_DEFINED,
-                ]))
+                ])
             );
 
         $mapperMock->expects($this->once())
@@ -793,8 +779,8 @@ class ContentTypeHandlerTest extends TestCase
                     $this->matchesRegularExpression('/^[a-f0-9]+$/'),
                     'identifier'
                 )
-            )->will(
-                $this->returnValue(new UpdateStruct())
+            )->willReturn(
+                new UpdateStruct()
             );
 
         $handlerMock->expects($this->once())
@@ -807,8 +793,8 @@ class ContentTypeHandlerTest extends TestCase
                     'identifier'
                 )
             )
-            ->will(
-                $this->returnValue(new Type())
+            ->willReturn(
+                new Type()
             );
 
         $res = $handlerMock->copy(42, 23, 0);
@@ -852,7 +838,7 @@ class ContentTypeHandlerTest extends TestCase
             ->with(
                 $this->equalTo(23),
                 $this->equalTo(1)
-            )->will($this->returnValue(2));
+            )->willReturn(2);
 
         $gatewayMock->expects($this->once())
             ->method('deleteGroupAssignment')
@@ -886,7 +872,7 @@ class ContentTypeHandlerTest extends TestCase
                 $this->equalTo(1)
             )
             // Only 1 group assigned
-            ->will($this->returnValue(1));
+            ->willReturn(1);
 
         $mapperMock = $this->getMapperMock();
 
@@ -909,8 +895,8 @@ class ContentTypeHandlerTest extends TestCase
             ->method('extractFieldFromRow')
             ->with(
                 $this->equalTo([])
-            )->will(
-                $this->returnValue(new FieldDefinition())
+            )->willReturn(
+                new FieldDefinition()
             );
 
         $mapperMock->expects($this->once())
@@ -919,8 +905,8 @@ class ContentTypeHandlerTest extends TestCase
                 $this->equalTo([
                     [],
                 ])
-            )->will(
-                $this->returnValue([])
+            )->willReturn(
+                []
             );
 
         $gatewayMock = $this->getGatewayMock();
@@ -929,10 +915,10 @@ class ContentTypeHandlerTest extends TestCase
             ->with(
                 $this->equalTo(42),
                 $this->equalTo(Type::STATUS_DEFINED)
-            )->will(
-                $this->returnValue([
+            )->willReturn(
+                [
                     [],
-                ])
+                ]
             );
 
         $handler = $this->getHandler();
@@ -975,8 +961,8 @@ class ContentTypeHandlerTest extends TestCase
                 $this->isInstanceOf(
                     StorageFieldDefinition::class
                 )
-            )->will(
-                $this->returnValue(42)
+            )->willReturn(
+                42
             );
 
         $fieldDef = new FieldDefinition();
@@ -1000,8 +986,8 @@ class ContentTypeHandlerTest extends TestCase
             ->method('countInstancesOfType')
             ->with(
                 $this->equalTo(23)
-            )->will(
-                $this->returnValue(42)
+            )->willReturn(
+                42
             );
 
         $handler = $this->getHandler();
@@ -1086,8 +1072,8 @@ class ContentTypeHandlerTest extends TestCase
                     $this->equalTo(0),
                     $this->equalTo(1)
                 )
-            )->will(
-                $this->returnValue(new Type())
+            )->willReturn(
+                new Type()
             );
 
         $updateHandlerMock->expects($this->once())
@@ -1124,8 +1110,8 @@ class ContentTypeHandlerTest extends TestCase
             ->with(
                 $this->equalTo(23),
                 $this->equalTo(1)
-            )->will(
-                $this->returnValue(new Type())
+            )->willReturn(
+                new Type()
             );
 
         $handler->expects($this->at(1))
@@ -1278,8 +1264,8 @@ class ContentTypeHandlerTest extends TestCase
                     Type::class
                 )
             )
-            ->will(
-                $this->returnValue(new UpdateStruct())
+            ->willReturn(
+                new UpdateStruct()
             );
 
         $handlerMock = $this->getMockBuilder(Handler::class)
@@ -1293,7 +1279,7 @@ class ContentTypeHandlerTest extends TestCase
                 $this->equalTo(23),
                 $this->equalTo(1)
             )
-            ->will($this->returnValue(new Type(['id' => 23])));
+            ->willReturn(new Type(['id' => 23]));
 
         $handlerMock->expects($this->once())
             ->method('update')
@@ -1304,7 +1290,7 @@ class ContentTypeHandlerTest extends TestCase
                     UpdateStruct::class
                 )
             )
-            ->will($this->returnValue(new Type()));
+            ->willReturn(new Type());
 
         $res = $handlerMock->removeContentTypeTranslation(23, 'eng-GB');
 

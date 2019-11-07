@@ -38,7 +38,7 @@ class ControllerTest extends TestCase
             ->expects($this->any())
             ->method('get')
             ->with('templating')
-            ->will($this->returnValue($this->templateEngineMock));
+            ->willReturn($this->templateEngineMock);
     }
 
     /**
@@ -53,7 +53,7 @@ class ControllerTest extends TestCase
             ->expects($this->once())
             ->method('render')
             ->with($view, $params)
-            ->will($this->returnValue($tplResult));
+            ->willReturn($tplResult);
         $response = $this->controller->render($view, $params);
         self::assertInstanceOf(Response::class, $response);
         self::assertSame($tplResult, $response->getContent());
@@ -69,7 +69,7 @@ class ControllerTest extends TestCase
             ->expects($this->once())
             ->method('render')
             ->with($view, $params)
-            ->will($this->returnValue($tplResult));
+            ->willReturn($tplResult);
 
         self::assertSame($response, $this->controller->render($view, $params, $response));
         self::assertSame($tplResult, $response->getContent());

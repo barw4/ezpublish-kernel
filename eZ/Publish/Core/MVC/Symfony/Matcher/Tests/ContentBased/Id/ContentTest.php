@@ -78,10 +78,8 @@ class ContentTest extends BaseTest
         $location
             ->expects($this->any())
             ->method('getContentInfo')
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     $this->getContentInfoMock(['id' => $contentId])
-                )
             );
 
         return $location;

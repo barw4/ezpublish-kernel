@@ -34,11 +34,9 @@ class OptionsTest extends ValueObjectVisitorBaseTest
 
         $this->getVisitorMock()->expects($this->exactly(2))
             ->method('setHeader')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     ['Allow', 'GET,POST'],
                     ['Content-Length', 0]
-                )
             );
 
         $visitor->visit(

@@ -105,19 +105,19 @@ class UserWrappedTest extends TestCase
         $originalUser
             ->expects($this->exactly(2))
             ->method('getUsername')
-            ->will($this->returnValue($username));
+            ->willReturn($username);
         $originalUser
             ->expects($this->once())
             ->method('getPassword')
-            ->will($this->returnValue($password));
+            ->willReturn($password);
         $originalUser
             ->expects($this->once())
             ->method('getRoles')
-            ->will($this->returnValue($roles));
+            ->willReturn($roles);
         $originalUser
             ->expects($this->once())
             ->method('getSalt')
-            ->will($this->returnValue($salt));
+            ->willReturn($salt);
 
         $this->assertSame($username, $user->getUsername());
         $this->assertSame($username, (string)$user);
@@ -136,7 +136,7 @@ class UserWrappedTest extends TestCase
             ->expects($this->once())
             ->method('isEqualTo')
             ->with($otherUser)
-            ->will($this->returnValue(false));
+            ->willReturn(false);
         $this->assertFalse($user->isEqualTo($otherUser));
     }
 }

@@ -60,17 +60,17 @@ class ImageFileVariationPurgerTest extends TestCase
         $this->pathGeneratorMock
             ->expects($this->once())
             ->method('getVariationPath')
-            ->will($this->returnValue('path/to/file_large.png'));
+            ->willReturn('path/to/file_large.png');
 
         $this->ioServiceMock
             ->expects($this->once())
             ->method('exists')
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $this->ioServiceMock
             ->expects($this->once())
             ->method('loadBinaryFile')
-            ->will($this->returnValue(new BinaryFile()));
+            ->willReturn(new BinaryFile());
 
         $this->ioServiceMock
             ->expects($this->once())
@@ -89,12 +89,12 @@ class ImageFileVariationPurgerTest extends TestCase
         $this->pathGeneratorMock
             ->expects($this->once())
             ->method('getVariationPath')
-            ->will($this->returnValue('path/to/file_large.png'));
+            ->willReturn('path/to/file_large.png');
 
         $this->ioServiceMock
             ->expects($this->once())
             ->method('exists')
-            ->will($this->returnValue(false));
+            ->willReturn(false);
 
         $this->ioServiceMock
             ->expects($this->never())

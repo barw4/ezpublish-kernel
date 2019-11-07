@@ -76,15 +76,15 @@ class UrlAliasGeneratorTest extends TestCase
         $this->repository
             ->expects($this->any())
             ->method('getURLAliasService')
-            ->will($this->returnValue($this->urlAliasService));
+            ->willReturn($this->urlAliasService);
         $this->repository
             ->expects($this->any())
             ->method('getLocationService')
-            ->will($this->returnValue($this->locationService));
+            ->willReturn($this->locationService);
         $repository
             ->expects($this->any())
             ->method('getPermissionResolver')
-            ->will($this->returnValue($this->getPermissionResolverMock()));
+            ->willReturn($this->getPermissionResolverMock());
 
         $urlAliasCharmap = [
             '"' => '%22',
@@ -112,12 +112,12 @@ class UrlAliasGeneratorTest extends TestCase
             ->expects($this->once())
             ->method('loadLocation')
             ->with($rootLocationId)
-            ->will($this->returnValue($rootLocation));
+            ->willReturn($rootLocation);
         $this->urlAliasService
             ->expects($this->once())
             ->method('reverseLookup')
             ->with($rootLocation)
-            ->will($this->returnValue($rootUrlAlias));
+            ->willReturn($rootUrlAlias);
 
         $this->assertSame($pathPrefix, $this->urlAliasGenerator->getPathPrefixByRootLocationId($rootLocationId));
     }
@@ -161,7 +161,7 @@ class UrlAliasGeneratorTest extends TestCase
             ->expects($this->once())
             ->method('loadLocation')
             ->with($locationId)
-            ->will($this->returnValue($location));
+            ->willReturn($location);
         $this->urlAliasGenerator->loadLocation($locationId);
     }
 
@@ -175,7 +175,7 @@ class UrlAliasGeneratorTest extends TestCase
             ->expects($this->once())
             ->method('listLocationAliases')
             ->with($location, false)
-            ->will($this->returnValue([$urlAlias]));
+            ->willReturn([$urlAlias]);
 
         $this->urlAliasGenerator->setSiteAccess(new SiteAccess('test', 'fake', $this->createMock(SiteAccess\URILexer::class)));
 
@@ -231,48 +231,40 @@ class UrlAliasGeneratorTest extends TestCase
         $this->configResolver
             ->expects($this->any())
             ->method('getParameter')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         ['languages', null, 'foo', $languages],
                         ['languages', null, 'bar', $languages],
                         ['content.tree_root.location_id', null, 'foo', $saRootLocations['foo']],
                         ['content.tree_root.location_id', null, 'bar', $saRootLocations['bar']],
                     ]
-                )
             );
 
         $location = new Location(['id' => 123]);
         $this->urlAliasService
             ->expects($this->exactly(1))
             ->method('listLocationAliases')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         [$location, false, null, null, $languages, [$urlAlias]],
                     ]
-                )
             );
 
         $this->locationService
             ->expects($this->once())
             ->method('loadLocation')
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function ($locationId) {
                         return new Location(['id' => $locationId]);
                     }
-                )
             );
         $this->urlAliasService
             ->expects($this->exactly(1))
             ->method('reverseLookup')
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function ($location) use ($treeRootUrlAlias) {
                         return $treeRootUrlAlias[$location->id];
                     }
-                )
             );
 
         $this->urlAliasGenerator->setSiteAccess(new SiteAccess('test', 'fake', $this->createMock(SiteAccess\URILexer::class)));
@@ -329,7 +321,7 @@ class UrlAliasGeneratorTest extends TestCase
             ->expects($this->once())
             ->method('listLocationAliases')
             ->with($location, false)
-            ->will($this->returnValue([]));
+            ->willReturn([]);
         $this->router
             ->expects($this->once())
             ->method('generate')
@@ -337,7 +329,7 @@ class UrlAliasGeneratorTest extends TestCase
                 UrlAliasGenerator::INTERNAL_CONTENT_VIEW_ROUTE,
                 ['contentId' => $location->contentId, 'locationId' => $location->id]
             )
-            ->will($this->returnValue($uri));
+            ->willReturn($uri);
 
         $this->assertSame($uri, $this->urlAliasGenerator->doGenerate($location, []));
     }
@@ -359,18 +351,18 @@ class UrlAliasGeneratorTest extends TestCase
             ->expects($this->once())
             ->method('loadLocation')
             ->with($rootLocationId)
-            ->will($this->returnValue($rootLocation));
+            ->willReturn($rootLocation);
         $this->urlAliasService
             ->expects($this->once())
             ->method('reverseLookup')
             ->with($rootLocation)
-            ->will($this->returnValue($rootUrlAlias));
+            ->willReturn($rootUrlAlias);
 
         $this->urlAliasService
             ->expects($this->once())
             ->method('listLocationAliases')
             ->with($location, false)
-            ->will($this->returnValue([$urlAlias]));
+            ->willReturn([$urlAlias]);
 
         if ($isOutsideAndNotExcluded) {
             $this->logger

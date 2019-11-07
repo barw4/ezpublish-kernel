@@ -59,7 +59,7 @@ class LegacyDFSClusterTest extends TestCase
             ->expects($this->once())
             ->method('prepare')
             ->with($this->anything())
-            ->will($this->returnValue($this->createDbalStatementMock()));
+            ->willReturn($this->createDbalStatementMock());
 
         $spiCreateStruct = new SPIBinaryFileCreateStruct();
         $spiCreateStruct->id = $id;
@@ -98,13 +98,13 @@ class LegacyDFSClusterTest extends TestCase
         $statement
             ->expects($this->once())
             ->method('rowCount')
-            ->will($this->returnValue(1));
+            ->willReturn(1);
 
         $this->dbalMock
             ->expects($this->once())
             ->method('prepare')
             ->with($this->anything())
-            ->will($this->returnValue($statement));
+            ->willReturn($statement);
 
         $this->handler->delete('prefix/my/file.png');
     }
@@ -118,13 +118,13 @@ class LegacyDFSClusterTest extends TestCase
         $statement
             ->expects($this->once())
             ->method('rowCount')
-            ->will($this->returnValue(0));
+            ->willReturn(0);
 
         $this->dbalMock
             ->expects($this->once())
             ->method('prepare')
             ->with($this->anything())
-            ->will($this->returnValue($statement));
+            ->willReturn($statement);
 
         $this->handler->delete('prefix/my/file.png');
     }
@@ -135,18 +135,18 @@ class LegacyDFSClusterTest extends TestCase
         $statement
             ->expects($this->once())
             ->method('rowCount')
-            ->will($this->returnValue(1));
+            ->willReturn(1);
 
         $statement
             ->expects($this->once())
             ->method('fetch')
-            ->will($this->returnValue(['size' => 123, 'datatype' => 'image/png', 'mtime' => 1307155200]));
+            ->willReturn(['size' => 123, 'datatype' => 'image/png', 'mtime' => 1307155200]);
 
         $this->dbalMock
             ->expects($this->once())
             ->method('prepare')
             ->with($this->anything())
-            ->will($this->returnValue($statement));
+            ->willReturn($statement);
 
         $expectedSpiBinaryFile = new SPIBinaryFile();
         $expectedSpiBinaryFile->id = 'prefix/my/file.png';
@@ -169,13 +169,13 @@ class LegacyDFSClusterTest extends TestCase
         $statement
             ->expects($this->once())
             ->method('rowCount')
-            ->will($this->returnValue(0));
+            ->willReturn(0);
 
         $this->dbalMock
             ->expects($this->once())
             ->method('prepare')
             ->with($this->anything())
-            ->will($this->returnValue($statement));
+            ->willReturn($statement);
 
         $this->handler->load('prefix/my/file.png');
     }
@@ -186,13 +186,13 @@ class LegacyDFSClusterTest extends TestCase
         $statement
             ->expects($this->once())
             ->method('rowCount')
-            ->will($this->returnValue(1));
+            ->willReturn(1);
 
         $this->dbalMock
             ->expects($this->once())
             ->method('prepare')
             ->with($this->anything())
-            ->will($this->returnValue($statement));
+            ->willReturn($statement);
 
         self::assertTrue($this->handler->exists('prefix/my/file.png'));
     }
@@ -203,13 +203,13 @@ class LegacyDFSClusterTest extends TestCase
         $statement
             ->expects($this->once())
             ->method('rowCount')
-            ->will($this->returnValue(0));
+            ->willReturn(0);
 
         $this->dbalMock
             ->expects($this->once())
             ->method('prepare')
             ->with($this->anything())
-            ->will($this->returnValue($statement));
+            ->willReturn($statement);
 
         self::assertFalse($this->handler->exists('prefix/my/file.png'));
     }
@@ -219,7 +219,7 @@ class LegacyDFSClusterTest extends TestCase
         $this->urlDecoratorMock
             ->expects($this->once())
             ->method('decorate')
-            ->will($this->returnValue('prefix/images/_alias/subfolder'));
+            ->willReturn('prefix/images/_alias/subfolder');
 
         $queryBuilderMock = $this
             ->getMockBuilder(QueryBuilder::class)

@@ -538,7 +538,7 @@ class ContentCreateTest extends BaseTest
         $fieldTypeParserMock->expects($this->any())
             ->method('parseValue')
             ->with('ezstring', [])
-            ->will($this->returnValue('foo'));
+            ->willReturn('foo');
 
         return $fieldTypeParserMock;
     }
@@ -555,7 +555,7 @@ class ContentCreateTest extends BaseTest
         $locationCreateParserMock->expects($this->any())
             ->method('parse')
             ->with([], $this->getParsingDispatcherMock())
-            ->will($this->returnValue(new LocationCreateStruct()));
+            ->willReturn(new LocationCreateStruct());
 
         return $locationCreateParserMock;
     }
@@ -576,15 +576,13 @@ class ContentCreateTest extends BaseTest
                 $this->equalTo($contentType),
                 $this->equalTo('eng-US')
             )
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     new ContentCreateStruct(
                         [
                             'contentType' => $contentType,
                             'mainLanguageCode' => 'eng-US',
                         ]
                     )
-                )
             );
 
         return $contentServiceMock;
@@ -602,7 +600,7 @@ class ContentCreateTest extends BaseTest
         $contentTypeServiceMock->expects($this->any())
             ->method('loadContentType')
             ->with($this->equalTo(13))
-            ->will($this->returnValue($this->getContentType()));
+            ->willReturn($this->getContentType());
 
         return $contentTypeServiceMock;
     }

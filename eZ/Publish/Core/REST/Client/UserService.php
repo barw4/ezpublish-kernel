@@ -291,7 +291,6 @@ class UserService implements APIUserService, Sessionable
         throw new \Exception('@todo: Implement.');
     }
 
-
     /**
      * Assigns a new user group to the user.
      *

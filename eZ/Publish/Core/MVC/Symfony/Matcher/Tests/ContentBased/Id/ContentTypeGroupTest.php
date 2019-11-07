@@ -88,10 +88,8 @@ class ContentTypeGroupTest extends BaseTest
         $location
             ->expects($this->any())
             ->method('getContentInfo')
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     $this->getContentInfoMock(['contentTypeId' => 42])
-                )
             );
 
         return $location;
@@ -162,11 +160,10 @@ class ContentTypeGroupTest extends BaseTest
         $contentTypeServiceMock->expects($this->once())
             ->method('loadContentType')
             ->with(42)
-            ->will($this->returnValue($contentTypeMock));
+            ->willReturn($contentTypeMock);
         $contentTypeMock->expects($this->once())
             ->method('getContentTypeGroups')
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [
                         // First a group that will never match, then the right group.
                         // This ensures to test even if the content type belongs to several groups at once.
@@ -176,14 +173,13 @@ class ContentTypeGroupTest extends BaseTest
                             ->setConstructorArgs([['id' => $contentTypeGroupId]])
                             ->getMockForAbstractClass(),
                     ]
-                )
             );
 
         $repository = $this->getRepositoryMock();
         $repository
             ->expects($this->once())
             ->method('getContentTypeService')
-            ->will($this->returnValue($contentTypeServiceMock));
+            ->willReturn($contentTypeServiceMock);
 
         return $repository;
     }

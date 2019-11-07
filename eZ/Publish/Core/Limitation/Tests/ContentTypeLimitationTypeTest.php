@@ -129,7 +129,7 @@ class ContentTypeLimitationTypeTest extends Base
             $this->getPersistenceMock()
                 ->expects($this->any())
                 ->method('contentTypeHandler')
-                ->will($this->returnValue($this->contentTypeHandlerMock));
+                ->willReturn($this->contentTypeHandlerMock);
 
             foreach ($limitation->limitationValues as $key => $value) {
                 $this->contentTypeHandlerMock
@@ -170,7 +170,7 @@ class ContentTypeLimitationTypeTest extends Base
             $this->getPersistenceMock()
                 ->expects($this->any())
                 ->method('contentTypeHandler')
-                ->will($this->returnValue($this->contentTypeHandlerMock));
+                ->willReturn($this->contentTypeHandlerMock);
 
             foreach ($limitation->limitationValues as $key => $value) {
                 $this->contentTypeHandlerMock
@@ -219,19 +219,19 @@ class ContentTypeLimitationTypeTest extends Base
         $contentMock
             ->expects($this->once())
             ->method('getVersionInfo')
-            ->will($this->returnValue($versionInfoMock));
+            ->willReturn($versionInfoMock);
 
         $versionInfoMock
             ->expects($this->once())
             ->method('getContentInfo')
-            ->will($this->returnValue(new ContentInfo(['contentTypeId' => 66])));
+            ->willReturn(new ContentInfo(['contentTypeId' => 66]));
 
         $versionInfoMock2 = $this->createMock(APIVersionInfo::class);
 
         $versionInfoMock2
             ->expects($this->once())
             ->method('getContentInfo')
-            ->will($this->returnValue(new ContentInfo(['contentTypeId' => 66])));
+            ->willReturn(new ContentInfo(['contentTypeId' => 66]));
 
         return [
             // ContentInfo, no access

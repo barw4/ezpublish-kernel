@@ -46,7 +46,7 @@ class SectionHandlerTest extends TestCase
             ->with(
                 $this->equalTo('New Section'),
                 $this->equalTo('new_section')
-            )->will($this->returnValue(23));
+            )->willReturn(23);
 
         $sectionRef = new Section();
         $sectionRef->id = 23;
@@ -105,8 +105,7 @@ class SectionHandlerTest extends TestCase
             ->method('loadSectionData')
             ->with(
                 $this->equalTo(23)
-            )->will(
-                $this->returnValue(
+            )->willReturn(
                     [
                         [
                             'id' => '23',
@@ -114,7 +113,6 @@ class SectionHandlerTest extends TestCase
                             'name' => 'New Section',
                         ],
                     ]
-                )
             );
 
         $sectionRef = new Section();
@@ -143,8 +141,7 @@ class SectionHandlerTest extends TestCase
 
         $gatewayMock->expects($this->once())
         ->method('loadAllSectionData')
-        ->will(
-            $this->returnValue(
+        ->willReturn(
                 [
                     [
                         'id' => '23',
@@ -157,7 +154,6 @@ class SectionHandlerTest extends TestCase
                         'name' => 'New Section2',
                     ],
                 ]
-            )
         );
 
         $sectionRef = new Section();
@@ -192,8 +188,7 @@ class SectionHandlerTest extends TestCase
             ->method('loadSectionDataByIdentifier')
             ->with(
                 $this->equalTo('new_section')
-            )->will(
-                $this->returnValue(
+            )->willReturn(
                     [
                         [
                             'id' => '23',
@@ -201,7 +196,6 @@ class SectionHandlerTest extends TestCase
                             'name' => 'New Section',
                         ],
                     ]
-                )
             );
 
         $sectionRef = new Section();
@@ -229,7 +223,7 @@ class SectionHandlerTest extends TestCase
         $gatewayMock->expects($this->once())
             ->method('countContentObjectsInSection')
             ->with($this->equalTo(23))
-            ->will($this->returnValue(0));
+            ->willReturn(0);
 
         $gatewayMock->expects($this->once())
             ->method('deleteSection')
@@ -253,7 +247,7 @@ class SectionHandlerTest extends TestCase
         $gatewayMock->expects($this->once())
             ->method('countContentObjectsInSection')
             ->with($this->equalTo(23))
-            ->will($this->returnValue(2));
+            ->willReturn(2);
 
         $gatewayMock->expects($this->never())
             ->method('deleteSection');
@@ -294,8 +288,8 @@ class SectionHandlerTest extends TestCase
             ->with(
                 $this->equalTo(1)
             )
-            ->will(
-                $this->returnValue(7)
+            ->willReturn(
+                7
             );
 
         $result = $handler->policiesCount(1);
@@ -315,8 +309,8 @@ class SectionHandlerTest extends TestCase
             ->with(
                 $this->equalTo(1)
             )
-            ->will(
-                $this->returnValue(0)
+            ->willReturn(
+                0
             );
 
         $handler->countRoleAssignmentsUsingSection(1);

@@ -75,7 +75,7 @@ class IndexRequestListenerTest extends TestCase
             ->expects($this->once())
             ->method('getParameter')
             ->with('index_page')
-            ->will($this->returnValue($configuredIndexPath));
+            ->willReturn($configuredIndexPath);
         $this->request->attributes->set('semanticPathinfo', $requestPath);
         $this->indexRequestEventListener->onKernelRequestIndex($this->event);
         $this->assertEquals($expectedIndexPath, $this->request->attributes->get('semanticPathinfo'));

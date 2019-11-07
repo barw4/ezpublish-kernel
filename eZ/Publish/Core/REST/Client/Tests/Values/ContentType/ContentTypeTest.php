@@ -76,7 +76,7 @@ class ContentTypeTest extends TestCase
         $contentTypeServiceMock->expects($this->once())
             ->method('loadFieldDefinitionList')
             ->with($this->equalTo('/content/types/23/fieldDefinitions'))
-            ->will($this->returnValue($this->getFieldDefinitionListMock()));
+            ->willReturn($this->getFieldDefinitionListMock());
 
         $this->assertEquals(
             $this->getFieldDefinitions(),
@@ -98,7 +98,7 @@ class ContentTypeTest extends TestCase
         $contentTypeServiceMock->expects($this->once())
             ->method('loadFieldDefinitionList')
             ->with($this->equalTo('/content/types/23/fieldDefinitions'))
-            ->will($this->returnValue($this->getFieldDefinitionListMock()));
+            ->willReturn($this->getFieldDefinitionListMock());
 
         $fieldDefinitions = $this->getFieldDefinitions();
 
@@ -122,7 +122,7 @@ class ContentTypeTest extends TestCase
         $contentTypeServiceMock->expects($this->once())
             ->method('loadFieldDefinitionList')
             ->with($this->equalTo('/content/types/23/fieldDefinitions'))
-            ->will($this->returnValue($this->getFieldDefinitionListMock()));
+            ->willReturn($this->getFieldDefinitionListMock());
 
         $this->assertEquals(
             null,
@@ -135,7 +135,7 @@ class ContentTypeTest extends TestCase
         $mock = $this->createMock(FieldDefinitionList::class);
         $mock->expects($this->any())
             ->method('getFieldDefinitions')
-            ->will($this->returnValue($this->getFieldDefinitions()));
+            ->willReturn($this->getFieldDefinitions());
 
         return $mock;
     }

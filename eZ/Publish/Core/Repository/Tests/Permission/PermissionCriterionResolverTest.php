@@ -57,7 +57,7 @@ class PermissionCriterionResolverTest extends TestCase
         $limitationMock
             ->expects($this->any())
             ->method('getIdentifier')
-            ->will($this->returnValue('limitationIdentifier'));
+            ->willReturn('limitationIdentifier');
 
         $targetOnlyLimitationMock = $this->createMock(Limitation::class);
         $targetOnlyLimitationMock
@@ -282,7 +282,7 @@ class PermissionCriterionResolverTest extends TestCase
                 $this->isInstanceOf(Limitation::class),
                 $this->equalTo($userMock)
             )
-            ->will($this->returnValue($criterionMock));
+            ->willReturn($criterionMock);
 
         $targetOnlyLimitationTypeMock
             ->expects($this->never())
@@ -310,12 +310,12 @@ class PermissionCriterionResolverTest extends TestCase
             ->expects($this->once())
             ->method('hasAccess')
             ->with($this->equalTo('content'), $this->equalTo('read'))
-            ->will($this->returnValue($permissionSets));
+            ->willReturn($permissionSets);
 
         $permissionResolverMock
             ->expects($this->once())
             ->method('getCurrentUserReference')
-            ->will($this->returnValue($userMock));
+            ->willReturn($userMock);
     }
 
     /**
@@ -357,7 +357,7 @@ class PermissionCriterionResolverTest extends TestCase
             ->expects($this->once())
             ->method('hasAccess')
             ->with($this->equalTo('testModule'), $this->equalTo('testFunction'))
-            ->will($this->returnValue($permissionSets));
+            ->willReturn($permissionSets);
 
         $criterionResolver = $this->getPermissionCriterionResolverMock(null);
 

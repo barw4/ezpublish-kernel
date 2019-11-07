@@ -87,10 +87,8 @@ class ContentTypeTest extends BaseTest
         $location
             ->expects($this->any())
             ->method('getContentInfo')
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     $this->getContentInfoMock(['contentTypeId' => 42])
-                )
             );
 
         return $location;
@@ -168,15 +166,15 @@ class ContentTypeTest extends BaseTest
         $contentTypeServiceMock->expects($this->once())
             ->method('loadContentType')
             ->with(42)
-            ->will(
-                $this->returnValue($contentTypeMock)
+            ->willReturn(
+                $contentTypeMock
             );
 
         $repository = $this->getRepositoryMock();
         $repository
             ->expects($this->any())
             ->method('getContentTypeService')
-            ->will($this->returnValue($contentTypeServiceMock));
+            ->willReturn($contentTypeServiceMock);
 
         return $repository;
     }

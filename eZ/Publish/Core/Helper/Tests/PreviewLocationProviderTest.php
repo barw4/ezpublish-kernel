@@ -63,7 +63,7 @@ class PreviewLocationProviderTest extends TestCase
             ->expects($this->once())
             ->method('loadParentLocationsForDraftContent')
             ->with($contentId)
-            ->will($this->returnValue([new Location(['id' => $parentLocationId])]));
+            ->willReturn([new Location(['id' => $parentLocationId])]);
 
         $location = $this->provider->loadMainLocation($contentId);
         $this->assertInstanceOf(APILocation::class, $location);
@@ -93,7 +93,7 @@ class PreviewLocationProviderTest extends TestCase
             ->expects($this->once())
             ->method('loadLocation')
             ->with($locationId)
-            ->will($this->returnValue($location));
+            ->willReturn($location);
 
         $this->locationHandler->expects($this->never())->method('loadParentLocationsForDraftContent');
 
@@ -117,7 +117,7 @@ class PreviewLocationProviderTest extends TestCase
             ->expects($this->once())
             ->method('loadParentLocationsForDraftContent')
             ->with($contentId)
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $this->locationHandler->expects($this->never())->method('loadLocationsByContent');
 

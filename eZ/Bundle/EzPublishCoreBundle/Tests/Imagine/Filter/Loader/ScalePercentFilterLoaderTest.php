@@ -62,13 +62,13 @@ class ScalePercentFilterLoaderTest extends TestCase
         $image
             ->expects($this->once())
             ->method('getSize')
-            ->will($this->returnValue($box));
+            ->willReturn($box);
 
         $this->innerLoader
             ->expects($this->once())
             ->method('load')
             ->with($image, $this->equalTo(['size' => [$expectedWidth, $expectedHeight]]))
-            ->will($this->returnValue($image));
+            ->willReturn($image);
 
         $this->assertSame($image, $this->loader->load($image, [$widthPercent, $heightPercent]));
     }

@@ -133,7 +133,7 @@ class GlobalHelperTest extends TestCase
             ->expects($this->once())
             ->method('generate')
             ->with('_ezpublishLocation', ['locationId' => $locationId, 'viewType' => $viewType])
-            ->will($this->returnValue($expectedSystemUriString));
+            ->willReturn($expectedSystemUriString);
 
         $this->helper->setRequestStack($requestStack);
 
@@ -152,7 +152,7 @@ class GlobalHelperTest extends TestCase
             ->expects($this->once())
             ->method('getParameter')
             ->with('content.tree_root.location_id')
-            ->will($this->returnValue($rootLocationId));
+            ->willReturn($rootLocationId);
 
         $rootLocation = $this
             ->getMockBuilder(Location::class)
@@ -161,7 +161,7 @@ class GlobalHelperTest extends TestCase
             ->expects($this->once())
             ->method('loadLocation')
             ->with($rootLocationId)
-            ->will($this->returnValue($rootLocation));
+            ->willReturn($rootLocation);
 
         $this->assertSame($rootLocation, $this->helper->getRootLocation());
     }
@@ -174,7 +174,7 @@ class GlobalHelperTest extends TestCase
             ->expects($this->once())
             ->method('getTranslationSiteAccess')
             ->with($language)
-            ->will($this->returnValue($siteaccess));
+            ->willReturn($siteaccess);
 
         $this->assertSame($siteaccess, $this->helper->getTranslationSiteAccess($language));
     }
@@ -185,7 +185,7 @@ class GlobalHelperTest extends TestCase
         $this->translationHelper
             ->expects($this->once())
             ->method('getAvailableLanguages')
-            ->will($this->returnValue($languages));
+            ->willReturn($languages);
 
         $this->assertSame($languages, $this->helper->getAvailableLanguages());
     }

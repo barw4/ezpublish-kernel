@@ -34,7 +34,7 @@ class ContentObjectStates extends BaseTest
                 array('_media-type' => 'application/vnd.ez.api.ObjectState+xml'),
                 'application/vnd.ez.api.ObjectState+xml'
             )
-            ->will($this->returnValue('foo'));
+            ->willReturn('foo');
 
         $result = $contentStatesParser->parse($inputArray, $this->getParsingDispatcherMock());
 

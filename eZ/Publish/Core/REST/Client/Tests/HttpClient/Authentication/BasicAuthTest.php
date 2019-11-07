@@ -43,7 +43,7 @@ class BasicAuthTest extends TestCase
                 new Message(
                     array('Authorization' => 'Basic c2luZGVsZmluZ2VuOnMzY3IzdA==')
                 )
-            )->will($this->returnValue(new \stdClass()));
+            )->willReturn(new \stdClass());
 
         $result = $client->request('GET', '/some/path');
 
@@ -74,7 +74,7 @@ class BasicAuthTest extends TestCase
                     ),
                     'body content'
                 )
-            )->will($this->returnValue(new \stdClass()));
+            )->willReturn(new \stdClass());
 
         $result = $client->request(
             'PUT',

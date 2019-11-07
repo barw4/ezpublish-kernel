@@ -122,7 +122,7 @@ class CoreVoterTest extends TestCase
                 ->expects($this->once())
                 ->method('hasAccess')
                 ->with($attribute->module, $attribute->function)
-                ->will($this->returnValue($repositoryCanUser));
+                ->willReturn($repositoryCanUser);
         } else {
             $this->repository
                 ->expects($this->never())

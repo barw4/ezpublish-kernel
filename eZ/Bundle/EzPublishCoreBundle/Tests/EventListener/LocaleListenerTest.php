@@ -61,13 +61,13 @@ class LocaleListenerTest extends TestCase
             ->expects($this->once())
             ->method('getParameter')
             ->with('languages')
-            ->will($this->returnValue($configuredLanguages));
+            ->willReturn($configuredLanguages);
 
         $this->localeConverter
             ->expects($this->atLeastOnce())
             ->method('convertToPOSIX')
-            ->will(
-                $this->returnValueMap($convertedLocalesValueMap)
+            ->willReturnMap(
+                $convertedLocalesValueMap
             );
 
         $defaultLocale = 'en';

@@ -165,23 +165,21 @@ class FieldDefinitionUpdateTest extends BaseTest
 
         $fieldTypeParserMock->expects($this->any())
             ->method('parseValue')
-            ->will($this->returnValue('New title'));
+            ->willReturn('New title');
 
         $fieldTypeParserMock->expects($this->any())
             ->method('parseFieldSettings')
-            ->will($this->returnValue(['textRows' => 24]));
+            ->willReturn(['textRows' => 24]);
 
         $fieldTypeParserMock->expects($this->any())
             ->method('parseValidatorConfiguration')
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [
                         'StringLengthValidator' => [
                             'minStringLength' => 12,
                             'maxStringLength' => 24,
                         ],
                     ]
-                )
             );
 
         return $fieldTypeParserMock;
@@ -198,17 +196,14 @@ class FieldDefinitionUpdateTest extends BaseTest
 
         $contentTypeServiceMock->expects($this->any())
             ->method('newFieldDefinitionUpdateStruct')
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     new FieldDefinitionUpdateStruct()
-                )
             );
 
         $contentTypeServiceMock->expects($this->any())
             ->method('loadContentTypeDraft')
             ->with($this->equalTo(42))
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     new ContentType(
                         [
                             'fieldDefinitions' => [
@@ -221,7 +216,6 @@ class FieldDefinitionUpdateTest extends BaseTest
                             ],
                         ]
                     )
-                )
             );
 
         return $contentTypeServiceMock;

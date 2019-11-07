@@ -1931,10 +1931,8 @@ class UrlAliasHandlerTest extends TestCase
             $this->equalTo(false),
             $this->equalTo(null),
             $this->equalTo(false)
-        )->will(
-            $this->returnValue(
+        )->willReturn(
                 new UrlAlias()
-            )
         );
 
         $this->assertInstanceOf(
@@ -1964,10 +1962,8 @@ class UrlAliasHandlerTest extends TestCase
             $this->equalTo(false),
             $this->equalTo(null),
             $this->equalTo(false)
-        )->will(
-            $this->returnValue(
+        )->willReturn(
                 new UrlAlias()
-            )
         );
 
         $this->assertInstanceOf(

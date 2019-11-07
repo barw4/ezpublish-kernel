@@ -50,12 +50,12 @@ class UrlAliasTest extends BaseServiceMockTest
         $languageServiceMock
             ->expects($this->once())
             ->method('getPrioritizedLanguageCodeList')
-            ->will($this->returnValue(['prioritizedLanguageList']));
+            ->willReturn(['prioritizedLanguageList']);
 
         $repositoryMock
             ->expects($this->once())
             ->method('getContentLanguageService')
-            ->will($this->returnValue($languageServiceMock));
+            ->willReturn($languageServiceMock);
 
         new UrlALiasService(
             $repositoryMock,
@@ -78,13 +78,13 @@ class UrlAliasTest extends BaseServiceMockTest
             ->expects($this->once())
             ->method('loadUrlAlias')
             ->with(42)
-            ->will($this->returnValue(new SPIUrlAlias()));
+            ->willReturn(new SPIUrlAlias());
 
         $mockedService
             ->expects($this->once())
             ->method('extractPath')
             ->with($this->isInstanceOf(SPIUrlAlias::class), null)
-            ->will($this->returnValue('path'));
+            ->willReturn('path');
 
         $urlAlias = $mockedService->load(42);
 
@@ -161,7 +161,7 @@ class UrlAliasTest extends BaseServiceMockTest
             ->expects($this->once())
             ->method('loadUrlAlias')
             ->with(42)
-            ->will($this->returnValue($spiUrlAlias));
+            ->willReturn($spiUrlAlias);
 
         $this->expectException(ApiNotFoundException::class);
 
@@ -181,7 +181,7 @@ class UrlAliasTest extends BaseServiceMockTest
                 $this->equalTo('content'),
                 $this->equalTo('urltranslator')
             )
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $this->expectException(InvalidArgumentException::class);
 
@@ -200,7 +200,7 @@ class UrlAliasTest extends BaseServiceMockTest
             ->method('hasAccess')->with(
                 $this->equalTo('content'),
                 $this->equalTo('urltranslator')
-            )->will($this->returnValue(true));
+            )->willReturn(true);
 
         $repositoryMock = $this->getRepositoryMock();
 
@@ -235,7 +235,7 @@ class UrlAliasTest extends BaseServiceMockTest
             ->method('hasAccess')->with(
                 $this->equalTo('content'),
                 $this->equalTo('urltranslator')
-            )->will($this->returnValue(true));
+            )->willReturn(true);
 
         $repositoryMock = $this->getRepositoryMock();
 
@@ -758,7 +758,7 @@ class UrlAliasTest extends BaseServiceMockTest
                 $this->equalTo(42),
                 $this->equalTo(false)
             )
-            ->will($this->returnValue([$spiUrlAlias]));
+            ->willReturn([$spiUrlAlias]);
 
         $location = $this->getLocationStub();
         $urlAliases = $urlAliasService->listLocationAliases($location, false, null);
@@ -816,7 +816,7 @@ class UrlAliasTest extends BaseServiceMockTest
                 $this->equalTo(42),
                 $this->equalTo(false)
             )
-            ->will($this->returnValue([$spiUrlAlias]));
+            ->willReturn([$spiUrlAlias]);
 
         $location = $this->getLocationStub();
         $urlAliases = $urlAliasService->listLocationAliases(
@@ -2440,8 +2440,7 @@ class UrlAliasTest extends BaseServiceMockTest
             $this->equalTo(null),
             $this->equalTo(0),
             $this->equalTo(-1)
-        )->will(
-            $this->returnValue(
+        )->willReturn(
                 [
                     new SPIUrlAlias(
                         [
@@ -2458,7 +2457,6 @@ class UrlAliasTest extends BaseServiceMockTest
                         ]
                     ),
                 ]
-            )
         );
 
         $urlAliases = $urlAliasService->listGlobalAliases();
@@ -2487,8 +2485,7 @@ class UrlAliasTest extends BaseServiceMockTest
             $this->equalTo(null),
             $this->equalTo(0),
             $this->equalTo(-1)
-        )->will(
-            $this->returnValue(
+        )->willReturn(
                 [
                     new SPIUrlAlias(
                         [
@@ -2505,7 +2502,6 @@ class UrlAliasTest extends BaseServiceMockTest
                         ]
                     ),
                 ]
-            )
         );
 
         $urlAliases = $urlAliasService->listGlobalAliases();
@@ -2528,8 +2524,8 @@ class UrlAliasTest extends BaseServiceMockTest
             $this->equalTo('languageCode'),
             $this->equalTo('offset'),
             $this->equalTo('limit')
-        )->will(
-            $this->returnValue([])
+        )->willReturn(
+            []
         );
 
         $urlAliases = $urlAliasService->listGlobalAliases('languageCode', 'offset', 'limit');
@@ -2594,8 +2590,7 @@ class UrlAliasTest extends BaseServiceMockTest
             'lookup'
         )->with(
             $this->equalTo($url)
-        )->will(
-            $this->returnValue(
+        )->willReturn(
                 new SPIUrlAlias(
                     [
                         'pathData' => [
@@ -2615,7 +2610,6 @@ class UrlAliasTest extends BaseServiceMockTest
                         'alwaysAvailable' => false,
                     ]
                 )
-            )
         );
 
         $urlAliasService->lookup($url, $languageCode);
@@ -2653,8 +2647,7 @@ class UrlAliasTest extends BaseServiceMockTest
             'lookup'
         )->with(
             $this->equalTo('jedan/dva')
-        )->will(
-            $this->returnValue(
+        )->willReturn(
                 new SPIUrlAlias(
                     [
                         'pathData' => [
@@ -2674,7 +2667,6 @@ class UrlAliasTest extends BaseServiceMockTest
                         'alwaysAvailable' => $alwaysAvailable,
                     ]
                 )
-            )
         );
 
         $urlAlias = $urlAliasService->lookup('jedan/dva', $languageCode);
@@ -2730,8 +2722,7 @@ class UrlAliasTest extends BaseServiceMockTest
             'lookup'
         )->with(
             $this->equalTo('jedan/two')
-        )->will(
-            $this->returnValue(
+        )->willReturn(
                 new SPIUrlAlias(
                     [
                         'pathData' => [
@@ -2754,7 +2745,6 @@ class UrlAliasTest extends BaseServiceMockTest
                         'alwaysAvailable' => $alwaysAvailable,
                     ]
                 )
-            )
         );
 
         $urlAlias = $urlAliasService->lookup('jedan/two', $languageCode);
@@ -2781,8 +2771,8 @@ class UrlAliasTest extends BaseServiceMockTest
             $this->equalTo(null),
             $this->equalTo($showAllTranslations = true),
             $this->equalTo($prioritizedLanguageList = ['LANGUAGES!'])
-        )->will(
-            $this->returnValue([])
+        )->willReturn(
+            []
         );
 
         $mockedService->reverseLookup($location, null, $showAllTranslations, $prioritizedLanguageList);
@@ -2813,8 +2803,7 @@ class UrlAliasTest extends BaseServiceMockTest
             $this->equalTo($location),
             $this->equalTo(false),
             $this->equalTo($languageCode)
-        )->will(
-            $this->returnValue(
+        )->willReturn(
                 [
                     new UrlAlias(
                         [
@@ -2823,7 +2812,6 @@ class UrlAliasTest extends BaseServiceMockTest
                         ]
                     ),
                 ]
-            )
         );
 
         $mockedService->reverseLookup($location, $languageCode);
@@ -2927,7 +2915,7 @@ class UrlAliasTest extends BaseServiceMockTest
                 $this->equalTo('urltranslator'),
                 $this->equalTo($location)
             )
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $repositoryMock = $this->getRepositoryMock();
 
@@ -2952,8 +2940,8 @@ class UrlAliasTest extends BaseServiceMockTest
             $this->equalTo('forwarding'),
             $this->equalTo('languageCode'),
             $this->equalTo('alwaysAvailable')
-        )->will(
-            $this->returnValue(new SPIUrlAlias())
+        )->willReturn(
+            new SPIUrlAlias()
         );
 
         $urlAlias = $mockedService->createUrlAlias(
@@ -2985,7 +2973,7 @@ class UrlAliasTest extends BaseServiceMockTest
                 $this->equalTo('urltranslator'),
                 $this->equalTo($location)
             )
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $repositoryMock = $this->getRepositoryMock();
 
@@ -3044,7 +3032,7 @@ class UrlAliasTest extends BaseServiceMockTest
                 $this->equalTo('urltranslator'),
                 $this->equalTo($location)
             )
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $handlerMock->expects(
             $this->once()
@@ -3083,7 +3071,7 @@ class UrlAliasTest extends BaseServiceMockTest
                 $this->equalTo('content'),
                 $this->equalTo('urltranslator')
             )
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $repositoryMock = $this->getRepositoryMock();
 
@@ -3108,8 +3096,8 @@ class UrlAliasTest extends BaseServiceMockTest
             $this->equalTo('forwarding'),
             $this->equalTo('languageCode'),
             $this->equalTo('alwaysAvailable')
-        )->will(
-            $this->returnValue(new SPIUrlAlias())
+        )->willReturn(
+            new SPIUrlAlias()
         );
 
         $urlAlias = $mockedService->createGlobalUrlAlias(
@@ -3140,7 +3128,7 @@ class UrlAliasTest extends BaseServiceMockTest
                 $this->equalTo('content'),
                 $this->equalTo('urltranslator')
             )
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $repositoryMock = $this->getRepositoryMock();
 
@@ -3192,7 +3180,7 @@ class UrlAliasTest extends BaseServiceMockTest
                 $this->equalTo('content'),
                 $this->equalTo('urltranslator')
             )
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $mockedService->createGlobalUrlAlias(
             'invalid/resource',
@@ -3220,7 +3208,7 @@ class UrlAliasTest extends BaseServiceMockTest
                 $this->equalTo('content'),
                 $this->equalTo('urltranslator')
             )
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $this->urlAliasHandler->expects(
             $this->once()
@@ -3265,16 +3253,16 @@ class UrlAliasTest extends BaseServiceMockTest
             'loadLocation'
         )->with(
             $this->equalTo(42)
-        )->will(
-            $this->returnValue($location)
+        )->willReturn(
+            $location
         );
 
         $repositoryMock->expects(
             $this->exactly(2)
         )->method(
             'getLocationService'
-        )->will(
-            $this->returnValue($locationServiceMock)
+        )->willReturn(
+            $locationServiceMock
         );
 
         $this->permissionResolver
@@ -3284,7 +3272,7 @@ class UrlAliasTest extends BaseServiceMockTest
                 $this->equalTo('urltranslator'),
                 $this->equalTo($location)
             )
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $mockedService->expects(
             $this->exactly(2)
@@ -3356,16 +3344,16 @@ class UrlAliasTest extends BaseServiceMockTest
             $this->once()
         )->method(
             'getPrioritizedLanguageCodeList'
-        )->will(
-            $this->returnValue(['eng-GB'])
+        )->willReturn(
+            ['eng-GB']
         );
 
         $this->getRepositoryMock()->expects(
             $this->once()
         )->method(
             'getContentLanguageService'
-        )->will(
-            $this->returnValue($languageServiceMock)
+        )->willReturn(
+            $languageServiceMock
         );
 
         return $this->getMockBuilder(URLAliasService::class)
@@ -3398,7 +3386,7 @@ class UrlAliasTest extends BaseServiceMockTest
                 $this->equalTo('urltranslator'),
                 $this->equalTo($location)
             )
-            ->will($this->returnValue(false));
+            ->willReturn(false);
 
         $mockedService->createUrlAlias(
             $location,
@@ -3423,7 +3411,7 @@ class UrlAliasTest extends BaseServiceMockTest
                 $this->equalTo('content'),
                 $this->equalTo('urltranslator')
             )
-            ->will($this->returnValue(false));
+            ->willReturn(false);
 
         $mockedService->createGlobalUrlAlias(
             'eznode:42',
@@ -3450,7 +3438,7 @@ class UrlAliasTest extends BaseServiceMockTest
                 $this->equalTo('content'),
                 $this->equalTo('urltranslator')
             )
-            ->will($this->returnValue(false));
+            ->willReturn(false);
 
         $mockedService->removeAliases($aliasList);
     }
@@ -3475,6 +3463,6 @@ class UrlAliasTest extends BaseServiceMockTest
                 $this->equalTo(42),
                 $this->equalTo(false)
             )
-            ->will($this->returnValue($spiUrlAliases));
+            ->willReturn($spiUrlAliases);
     }
 }

@@ -109,17 +109,17 @@ class PreviewControllerTest extends TestCase
             ->expects($this->once())
             ->method('loadMainLocationByContent')
             ->with($content)
-            ->will($this->returnValue($this->createMock(Location::class)));
+            ->willReturn($this->createMock(Location::class));
         $this->contentService
             ->expects($this->once())
             ->method('loadContent')
             ->with($contentId, [$lang], $versionNo)
-            ->will($this->returnValue($content));
+            ->willReturn($content);
         $this->authorizationChecker
             ->expects($this->once())
             ->method('isGranted')
             ->with($this->equalTo(new AuthorizationAttribute('content', 'versionread', ['valueObject' => $content])))
-            ->will($this->returnValue(false));
+            ->willReturn(false);
 
         $controller->previewContentAction(new Request(), $contentId, $versionNo, $lang, 'test');
     }
@@ -140,17 +140,17 @@ class PreviewControllerTest extends TestCase
             ->expects($this->once())
             ->method('loadMainLocationByContent')
             ->with($content)
-            ->will($this->returnValue($location));
+            ->willReturn($location);
         $this->contentService
             ->expects($this->once())
             ->method('loadContent')
             ->with($contentId, [$lang], $versionNo)
-            ->will($this->returnValue($content));
+            ->willReturn($content);
         $this->authorizationChecker
             ->expects($this->once())
             ->method('isGranted')
             ->with($this->equalTo(new AuthorizationAttribute('content', 'versionread', ['valueObject' => $content])))
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $previewSiteAccessName = 'test';
         $previewSiteAccess = new SiteAccess($previewSiteAccessName, 'preview');
@@ -164,13 +164,11 @@ class PreviewControllerTest extends TestCase
         $this->previewHelper
             ->expects($this->exactly(2))
             ->method('setPreviewActive')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         [true, null],
                         [false, null],
                     ]
-                )
             );
         $this->previewHelper
             ->expects($this->once())
@@ -183,12 +181,12 @@ class PreviewControllerTest extends TestCase
         $this->previewHelper
             ->expects($this->once())
             ->method('getOriginalSiteAccess')
-            ->will($this->returnValue($previousSiteAccess));
+            ->willReturn($previousSiteAccess);
         $this->previewHelper
             ->expects($this->once())
             ->method('changeConfigScope')
             ->with($previewSiteAccessName)
-            ->will($this->returnValue($previewSiteAccess));
+            ->willReturn($previewSiteAccess);
         $this->previewHelper
             ->expects($this->once())
             ->method('restoreConfigScope');
@@ -198,7 +196,7 @@ class PreviewControllerTest extends TestCase
         $request
             ->expects($this->once())
             ->method('duplicate')
-            ->will($this->returnValue($duplicatedRequest));
+            ->willReturn($duplicatedRequest);
 
         // Kernel expectations
         $expectedResponse = new Response();
@@ -206,7 +204,7 @@ class PreviewControllerTest extends TestCase
             ->expects($this->once())
             ->method('handle')
             ->with($duplicatedRequest, HttpKernelInterface::SUB_REQUEST)
-            ->will($this->returnValue($expectedResponse));
+            ->willReturn($expectedResponse);
 
         $controller = $this->getPreviewController();
         $this->assertSame(
@@ -231,17 +229,17 @@ class PreviewControllerTest extends TestCase
             ->expects($this->once())
             ->method('loadMainLocationByContent')
             ->with($content)
-            ->will($this->returnValue($location));
+            ->willReturn($location);
         $this->contentService
             ->expects($this->once())
             ->method('loadContent')
             ->with($contentId, [$lang], $versionNo)
-            ->will($this->returnValue($content));
+            ->willReturn($content);
         $this->authorizationChecker
             ->expects($this->once())
             ->method('isGranted')
             ->with($this->equalTo(new AuthorizationAttribute('content', 'versionread', ['valueObject' => $content])))
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $previousSiteAccessName = 'foo';
         $previousSiteAccess = new SiteAccess($previousSiteAccessName);
@@ -252,7 +250,7 @@ class PreviewControllerTest extends TestCase
         $this->previewHelper
             ->expects($this->once())
             ->method('getOriginalSiteAccess')
-            ->will($this->returnValue($previousSiteAccess));
+            ->willReturn($previousSiteAccess);
         $this->previewHelper
             ->expects($this->once())
             ->method('restoreConfigScope');
@@ -262,7 +260,7 @@ class PreviewControllerTest extends TestCase
         $request
             ->expects($this->once())
             ->method('duplicate')
-            ->will($this->returnValue($duplicatedRequest));
+            ->willReturn($duplicatedRequest);
 
         // Kernel expectations
         $expectedResponse = new Response();
@@ -270,7 +268,7 @@ class PreviewControllerTest extends TestCase
             ->expects($this->once())
             ->method('handle')
             ->with($duplicatedRequest, HttpKernelInterface::SUB_REQUEST)
-            ->will($this->returnValue($expectedResponse));
+            ->willReturn($expectedResponse);
 
         $controller = $this->getPreviewController();
         $this->assertSame(

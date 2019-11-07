@@ -83,10 +83,8 @@ class ContentTypeTest extends BaseTest
         $location
             ->expects($this->any())
             ->method('getContentInfo')
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     $this->generateContentInfoForContentType($contentTypeId)
-                )
             );
 
         return $location;

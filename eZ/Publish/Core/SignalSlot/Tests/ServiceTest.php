@@ -57,12 +57,10 @@ abstract class ServiceTest extends TestCase
         $innerService = $this->getServiceMock();
         $innerService->expects($this->once())
                      ->method($method)
-                     ->will(
-                         $this->returnValueMap(
+                     ->willReturnMap(
                              [
                                  array_merge($parameters, [$return]),
                              ]
-                         )
                      );
 
         $dispatcher = $this->createMock(SignalDispatcher::class);

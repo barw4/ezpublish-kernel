@@ -89,7 +89,7 @@ class FileSizeExtensionTest extends Twig_Test_IntegrationTestCase
         $configResolverInterfaceMock->expects($this->any())
             ->method('getParameter')
             ->with('languages')
-            ->will($this->returnValue($this->getLocale()));
+            ->willReturn($this->getLocale());
 
         return $configResolverInterfaceMock;
     }
@@ -102,13 +102,11 @@ class FileSizeExtensionTest extends Twig_Test_IntegrationTestCase
         $this->localeConverterInterfaceMock = $this->createMock(LocaleConverterInterface::class);
         $this->localeConverterInterfaceMock->expects($this->any())
         ->method('convertToPOSIX')
-        ->will(
-            $this->returnValueMap(
+        ->willReturnMap(
                 [
                     ['fre-FR', 'fr-FR'],
                     ['eng-GB', 'en-GB'],
                 ]
-            )
         );
 
         return $this->localeConverterInterfaceMock;
@@ -122,8 +120,7 @@ class FileSizeExtensionTest extends Twig_Test_IntegrationTestCase
         $that = $this;
         $this->translatorMock = $this->createMock(TranslatorInterface::class);
         $this->translatorMock
-            ->expects($this->any())->method('trans')->will(
-                $this->returnCallback(
+            ->expects($this->any())->method('trans')->willReturnCallback(
                     function ($suffixes) use ($that) {
                         foreach ($that->getLocale() as $value) {
                             if ($value === 'fre-FR') {
@@ -135,7 +132,6 @@ class FileSizeExtensionTest extends Twig_Test_IntegrationTestCase
                             }
                         }
                     }
-                )
             );
 
         return $this->translatorMock;

@@ -34,7 +34,7 @@ class HttpUtilsTest extends TestCase
                 ->expects($this->once())
                 ->method('generate')
                 ->with($uri, $requestAttributes, UrlGeneratorInterface::ABSOLUTE_URL)
-                ->will($this->returnValue($expected . '?' . http_build_query($requestAttributes)));
+                ->willReturn($expected . '?' . http_build_query($requestAttributes));
         }
 
         $this->assertSame($expected, $httpUtils->generateUri($request, $uri));
@@ -63,7 +63,7 @@ class HttpUtilsTest extends TestCase
                 ->expects($this->once())
                 ->method('analyseLink')
                 ->with($uri)
-                ->will($this->returnValue($siteAccessUri . $uri));
+                ->willReturn($siteAccessUri . $uri);
             $siteAccess->matcher = $matcher;
         }
 
@@ -80,7 +80,7 @@ class HttpUtilsTest extends TestCase
                 ->expects($this->once())
                 ->method('generate')
                 ->with($uri, $requestAttributes, UrlGeneratorInterface::ABSOLUTE_URL)
-                ->will($this->returnValue($expected . '?' . http_build_query($requestAttributes)));
+                ->willReturn($expected . '?' . http_build_query($requestAttributes));
         }
 
         $res = $httpUtils->generateUri($request, $uri);
@@ -118,7 +118,7 @@ class HttpUtilsTest extends TestCase
                 ->expects($this->once())
                 ->method('analyseLink')
                 ->with($path)
-                ->will($this->returnValue($siteAccessUri . $path));
+                ->willReturn($siteAccessUri . $path);
             $siteAccess->matcher = $matcher;
         }
 

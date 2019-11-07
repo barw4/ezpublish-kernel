@@ -58,13 +58,11 @@ class RoutingListenerTest extends TestCase
         $this->configResolver
             ->expects($this->any())
             ->method('getParameter')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         ['content.tree_root.location_id', null, null, $rootLocationId],
                         ['content.tree_root.excluded_uri_prefixes', null, null, $excludedUriPrefixes],
                     ]
-                )
             );
 
         $this->urlAliasRouter

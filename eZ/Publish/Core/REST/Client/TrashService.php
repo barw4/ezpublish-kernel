@@ -212,7 +212,6 @@ class TrashService implements APITrashService, Sessionable
             $trashItems[] = $this->buildTrashItem($location);
         }
 
-
         return new SearchResult([
             'items' => $trashItems,
             'totalCount' => count($trashItems),

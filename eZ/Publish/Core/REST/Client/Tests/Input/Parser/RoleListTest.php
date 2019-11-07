@@ -34,7 +34,7 @@ class RoleListTest extends BaseTest
                 array('_media-type' => 'application/vnd.ez.api.Role+xml'),
                 'application/vnd.ez.api.Role+xml'
             )
-            ->will($this->returnValue('foo'));
+            ->willReturn('foo');
 
         $result = $roleListParser->parse($inputArray, $this->getParsingDispatcherMock());
 

@@ -960,14 +960,14 @@ abstract class FieldTypeTest extends TestCase
                 $fieldDefinitionMock
                     ->expects($this->any())
                     ->method('getValidatorConfiguration')
-                    ->will($this->returnValue($data));
+                    ->willReturn($data);
             }
 
             if ($method === 'fieldSettings') {
                 $fieldDefinitionMock
                     ->expects($this->any())
                     ->method('getFieldSettings')
-                    ->will($this->returnValue($data));
+                    ->willReturn($data);
             }
         }
 

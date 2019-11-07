@@ -22,11 +22,11 @@ class GrayscaleFilterLoaderTest extends TestCase
         $image
             ->expects($this->once())
             ->method('effects')
-            ->will($this->returnValue($effects));
+            ->willReturn($effects);
         $effects
             ->expects($this->once())
             ->method('grayscale')
-            ->will($this->returnValue($effects));
+            ->willReturn($effects);
 
         $loader = new GrayscaleFilterLoader();
         $this->assertSame($image, $loader->load($image));

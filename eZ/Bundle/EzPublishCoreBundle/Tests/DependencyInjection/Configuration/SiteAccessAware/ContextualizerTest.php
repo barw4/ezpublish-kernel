@@ -433,12 +433,12 @@ class ContextualizerTest extends TestCase
         $this->container
             ->expects($this->any())
             ->method('hasParameter')
-            ->will($this->returnValueMap($hasParameterMap));
+            ->willReturnMap($hasParameterMap);
 
         $this->container
             ->expects($this->any())
             ->method('getParameter')
-            ->will($this->returnValueMap($getParameterMap));
+            ->willReturnMap($getParameterMap);
 
         $this->container
             ->expects($this->any())

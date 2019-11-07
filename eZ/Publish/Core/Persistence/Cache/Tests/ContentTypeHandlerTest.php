@@ -115,13 +115,13 @@ class ContentTypeHandlerTest extends AbstractInMemoryCacheHandlerTest
         $this->persistenceHandlerMock
             ->expects($this->once())
             ->method($handlerMethodName)
-            ->will($this->returnValue($innerHandler));
+            ->willReturn($innerHandler);
 
         $innerHandler
             ->expects($this->once())
             ->method($method)
             ->with(...$arguments)
-            ->will($this->returnValue(null));
+            ->willReturn(null);
 
         $this->cacheMock
             ->expects(!empty($tags) ? $this->once() : $this->never())

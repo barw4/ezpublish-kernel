@@ -45,7 +45,7 @@ class ScaleHeightFilterLoaderTest extends TestCase
             ->expects($this->once())
             ->method('load')
             ->with($image, $this->equalTo(['heighten' => $height]))
-            ->will($this->returnValue($image));
+            ->willReturn($image);
 
         $this->assertSame($image, $this->loader->load($image, [$height]));
     }

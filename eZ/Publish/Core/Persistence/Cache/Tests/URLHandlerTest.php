@@ -56,7 +56,7 @@ class URLHandlerTest extends AbstractCacheHandlerTest
         $this->persistenceHandlerMock
             ->expects($this->any())
             ->method('urlHandler')
-            ->will($this->returnValue($innerHandlerMock));
+            ->willReturn($innerHandlerMock);
 
         $innerHandlerMock
             ->expects($this->exactly(1))
@@ -95,7 +95,7 @@ class URLHandlerTest extends AbstractCacheHandlerTest
         $this->persistenceHandlerMock
             ->expects($this->any())
             ->method('urlHandler')
-            ->will($this->returnValue($innerHandlerMock));
+            ->willReturn($innerHandlerMock);
 
         $innerHandlerMock
             ->expects($this->exactly(1))

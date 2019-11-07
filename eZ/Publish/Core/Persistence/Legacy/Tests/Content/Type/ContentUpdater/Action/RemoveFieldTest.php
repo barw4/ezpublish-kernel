@@ -77,25 +77,25 @@ class RemoveFieldTest extends TestCase
             ->expects($this->once())
             ->method('listVersionNumbers')
             ->with($this->equalTo($contentId))
-            ->will($this->returnValue($versionNumbers));
+            ->willReturn($versionNumbers);
 
         $this->getContentGatewayMock()
             ->expects($this->once())
             ->method('loadVersionedNameData')
             ->with($this->equalTo([['id' => $contentId, 'version' => 1]]))
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $this->getContentGatewayMock()
             ->expects($this->at(2))
             ->method('load')
             ->with($contentId, 1)
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $this->getContentMapperMock()
             ->expects($this->once())
             ->method('extractContentFromRows')
             ->with([], [])
-            ->will($this->returnValue([$content]));
+            ->willReturn([$content]);
 
         $this->getContentGatewayMock()
             ->expects($this->once())
@@ -128,37 +128,37 @@ class RemoveFieldTest extends TestCase
             ->expects($this->once())
             ->method('listVersionNumbers')
             ->with($this->equalTo($contentId))
-            ->will($this->returnValue($versionNumbers));
+            ->willReturn($versionNumbers);
 
         $this->getContentGatewayMock()
             ->expects($this->once())
             ->method('loadVersionedNameData')
             ->with($this->equalTo([['id' => $contentId, 'version' => 1], ['id' => $contentId, 'version' => 2]]))
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $this->getContentGatewayMock()
             ->expects($this->at(2))
             ->method('load')
             ->with($contentId, 1)
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $this->getContentMapperMock()
             ->expects($this->at(0))
             ->method('extractContentFromRows')
             ->with([], [])
-            ->will($this->returnValue([$content1]));
+            ->willReturn([$content1]);
 
         $this->getContentGatewayMock()
             ->expects($this->at(3))
             ->method('load')
             ->with($contentId, 2)
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $this->getContentMapperMock()
             ->expects($this->at(1))
             ->method('extractContentFromRows')
             ->with([], [])
-            ->will($this->returnValue([$content2]));
+            ->willReturn([$content2]);
 
         $this->getContentGatewayMock()
             ->expects($this->once())
@@ -201,37 +201,37 @@ class RemoveFieldTest extends TestCase
             ->expects($this->once())
             ->method('listVersionNumbers')
             ->with($this->equalTo($contentId))
-            ->will($this->returnValue($versionNumbers));
+            ->willReturn($versionNumbers);
 
         $this->getContentGatewayMock()
             ->expects($this->once())
             ->method('loadVersionedNameData')
             ->with($this->equalTo([['id' => $contentId, 'version' => 1], ['id' => $contentId, 'version' => 2]]))
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $this->getContentGatewayMock()
             ->expects($this->at(2))
             ->method('load')
             ->with($contentId, 1)
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $this->getContentMapperMock()
             ->expects($this->at(0))
             ->method('extractContentFromRows')
             ->with([], [])
-            ->will($this->returnValue([$content1]));
+            ->willReturn([$content1]);
 
         $this->getContentGatewayMock()
             ->expects($this->at(3))
             ->method('load')
             ->with($contentId, 2)
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $this->getContentMapperMock()
             ->expects($this->at(1))
             ->method('extractContentFromRows')
             ->with([], [])
-            ->will($this->returnValue([$content2]));
+            ->willReturn([$content2]);
 
         $this->getContentGatewayMock()
             ->expects($this->at(4))

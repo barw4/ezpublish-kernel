@@ -165,8 +165,7 @@ class FieldRenderingExtensionIntegrationTest extends FileSystemTwigIntegrationTe
         // Signature: ConfigResolverInterface->getParameter( $paramName, $namespace = null, $scope = null )
         $mock->expects($this->any())
             ->method('getParameter')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         [
                             'languages',
@@ -175,7 +174,6 @@ class FieldRenderingExtensionIntegrationTest extends FileSystemTwigIntegrationTe
                             ['fre-FR', 'eng-US'],
                         ],
                     ]
-                )
             );
 
         return $mock;

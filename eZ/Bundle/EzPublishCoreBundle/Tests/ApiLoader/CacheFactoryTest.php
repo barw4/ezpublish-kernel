@@ -51,13 +51,13 @@ class CacheFactoryTest extends TestCase
             ->expects($this->once())
             ->method('getParameter')
             ->with('cache_service_name')
-            ->will($this->returnValue($name));
+            ->willReturn($name);
 
         $this->container
             ->expects($this->once())
             ->method('get')
             ->with($expected)
-            ->will($this->returnValue($this->createMock(AdapterInterface::class)));
+            ->willReturn($this->createMock(AdapterInterface::class));
 
         $factory = new CacheFactory();
         $factory->setContainer($this->container);

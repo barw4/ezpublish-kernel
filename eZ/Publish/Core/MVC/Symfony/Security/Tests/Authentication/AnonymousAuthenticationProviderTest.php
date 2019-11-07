@@ -38,7 +38,7 @@ class AnonymousAuthenticationProviderTest extends TestCase
             ->expects($this->once())
             ->method('getParameter')
             ->with('anonymous_user_id')
-            ->will($this->returnValue($anonymousUserId));
+            ->willReturn($anonymousUserId);
 
         $this->repository
             ->expects($this->once())

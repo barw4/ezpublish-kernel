@@ -45,7 +45,7 @@ class ScaleWidthFilterLoaderTest extends TestCase
             ->expects($this->once())
             ->method('load')
             ->with($image, $this->equalTo(['widen' => $width]))
-            ->will($this->returnValue($image));
+            ->willReturn($image);
 
         $this->assertSame($image, $this->loader->load($image, [$width]));
     }

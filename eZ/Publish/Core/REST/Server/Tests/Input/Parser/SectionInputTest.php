@@ -89,8 +89,8 @@ class SectionInputTest extends BaseTest
 
         $sectionServiceMock->expects($this->any())
             ->method('newSectionCreateStruct')
-            ->will(
-                $this->returnValue(new SectionCreateStruct())
+            ->willReturn(
+                new SectionCreateStruct()
             );
 
         return $sectionServiceMock;

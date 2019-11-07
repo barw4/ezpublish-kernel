@@ -296,8 +296,7 @@ class MaskGeneratorTest extends LanguageAwareTestCase
             $this->languageHandler = $this->createMock(LanguageHandler::class);
             $this->languageHandler->expects($this->any())
                                   ->method($this->anything())// loadByLanguageCode && loadListByLanguageCodes
-                                  ->will(
-                                      $this->returnCallback(
+                                  ->willReturnCallback(
                                           function ($languageCodes) {
                                               if (is_string($languageCodes)) {
                                                   $language = $languageCodes;
@@ -327,7 +326,6 @@ class MaskGeneratorTest extends LanguageAwareTestCase
 
                                               return isset($language) ? $languages[$language] : $languages;
                                           }
-                                      )
                                   );
         }
 

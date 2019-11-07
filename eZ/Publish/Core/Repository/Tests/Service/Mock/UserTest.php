@@ -40,25 +40,25 @@ class UserTest extends BaseServiceMockTest
         $user->expects($this->once())
             ->method('__get')
             ->with('id')
-            ->will($this->returnValue(42));
+            ->willReturn(42);
 
         $versionInfo->expects($this->once())
             ->method('getContentInfo')
-            ->will($this->returnValue($contentInfo));
+            ->willReturn($contentInfo);
 
         $loadedUser->expects($this->once())
             ->method('getVersionInfo')
-            ->will($this->returnValue($versionInfo));
+            ->willReturn($versionInfo);
 
         $loadedUser->expects($this->once())
             ->method('__get')
             ->with('id')
-            ->will($this->returnValue(42));
+            ->willReturn(42);
 
         $userService->expects($this->once())
             ->method('loadUser')
             ->with(42)
-            ->will($this->returnValue($loadedUser));
+            ->willReturn($loadedUser);
 
         $repository->expects($this->once())->method('beginTransaction');
 
@@ -68,7 +68,7 @@ class UserTest extends BaseServiceMockTest
 
         $repository->expects($this->once())
             ->method('getContentService')
-            ->will($this->returnValue($contentService));
+            ->willReturn($contentService);
 
         /* @var \PHPUnit\Framework\MockObject\MockObject $userHandler */
         $userHandler->expects($this->once())
@@ -101,20 +101,20 @@ class UserTest extends BaseServiceMockTest
         $user->expects($this->once())
             ->method('__get')
             ->with('id')
-            ->will($this->returnValue(42));
+            ->willReturn(42);
 
         $versionInfo->expects($this->once())
             ->method('getContentInfo')
-            ->will($this->returnValue($contentInfo));
+            ->willReturn($contentInfo);
 
         $loadedUser->expects($this->once())
             ->method('getVersionInfo')
-            ->will($this->returnValue($versionInfo));
+            ->willReturn($versionInfo);
 
         $userService->expects($this->once())
             ->method('loadUser')
             ->with(42)
-            ->will($this->returnValue($loadedUser));
+            ->willReturn($loadedUser);
 
         $repository->expects($this->once())->method('beginTransaction');
 
@@ -125,7 +125,7 @@ class UserTest extends BaseServiceMockTest
 
         $repository->expects($this->once())
             ->method('getContentService')
-            ->will($this->returnValue($contentService));
+            ->willReturn($contentService);
 
         $repository->expects($this->once())->method('rollback');
 

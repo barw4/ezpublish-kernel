@@ -316,15 +316,13 @@ class SearchTest extends BaseServiceMockTest
         $searchHandlerMock->expects($this->once())
             ->method('findContent')
             ->with($this->equalTo($handlerQuery), $this->equalTo($languageFilter))
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     new SearchResult(
                         [
                             'searchHits' => [new SearchHit(['valueObject' => $spiContentInfo])],
                             'totalCount' => 1,
                         ]
                     )
-                )
             );
 
         $mapper->expects($this->once())
@@ -382,21 +380,19 @@ class SearchTest extends BaseServiceMockTest
         $permissionsCriterionResolverMock->expects($this->once())
             ->method('getPermissionsCriterion')
             ->with('content', 'read')
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         /* @var \PHPUnit\Framework\MockObject\MockObject $searchHandlerMock */
         $searchHandlerMock->expects($this->once())
             ->method('findContent')
             ->with($this->equalTo($query), $this->equalTo($languageFilter))
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     new SearchResult(
                         [
                             'searchHits' => [new SearchHit(['valueObject' => $spiContentInfo])],
                             'totalCount' => 1,
                         ]
                     )
-                )
             );
 
         $domainMapperMock
@@ -454,7 +450,7 @@ class SearchTest extends BaseServiceMockTest
         $permissionsCriterionResolverMock->expects($this->once())
             ->method('getPermissionsCriterion')
             ->with('content', 'read')
-            ->will($this->returnValue(false));
+            ->willReturn(false);
 
         $mapper->expects($this->once())
             ->method('buildContentDomainObjectsOnSearchResult')
@@ -503,15 +499,13 @@ class SearchTest extends BaseServiceMockTest
                 ),
                 []
             )
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     new SearchResult(
                         [
                             'searchHits' => [new SearchHit(['valueObject' => $spiContentInfo])],
                             'totalCount' => 1,
                         ]
                     )
-                )
             );
 
         $domainMapperMock
@@ -634,13 +628,11 @@ class SearchTest extends BaseServiceMockTest
         $repositoryMock
             ->expects($this->once())
             ->method('getContentService')
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     $contentServiceMock = $this
                         ->getMockBuilder(ContentService::class)
                         ->disableOriginalConstructor()
                         ->getMock()
-                )
             );
 
         /** @var \eZ\Publish\API\Repository\Values\Content\Query\Criterion $criterionMock */
@@ -652,7 +644,7 @@ class SearchTest extends BaseServiceMockTest
         $permissionsCriterionResolverMock->expects($this->once())
             ->method('getPermissionsCriterion')
             ->with('content', 'read')
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $languageFilter = [];
         $spiContentInfo = new SPIContentInfo();
@@ -662,7 +654,7 @@ class SearchTest extends BaseServiceMockTest
         $searchHandlerMock->expects($this->once())
             ->method('findSingle')
             ->with($this->equalTo($criterionMock), $this->equalTo($languageFilter))
-            ->will($this->returnValue($spiContentInfo));
+            ->willReturn($spiContentInfo);
 
         $domainMapperMock->expects($this->never())
             ->method($this->anything());
@@ -670,7 +662,7 @@ class SearchTest extends BaseServiceMockTest
         $contentServiceMock
             ->expects($this->once())
             ->method('internalLoadContent')
-            ->will($this->returnValue($contentMock));
+            ->willReturn($contentMock);
 
         $result = $service->findSingle($criterionMock, $languageFilter, true);
 
@@ -708,21 +700,19 @@ class SearchTest extends BaseServiceMockTest
         $searchHandlerMock->expects($this->once())
             ->method('findLocations')
             ->with($this->equalTo($query))
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     $spiResult = new SearchResult(
                         [
                             'searchHits' => [new SearchHit(['valueObject' => $spiLocation])],
                             'totalCount' => 1,
                         ]
                     )
-                )
             );
 
         $permissionsCriterionResolverMock->expects($this->once())
             ->method('getPermissionsCriterion')
             ->with('content', 'read')
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $endResult = new SearchResult(
             [
@@ -778,15 +768,13 @@ class SearchTest extends BaseServiceMockTest
         $searchHandlerMock->expects($this->once())
             ->method('findLocations')
             ->with($this->equalTo($handlerQuery))
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     $spiResult = new SearchResult(
                         [
                             'searchHits' => [new SearchHit(['valueObject' => $spiLocation])],
                             'totalCount' => 1,
                         ]
                     )
-                )
             );
 
         $permissionsCriterionResolverMock->expects($this->never())->method($this->anything());
@@ -935,15 +923,13 @@ class SearchTest extends BaseServiceMockTest
                     ]
                 )
             )
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     $spiResult = new SearchResult(
                         [
                             'searchHits' => [new SearchHit(['valueObject' => $spiLocation])],
                             'totalCount' => 1,
                         ]
                     )
-                )
             );
 
         $endResult = new SearchResult(

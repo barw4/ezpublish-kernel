@@ -66,11 +66,11 @@ class SessionInitByPostListenerTest extends TestCase
         $this->session
             ->expects($this->once())
             ->method('getName')
-            ->will($this->returnValue($sessionName));
+            ->willReturn($sessionName);
         $this->session
             ->expects($this->once())
             ->method('isStarted')
-            ->will($this->returnValue(false));
+            ->willReturn(false);
         $this->session
             ->expects($this->never())
             ->method('setId');
@@ -92,11 +92,11 @@ class SessionInitByPostListenerTest extends TestCase
         $this->session
             ->expects($this->once())
             ->method('getName')
-            ->will($this->returnValue($sessionName));
+            ->willReturn($sessionName);
         $this->session
             ->expects($this->once())
             ->method('isStarted')
-            ->will($this->returnValue(false));
+            ->willReturn(false);
         $this->session
             ->expects($this->once())
             ->method('setId')

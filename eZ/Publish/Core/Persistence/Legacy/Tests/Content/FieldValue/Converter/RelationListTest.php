@@ -58,8 +58,7 @@ EOT;
             ->expects($this->once())
             ->method('getRelationXmlHashFromDB')
             ->with($destinationContentIds)
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [
                         '1' => [
                             [
@@ -92,7 +91,6 @@ EOT;
                             ],
                         ],
                     ]
-                )
             );
 
         $this->converter->toStorageValue($fieldValue, $actualStorageFieldValue);
@@ -127,7 +125,7 @@ EOT;
             ->expects($this->once())
             ->method('getRelationXmlHashFromDB')
             ->with($destinationContentIds)
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $this->converter->toStorageValue($fieldValue, $actualStorageFieldValue);
 

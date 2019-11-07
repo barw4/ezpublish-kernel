@@ -158,7 +158,7 @@ class MapperTest extends LanguageAwareTestCase
                 $this->isInstanceOf(
                     StorageFieldValue::class
                 )
-            )->will($this->returnValue(new StorageFieldValue()));
+            )->willReturn(new StorageFieldValue());
 
         $reg = new Registry(['some-type' => $convMock]);
 
@@ -190,10 +190,8 @@ class MapperTest extends LanguageAwareTestCase
                 $this->isInstanceOf(
                     StorageFieldValue::class
                 )
-            )->will(
-                $this->returnValue(
+            )->willReturn(
                     new FieldValue()
-                )
             );
 
         $reg = new Registry(
@@ -231,7 +229,7 @@ class MapperTest extends LanguageAwareTestCase
         $convMock = $this->createMock(Converter::class);
         $convMock->expects($this->any())
             ->method('toFieldValue')
-            ->will($this->returnValue(new FieldValue()));
+            ->willReturn(new FieldValue());
 
         $reg = new Registry(
             [
@@ -627,8 +625,7 @@ class MapperTest extends LanguageAwareTestCase
             $this->languageHandler = $this->createMock(Language\Handler::class);
             $this->languageHandler->expects($this->any())
                 ->method('load')
-                ->will(
-                    $this->returnCallback(
+                ->willReturnCallback(
                         function ($id) use ($languages) {
                             foreach ($languages as $language) {
                                 if ($language->id == $id) {
@@ -636,12 +633,10 @@ class MapperTest extends LanguageAwareTestCase
                                 }
                             }
                         }
-                    )
                 );
             $this->languageHandler->expects($this->any())
                 ->method('loadByLanguageCode')
-                ->will(
-                    $this->returnCallback(
+                ->willReturnCallback(
                         function ($languageCode) use ($languages) {
                             foreach ($languages as $language) {
                                 if ($language->languageCode == $languageCode) {
@@ -649,7 +644,6 @@ class MapperTest extends LanguageAwareTestCase
                                 }
                             }
                         }
-                    )
                 );
             $this->languageHandler->expects($this->any())
                 ->method('loadAll')

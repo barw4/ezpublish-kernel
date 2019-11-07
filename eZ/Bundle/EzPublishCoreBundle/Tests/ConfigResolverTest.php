@@ -115,12 +115,12 @@ class ConfigResolverTest extends TestCase
             ->expects($this->once())
             ->method('hasParameter')
             ->with($globalScopeParameter)
-            ->will($this->returnValue(true));
+            ->willReturn(true);
         $this->containerMock
             ->expects($this->once())
             ->method('getParameter')
             ->with($globalScopeParameter)
-            ->will($this->returnValue($expectedValue));
+            ->willReturn($expectedValue);
 
         $this->assertSame($expectedValue, $this->getResolver()->getParameter($paramName));
     }
@@ -146,7 +146,7 @@ class ConfigResolverTest extends TestCase
             ->expects($this->once())
             ->method('getParameter')
             ->with($relativeScopeParameter)
-            ->will($this->returnValue($expectedValue));
+            ->willReturn($expectedValue);
 
         $this->assertSame($expectedValue, $this->getResolver()->getParameter($paramName));
     }
@@ -173,7 +173,7 @@ class ConfigResolverTest extends TestCase
             ->expects($this->once())
             ->method('getParameter')
             ->with($relativeScopeParameter)
-            ->will($this->returnValue($expectedValue));
+            ->willReturn($expectedValue);
 
         $this->assertSame(
             $expectedValue,
@@ -204,7 +204,7 @@ class ConfigResolverTest extends TestCase
             ->expects($this->once())
             ->method('getParameter')
             ->with($defaultScopeParameter)
-            ->will($this->returnValue($expectedValue));
+            ->willReturn($expectedValue);
 
         $this->assertSame($expectedValue, $this->getResolver()->getParameter($paramName));
     }
@@ -238,15 +238,13 @@ class ConfigResolverTest extends TestCase
 
         $this->containerMock->expects($this->atLeastOnce())
             ->method('hasParameter')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         ["ezsettings.default.$paramName", $defaultMatch],
                         ["ezsettings.$groupName.$paramName", $groupMatch],
                         ["ezsettings.{$this->siteAccess->name}.$paramName", $scopeMatch],
                         ["ezsettings.global.$paramName", $globalMatch],
                     ]
-                )
             );
 
         $this->assertSame($expectedResult, $configResolver->hasParameter($paramName));
@@ -272,15 +270,13 @@ class ConfigResolverTest extends TestCase
 
         $this->containerMock->expects($this->atLeastOnce())
             ->method('hasParameter')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         ["$namespace.default.$paramName", $defaultMatch],
                         ["$namespace.$groupName.$paramName", $groupMatch],
                         ["$namespace.$scope.$paramName", $scopeMatch],
                         ["$namespace.global.$paramName", $globalMatch],
                     ]
-                )
             );
 
         $this->assertSame($expectedResult, $configResolver->hasParameter($paramName, $namespace, $scope));

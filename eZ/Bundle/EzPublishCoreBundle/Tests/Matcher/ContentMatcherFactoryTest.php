@@ -25,18 +25,15 @@ class ContentMatcherFactoryTest extends BaseMatcherFactoryTest
         $container
             ->expects($this->atLeastOnce())
             ->method('has')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         [$matcherServiceIdentifier, true],
                     ]
-                )
             );
         $container
             ->expects($this->atLeastOnce())
             ->method('get')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         [
                             $matcherServiceIdentifier,
@@ -44,7 +41,6 @@ class ContentMatcherFactoryTest extends BaseMatcherFactoryTest
                             $this->createMock(ViewMatcherInterface::class),
                         ],
                     ]
-                )
             );
 
         $matcherFactory = new ContentMatcherFactory($resolverMock, $this->createMock(Repository::class));
@@ -62,8 +58,7 @@ class ContentMatcherFactoryTest extends BaseMatcherFactoryTest
             ->expects($this->once())
             ->method('getParameter')
             ->with('content_view')
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [
                         'full' => [
                             'matchRule' => [
@@ -74,7 +69,6 @@ class ContentMatcherFactoryTest extends BaseMatcherFactoryTest
                             ],
                         ],
                     ]
-                )
             );
         $matcherFactory = new ContentMatcherFactory($resolverMock, $this->createMock(Repository::class));
         $matcherFactory->setContainer($container);
@@ -101,8 +95,7 @@ class ContentMatcherFactoryTest extends BaseMatcherFactoryTest
         $resolverMock
             ->expects($this->atLeastOnce())
             ->method('getParameter')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         [
                             'content_view', null, null,
@@ -119,7 +112,6 @@ class ContentMatcherFactoryTest extends BaseMatcherFactoryTest
                         ],
                         ['content_view', 'ezsettings', $siteAccessName, $updatedMatchConfig],
                     ]
-                )
             );
         $matcherFactory = new ContentMatcherFactory($resolverMock, $this->createMock(Repository::class));
         $matcherFactory->setContainer($container);

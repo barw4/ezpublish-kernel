@@ -69,7 +69,7 @@ class ViewControllerListenerTest extends TestCase
         $this->event
             ->expects($this->any())
             ->method('getRequest')
-            ->will($this->returnValue($this->request));
+            ->willReturn($this->request);
 
         $this->viewBuilderMock = $this->createMock(ViewBuilder::class);
     }
@@ -137,7 +137,7 @@ class ViewControllerListenerTest extends TestCase
         $this->viewBuilderRegistry
             ->expects($this->once())
             ->method('getFromRegistry')
-            ->will($this->returnValue($this->viewBuilderMock));
+            ->willReturn($this->viewBuilderMock);
 
         $viewObject = new ContentView($templateIdentifier);
         $viewObject->setControllerReference(new ControllerReference($customController));
@@ -145,7 +145,7 @@ class ViewControllerListenerTest extends TestCase
         $this->viewBuilderMock
             ->expects($this->once())
             ->method('buildView')
-            ->will($this->returnValue($viewObject));
+            ->willReturn($viewObject);
 
         $this->event
             ->expects($this->once())
@@ -154,7 +154,7 @@ class ViewControllerListenerTest extends TestCase
         $this->controllerResolver
             ->expects($this->once())
             ->method('getController')
-            ->will($this->returnValue(function () {}));
+            ->willReturn(function () {});
 
         $this->controllerListener->getController($this->event);
         $this->assertEquals($customController, $this->request->attributes->get('_controller'));

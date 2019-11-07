@@ -78,10 +78,8 @@ class SectionTest extends BaseTest
         $location
             ->expects($this->any())
             ->method('getContentInfo')
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     $this->getContentInfoMock(['sectionId' => $sectionId])
-                )
             );
 
         return $location;

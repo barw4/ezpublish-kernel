@@ -134,17 +134,15 @@ class SectionLimitationTypeTest extends Base
             $this->getPersistenceMock()
                 ->expects($this->any())
                 ->method('sectionHandler')
-                ->will($this->returnValue($this->sectionHandlerMock));
+                ->willReturn($this->sectionHandlerMock);
 
             foreach ($limitation->limitationValues as $key => $value) {
                 $this->sectionHandlerMock
                     ->expects($this->at($key))
                     ->method('load')
                     ->with($value)
-                    ->will(
-                        $this->returnValue(
+                    ->willReturn(
                             new SPISection(['id' => $value])
-                        )
                     );
             }
         }
@@ -180,7 +178,7 @@ class SectionLimitationTypeTest extends Base
             $this->getPersistenceMock()
                 ->expects($this->any())
                 ->method('sectionHandler')
-                ->will($this->returnValue($this->sectionHandlerMock));
+                ->willReturn($this->sectionHandlerMock);
 
             foreach ($limitation->limitationValues as $key => $value) {
                 $this->sectionHandlerMock
@@ -229,19 +227,19 @@ class SectionLimitationTypeTest extends Base
         $contentMock
             ->expects($this->once())
             ->method('getVersionInfo')
-            ->will($this->returnValue($versionInfoMock));
+            ->willReturn($versionInfoMock);
 
         $versionInfoMock
             ->expects($this->once())
             ->method('getContentInfo')
-            ->will($this->returnValue(new ContentInfo(['sectionId' => 2])));
+            ->willReturn(new ContentInfo(['sectionId' => 2]));
 
         $versionInfoMock2 = $this->createMock(APIVersionInfo::class);
 
         $versionInfoMock2
             ->expects($this->once())
             ->method('getContentInfo')
-            ->will($this->returnValue(new ContentInfo(['sectionId' => 2])));
+            ->willReturn(new ContentInfo(['sectionId' => 2]));
 
         return [
             // ContentInfo, with targets, no access

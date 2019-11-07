@@ -185,7 +185,7 @@ class StatusLimitationTypeTest extends Base
                 ->expects($this->once())
                 ->method('__get')
                 ->with('status')
-                ->will($this->returnValue(24));
+                ->willReturn(24);
         } else {
             $versionInfoMock
                 ->expects($this->never())
@@ -206,7 +206,7 @@ class StatusLimitationTypeTest extends Base
         $contentMock
             ->expects($this->once())
             ->method('getVersionInfo')
-            ->will($this->returnValue($this->getVersionInfoMock()));
+            ->willReturn($this->getVersionInfoMock());
 
         return $contentMock;
     }

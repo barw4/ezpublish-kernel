@@ -85,7 +85,7 @@ class StreamFileListenerTest extends TestCase
             ->expects($this->once())
             ->method('loadBinaryFileByUri')
             ->with($uri)
-            ->will($this->returnValue($binaryFile));
+            ->willReturn($binaryFile);
 
         $this->eventListener->onKernelRequest($event);
 
@@ -117,7 +117,7 @@ class StreamFileListenerTest extends TestCase
             ->expects($this->once())
             ->method('loadBinaryFileByUri')
             ->with(sprintf('http://%s%s', $host, $uri))
-            ->will($this->returnValue($binaryFile));
+            ->willReturn($binaryFile);
 
         $this->eventListener->onKernelRequest($event);
 

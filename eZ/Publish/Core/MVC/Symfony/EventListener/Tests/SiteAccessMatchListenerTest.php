@@ -66,7 +66,7 @@ class SiteAccessMatchListenerTest extends TestCase
             ->expects($this->once())
             ->method('matches')
             ->with($request)
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $this->saRouter
             ->expects($this->never())
@@ -94,7 +94,7 @@ class SiteAccessMatchListenerTest extends TestCase
             ->expects($this->once())
             ->method('matches')
             ->with($request)
-            ->will($this->returnValue(false));
+            ->willReturn(false);
 
         $this->saRouter
             ->expects($this->never())
@@ -126,7 +126,7 @@ class SiteAccessMatchListenerTest extends TestCase
             ->expects($this->once())
             ->method('matches')
             ->with($request)
-            ->will($this->returnValue(false));
+            ->willReturn(false);
 
         $this->saRouter
             ->expects($this->never())
@@ -160,7 +160,7 @@ class SiteAccessMatchListenerTest extends TestCase
             ->expects($this->once())
             ->method('matches')
             ->with($request)
-            ->will($this->returnValue(false));
+            ->willReturn(false);
 
         $simplifiedRequest = new SimplifiedRequest(
             [
@@ -177,7 +177,7 @@ class SiteAccessMatchListenerTest extends TestCase
             ->expects($this->once())
             ->method('match')
             ->with($this->equalTo($simplifiedRequest))
-            ->will($this->returnValue($siteAccess));
+            ->willReturn($siteAccess);
 
         $postSAMatchEvent = new PostSiteAccessMatchEvent($siteAccess, $request, $event->getRequestType());
         $this->eventDispatcher
@@ -209,7 +209,7 @@ class SiteAccessMatchListenerTest extends TestCase
             ->expects($this->once())
             ->method('matches')
             ->with($request)
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $simplifiedRequest = new SimplifiedRequest(
             [
@@ -226,7 +226,7 @@ class SiteAccessMatchListenerTest extends TestCase
             ->expects($this->once())
             ->method('match')
             ->with($this->equalTo($simplifiedRequest))
-            ->will($this->returnValue($siteAccess));
+            ->willReturn($siteAccess);
 
         $postSAMatchEvent = new PostSiteAccessMatchEvent($siteAccess, $request, $event->getRequestType());
         $this->eventDispatcher

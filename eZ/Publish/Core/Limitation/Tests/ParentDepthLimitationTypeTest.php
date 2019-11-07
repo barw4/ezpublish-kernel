@@ -157,19 +157,19 @@ class ParentDepthLimitationTypeTest extends Base
         $contentMock
             ->expects($this->once())
             ->method('getVersionInfo')
-            ->will($this->returnValue($versionInfoMock));
+            ->willReturn($versionInfoMock);
 
         $versionInfoMock
             ->expects($this->once())
             ->method('getContentInfo')
-            ->will($this->returnValue(new ContentInfo(['published' => true])));
+            ->willReturn(new ContentInfo(['published' => true]));
 
         $versionInfoMock2 = $this->createMock(APIVersionInfo::class);
 
         $versionInfoMock2
             ->expects($this->once())
             ->method('getContentInfo')
-            ->will($this->returnValue(new ContentInfo(['published' => true])));
+            ->willReturn(new ContentInfo(['published' => true]));
 
         return [
             // ContentInfo, with targets, no access
@@ -302,20 +302,20 @@ class ParentDepthLimitationTypeTest extends Base
             $this->getPersistenceMock()
                 ->expects($this->once())
                 ->method('locationHandler')
-                ->will($this->returnValue($this->locationHandlerMock));
+                ->willReturn($this->locationHandlerMock);
 
             foreach ($targets as $target) {
                 $this->locationHandlerMock
                     ->expects($this->once())
                     ->method('load')
                     ->with($target->parentLocationId)
-                    ->will($this->returnValue($persistenceLocations[$target->parentLocationId]));
+                    ->willReturn($persistenceLocations[$target->parentLocationId]);
             }
         } else {
             $this->getPersistenceMock()
                 ->expects($this->once())
                 ->method('locationHandler')
-                ->will($this->returnValue($this->locationHandlerMock));
+                ->willReturn($this->locationHandlerMock);
 
             $this->locationHandlerMock
                 ->expects($this->once())
@@ -325,7 +325,7 @@ class ParentDepthLimitationTypeTest extends Base
                         'loadParentLocationsForDraftContent'
                 )
                 ->with($object->id)
-                ->will($this->returnValue($persistenceLocations));
+                ->willReturn($persistenceLocations);
         }
 
         $value = $limitationType->evaluate(

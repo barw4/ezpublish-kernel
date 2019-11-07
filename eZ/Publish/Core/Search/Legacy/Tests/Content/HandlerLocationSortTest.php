@@ -117,8 +117,7 @@ class HandlerLocationSortTest extends AbstractTestCase
             ->expects($this->any())
             ->method('createLocationsFromRows')
             ->with($this->isType('array'))
-            ->will(
-                $this->returnCallback(
+            ->willReturnCallback(
                     function ($rows) {
                         $locations = [];
                         foreach ($rows as $row) {
@@ -131,7 +130,6 @@ class HandlerLocationSortTest extends AbstractTestCase
 
                         return array_values($locations);
                     }
-                )
             );
 
         return $mapperMock;

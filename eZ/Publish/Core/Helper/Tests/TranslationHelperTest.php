@@ -112,7 +112,7 @@ class TranslationHelperTest extends TestCase
             ->expects($this->once())
             ->method('getParameter')
             ->with('languages')
-            ->will($this->returnValue($prioritizedLanguages));
+            ->willReturn($prioritizedLanguages);
 
         $this->assertSame($this->translatedNames[$expectedLocale], $this->translationHelper->getTranslatedContentName($content));
     }
@@ -131,13 +131,13 @@ class TranslationHelperTest extends TestCase
             ->expects($this->once())
             ->method('getParameter')
             ->with('languages')
-            ->will($this->returnValue($prioritizedLanguages));
+            ->willReturn($prioritizedLanguages);
 
         $this->contentService
             ->expects($this->once())
             ->method('loadVersionInfo')
             ->with($contentInfo)
-            ->will($this->returnValue($versionInfo));
+            ->willReturn($versionInfo);
 
         $this->assertSame($this->translatedNames[$expectedLocale], $this->translationHelper->getTranslatedContentNameByContentInfo($contentInfo));
     }
@@ -165,7 +165,7 @@ class TranslationHelperTest extends TestCase
             ->expects($this->exactly(2))
             ->method('loadVersionInfo')
             ->with($contentInfo)
-            ->will($this->returnValue($versionInfo));
+            ->willReturn($versionInfo);
 
         $this->assertSame('My name in english', $this->translationHelper->getTranslatedContentNameByContentInfo($contentInfo, 'eng-GB'));
         $this->assertSame('Mon nom en français', $this->translationHelper->getTranslatedContentNameByContentInfo($contentInfo, 'eng-US'));
@@ -220,7 +220,7 @@ class TranslationHelperTest extends TestCase
             ->expects($this->once())
             ->method('getParameter')
             ->with('languages')
-            ->will($this->returnValue($prioritizedLanguages));
+            ->willReturn($prioritizedLanguages);
 
         $this->assertSame($this->translatedFields[$expectedLocale], $this->translationHelper->getTranslatedField($content, 'test'));
     }
@@ -241,13 +241,11 @@ class TranslationHelperTest extends TestCase
         $this->configResolver
             ->expects($this->exactly(2))
             ->method('getParameter')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         ['translation_siteaccesses', null, null, []],
                         ['related_siteaccesses', null, null, []],
                     ]
-                )
             );
 
         $this->logger
@@ -265,13 +263,11 @@ class TranslationHelperTest extends TestCase
         $this->configResolver
             ->expects($this->exactly(2))
             ->method('getParameter')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         ['translation_siteaccesses', null, null, $translationSiteAccesses],
                         ['related_siteaccesses', null, null, $relatedSiteAccesses],
                     ]
-                )
             );
 
         $this->assertSame($expectedResult, $this->translationHelper->getTranslationSiteAccess($language));
@@ -300,8 +296,7 @@ class TranslationHelperTest extends TestCase
         $this->configResolver
             ->expects($this->any())
             ->method('getParameter')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         ['translation_siteaccesses', null, null, ['fre', 'esl']],
                         ['related_siteaccesses', null, null, ['fre', 'esl', 'heb']],
@@ -309,7 +304,6 @@ class TranslationHelperTest extends TestCase
                         ['languages', null, 'fre', ['fre-FR', 'eng-GB']],
                         ['languages', null, 'esl', ['esl-ES', 'fre-FR', 'eng-GB']],
                     ]
-                )
             );
 
         $expectedLanguages = ['eng-GB', 'esl-ES', 'fre-FR'];
@@ -321,8 +315,7 @@ class TranslationHelperTest extends TestCase
         $this->configResolver
             ->expects($this->any())
             ->method('getParameter')
-            ->will(
-                $this->returnValueMap(
+            ->willReturnMap(
                     [
                         ['translation_siteaccesses', null, null, []],
                         ['related_siteaccesses', null, null, ['fre', 'esl', 'heb']],
@@ -331,7 +324,6 @@ class TranslationHelperTest extends TestCase
                         ['languages', null, 'esl', ['esl-ES', 'fre-FR', 'eng-GB']],
                         ['languages', null, 'heb', ['heb-IL', 'eng-GB']],
                     ]
-                )
             );
 
         $expectedLanguages = ['eng-GB', 'esl-ES', 'fre-FR', 'heb-IL'];

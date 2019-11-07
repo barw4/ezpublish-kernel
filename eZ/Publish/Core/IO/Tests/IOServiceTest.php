@@ -99,7 +99,7 @@ class IOServiceTest extends TestCase
             ->expects($this->once())
             ->method('getFromPath')
             ->with($this->equalTo($file))
-            ->will($this->returnValue('text/x-php'));
+            ->willReturn('text/x-php');
 
         $binaryCreateStruct = $this->getIOService()->newBinaryCreateStructFromLocalFile(
             $file
@@ -150,7 +150,7 @@ class IOServiceTest extends TestCase
             ->expects($this->once())
             ->method('create')
             ->with($this->callback($this->getSPIBinaryFileCreateStructCallback($id)))
-            ->will($this->returnValue($spiBinaryFile));
+            ->willReturn($spiBinaryFile);
 
         $binaryFile = $this->IOService->createBinaryFile($createStruct);
         self::assertInstanceOf(BinaryFile::class, $binaryFile);
@@ -177,7 +177,7 @@ class IOServiceTest extends TestCase
             ->expects($this->once())
             ->method('load')
             ->with($spiId)
-            ->will($this->returnValue($spiBinaryFile));
+            ->willReturn($spiBinaryFile);
 
         $binaryFile = $this->getIOService()->loadBinaryFile($id);
         self::assertEquals($id, $binaryFile->id);
@@ -200,13 +200,13 @@ class IOServiceTest extends TestCase
             ->expects($this->once())
             ->method('load')
             ->with($spiId)
-            ->will($this->returnValue($spiBinaryFile));
+            ->willReturn($spiBinaryFile);
 
         $this->binarydataHandlerMock
             ->expects($this->once())
             ->method('getUri')
             ->with($spiId)
-            ->will($this->returnValue("/$spiId"));
+            ->willReturn("/$spiId");
 
         $binaryFile = $this->getIOService()->loadBinaryFile($id);
 
@@ -250,13 +250,13 @@ class IOServiceTest extends TestCase
             ->expects($this->once())
             ->method('getIdFromUri')
             ->with($spiId)
-            ->will($this->returnValue($spiId));
+            ->willReturn($spiId);
 
         $this->metadataHandlerMock
             ->expects($this->once())
             ->method('load')
             ->with($spiId)
-            ->will($this->returnValue($spiBinaryFile));
+            ->willReturn($spiBinaryFile);
 
         $binaryFile = $this->getIOService()->loadBinaryFileByUri($spiId);
         self::assertEquals($id, $binaryFile->id);
@@ -277,7 +277,7 @@ class IOServiceTest extends TestCase
             ->expects($this->once())
             ->method('getIdFromUri')
             ->with($spiId)
-            ->will($this->returnValue($spiId));
+            ->willReturn($spiId);
 
         $this->metadataHandlerMock
             ->expects($this->once())
@@ -309,7 +309,7 @@ class IOServiceTest extends TestCase
             ->expects($this->once())
             ->method('getContents')
             ->with($this->equalTo($this->getPrefixedUri($binaryFile->id)))
-            ->will($this->returnValue($expectedContents));
+            ->willReturn($expectedContents);
 
         self::assertEquals(
             $expectedContents,
@@ -327,7 +327,7 @@ class IOServiceTest extends TestCase
             ->expects($this->once())
             ->method('exists')
             ->with($this->equalTo($this->getPrefixedUri($binaryFile->id)))
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         self::assertTrue(
             $this->getIOService()->exists(
@@ -345,7 +345,7 @@ class IOServiceTest extends TestCase
             ->expects($this->once())
             ->method('exists')
             ->with($this->equalTo($this->getPrefixedUri(__METHOD__)))
-            ->will($this->returnValue(false));
+            ->willReturn(false);
 
         self::assertFalse(
             $this->getIOService()->exists(
@@ -364,7 +364,7 @@ class IOServiceTest extends TestCase
             ->expects($this->once())
             ->method('getMimeType')
             ->with($this->equalTo($this->getPrefixedUri($binaryFile->id)))
-            ->will($this->returnValue($binaryFile->mimeType));
+            ->willReturn($binaryFile->mimeType);
 
         self::assertEquals(
             $binaryFile->mimeType,

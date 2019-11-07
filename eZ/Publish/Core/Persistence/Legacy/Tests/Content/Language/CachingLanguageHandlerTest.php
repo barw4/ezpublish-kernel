@@ -88,7 +88,7 @@ class CachingLanguageHandlerTest extends TestCase
                 $this->isInstanceOf(
                     SPILanguageCreateStruct::class
                 )
-            )->will($this->returnValue($languageFixture));
+            )->willReturn($languageFixture);
 
         $cacheMock->expects($this->once())
             ->method('setMulti')

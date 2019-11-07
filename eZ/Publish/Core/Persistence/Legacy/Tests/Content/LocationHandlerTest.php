@@ -96,7 +96,7 @@ class LocationHandlerTest extends TestCase
             ->expects($this->once())
             ->method('loadLocation')
             ->with(77)
-            ->will($this->returnValue(new \eZ\Publish\SPI\Persistence\Content\Location()));
+            ->willReturn(new \eZ\Publish\SPI\Persistence\Content\Location());
 
         $location = $handler->load(77);
 
@@ -109,13 +109,11 @@ class LocationHandlerTest extends TestCase
             ->expects($this->once())
             ->method('getSubtreeContent')
             ->with(77, true)
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [
                         [77 => 100],
                         [78 => 101],
                     ]
-                )
             );
 
         $this->assertEquals(2, count($this->getLocationHandler()->loadSubtreeIds(77)));
@@ -129,19 +127,17 @@ class LocationHandlerTest extends TestCase
             ->expects($this->once())
             ->method('getBasicNodeDataByRemoteId')
             ->with('abc123')
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [
                         'node_id' => 77,
                     ]
-                )
             );
 
         $this->locationMapper
             ->expects($this->once())
             ->method('createLocationFromRow')
             ->with(['node_id' => 77])
-            ->will($this->returnValue(new \eZ\Publish\SPI\Persistence\Content\Location()));
+            ->willReturn(new \eZ\Publish\SPI\Persistence\Content\Location());
 
         $location = $handler->loadByRemoteId('abc123');
 
@@ -156,17 +152,15 @@ class LocationHandlerTest extends TestCase
             ->expects($this->once())
             ->method('loadLocationDataByContent')
             ->with(23, 42)
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     []
-                )
             );
 
         $this->locationMapper
             ->expects($this->once())
             ->method('createLocationsFromRows')
             ->with([])
-            ->will($this->returnValue(['a', 'b']));
+            ->willReturn(['a', 'b']);
 
         $locations = $handler->loadLocationsByContent(23, 42);
 
@@ -181,17 +175,15 @@ class LocationHandlerTest extends TestCase
             ->expects($this->once())
             ->method('loadParentLocationsDataForDraftContent')
             ->with(23)
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     []
-                )
             );
 
         $this->locationMapper
             ->expects($this->once())
             ->method('createLocationsFromRows')
             ->with([])
-            ->will($this->returnValue(['a', 'b']));
+            ->willReturn(['a', 'b']);
 
         $locations = $handler->loadParentLocationsForDraftContent(23);
 
@@ -212,7 +204,7 @@ class LocationHandlerTest extends TestCase
             ->expects($this->at(0))
             ->method('getBasicNodeData')
             ->with(69)
-            ->will($this->returnValue($sourceData));
+            ->willReturn($sourceData);
 
         $destinationData = [
             'node_id' => 77,
@@ -223,7 +215,7 @@ class LocationHandlerTest extends TestCase
             ->expects($this->at(1))
             ->method('getBasicNodeData')
             ->with(77)
-            ->will($this->returnValue($destinationData));
+            ->willReturn($destinationData);
 
         $this->locationGateway
             ->expects($this->once())
@@ -239,32 +231,32 @@ class LocationHandlerTest extends TestCase
             ->expects($this->at(0))
             ->method('loadLocation')
             ->with($sourceData['node_id'])
-            ->will($this->returnValue(
+            ->willReturn(
                 new Location(
                     [
                         'id' => $sourceData['node_id'],
                         'contentId' => $sourceData['contentobject_id'],
                     ]
                 )
-            ));
+            );
 
         $this->treeHandler
             ->expects($this->at(1))
             ->method('loadLocation')
             ->with($destinationData['node_id'])
-            ->will($this->returnValue(new Location(['contentId' => $destinationData['contentobject_id']])));
+            ->willReturn(new Location(['contentId' => $destinationData['contentobject_id']]));
 
         $this->contentHandler
             ->expects($this->at(0))
             ->method('loadContentInfo')
             ->with($destinationData['contentobject_id'])
-            ->will($this->returnValue(new ContentInfo(['sectionId' => 12345])));
+            ->willReturn(new ContentInfo(['sectionId' => 12345]));
 
         $this->contentHandler
             ->expects($this->at(1))
             ->method('loadContentInfo')
             ->with($sourceData['contentobject_id'])
-            ->will($this->returnValue(new ContentInfo(['mainLocationId' => 69])));
+            ->willReturn(new ContentInfo(['mainLocationId' => 69]));
 
         $this->treeHandler
             ->expects($this->once())
@@ -282,14 +274,12 @@ class LocationHandlerTest extends TestCase
             ->expects($this->at(0))
             ->method('getBasicNodeData')
             ->with(69)
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [
                         'node_id' => 69,
                         'path_string' => '/1/2/69/',
                         'contentobject_id' => 67,
                     ]
-                )
             );
 
         $this->locationGateway
@@ -311,14 +301,12 @@ class LocationHandlerTest extends TestCase
             ->expects($this->at(0))
             ->method('getBasicNodeData')
             ->with(69)
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [
                         'node_id' => 69,
                         'path_string' => '/1/2/69/',
                         'contentobject_id' => 67,
                     ]
-                )
             );
 
         $this->locationGateway
@@ -352,20 +340,18 @@ class LocationHandlerTest extends TestCase
             ->expects($this->once())
             ->method('getBasicNodeData')
             ->with(77)
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     $parentInfo = [
                         'node_id' => 77,
                         'path_string' => '/1/2/77/',
                     ]
-                )
             );
 
         $this->locationGateway
             ->expects($this->once())
             ->method('create')
             ->with($createStruct, $parentInfo)
-            ->will($this->returnValue($createStruct));
+            ->willReturn($createStruct);
 
         $this->locationGateway
             ->expects($this->once())
@@ -410,14 +396,12 @@ class LocationHandlerTest extends TestCase
             ->expects($this->at(0))
             ->method('getBasicNodeData')
             ->with(69)
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [
                         'node_id' => 69,
                         'path_string' => '/1/2/69/',
                         'contentobject_id' => 67,
                     ]
-                )
             );
 
         $this->locationGateway
@@ -493,45 +477,39 @@ class LocationHandlerTest extends TestCase
             ->expects($this->once())
             ->method('getSubtreeContent')
             ->with($subtreeContentRows[0]['node_id'])
-            ->will($this->returnValue($subtreeContentRows));
+            ->willReturn($subtreeContentRows);
         $this->locationGateway
             ->expects($this->once())
             ->method('getBasicNodeData')
             ->with($destinationData['node_id'])
-            ->will($this->returnValue($destinationData));
+            ->willReturn($destinationData);
 
         $objectStateHandlerCall = 0;
         $this->objectStateHandler->expects($this->at($objectStateHandlerCall++))
             ->method('loadAllGroups')
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [
                         new ObjectStateGroup(['id' => 10]),
                         new ObjectStateGroup(['id' => 20]),
                     ]
-                )
             );
         $this->objectStateHandler->expects($this->at($objectStateHandlerCall++))
             ->method('loadObjectStates')
             ->with($this->equalTo(10))
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [
                         new ObjectState(['id' => 11, 'groupId' => 10]),
                         new ObjectState(['id' => 12, 'groupId' => 10]),
                     ]
-                )
             );
         $this->objectStateHandler->expects($this->at($objectStateHandlerCall++))
             ->method('loadObjectStates')
             ->with($this->equalTo(20))
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [
                         new ObjectState(['id' => 21, 'groupId' => 20]),
                         new ObjectState(['id' => 22, 'groupId' => 20]),
                     ]
-                )
             );
         $defaultObjectStates = [
             new ObjectState(['id' => 11, 'groupId' => 10]),
@@ -548,8 +526,7 @@ class LocationHandlerTest extends TestCase
                 ->expects($this->at($index * 2))
                 ->method('copy')
                 ->with($contentId, 1)
-                ->will(
-                    $this->returnValue(
+                ->willReturn(
                         new Content(
                             [
                                 'versionInfo' => new VersionInfo(
@@ -564,7 +541,6 @@ class LocationHandlerTest extends TestCase
                                 ),
                             ]
                         )
-                    )
                 );
 
             foreach ($defaultObjectStates as $objectState) {
@@ -585,8 +561,7 @@ class LocationHandlerTest extends TestCase
                     1,
                     $this->isInstanceOf(Content\MetadataUpdateStruct::class)
                 )
-                ->will(
-                    $this->returnValue(
+                ->willReturn(
                         new Content(
                             [
                                 'versionInfo' => new VersionInfo(
@@ -600,7 +575,6 @@ class LocationHandlerTest extends TestCase
                                 ),
                             ]
                         )
-                    )
                 );
         }
         $lastContentHandlerIndex = $index * 2 + 1;
@@ -613,7 +587,7 @@ class LocationHandlerTest extends TestCase
                 ->expects($this->at($index))
                 ->method('getLocationCreateStruct')
                 ->with($row)
-                ->will($this->returnValue($createStruct));
+                ->willReturn($createStruct);
 
             $createStruct = clone $createStruct;
             $createStruct->contentId = $createStruct->contentId + $offset;
@@ -626,8 +600,7 @@ class LocationHandlerTest extends TestCase
                 ->expects($this->at($index))
                 ->method('create')
                 ->with($createStruct)
-                ->will(
-                    $this->returnValue(
+                ->willReturn(
                         new Location(
                             [
                                 'id' => $row['node_id'] + $offset,
@@ -637,7 +610,6 @@ class LocationHandlerTest extends TestCase
                                 'pathIdentificationString' => $createStruct->pathIdentificationString,
                             ]
                         )
-                    )
                 );
         }
 
@@ -652,19 +624,19 @@ class LocationHandlerTest extends TestCase
             ->expects($this->once())
             ->method('load')
             ->with($destinationData['node_id'])
-            ->will($this->returnValue(new Location(['contentId' => $destinationData['contentobject_id']])));
+            ->willReturn(new Location(['contentId' => $destinationData['contentobject_id']]));
 
         $this->contentHandler
             ->expects($this->at($lastContentHandlerIndex + 1))
             ->method('loadContentInfo')
             ->with($destinationData['contentobject_id'])
-            ->will($this->returnValue(new ContentInfo(['sectionId' => 12345])));
+            ->willReturn(new ContentInfo(['sectionId' => 12345]));
 
         $this->contentHandler
             ->expects($this->at($lastContentHandlerIndex + 2))
             ->method('loadContentInfo')
             ->with(21)
-            ->will($this->returnValue(new ContentInfo(['mainLocationId' => 1010])));
+            ->willReturn(new ContentInfo(['mainLocationId' => 1010]));
 
         $handler
             ->expects($this->once())

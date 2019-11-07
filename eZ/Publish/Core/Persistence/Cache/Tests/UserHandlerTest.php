@@ -167,7 +167,7 @@ class UserHandlerTest extends AbstractInMemoryCacheHandlerTest
             ->expects($this->once())
             ->method('assignRole')
             ->with($contentId, $roleId)
-            ->will($this->returnValue(null));
+            ->willReturn(null);
 
         $this->persistenceHandlerMock
             ->expects($this->once())

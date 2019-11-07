@@ -80,20 +80,20 @@ class UrlAliasTest extends BaseTest
                 $this->isInstanceOf(Location::class),
                 true
             )
-            ->will($this->returnValue([]));
+            ->willReturn([]);
         $urlAliasServiceMock->expects($this->at(1))
             ->method('listLocationAliases')
             ->with(
                 $this->isInstanceOf(Location::class),
                 false
             )
-            ->will($this->returnValue($urlAliasList));
+            ->willReturn($urlAliasList);
 
         $repository = $this->getRepositoryMock();
         $repository
             ->expects($this->once())
             ->method('getURLAliasService')
-            ->will($this->returnValue($urlAliasServiceMock));
+            ->willReturn($urlAliasServiceMock);
 
         return $repository;
     }

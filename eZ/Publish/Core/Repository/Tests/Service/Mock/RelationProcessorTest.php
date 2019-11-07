@@ -192,7 +192,7 @@ class RelationProcessorTest extends BaseServiceMockTest
         $fieldTypeMock->expects($this->once())
             ->method('getRelations')
             ->with($this->equalTo($fieldValueMock))
-            ->will($this->returnValue($fieldRelations));
+            ->willReturn($fieldRelations);
 
         $this->assertLocationHandlerExpectation(
             $locationHandler,
@@ -231,12 +231,10 @@ class RelationProcessorTest extends BaseServiceMockTest
                 $locationHandlerMock->expects($this->at($callCounter))
                     ->method('load')
                     ->with($this->equalTo($locationId))
-                    ->will(
-                        $this->returnValue(
+                    ->willReturn(
                             new Location(
                                 ['contentId' => $locationId + 100]
                             )
-                        )
                     );
 
                 $callCounter += 1;
@@ -259,8 +257,7 @@ class RelationProcessorTest extends BaseServiceMockTest
         $fieldTypeMock->expects($this->once())
             ->method('getRelations')
             ->with($this->equalTo($fieldValueMock))
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [
                         Relation::FIELD => [100],
                         Relation::ASSET => [100],
@@ -273,18 +270,15 @@ class RelationProcessorTest extends BaseServiceMockTest
                             'contentIds' => [100],
                         ],
                     ]
-                )
             );
 
         $locationHandler->expects($this->once())
             ->method('load')
             ->with($this->equalTo(100))
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     new Location(
                         ['contentId' => 200]
                     )
-                )
             );
 
         $relations = [];
@@ -321,14 +315,12 @@ class RelationProcessorTest extends BaseServiceMockTest
             ->expects($this->once())
             ->method('getRelations')
             ->with($this->equalTo($fieldValueMock))
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [
                         Relation::LINK => [
                             'locationIds' => [$locationId],
                         ],
                     ]
-                )
             );
 
         $locationHandler = $this->getPersistenceMock()->locationHandler();
@@ -375,12 +367,12 @@ class RelationProcessorTest extends BaseServiceMockTest
         $contentTypeMock->expects($this->at(0))
             ->method('getFieldDefinition')
             ->with($this->equalTo('identifier42'))
-            ->will($this->returnValue(new FieldDefinition(['id' => 42])));
+            ->willReturn(new FieldDefinition(['id' => 42]));
 
         $contentTypeMock->expects($this->at(1))
             ->method('getFieldDefinition')
             ->with($this->equalTo('identifier43'))
-            ->will($this->returnValue(new FieldDefinition(['id' => 43])));
+            ->willReturn(new FieldDefinition(['id' => 43]));
 
         $contentHandlerMock->expects($this->never())->method('addRelation');
         $contentHandlerMock->expects($this->never())->method('removeRelation');
@@ -596,12 +588,12 @@ class RelationProcessorTest extends BaseServiceMockTest
         $contentTypeMock->expects($this->at(0))
             ->method('getFieldDefinition')
             ->with($this->equalTo('identifier42'))
-            ->will($this->returnValue(new FieldDefinition(['id' => 42])));
+            ->willReturn(new FieldDefinition(['id' => 42]));
 
         $contentTypeMock->expects($this->at(1))
             ->method('getFieldDefinition')
             ->with($this->equalTo('identifier44'))
-            ->will($this->returnValue(new FieldDefinition(['id' => 44])));
+            ->willReturn(new FieldDefinition(['id' => 44]));
 
         $contentHandlerMock->expects($this->at(0))
             ->method('removeRelation')
@@ -657,13 +649,13 @@ class RelationProcessorTest extends BaseServiceMockTest
             ->expects($this->at(0))
             ->method('getFieldDefinition')
             ->with($this->equalTo('identifier43'))
-            ->will($this->returnValue(null));
+            ->willReturn(null);
 
         $contentTypeMock
             ->expects($this->at(1))
             ->method('getFieldDefinition')
             ->with($this->equalTo('identifier44'))
-            ->will($this->returnValue(null));
+            ->willReturn(null);
 
         $relationProcessor = $this->getPartlyMockedRelationProcessor();
         $relationProcessor->processFieldRelations([], 24, 2, $contentTypeMock, $existingRelations);

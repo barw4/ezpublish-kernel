@@ -84,14 +84,14 @@ class DispatcherTest extends TestCase
             ->expects($this->at(0))
             ->method('parse')
             ->with([42], 'text/html')
-            ->will($this->returnValue(23));
+            ->willReturn(23);
 
         $handler = $this->createMock(Handler::class);
         $handler
             ->expects($this->at(0))
             ->method('convert')
             ->with('Hello world!')
-            ->will($this->returnValue([[42]]));
+            ->willReturn([[42]]);
 
         $dispatcher = new Common\Input\Dispatcher($parsingDispatcher, ['format' => $handler]);
 
@@ -120,21 +120,19 @@ class DispatcherTest extends TestCase
             ->expects($this->at(0))
             ->method('parse')
             ->with(['someKey' => 'someValue', '__url' => '/foo/bar'], 'text/html')
-            ->will($this->returnValue(23));
+            ->willReturn(23);
 
         $handler = $this->createMock(Handler::class);
         $handler
             ->expects($this->at(0))
             ->method('convert')
             ->with('Hello world!')
-            ->will(
-                $this->returnValue(
+            ->willReturn(
                     [
                         [
                             'someKey' => 'someValue',
                         ],
                     ]
-                )
             );
 
         $dispatcher = new Common\Input\Dispatcher($parsingDispatcher, ['format' => $handler]);
@@ -165,7 +163,7 @@ class DispatcherTest extends TestCase
         $handler
             ->expects($this->any())
             ->method('convert')
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $dispatcher = new Common\Input\Dispatcher($parsingDispatcher, ['format' => $handler]);
 

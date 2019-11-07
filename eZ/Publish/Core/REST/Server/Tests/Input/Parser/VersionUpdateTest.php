@@ -160,7 +160,7 @@ class VersionUpdateTest extends BaseTest
         $fieldTypeParserMock->expects($this->any())
             ->method('parseFieldValue')
             ->with(42, 'subject', [])
-            ->will($this->returnValue('foo'));
+            ->willReturn('foo');
 
         return $fieldTypeParserMock;
     }
@@ -176,8 +176,8 @@ class VersionUpdateTest extends BaseTest
 
         $contentServiceMock->expects($this->any())
             ->method('newContentUpdateStruct')
-            ->will(
-                $this->returnValue(new ContentUpdateStruct())
+            ->willReturn(
+                new ContentUpdateStruct()
             );
 
         return $contentServiceMock;

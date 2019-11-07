@@ -67,7 +67,7 @@ class RememberMeRepositoryAuthenticationProviderTest extends TestCase
         $user
             ->expects($this->any())
             ->method('getRoles')
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $rememberMeToken = $this
             ->getMockBuilder(RememberMeToken::class)
@@ -76,7 +76,7 @@ class RememberMeRepositoryAuthenticationProviderTest extends TestCase
         $rememberMeToken
             ->expects($this->any())
             ->method('getProviderKey')
-            ->will($this->returnValue('wrong provider secret'));
+            ->willReturn('wrong provider secret');
 
         $this->authProvider->authenticate($rememberMeToken);
     }
@@ -90,7 +90,7 @@ class RememberMeRepositoryAuthenticationProviderTest extends TestCase
         $user
             ->expects($this->any())
             ->method('getRoles')
-            ->will($this->returnValue([]));
+            ->willReturn([]);
 
         $rememberMeToken = $this
             ->getMockBuilder(RememberMeToken::class)
@@ -99,11 +99,11 @@ class RememberMeRepositoryAuthenticationProviderTest extends TestCase
         $rememberMeToken
             ->expects($this->any())
             ->method('getProviderKey')
-            ->will($this->returnValue('my provider secret'));
+            ->willReturn('my provider secret');
         $rememberMeToken
             ->expects($this->any())
             ->method('getSecret')
-            ->will($this->returnValue('the wrong secret'));
+            ->willReturn('the wrong secret');
 
         $this->authProvider->authenticate($rememberMeToken);
     }
@@ -113,13 +113,13 @@ class RememberMeRepositoryAuthenticationProviderTest extends TestCase
         $this->repository
             ->expects($this->once())
             ->method('getPermissionResolver')
-            ->will($this->returnValue($this->getPermissionResolverMock()));
+            ->willReturn($this->getPermissionResolverMock());
 
         $apiUser = $this->createMock(ApiUser::class);
         $apiUser
             ->expects($this->any())
             ->method('getUserId')
-            ->will($this->returnValue(42));
+            ->willReturn(42);
 
         $tokenUser = new User($apiUser);
         $rememberMeToken = new RememberMeToken($tokenUser, 'my provider secret', 'my secret');
