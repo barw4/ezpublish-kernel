@@ -131,6 +131,7 @@ class UrlWildcardHandler extends AbstractHandler implements UrlWildcardHandlerIn
 
     /**
      * @param \eZ\Publish\SPI\Persistence\Content\UrlWildcard[] $urlWildcards
+     *
      * @return array
      */
     private function getCacheTags(array $urlWildcards): array

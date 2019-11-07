@@ -13,6 +13,7 @@ use Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerInterface;
 
 /**
  * This cache warmer ensures that ConfigResolver is correctly reset after cache warmup process.
+ *
  * @see https://jira.ez.no/browse/EZP-25098
  */
 class ConfigResolverCleanup implements CacheWarmerInterface

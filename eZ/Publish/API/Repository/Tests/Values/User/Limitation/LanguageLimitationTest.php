@@ -57,6 +57,7 @@ class LanguageLimitationTest extends BaseTest
 
     /**
      * @return array
+     *
      * @see testCreateAndPublishContent
      */
     public function providerForCreateAndPublishContent(): array
@@ -107,8 +108,8 @@ class LanguageLimitationTest extends BaseTest
      * Data provider for testPublishVersionWithLanguageLimitation.
      *
      * @return array
-     * @see testPublishVersionIsNotAllowedIfModifiedOtherTranslations
      *
+     * @see testPublishVersionIsNotAllowedIfModifiedOtherTranslations
      * @see testPublishVersion
      */
     public function providerForPublishVersionWithLanguageLimitation(): array

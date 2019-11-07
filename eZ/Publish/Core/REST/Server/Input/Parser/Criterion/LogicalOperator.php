@@ -33,6 +33,7 @@ class LogicalOperator extends Criterion
 
     /**
      * @param array $criteriaByType
+     *
      * @return array
      */
     protected function getFlattenedCriteriaData(array $criteriaByType)

@@ -92,7 +92,6 @@ class FieldNameResolver
      * can be targeted.
      *
      * @deprecated since 6.2, use getFieldTypes instead
-     *
      * @see \eZ\Publish\API\Repository\Values\Content\Query\CustomFieldInterface
      * @see \eZ\Publish\SPI\FieldType\Indexable
      *

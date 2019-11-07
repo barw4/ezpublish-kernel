@@ -443,6 +443,7 @@ class Renderer implements RendererInterface
      * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
      *
      * @deprecated since 6.7
+     *
      * @param int $contentId
      */
     protected function checkContent($contentId)

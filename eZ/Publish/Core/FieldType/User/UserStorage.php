@@ -57,6 +57,7 @@ class UserStorage extends GatewayBasedStorage
      * @param \eZ\Publish\SPI\Persistence\Content\VersionInfo $versionInfo
      * @param \eZ\Publish\SPI\Persistence\Content\Field $field
      * @param array $context
+     *
      * @return true|null
      */
     public function storeFieldData(VersionInfo $versionInfo, Field $field, array $context)

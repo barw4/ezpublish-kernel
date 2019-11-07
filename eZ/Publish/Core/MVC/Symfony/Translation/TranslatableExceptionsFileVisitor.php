@@ -63,6 +63,7 @@ class TranslatableExceptionsFileVisitor implements LoggerAwareInterface, FileVis
 
     /**
      * DefaultPhpFileExtractor constructor.
+     *
      * @param DocParser $docParser
      * @param FileSourceFactory $fileSourceFactory
      */
@@ -196,6 +197,7 @@ class TranslatableExceptionsFileVisitor implements LoggerAwareInterface, FileVis
 
     /**
      * @param Node $node
+     *
      * @return string|null
      */
     private function getDocCommentForNode(Node $node)

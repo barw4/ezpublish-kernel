@@ -5332,6 +5332,7 @@ class UrlAliasHandlerTest extends TestCase
 
     /**
      * @var \eZ\Publish\Core\Persistence\Doctrine\ConnectionHandler
+     *
      * @deprecated Start to use DBAL $connection instead.
      */
     protected $dbHandler;
