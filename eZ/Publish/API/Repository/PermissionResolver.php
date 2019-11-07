@@ -45,7 +45,7 @@ interface PermissionResolver
      * @param \eZ\Publish\API\Repository\Values\User\UserReference|null $userReference User for
      *        which the information is returned, current user will be used if null
      *
-     * @return bool|array if limitations are on this function an array of limitations is returned
+     * @return array|bool if limitations are on this function an array of limitations is returned
      */
     public function hasAccess($module, $function, UserReference $userReference = null);
 

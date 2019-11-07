@@ -72,7 +72,7 @@ class Type extends FieldType
     /**
      * Inspects given $inputValue and potentially converts it into a dedicated value object.
      *
-     * @param string|array|\eZ\Publish\Core\FieldType\Image\Value $inputValue
+     * @param array|\eZ\Publish\Core\FieldType\Image\Value|string $inputValue
      *
      * @return \eZ\Publish\Core\FieldType\Image\Value The potentially converted and structurally plausible value.
      */

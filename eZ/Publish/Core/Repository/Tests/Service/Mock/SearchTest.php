@@ -957,7 +957,7 @@ class SearchTest extends BaseServiceMockTest
     }
 
     /**
-     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Repository\Helper\DomainMapper
+     * @return \eZ\Publish\Core\Repository\Helper\DomainMapper|\PHPUnit\Framework\MockObject\MockObject
      */
     protected function getDomainMapperMock()
     {
@@ -972,7 +972,7 @@ class SearchTest extends BaseServiceMockTest
     }
 
     /**
-     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\API\Repository\PermissionCriterionResolver
+     * @return \eZ\Publish\API\Repository\PermissionCriterionResolver|\PHPUnit\Framework\MockObject\MockObject
      */
     protected function getPermissionCriterionResolverMock()
     {

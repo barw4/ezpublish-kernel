@@ -22,7 +22,7 @@ class InMemoryClearingProxyAdapterTest extends TestCase
     /** @var \eZ\Publish\Core\Persistence\Cache\Adapter\TransactionalInMemoryCacheAdapter */
     protected $cache;
 
-    /** @var \Symfony\Component\Cache\Adapter\TagAwareAdapterInterface|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \PHPUnit\Framework\MockObject\MockObject|\Symfony\Component\Cache\Adapter\TagAwareAdapterInterface */
     protected $innerPool;
 
     /** @var \eZ\Publish\Core\Persistence\Cache\InMemory\InMemoryCache|\PHPUnit\Framework\MockObject\MockObject */

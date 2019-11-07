@@ -33,13 +33,13 @@ use Psr\Log\LoggerInterface;
 
 class AliasGeneratorTest extends TestCase
 {
-    /** @var \PHPUnit\Framework\MockObject\MockObject|\Liip\ImagineBundle\Binary\Loader\LoaderInterface */
+    /** @var \Liip\ImagineBundle\Binary\Loader\LoaderInterface|\PHPUnit\Framework\MockObject\MockObject */
     private $dataLoader;
 
-    /** @var \PHPUnit\Framework\MockObject\MockObject|\Liip\ImagineBundle\Imagine\Filter\FilterManager */
+    /** @var \Liip\ImagineBundle\Imagine\Filter\FilterManager|\PHPUnit\Framework\MockObject\MockObject */
     private $filterManager;
 
-    /** @var \PHPUnit\Framework\MockObject\MockObject|\Liip\ImagineBundle\Imagine\Cache\Resolver\ResolverInterface */
+    /** @var \Liip\ImagineBundle\Imagine\Cache\Resolver\ResolverInterface|\PHPUnit\Framework\MockObject\MockObject */
     private $ioResolver;
 
     /** @var \Liip\ImagineBundle\Imagine\Filter\FilterConfiguration */
@@ -48,7 +48,7 @@ class AliasGeneratorTest extends TestCase
     /** @var \PHPUnit\Framework\MockObject\MockObject|\Psr\Log\LoggerInterface */
     private $logger;
 
-    /** @var \PHPUnit\Framework\MockObject\MockObject|\Imagine\Image\ImagineInterface */
+    /** @var \Imagine\Image\ImagineInterface|\PHPUnit\Framework\MockObject\MockObject */
     private $imagine;
 
     /** @var \eZ\Bundle\EzPublishCoreBundle\Imagine\AliasGenerator */
@@ -57,16 +57,16 @@ class AliasGeneratorTest extends TestCase
     /** @var \eZ\Publish\SPI\Variation\VariationHandler */
     private $decoratedAliasGenerator;
 
-    /** @var \PHPUnit\Framework\MockObject\MockObject|\Imagine\Image\BoxInterface */
+    /** @var \Imagine\Image\BoxInterface|\PHPUnit\Framework\MockObject\MockObject */
     private $box;
 
-    /** @var \PHPUnit\Framework\MockObject\MockObject|\Imagine\Image\ImageInterface */
+    /** @var \Imagine\Image\ImageInterface|\PHPUnit\Framework\MockObject\MockObject */
     private $image;
 
-    /** @var \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\IO\IOServiceInterface */
+    /** @var \eZ\Publish\Core\IO\IOServiceInterface|\PHPUnit\Framework\MockObject\MockObject */
     private $ioService;
 
-    /** @var \PHPUnit\Framework\MockObject\MockObject|\eZ\Bundle\EzPublishCoreBundle\Imagine\VariationPathGenerator */
+    /** @var \eZ\Bundle\EzPublishCoreBundle\Imagine\VariationPathGenerator|\PHPUnit\Framework\MockObject\MockObject */
     private $variationPathGenerator;
 
     protected function setUp()

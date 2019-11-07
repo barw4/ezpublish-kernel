@@ -167,7 +167,7 @@ class NameSchemaService
      * Returns the real name for a content name pattern.
      *
      * @param string $nameSchema
-     * @param \eZ\Publish\SPI\Persistence\Content\Type|\eZ\Publish\API\Repository\Values\ContentType\ContentType $contentType
+     * @param \eZ\Publish\API\Repository\Values\ContentType\ContentType|\eZ\Publish\SPI\Persistence\Content\Type $contentType
      * @param array $fieldMap
      * @param array $languageCodes
      *
@@ -210,7 +210,7 @@ class NameSchemaService
      * @see \eZ\Publish\Core\Repository\FieldType::getName()
      *
      * @param string[] $schemaIdentifiers
-     * @param \eZ\Publish\SPI\Persistence\Content\Type|\eZ\Publish\API\Repository\Values\ContentType\ContentType $contentType
+     * @param \eZ\Publish\API\Repository\Values\ContentType\ContentType|\eZ\Publish\SPI\Persistence\Content\Type $contentType
      * @param array $fieldMap
      * @param string $languageCode
      *

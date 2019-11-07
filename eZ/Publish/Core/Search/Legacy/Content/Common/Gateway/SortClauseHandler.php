@@ -90,7 +90,7 @@ abstract class SortClauseHandler
      * Returns the sort table name.
      *
      * @param int $number
-     * @param null|string $externalTableName
+     * @param string|null $externalTableName
      *
      * @return string
      */

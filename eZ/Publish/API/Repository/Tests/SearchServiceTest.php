@@ -4318,7 +4318,7 @@ class SearchServiceTest extends BaseTest
      *
      * @param Query $query
      * @param string $fixture
-     * @param null|callable $closure
+     * @param callable|null $closure
      * @param bool $info
      * @param bool $id
      */
@@ -4478,7 +4478,7 @@ class SearchServiceTest extends BaseTest
     /**
      * For findContentInfo tests, to reuse fixtures for findContent tests.
      *
-     * @param null|callable $closure
+     * @param callable|null $closure
      *
      * @return callable
      */

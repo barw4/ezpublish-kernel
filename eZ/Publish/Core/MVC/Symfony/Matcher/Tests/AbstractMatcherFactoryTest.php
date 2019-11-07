@@ -171,7 +171,7 @@ abstract class AbstractMatcherFactoryTest extends TestCase
     /**
      * @param array $properties
      *
-     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\MVC\Symfony\View\ContentView
+     * @return \eZ\Publish\Core\MVC\Symfony\View\ContentView|\PHPUnit\Framework\MockObject\MockObject
      */
     protected function getContentView(array $contentInfoProperties = [], array $locationProperties = [])
     {
@@ -195,7 +195,7 @@ abstract class AbstractMatcherFactoryTest extends TestCase
     /**
      * @param array $blockProperties
      *
-     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\MVC\Symfony\View\BlockView
+     * @return \eZ\Publish\Core\MVC\Symfony\View\BlockView|\PHPUnit\Framework\MockObject\MockObject
      */
     protected function getBlockView(array $blockProperties = [])
     {

@@ -31,7 +31,7 @@ interface View
      * </code>
      * Must throw a \eZ\Publish\Core\Base\Exceptions\InvalidArgumentType exception if $templateIdentifier is invalid.
      *
-     * @param string|\Closure $templateIdentifier
+     * @param \Closure|string $templateIdentifier
      *
      * @throws \eZ\Publish\Core\Base\Exceptions\InvalidArgumentType
      */
@@ -40,7 +40,7 @@ interface View
     /**
      * Returns the registered template identifier.
      *
-     * @return string|\Closure
+     * @return \Closure|string
      */
     public function getTemplateIdentifier();
 

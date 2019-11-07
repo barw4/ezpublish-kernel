@@ -26,7 +26,7 @@ class FieldSettings extends ArrayObject
      *
      * @throws \eZ\Publish\API\Repository\Exceptions\PropertyReadOnlyException On non existing indexes
      *
-     * @param string|int $index
+     * @param int|string $index
      * @param mixed $value
      */
     public function offsetSet($index, $value)

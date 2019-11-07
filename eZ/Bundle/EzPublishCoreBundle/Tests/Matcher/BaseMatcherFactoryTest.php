@@ -70,7 +70,7 @@ abstract class BaseMatcherFactoryTest extends TestCase
     /**
      * @param array $properties
      *
-     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\MVC\Symfony\View\ContentView
+     * @return \eZ\Publish\Core\MVC\Symfony\View\ContentView|\PHPUnit\Framework\MockObject\MockObject
      */
     protected function getContentInfoMock(array $properties = [])
     {

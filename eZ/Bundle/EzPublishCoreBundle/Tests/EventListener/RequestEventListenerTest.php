@@ -29,7 +29,7 @@ class RequestEventListenerTest extends TestCase
     /** @var \PHPUnit\Framework\MockObject\MockObject */
     private $router;
 
-    /** @var \PHPUnit\Framework\MockObject\MockObject|LoggerInterface */
+    /** @var LoggerInterface|\PHPUnit\Framework\MockObject\MockObject */
     private $logger;
 
     /** @var RequestEventListener */

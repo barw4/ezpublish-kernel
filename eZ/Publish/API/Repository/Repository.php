@@ -53,7 +53,7 @@ interface Repository
      * @param string $function The function, aka the controller action to check permissions on
      * @param \eZ\Publish\API\Repository\Values\User\UserReference $user
      *
-     * @return bool|array if limitations are on this function an array of limitations is returned
+     * @return array|bool if limitations are on this function an array of limitations is returned
      */
     public function hasAccess($module, $function, UserReference $user = null);
 

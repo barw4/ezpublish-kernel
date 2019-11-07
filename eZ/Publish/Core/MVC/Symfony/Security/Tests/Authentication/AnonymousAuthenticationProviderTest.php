@@ -18,7 +18,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class AnonymousAuthenticationProviderTest extends TestCase
 {
-    /** @var \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\API\Repository\Repository */
+    /** @var \eZ\Publish\API\Repository\Repository|\PHPUnit\Framework\MockObject\MockObject */
     private $repository;
 
     /** @var \PHPUnit\Framework\MockObject\MockObject */

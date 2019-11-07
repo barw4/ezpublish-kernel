@@ -5697,7 +5697,7 @@ class ContentTest extends BaseServiceMockTest
      * @param array $translations
      * @param bool $useAlwaysAvailable
      *
-     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\API\Repository\Values\Content\Content
+     * @return \eZ\Publish\API\Repository\Values\Content\Content|\PHPUnit\Framework\MockObject\MockObject
      */
     private function mockBuildContentDomainObject(SPIContent $spiContent, array $translations = null, bool $useAlwaysAvailable = null)
     {
@@ -5917,7 +5917,7 @@ class ContentTest extends BaseServiceMockTest
     protected $domainMapperMock;
 
     /**
-     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Repository\Helper\DomainMapper
+     * @return \eZ\Publish\Core\Repository\Helper\DomainMapper|\PHPUnit\Framework\MockObject\MockObject
      */
     protected function getDomainMapperMock()
     {
@@ -5931,7 +5931,7 @@ class ContentTest extends BaseServiceMockTest
     protected $relationProcessorMock;
 
     /**
-     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Repository\Helper\RelationProcessor
+     * @return \eZ\Publish\Core\Repository\Helper\RelationProcessor|\PHPUnit\Framework\MockObject\MockObject
      */
     protected function getRelationProcessorMock()
     {
@@ -5945,7 +5945,7 @@ class ContentTest extends BaseServiceMockTest
     protected $nameSchemaServiceMock;
 
     /**
-     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Repository\Helper\NameSchemaService
+     * @return \eZ\Publish\Core\Repository\Helper\NameSchemaService|\PHPUnit\Framework\MockObject\MockObject
      */
     protected function getNameSchemaServiceMock()
     {
@@ -5959,7 +5959,7 @@ class ContentTest extends BaseServiceMockTest
     protected $contentTypeServiceMock;
 
     /**
-     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\API\Repository\ContentTypeService
+     * @return \eZ\Publish\API\Repository\ContentTypeService|\PHPUnit\Framework\MockObject\MockObject
      */
     protected function getContentTypeServiceMock()
     {
@@ -5973,7 +5973,7 @@ class ContentTest extends BaseServiceMockTest
     protected $locationServiceMock;
 
     /**
-     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\API\Repository\LocationService
+     * @return \eZ\Publish\API\Repository\LocationService|\PHPUnit\Framework\MockObject\MockObject
      */
     protected function getLocationServiceMock()
     {

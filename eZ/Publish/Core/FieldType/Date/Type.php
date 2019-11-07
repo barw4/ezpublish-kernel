@@ -78,7 +78,7 @@ class Type extends FieldType
     /**
      * Inspects given $inputValue and potentially converts it into a dedicated value object.
      *
-     * @param string|int|\DateTime|\eZ\Publish\Core\FieldType\Date\Value $inputValue
+     * @param \DateTime|\eZ\Publish\Core\FieldType\Date\Value|int|string $inputValue
      *
      * @return \eZ\Publish\Core\FieldType\Date\Value The potentially converted and structurally plausible value.
      */

@@ -290,7 +290,7 @@ class UrlAliasRouter implements ChainedRouterInterface, RequestMatcherInterface
      *
      * @see UrlAliasRouter::supports()
      *
-     * @param string|\eZ\Publish\API\Repository\Values\Content\Location $name The name of the route or a Location instance
+     * @param \eZ\Publish\API\Repository\Values\Content\Location|string $name The name of the route or a Location instance
      * @param mixed $parameters An array of parameters
      * @param int $referenceType The type of reference to be generated (one of the constants)
      *

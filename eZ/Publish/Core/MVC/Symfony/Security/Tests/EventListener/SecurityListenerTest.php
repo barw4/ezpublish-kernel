@@ -42,7 +42,7 @@ class SecurityListenerTest extends TestCase
     /** @var \PHPUnit\Framework\MockObject\MockObject */
     protected $eventDispatcher;
 
-    /** @var \Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \PHPUnit\Framework\MockObject\MockObject|\Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface */
     protected $tokenStorage;
 
     /** @var \PHPUnit\Framework\MockObject\MockObject */

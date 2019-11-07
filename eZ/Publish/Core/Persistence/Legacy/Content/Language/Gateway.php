@@ -36,7 +36,7 @@ abstract class Gateway
      *
      * @param int[] $ids
      *
-     * @return string[][]|iterable
+     * @return iterable|string[][]
      */
     abstract public function loadLanguageListData(array $ids): iterable;
 
@@ -45,7 +45,7 @@ abstract class Gateway
      *
      * @param string[] $languageCodes
      *
-     * @return string[][]|iterable
+     * @return iterable|string[][]
      */
     abstract public function loadLanguageListDataByLanguageCode(array $languageCodes): iterable;
 

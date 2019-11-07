@@ -21,10 +21,10 @@ use Psr\Log\LoggerInterface;
 
 class TranslationHelperTest extends TestCase
 {
-    /** @var \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\MVC\ConfigResolverInterface */
+    /** @var \eZ\Publish\Core\MVC\ConfigResolverInterface|\PHPUnit\Framework\MockObject\MockObject */
     private $configResolver;
 
-    /** @var \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\API\Repository\ContentService */
+    /** @var \eZ\Publish\API\Repository\ContentService|\PHPUnit\Framework\MockObject\MockObject */
     private $contentService;
 
     /** @var \PHPUnit\Framework\MockObject\MockObject */

@@ -189,7 +189,7 @@ class CsrfListenerTest extends EventListenerTest
     }
 
     /**
-     * @return MockObject|GetResponseEvent
+     * @return GetResponseEvent|MockObject
      */
     protected function getEventMock($class = null)
     {
@@ -206,7 +206,7 @@ class CsrfListenerTest extends EventListenerTest
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\Session\SessionInterface|\PHPUnit\Framework\MockObject\MockObject
+     * @return \PHPUnit\Framework\MockObject\MockObject|\Symfony\Component\HttpFoundation\Session\SessionInterface
      */
     protected function getSessionMock()
     {
@@ -222,7 +222,7 @@ class CsrfListenerTest extends EventListenerTest
     }
 
     /**
-     * @return ParameterBag|MockObject
+     * @return MockObject|ParameterBag
      */
     protected function getRequestHeadersMock()
     {
@@ -291,7 +291,7 @@ class CsrfListenerTest extends EventListenerTest
     }
 
     /**
-     * @return MockObject|EventDispatcherInterface
+     * @return EventDispatcherInterface|MockObject
      */
     protected function getEventDispatcherMock()
     {

@@ -146,7 +146,7 @@ class RouterTest extends TestCase
     }
 
     /**
-     * @return \Symfony\Cmf\Component\Routing\ChainRouter|\PHPUnit\Framework\MockObject\MockObject
+     * @return \PHPUnit\Framework\MockObject\MockObject|\Symfony\Cmf\Component\Routing\ChainRouter
      */
     private function getRouterMock()
     {

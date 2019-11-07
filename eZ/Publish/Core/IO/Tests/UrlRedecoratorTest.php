@@ -14,7 +14,7 @@ use eZ\Publish\Core\IO\UrlDecorator;
 
 class UrlRedecoratorTest extends TestCase
 {
-    /** @var UrlRedecorator|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \PHPUnit\Framework\MockObject\MockObject|UrlRedecorator */
     private $redecorator;
 
     /** @var \eZ\Publish\Core\IO\UrlDecorator|\PHPUnit\Framework\MockObject\MockObject */

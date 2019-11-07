@@ -346,13 +346,13 @@ class TreeHandlerTest extends TestCase
         $this->assertTrue($location instanceof Location);
     }
 
-    /** @var \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Persistence\Legacy\Content\Location\Gateway */
+    /** @var \eZ\Publish\Core\Persistence\Legacy\Content\Location\Gateway|\PHPUnit\Framework\MockObject\MockObject */
     protected $locationGatewayMock;
 
     /**
      * Returns Location Gateway mock.
      *
-     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Persistence\Legacy\Content\Location\Gateway
+     * @return \eZ\Publish\Core\Persistence\Legacy\Content\Location\Gateway|\PHPUnit\Framework\MockObject\MockObject
      */
     protected function getLocationGatewayMock()
     {
@@ -363,13 +363,13 @@ class TreeHandlerTest extends TestCase
         return $this->locationGatewayMock;
     }
 
-    /** @var \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Persistence\Legacy\Content\Location\Mapper */
+    /** @var \eZ\Publish\Core\Persistence\Legacy\Content\Location\Mapper|\PHPUnit\Framework\MockObject\MockObject */
     protected $locationMapperMock;
 
     /**
      * Returns a Location Mapper mock.
      *
-     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Persistence\Legacy\Content\Location\Mapper
+     * @return \eZ\Publish\Core\Persistence\Legacy\Content\Location\Mapper|\PHPUnit\Framework\MockObject\MockObject
      */
     protected function getLocationMapperMock()
     {
@@ -380,13 +380,13 @@ class TreeHandlerTest extends TestCase
         return $this->locationMapperMock;
     }
 
-    /** @var \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Persistence\Legacy\Content\Gateway */
+    /** @var \eZ\Publish\Core\Persistence\Legacy\Content\Gateway|\PHPUnit\Framework\MockObject\MockObject */
     protected $contentGatewayMock;
 
     /**
      * Returns Content Gateway mock.
      *
-     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Persistence\Legacy\Content\Gateway
+     * @return \eZ\Publish\Core\Persistence\Legacy\Content\Gateway|\PHPUnit\Framework\MockObject\MockObject
      */
     protected function getContentGatewayMock()
     {
@@ -397,13 +397,13 @@ class TreeHandlerTest extends TestCase
         return $this->contentGatewayMock;
     }
 
-    /** @var \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Persistence\Legacy\Content\Mapper */
+    /** @var \eZ\Publish\Core\Persistence\Legacy\Content\Mapper|\PHPUnit\Framework\MockObject\MockObject */
     protected $contentMapper;
 
     /**
      * Returns a Content Mapper mock.
      *
-     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Persistence\Legacy\Content\Mapper
+     * @return \eZ\Publish\Core\Persistence\Legacy\Content\Mapper|\PHPUnit\Framework\MockObject\MockObject
      */
     protected function getContentMapperMock()
     {
@@ -414,13 +414,13 @@ class TreeHandlerTest extends TestCase
         return $this->contentMapper;
     }
 
-    /** @var \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Persistence\Legacy\Content\FieldHandler */
+    /** @var \eZ\Publish\Core\Persistence\Legacy\Content\FieldHandler|\PHPUnit\Framework\MockObject\MockObject */
     protected $fieldHandlerMock;
 
     /**
      * Returns a FieldHandler mock.
      *
-     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Persistence\Legacy\Content\FieldHandler
+     * @return \eZ\Publish\Core\Persistence\Legacy\Content\FieldHandler|\PHPUnit\Framework\MockObject\MockObject
      */
     protected function getFieldHandlerMock()
     {
@@ -434,7 +434,7 @@ class TreeHandlerTest extends TestCase
     /**
      * @param array $methods
      *
-     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Persistence\Legacy\Content\TreeHandler
+     * @return \eZ\Publish\Core\Persistence\Legacy\Content\TreeHandler|\PHPUnit\Framework\MockObject\MockObject
      */
     protected function getPartlyMockedTreeHandler(array $methods)
     {

@@ -25,7 +25,7 @@ class URLCheckerTest extends TestCase
     /** @var \eZ\Bundle\EzPublishCoreBundle\URLChecker\URLHandlerRegistryInterface|\PHPUnit\Framework\MockObject\MockObject */
     private $handlerRegistry;
 
-    /** @var \Psr\Log\LoggerInterface|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \PHPUnit\Framework\MockObject\MockObject|\Psr\Log\LoggerInterface */
     private $logger;
 
     protected function setUp()

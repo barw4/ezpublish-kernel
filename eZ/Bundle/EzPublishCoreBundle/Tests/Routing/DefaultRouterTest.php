@@ -25,7 +25,7 @@ class DefaultRouterTest extends TestCase
     /** @var \PHPUnit\Framework\MockObject\MockObject|\Symfony\Component\DependencyInjection\ContainerInterface */
     protected $container;
 
-    /** @var \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\MVC\ConfigResolverInterface */
+    /** @var \eZ\Publish\Core\MVC\ConfigResolverInterface|\PHPUnit\Framework\MockObject\MockObject */
     protected $configResolver;
 
     /** @var \Symfony\Component\Routing\RequestContext */
@@ -47,11 +47,11 @@ class DefaultRouterTest extends TestCase
     /**
      * @param array $mockedMethods
      *
-     * @return \PHPUnit\Framework\MockObject\MockObject|DefaultRouter
+     * @return DefaultRouter|\PHPUnit\Framework\MockObject\MockObject
      */
     protected function generateRouter(array $mockedMethods = [])
     {
-        /** @var \PHPUnit\Framework\MockObject\MockObject|DefaultRouter $router */
+        /** @var DefaultRouter|\PHPUnit\Framework\MockObject\MockObject $router */
         $router = $this
             ->getMockBuilder($this->getRouterClass())
             ->setConstructorArgs([$this->container, 'foo', [], $this->requestContext])
@@ -69,7 +69,7 @@ class DefaultRouterTest extends TestCase
         $request = Request::create($pathinfo);
         $request->attributes->set('semanticPathinfo', $semanticPathinfo);
 
-        /** @var \PHPUnit\Framework\MockObject\MockObject|DefaultRouter $router */
+        /** @var DefaultRouter|\PHPUnit\Framework\MockObject\MockObject $router */
         $router = $this->generateRouter(['match']);
 
         $matchedParameters = ['_controller' => 'AcmeBundle:myAction'];
@@ -90,7 +90,7 @@ class DefaultRouterTest extends TestCase
 
         $this->configResolver->expects($this->never())->method('getParameter');
 
-        /** @var \PHPUnit\Framework\MockObject\MockObject|DefaultRouter $router */
+        /** @var DefaultRouter|\PHPUnit\Framework\MockObject\MockObject $router */
         $router = $this->generateRouter(['match']);
         $router
             ->expects($this->once())

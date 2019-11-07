@@ -23,7 +23,7 @@ class FieldTypeRegistry
     protected $fieldTypes;
 
     /**
-     * @param \eZ\Publish\SPI\FieldType\FieldType[]|\Closure $fieldTypes Hash of SPI FieldTypes where key is identifier
+     * @param \Closure|\eZ\Publish\SPI\FieldType\FieldType[] $fieldTypes Hash of SPI FieldTypes where key is identifier
      */
     public function __construct(array $fieldTypes = [])
     {

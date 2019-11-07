@@ -371,7 +371,7 @@ interface RoleService
      * @param \eZ\Publish\API\Repository\Values\User\User $user
      * @param bool $inherited Also return all inherited Roles from UserGroups User belongs to, and it's parents.
      *
-     * @return \eZ\Publish\API\Repository\Values\User\UserRoleAssignment[]|\eZ\Publish\API\Repository\Values\User\UserGroupRoleAssignment[]
+     * @return \eZ\Publish\API\Repository\Values\User\UserGroupRoleAssignment[]|\eZ\Publish\API\Repository\Values\User\UserRoleAssignment[]
      */
     public function getRoleAssignmentsForUser(User $user, $inherited = false);
 

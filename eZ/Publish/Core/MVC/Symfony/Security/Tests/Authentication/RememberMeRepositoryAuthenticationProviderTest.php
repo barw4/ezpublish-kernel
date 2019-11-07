@@ -28,7 +28,7 @@ class RememberMeRepositoryAuthenticationProviderTest extends TestCase
     /** @var RememberMeRepositoryAuthenticationProvider */
     private $authProvider;
 
-    /** @var \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\API\Repository\Repository */
+    /** @var \eZ\Publish\API\Repository\Repository|\PHPUnit\Framework\MockObject\MockObject */
     private $repository;
 
     protected function setUp()

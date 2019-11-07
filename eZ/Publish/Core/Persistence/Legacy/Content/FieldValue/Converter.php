@@ -63,7 +63,7 @@ interface Converter
      *
      * If the indexing is not supported, this method must return false.
      *
-     * @return string|false
+     * @return false|string
      */
     public function getIndexColumn();
 }

@@ -109,7 +109,7 @@ class ContentType extends RestController
      *
      * @param string $contentTypeGroupId
      *
-     * @return \eZ\Publish\Core\REST\Server\Values\ContentTypeList|\eZ\Publish\Core\REST\Server\Values\ContentTypeInfoList
+     * @return \eZ\Publish\Core\REST\Server\Values\ContentTypeInfoList|\eZ\Publish\Core\REST\Server\Values\ContentTypeList
      */
     public function listContentTypesForGroup($contentTypeGroupId, Request $request)
     {
@@ -207,7 +207,7 @@ class ContentType extends RestController
     /**
      * Returns a list of content types.
      *
-     * @return \eZ\Publish\Core\REST\Server\Values\ContentTypeList|\eZ\Publish\Core\REST\Server\Values\ContentTypeInfoList
+     * @return \eZ\Publish\Core\REST\Server\Values\ContentTypeInfoList|\eZ\Publish\Core\REST\Server\Values\ContentTypeList
      */
     public function listContentTypes(Request $request)
     {

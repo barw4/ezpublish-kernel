@@ -196,7 +196,7 @@ class ValidationErrorFileVisitor implements LoggerAwareInterface, FileVisitorInt
 
     /**
      * @param Node $node
-     * @return null|string
+     * @return string|null
      */
     private function getDocCommentForNode(Node $node)
     {

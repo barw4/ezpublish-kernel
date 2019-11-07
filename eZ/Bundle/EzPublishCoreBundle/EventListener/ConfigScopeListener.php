@@ -20,10 +20,10 @@ class ConfigScopeListener implements EventSubscriberInterface
     /** @var \eZ\Publish\Core\MVC\Symfony\Configuration\VersatileScopeInterface */
     private $configResolver;
 
-    /** @var \eZ\Publish\Core\MVC\Symfony\View\ViewManagerInterface|\eZ\Publish\Core\MVC\Symfony\SiteAccess\SiteAccessAware */
+    /** @var \eZ\Publish\Core\MVC\Symfony\SiteAccess\SiteAccessAware|\eZ\Publish\Core\MVC\Symfony\View\ViewManagerInterface */
     private $viewManager;
 
-    /** @var \eZ\Publish\Core\MVC\Symfony\View\ViewProvider|\eZ\Publish\Core\MVC\Symfony\SiteAccess\SiteAccessAware */
+    /** @var \eZ\Publish\Core\MVC\Symfony\SiteAccess\SiteAccessAware|\eZ\Publish\Core\MVC\Symfony\View\ViewProvider */
     private $viewProviders;
 
     public function __construct(

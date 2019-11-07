@@ -10,7 +10,7 @@ use Symfony\Component\HttpKernel\Controller\ControllerReference;
 
 abstract class BaseView implements View
 {
-    /** @var string|\Closure */
+    /** @var \Closure|string */
     protected $templateIdentifier;
 
     /** @var array */
@@ -32,7 +32,7 @@ abstract class BaseView implements View
     private $isCacheEnabled = true;
 
     /**
-     * @param string|\Closure $templateIdentifier Valid path to the template. Can also be a closure.
+     * @param \Closure|string $templateIdentifier Valid path to the template. Can also be a closure.
      * @param string $viewType
      * @param array $parameters Hash of parameters to pass to the template/closure.
      *
@@ -106,7 +106,7 @@ abstract class BaseView implements View
     }
 
     /**
-     * @param string|\Closure $templateIdentifier
+     * @param \Closure|string $templateIdentifier
      *
      * @throws \eZ\Publish\Core\Base\Exceptions\InvalidArgumentType
      */
@@ -120,7 +120,7 @@ abstract class BaseView implements View
     }
 
     /**
-     * @return string|\Closure
+     * @return \Closure|string
      */
     public function getTemplateIdentifier()
     {

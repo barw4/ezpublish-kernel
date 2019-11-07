@@ -22,10 +22,10 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
  */
 class EzPublishIOExtension extends Extension
 {
-    /** @var \eZ\Bundle\EzPublishIOBundle\DependencyInjection\ConfigurationFactory[]|\ArrayObject */
+    /** @var \ArrayObject|\eZ\Bundle\EzPublishIOBundle\DependencyInjection\ConfigurationFactory[] */
     private $metadataHandlerFactories;
 
-    /** @var \eZ\Bundle\EzPublishIOBundle\DependencyInjection\ConfigurationFactory[]|\ArrayObject */
+    /** @var \ArrayObject|\eZ\Bundle\EzPublishIOBundle\DependencyInjection\ConfigurationFactory[] */
     private $binarydataHandlerFactories;
 
     public function __construct()
@@ -57,7 +57,7 @@ class EzPublishIOExtension extends Extension
     }
 
     /**
-     * @return \eZ\Bundle\EzPublishIOBundle\DependencyInjection\ConfigurationFactory[]|\ArrayObject
+     * @return \ArrayObject|\eZ\Bundle\EzPublishIOBundle\DependencyInjection\ConfigurationFactory[]
      */
     public function getMetadataHandlerFactories()
     {
@@ -65,7 +65,7 @@ class EzPublishIOExtension extends Extension
     }
 
     /**
-     * @return \eZ\Bundle\EzPublishIOBundle\DependencyInjection\ConfigurationFactory[]|\ArrayObject
+     * @return \ArrayObject|\eZ\Bundle\EzPublishIOBundle\DependencyInjection\ConfigurationFactory[]
      */
     public function getBinarydataHandlerFactories()
     {

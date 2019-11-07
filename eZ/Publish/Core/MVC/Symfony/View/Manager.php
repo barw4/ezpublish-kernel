@@ -191,7 +191,7 @@ class Manager implements ViewManagerInterface
      *
      * @param array $property view providers to sort
      *
-     * @return \eZ\Publish\Core\MVC\Symfony\View\Provider\Content[]|\eZ\Publish\Core\MVC\Symfony\View\Provider\Location[]|\eZ\Publish\Core\MVC\Symfony\View\Provider\Block[]
+     * @return \eZ\Publish\Core\MVC\Symfony\View\Provider\Block[]|\eZ\Publish\Core\MVC\Symfony\View\Provider\Content[]|\eZ\Publish\Core\MVC\Symfony\View\Provider\Location[]
      */
     protected function sortViewProviders($property)
     {

@@ -81,7 +81,7 @@ class BackgroundIndexingTerminateListenerTest extends TestCase
      * @dataProvider indexingProvider
      *
      * @param array|null $value
-     * @param \Psr\Log\LoggerInterface|\PHPUnit\Framework\MockObject\MockObject|null $logger
+     * @param \PHPUnit\Framework\MockObject\MockObject|\Psr\Log\LoggerInterface|null $logger
      */
     public function testIndexing(array $values = null, $logger = null)
     {

@@ -215,11 +215,11 @@ class UrlStorageTest extends TestCase
         return ['context'];
     }
 
-    /** @var \Psr\Log\LoggerInterface|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \PHPUnit\Framework\MockObject\MockObject|\Psr\Log\LoggerInterface */
     protected $loggerMock;
 
     /**
-     * @return \Psr\Log\LoggerInterface|\PHPUnit\Framework\MockObject\MockObject
+     * @return \PHPUnit\Framework\MockObject\MockObject|\Psr\Log\LoggerInterface
      */
     protected function getLoggerMock()
     {

@@ -107,14 +107,14 @@ interface Type
      * @param \eZ\Publish\API\Repository\Values\User\Limitation $value
      * @param \eZ\Publish\API\Repository\Values\User\UserReference $currentUser
      *
-     * @return \eZ\Publish\API\Repository\Values\Content\Query\CriterionInterface|\eZ\Publish\API\Repository\Values\Content\Query\Criterion\LogicalOperator
+     * @return \eZ\Publish\API\Repository\Values\Content\Query\Criterion\LogicalOperator|\eZ\Publish\API\Repository\Values\Content\Query\CriterionInterface
      */
     public function getCriterion(APILimitationValue $value, APIUserReference $currentUser);
 
     /**
      * Returns info on valid $limitationValues.
      *
-     * @return mixed[]|int In case of array, a hash with key as valid limitations value and value as human readable name
+     * @return int|mixed[] In case of array, a hash with key as valid limitations value and value as human readable name
      *                     of that option, in case of int on of VALUE_SCHEMA_* constants.
      *                     Note: The hash might be an instance of Traversable, and not a native php array.
      */

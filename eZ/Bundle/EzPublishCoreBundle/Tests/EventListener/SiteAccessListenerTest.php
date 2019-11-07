@@ -22,7 +22,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class SiteAccessListenerTest extends TestCase
 {
-    /** @var \Symfony\Component\DependencyInjection\ContainerInterface|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \PHPUnit\Framework\MockObject\MockObject|\Symfony\Component\DependencyInjection\ContainerInterface */
     private $container;
 
     /** @var \eZ\Bundle\EzPublishCoreBundle\Routing\DefaultRouter|\PHPUnit\Framework\MockObject\MockObject */

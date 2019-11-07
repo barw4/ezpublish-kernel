@@ -367,7 +367,7 @@ class DoctrineDatabase extends Gateway
      * Set common columns for insert/update of a Type.
      *
      * @param \eZ\Publish\Core\Persistence\Database\InsertQuery|\eZ\Publish\Core\Persistence\Database\UpdateQuery $q
-     * @param \eZ\Publish\SPI\Persistence\ValueObject|\eZ\Publish\SPI\Persistence\Content\Type $type
+     * @param \eZ\Publish\SPI\Persistence\Content\Type|\eZ\Publish\SPI\Persistence\ValueObject $type
      */
     protected function setCommonTypeColumns(Query $q, ValueObject $type)
     {

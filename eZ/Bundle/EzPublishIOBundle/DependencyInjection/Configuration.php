@@ -15,10 +15,10 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class Configuration implements ConfigurationInterface
 {
-    /** @var ConfigurationFactory[]|ArrayObject */
+    /** @var ArrayObject|ConfigurationFactory[] */
     private $metadataHandlerFactories = [];
 
-    /** @var ConfigurationFactory[]|ArrayObject */
+    /** @var ArrayObject|ConfigurationFactory[] */
     private $binarydataHandlerFactories = [];
 
     public function setMetadataHandlerFactories(ArrayObject $factories)
@@ -58,7 +58,7 @@ class Configuration implements ConfigurationInterface
      * @param NodeDefinition $node
      * @param                $name
      * @param string $info block info line
-     * @param ConfigurationFactory[]|ArrayObject $factories
+     * @param ArrayObject|ConfigurationFactory[] $factories
      */
     private function addHandlersSection(NodeDefinition $node, $name, $info, ArrayObject $factories)
     {

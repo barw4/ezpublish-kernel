@@ -283,7 +283,7 @@ class URLAliasService implements URLAliasServiceInterface
      * @param bool $showAllTranslations
      * @param string[] $prioritizedLanguageList
      *
-     * @return string|bool
+     * @return bool|string
      */
     protected function selectAliasLanguageCode(
         SPIURLAlias $spiUrlAlias,
@@ -321,7 +321,7 @@ class URLAliasService implements URLAliasServiceInterface
      * @param bool $showAllTranslations
      * @param string[] $prioritizedLanguageList
      *
-     * @return string|bool
+     * @return bool|string
      */
     protected function extractPath(
         SPIURLAlias $spiUrlAlias,
@@ -367,7 +367,7 @@ class URLAliasService implements URLAliasServiceInterface
      * @param bool $showAllTranslations
      * @param string[] $prioritizedLanguageList
      *
-     * @return string|bool
+     * @return bool|string
      */
     protected function choosePrioritizedLanguageCode(array $entries, $showAllTranslations, array $prioritizedLanguageList)
     {
@@ -432,7 +432,7 @@ class URLAliasService implements URLAliasServiceInterface
      * @param array $pathElementData
      * @param string $pathElement
      *
-     * @return string|bool
+     * @return bool|string
      */
     protected function matchLanguageCode(array $pathElementData, $pathElement)
     {
@@ -673,8 +673,8 @@ class URLAliasService implements URLAliasServiceInterface
      *
      * @param \eZ\Publish\API\Repository\Values\Content\Location $location
      * @param string $languageCode
-     * @param null|bool $showAllTranslations
-     * @param null|string[] $prioritizedLanguageList
+     * @param bool|null $showAllTranslations
+     * @param string[]|null $prioritizedLanguageList
      *
      * @return \eZ\Publish\API\Repository\Values\Content\URLAlias
      */

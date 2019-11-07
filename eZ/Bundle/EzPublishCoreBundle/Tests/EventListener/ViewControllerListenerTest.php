@@ -23,16 +23,16 @@ use Symfony\Component\HttpKernel\KernelEvents;
 
 class ViewControllerListenerTest extends TestCase
 {
-    /** @var \Symfony\Component\HttpKernel\Controller\ControllerResolver|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \PHPUnit\Framework\MockObject\MockObject|\Symfony\Component\HttpKernel\Controller\ControllerResolver */
     private $controllerResolver;
 
-    /** @var \Psr\Log\LoggerInterface|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \PHPUnit\Framework\MockObject\MockObject|\Psr\Log\LoggerInterface */
     private $logger;
 
     /** @var ViewControllerListener */
     private $controllerListener;
 
-    /** @var \Symfony\Component\HttpKernel\Event\FilterControllerEvent|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \PHPUnit\Framework\MockObject\MockObject|\Symfony\Component\HttpKernel\Event\FilterControllerEvent */
     private $event;
 
     /** @var Request */
@@ -47,7 +47,7 @@ class ViewControllerListenerTest extends TestCase
     /** @var \eZ\Publish\Core\MVC\Symfony\View\Builder\ViewBuilder|\PHPUnit\Framework\MockObject\MockObject */
     private $viewBuilderMock;
 
-    /** @var \Symfony\Component\EventDispatcher\EventDispatcherInterface|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \PHPUnit\Framework\MockObject\MockObject|\Symfony\Component\EventDispatcher\EventDispatcherInterface */
     private $eventDispatcher;
 
     protected function setUp()

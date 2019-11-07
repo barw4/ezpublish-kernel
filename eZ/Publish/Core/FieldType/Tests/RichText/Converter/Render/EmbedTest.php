@@ -535,7 +535,7 @@ class EmbedTest extends TestCase
         return $this->createMock(RendererInterface::class);
     }
 
-    /** @var \Psr\Log\LoggerInterface|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \PHPUnit\Framework\MockObject\MockObject|\Psr\Log\LoggerInterface */
     protected $loggerMock;
 
     /**

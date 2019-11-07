@@ -132,7 +132,7 @@ class Type extends FieldType
     /**
      * Inspects given $inputValue and potentially converts it into a dedicated value object.
      *
-     * @param int|string|\eZ\Publish\API\Repository\Values\Content\ContentInfo|\eZ\Publish\Core\FieldType\Relation\Value $inputValue
+     * @param \eZ\Publish\API\Repository\Values\Content\ContentInfo|\eZ\Publish\Core\FieldType\Relation\Value|int|string $inputValue
      *
      * @return \eZ\Publish\Core\FieldType\ImageAsset\Value The potentially converted and structurally plausible value.
      */

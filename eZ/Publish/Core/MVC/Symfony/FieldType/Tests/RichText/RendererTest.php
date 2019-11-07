@@ -1422,7 +1422,7 @@ class RendererTest extends TestCase
         return $this->createMock(Repository::class);
     }
 
-    /** @var \Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \PHPUnit\Framework\MockObject\MockObject|\Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface */
     protected $authorizationCheckerMock;
 
     /**
@@ -1433,7 +1433,7 @@ class RendererTest extends TestCase
         return $this->createMock(AuthorizationCheckerInterface::class);
     }
 
-    /** @var \Psr\Log\LoggerInterface|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \PHPUnit\Framework\MockObject\MockObject|\Psr\Log\LoggerInterface */
     protected $configResolverMock;
 
     /**
@@ -1444,7 +1444,7 @@ class RendererTest extends TestCase
         return $this->createMock(ConfigResolverInterface::class);
     }
 
-    /** @var \Symfony\Component\Templating\EngineInterface|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \PHPUnit\Framework\MockObject\MockObject|\Symfony\Component\Templating\EngineInterface */
     protected $templateEngineMock;
 
     /**
@@ -1455,7 +1455,7 @@ class RendererTest extends TestCase
         return $this->createMock(EngineInterface::class);
     }
 
-    /** @var \Psr\Log\LoggerInterface|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \PHPUnit\Framework\MockObject\MockObject|\Psr\Log\LoggerInterface */
     protected $loggerMock;
 
     /**

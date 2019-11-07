@@ -22,7 +22,7 @@ use DOMElement;
  */
 class Embed extends Render implements Converter
 {
-    /** @var null|\Psr\Log\LoggerInterface */
+    /** @var \Psr\Log\LoggerInterface|null */
     protected $logger;
 
     /**
@@ -271,7 +271,7 @@ class Embed extends Render implements Converter
         } elseif ($parentNode->localName === 'link') {
             $childCount = 0;
 
-            /** @var \DOMText|\DOMElement $node */
+            /** @var \DOMElement|\DOMText $node */
             foreach ($parentNode->childNodes as $node) {
                 if (!($node->nodeType === XML_TEXT_NODE && $node->isWhitespaceInElementContent())) {
                     $childCount += 1;

@@ -18,10 +18,10 @@ class TemplateRendererTest extends TestCase
     /** @var \eZ\Publish\Core\MVC\Symfony\View\Renderer\TemplateRenderer */
     private $renderer;
 
-    /** @var \Symfony\Component\Templating\EngineInterface|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \PHPUnit\Framework\MockObject\MockObject|\Symfony\Component\Templating\EngineInterface */
     private $templateEngineMock;
 
-    /** @var \Symfony\Component\EventDispatcher\EventDispatcherInterface|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \PHPUnit\Framework\MockObject\MockObject|\Symfony\Component\EventDispatcher\EventDispatcherInterface */
     private $eventDispatcherMock;
 
     public function setUp()

@@ -33,7 +33,7 @@ class FieldBlockRenderer implements FieldBlockRendererInterface
      * Either the path to each template and its priority in a hash or its
      * \Twig_Template (compiled) counterpart.
      *
-     * @var Twig_Template[]|array
+     * @var array|Twig_Template[]
      */
     private $fieldViewResources = [];
 
@@ -42,7 +42,7 @@ class FieldBlockRenderer implements FieldBlockRendererInterface
      * Either the path to each template and its priority in a hash or its
      * \Twig_Template (compiled) counterpart.
      *
-     * @var Twig_Template[]|array
+     * @var array|Twig_Template[]
      */
     private $fieldEditResources = [];
 
@@ -51,7 +51,7 @@ class FieldBlockRenderer implements FieldBlockRendererInterface
      * Either the path to each template and its priority in a hash or its
      * \Twig_Template (compiled) counterpart.
      *
-     * @var Twig_Template[]|array
+     * @var array|Twig_Template[]
      */
     private $fieldDefinitionViewResources = [];
 
@@ -60,14 +60,14 @@ class FieldBlockRenderer implements FieldBlockRendererInterface
      * Either the path to each template and its priority in a hash or its
      * \Twig_Template (compiled) counterpart.
      *
-     * @var Twig_Template[]|array
+     * @var array|Twig_Template[]
      */
     private $fieldDefinitionEditResources = [];
 
     /**
      * A \Twig_Template instance used to render template blocks, or path to the template to use.
      *
-     * @var Twig_Template|string
+     * @var string|Twig_Template
      */
     private $baseTemplate;
 
@@ -251,7 +251,7 @@ class FieldBlockRenderer implements FieldBlockRendererInterface
      *
      * @param string $fieldTypeIdentifier
      * @param int $type Either self::VIEW or self::EDIT
-     * @param null|string|Twig_Template $localTemplate a file where to look for the block first
+     * @param string|Twig_Template|null $localTemplate a file where to look for the block first
      *
      * @return array
      */

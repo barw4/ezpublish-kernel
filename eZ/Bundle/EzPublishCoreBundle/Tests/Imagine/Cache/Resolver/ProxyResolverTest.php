@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 
 class ProxyResolverTest extends TestCase
 {
-    /** @var \PHPUnit_Framework_MockObject_MockObject|\Liip\ImagineBundle\Imagine\Cache\Resolver\ResolverInterface */
+    /** @var \Liip\ImagineBundle\Imagine\Cache\Resolver\ResolverInterface|\PHPUnit_Framework_MockObject_MockObject */
     private $resolver;
 
     /** @var string */

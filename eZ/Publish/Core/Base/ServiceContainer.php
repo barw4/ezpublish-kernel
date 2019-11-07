@@ -65,7 +65,7 @@ class ServiceContainer implements Container
     protected $bypassCache;
 
     /**
-     * @param string|ContainerInterface $container Path to the container file or container instance
+     * @param ContainerInterface|string $container Path to the container file or container instance
      * @param string $installDir Installation directory, required by default 'containerBuilder.php' file
      * @param string $cacheDir Directory where PHP container cache will be stored
      * @param bool $debug Default false should be used for production, if true resources will be checked

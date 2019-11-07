@@ -24,7 +24,7 @@ use Twig_SimpleFunction;
  */
 class FieldRenderingExtension extends Twig_Extension
 {
-    /** @var FieldBlockRendererInterface|\eZ\Publish\Core\MVC\Symfony\Templating\Twig\FieldBlockRenderer */
+    /** @var \eZ\Publish\Core\MVC\Symfony\Templating\Twig\FieldBlockRenderer|FieldBlockRendererInterface */
     private $fieldBlockRenderer;
 
     /** @var ParameterProviderRegistryInterface */

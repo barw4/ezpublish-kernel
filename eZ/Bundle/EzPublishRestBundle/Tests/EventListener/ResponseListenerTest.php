@@ -128,7 +128,7 @@ class ResponseListenerTest extends EventListenerTest
     }
 
     /**
-     * @return MockObject|GetResponseForControllerResultEvent
+     * @return GetResponseForControllerResultEvent|MockObject
      */
     protected function getControllerResultEventMock()
     {
@@ -144,7 +144,7 @@ class ResponseListenerTest extends EventListenerTest
     }
 
     /**
-     * @return MockObject|GetResponseForExceptionEvent
+     * @return GetResponseForExceptionEvent|MockObject
      */
     protected function getExceptionEventMock()
     {

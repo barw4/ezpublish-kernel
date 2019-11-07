@@ -38,7 +38,7 @@ interface RequestParser
      * @param string $href
      * @param string $attribute
      *
-     * @return mixed|false
+     * @return false|mixed
      */
     public function parseHref($href, $attribute);
 }

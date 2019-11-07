@@ -1503,7 +1503,7 @@ class ContentHandlerTest extends TestCase
     /**
      * Returns a TreeHandler mock.
      *
-     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Persistence\Legacy\Content\TreeHandler
+     * @return \eZ\Publish\Core\Persistence\Legacy\Content\TreeHandler|\PHPUnit\Framework\MockObject\MockObject
      */
     protected function getTreeHandlerMock()
     {
@@ -1517,7 +1517,7 @@ class ContentHandlerTest extends TestCase
     /**
      * Returns a ContentTypeHandler mock.
      *
-     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Persistence\Legacy\Content\Type\Handler
+     * @return \eZ\Publish\Core\Persistence\Legacy\Content\Type\Handler|\PHPUnit\Framework\MockObject\MockObject
      */
     protected function getContentTypeHandlerMock()
     {

@@ -60,7 +60,7 @@ abstract class Type extends FieldType
     /**
      * Inspects given $inputValue and potentially converts it into a dedicated value object.
      *
-     * @param string|array|\eZ\Publish\Core\FieldType\BinaryBase\Value $inputValue
+     * @param array|\eZ\Publish\Core\FieldType\BinaryBase\Value|string $inputValue
      *
      * @return \eZ\Publish\Core\FieldType\BinaryBase\Value The potentially converted and structurally plausible value.
      */

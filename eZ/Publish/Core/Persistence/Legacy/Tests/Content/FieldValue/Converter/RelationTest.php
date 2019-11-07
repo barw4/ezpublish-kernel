@@ -20,7 +20,7 @@ use PHPUnit\Framework\TestCase;
  */
 class RelationTest extends TestCase
 {
-    /** @var \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Persistence\Legacy\Content\FieldValue\Converter\RelationConverter */
+    /** @var \eZ\Publish\Core\Persistence\Legacy\Content\FieldValue\Converter\RelationConverter|\PHPUnit\Framework\MockObject\MockObject */
     protected $converter;
 
     protected function setUp()

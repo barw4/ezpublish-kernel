@@ -194,7 +194,7 @@ class Type extends FieldType
     /**
      * Inspects given $inputValue and potentially converts it into a dedicated value object.
      *
-     * @param int|float|\eZ\Publish\Core\FieldType\Float\Value $inputValue
+     * @param \eZ\Publish\Core\FieldType\Float\Value|float|int $inputValue
      *
      * @return \eZ\Publish\Core\FieldType\Float\Value The potentially converted and structurally plausible value.
      */

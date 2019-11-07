@@ -36,7 +36,7 @@ class Provider implements APIUserProviderInterface
      * $user can be either the user ID or an instance of \eZ\Publish\Core\MVC\Symfony\Security\User
      * (anonymous user we try to check access via SecurityContext::isGranted()).
      *
-     * @param string|\eZ\Publish\Core\MVC\Symfony\Security\User $user Either the user ID to load an instance of User object. A value of -1 represents an anonymous user.
+     * @param \eZ\Publish\Core\MVC\Symfony\Security\User|string $user Either the user ID to load an instance of User object. A value of -1 represents an anonymous user.
      *
      * @return \eZ\Publish\Core\MVC\Symfony\Security\UserInterface
      *

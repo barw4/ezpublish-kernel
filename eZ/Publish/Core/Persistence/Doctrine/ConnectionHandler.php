@@ -26,7 +26,7 @@ class ConnectionHandler implements DatabaseHandler
     protected $connection;
 
     /**
-     * @param string|array $dsn
+     * @param array|string $dsn
      *
      * @return \Doctrine\DBAL\Connection
      */
@@ -69,7 +69,7 @@ class ConnectionHandler implements DatabaseHandler
     /**
      * Create a Connection Handler with corresponding Doctrine connection from DSN.
      *
-     * @param string|array $dsn
+     * @param array|string $dsn
      *
      * @return ConnectionHandler
      */

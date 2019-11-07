@@ -270,7 +270,7 @@ class Repository implements RepositoryInterface
      * @param string $function
      * @param \eZ\Publish\API\Repository\Values\User\UserReference $user
      *
-     * @return bool|array Bool if user has full or no access, array if limitations if not
+     * @return array|bool Bool if user has full or no access, array if limitations if not
      */
     public function hasAccess($module, $function, UserReference $user = null)
     {

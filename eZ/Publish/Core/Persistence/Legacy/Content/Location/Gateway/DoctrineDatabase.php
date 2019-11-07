@@ -1021,7 +1021,7 @@ class DoctrineDatabase extends Gateway
      *
      * @param int $contentId
      *
-     * @return int|bool
+     * @return bool|int
      */
     private function getMainNodeId($contentId)
     {

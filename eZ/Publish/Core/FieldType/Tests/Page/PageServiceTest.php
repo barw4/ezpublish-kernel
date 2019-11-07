@@ -39,7 +39,7 @@ class PageServiceTest extends TestCase
     /** @var array */
     protected $blockDefinition;
 
-    /** @var \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\API\Repository\ContentService */
+    /** @var \eZ\Publish\API\Repository\ContentService|\PHPUnit\Framework\MockObject\MockObject */
     protected $contentService;
 
     protected function setUp()

@@ -87,7 +87,7 @@ class VisitorTest extends TestCase
     {
         $data = new stdClass();
 
-        /** @var \PHPUnit\Framework\MockObject\MockObject|Common\Output\Generator $generatorMock */
+        /** @var Common\Output\Generator|\PHPUnit\Framework\MockObject\MockObject $generatorMock */
         $generatorMock = $this->getGeneratorMock();
 
         $valueObjectDispatcherMock = $this->getValueObjectDispatcherMock();

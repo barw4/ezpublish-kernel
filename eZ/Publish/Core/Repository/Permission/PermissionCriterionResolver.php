@@ -139,7 +139,7 @@ class PermissionCriterionResolver implements APIPermissionCriterionResolver
      * @param \eZ\Publish\API\Repository\Values\User\UserReference $currentUserRef
      * @param array|null $targets
      *
-     * @return \eZ\Publish\API\Repository\Values\Content\Query\CriterionInterface|\eZ\Publish\API\Repository\Values\Content\Query\Criterion\LogicalOperator
+     * @return \eZ\Publish\API\Repository\Values\Content\Query\Criterion\LogicalOperator|\eZ\Publish\API\Repository\Values\Content\Query\CriterionInterface
      */
     private function getCriterionForLimitation(Limitation $limitation, UserReference $currentUserRef, ?array $targets): CriterionInterface
     {

@@ -38,7 +38,7 @@ class SessionSetDynamicNameListener implements EventSubscriberInterface
     /** @var \Symfony\Component\HttpFoundation\Session\SessionInterface|null */
     private $session;
 
-    /** @var \Symfony\Component\HttpFoundation\Session\Storage\SessionStorageInterface|NativeSessionStorage */
+    /** @var NativeSessionStorage|\Symfony\Component\HttpFoundation\Session\Storage\SessionStorageInterface */
     private $sessionStorage;
 
     /**

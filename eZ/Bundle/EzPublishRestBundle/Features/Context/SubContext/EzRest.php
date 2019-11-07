@@ -36,7 +36,7 @@ trait EzRest
      * Same idea as the $requestObject, since we need to verify it step by step
      * it need to be stored (as object) for testing.
      *
-     * @var \eZ\Publish\API\Repository\Values\ValueObject|\Exception
+     * @var \Exception|\eZ\Publish\API\Repository\Values\ValueObject
      */
     public $responseObject;
 

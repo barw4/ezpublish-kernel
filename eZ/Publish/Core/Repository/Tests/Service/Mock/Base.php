@@ -48,7 +48,7 @@ abstract class Base extends TestCase
      */
     private $spiMockHandlers = [];
 
-    /** @var \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Repository\Helper\ContentTypeDomainMapper */
+    /** @var \eZ\Publish\Core\Repository\Helper\ContentTypeDomainMapper|\PHPUnit\Framework\MockObject\MockObject */
     private $contentTypeDomainMapperMock;
 
     /**
@@ -83,7 +83,7 @@ abstract class Base extends TestCase
     protected $fieldTypeServiceMock;
 
     /**
-     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\API\Repository\FieldTypeService
+     * @return \eZ\Publish\API\Repository\FieldTypeService|\PHPUnit\Framework\MockObject\MockObject
      */
     protected function getFieldTypeServiceMock()
     {
@@ -97,7 +97,7 @@ abstract class Base extends TestCase
     protected $fieldTypeRegistryMock;
 
     /**
-     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Repository\Helper\FieldTypeRegistry
+     * @return \eZ\Publish\Core\Repository\Helper\FieldTypeRegistry|\PHPUnit\Framework\MockObject\MockObject
      */
     protected function getFieldTypeRegistryMock()
     {
@@ -111,7 +111,7 @@ abstract class Base extends TestCase
     protected $nameableFieldTypeRegistryMock;
 
     /**
-     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Repository\Helper\NameableFieldTypeRegistry
+     * @return \eZ\Publish\Core\Repository\Helper\NameableFieldTypeRegistry|\PHPUnit\Framework\MockObject\MockObject
      */
     protected function getNameableFieldTypeRegistryMock()
     {
@@ -147,7 +147,7 @@ abstract class Base extends TestCase
     }
 
     /**
-     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Repository\Helper\ContentTypeDomainMapper
+     * @return \eZ\Publish\Core\Repository\Helper\ContentTypeDomainMapper|\PHPUnit\Framework\MockObject\MockObject
      */
     protected function getContentTypeDomainMapperMock()
     {

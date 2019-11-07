@@ -197,7 +197,7 @@ class Type extends FieldType
     /**
      * Inspects given $inputValue and potentially converts it into a dedicated value object.
      *
-     * @param int|\eZ\Publish\Core\FieldType\Integer\Value $inputValue
+     * @param \eZ\Publish\Core\FieldType\Integer\Value|int $inputValue
      *
      * @return \eZ\Publish\Core\FieldType\Integer\Value The potentially converted and structurally plausible value.
      */

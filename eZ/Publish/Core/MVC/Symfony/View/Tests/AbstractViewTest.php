@@ -105,7 +105,7 @@ abstract class AbstractViewTest extends TestCase
     /**
      * @dataProvider goodTemplateIdentifierProvider
      *
-     * @param string|callable $templateIdentifier
+     * @param callable|string $templateIdentifier
      */
     public function testSetTemplateIdentifier($templateIdentifier): void
     {

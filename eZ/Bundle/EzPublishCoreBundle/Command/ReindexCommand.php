@@ -26,7 +26,7 @@ use PDO;
 
 class ReindexCommand extends ContainerAwareCommand
 {
-    /** @var \eZ\Publish\Core\Search\Common\Indexer|\eZ\Publish\Core\Search\Common\IncrementalIndexer */
+    /** @var \eZ\Publish\Core\Search\Common\IncrementalIndexer|\eZ\Publish\Core\Search\Common\Indexer */
     private $searchIndexer;
 
     /** @var \Doctrine\DBAL\Connection */
@@ -248,7 +248,7 @@ EOT
 
     private function runParallelProcess(ProgressBar $progress, Statement $stmt, $processCount, $iterationCount, $commit)
     {
-        /** @var \Symfony\Component\Process\Process[]|null[] */
+        /** @var null[]|\Symfony\Component\Process\Process[] */
         $processes = array_fill(0, $processCount, null);
         $generator = $this->fetchIteration($stmt, $iterationCount);
         do {

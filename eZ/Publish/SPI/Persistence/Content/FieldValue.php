@@ -20,7 +20,7 @@ class FieldValue extends ValueObject
      * Note: For the legacy storage engine we will need adaptors to map them to
      * the existing database fields, like data_int, data_float, data_text.
      *
-     * @var int|float|bool|string|null|array
+     * @var array|bool|float|int|string|null
      */
     public $data;
 
@@ -44,7 +44,7 @@ class FieldValue extends ValueObject
      * Note: For the "old" storage engine we will need adaptors to map them to
      * the existing database fields, like sort_key_int, sort_key_string
      *
-     * @var int|float|bool|string|null
+     * @var bool|float|int|string|null
      */
     public $sortKey;
 }

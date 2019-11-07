@@ -19,7 +19,7 @@ use PHPUnit\Framework\TestCase;
 
 class ValueObjectVoterTest extends TestCase
 {
-    /** @var \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\API\Repository\Repository */
+    /** @var \eZ\Publish\API\Repository\Repository|\PHPUnit\Framework\MockObject\MockObject */
     private $repository;
 
     protected function setUp()

@@ -1497,7 +1497,7 @@ abstract class SearchBaseIntegrationTest extends BaseIntegrationTest
      * @param bool $includesTwo
      * @param bool $filter
      * @param bool $content
-     * @param null|string $modifyField
+     * @param string|null $modifyField
      */
     protected function assertFindResult(
         array $context,
@@ -1556,8 +1556,8 @@ abstract class SearchBaseIntegrationTest extends BaseIntegrationTest
      *
      * @param \eZ\Publish\API\Repository\Values\Content\Search\SearchResult $searchResult
      * @param bool $ascending Denotes ascending order if true, descending order if false
-     * @param string|int $contentOneId
-     * @param string|int $contentTwoId
+     * @param int|string $contentOneId
+     * @param int|string $contentTwoId
      */
     protected function assertSortResult(
         SearchResult $searchResult,

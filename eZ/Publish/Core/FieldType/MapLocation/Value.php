@@ -39,7 +39,7 @@ class Value extends BaseValue
     /**
      * Construct a new Value object and initialize with $values.
      *
-     * @param string[]|string $values
+     * @param string|string[] $values
      */
     public function __construct(array $values = null)
     {

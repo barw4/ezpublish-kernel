@@ -50,7 +50,7 @@ class ContentViewBuilderTest extends TestCase
     /** @var \eZ\Publish\API\Repository\PermissionResolver|\PHPUnit\Framework\MockObject\MockObject */
     private $permissionResolver;
 
-    /** @var \Symfony\Component\HttpFoundation\RequestStack|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \PHPUnit\Framework\MockObject\MockObject|\Symfony\Component\HttpFoundation\RequestStack */
     private $requestStack;
 
     public function setUp(): void

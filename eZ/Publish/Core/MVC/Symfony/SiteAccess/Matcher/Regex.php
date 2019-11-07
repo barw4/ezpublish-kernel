@@ -65,7 +65,7 @@ abstract class Regex implements Matcher
     /**
      * Returns matched SiteAccess.
      *
-     * @return string|bool
+     * @return bool|string
      */
     protected function getMatchedSiteAccess()
     {

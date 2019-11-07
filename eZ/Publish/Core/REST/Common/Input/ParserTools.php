@@ -79,7 +79,7 @@ class ParserTools
     /**
      * Parses a boolean from $value.
      *
-     * @param string|bool $value
+     * @param bool|string $value
      *
      * @return bool
      * @throws \RuntimeException if the value can not be transformed to a boolean

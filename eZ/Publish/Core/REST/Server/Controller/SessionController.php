@@ -46,7 +46,7 @@ class SessionController extends Controller
      *
      * @throws \eZ\Publish\Core\Base\Exceptions\UnauthorizedException If the login or password are incorrect or invalid CSRF
      *
-     * @return Values\UserSession|Values\Conflict
+     * @return Values\Conflict|Values\UserSession
      */
     public function createSessionAction(Request $request)
     {

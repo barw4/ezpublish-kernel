@@ -20,10 +20,10 @@ use PHPUnit\Framework\TestCase;
  */
 class ValueObjectVisitorDispatcherTest extends TestCase
 {
-    /** @var \PHPUnit\Framework\MockObject\MockObject|Common\Output\Visitor */
+    /** @var Common\Output\Visitor|\PHPUnit\Framework\MockObject\MockObject */
     private $outputVisitorMock;
 
-    /** @var \PHPUnit\Framework\MockObject\MockObject|Common\Output\Generator */
+    /** @var Common\Output\Generator|\PHPUnit\Framework\MockObject\MockObject */
     private $outputGeneratorMock;
 
     public function testVisitValueObject()
@@ -112,7 +112,7 @@ class ValueObjectVisitorDispatcherTest extends TestCase
     }
 
     /**
-     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\REST\Common\Output\ValueObjectVisitor
+     * @return \eZ\Publish\Core\REST\Common\Output\ValueObjectVisitor|\PHPUnit\Framework\MockObject\MockObject
      */
     private function getValueObjectVisitorMock()
     {
@@ -120,7 +120,7 @@ class ValueObjectVisitorDispatcherTest extends TestCase
     }
 
     /**
-     * @return \PHPUnit\Framework\MockObject\MockObject|Common\Output\Visitor
+     * @return Common\Output\Visitor|\PHPUnit\Framework\MockObject\MockObject
      */
     private function getOutputVisitorMock()
     {
@@ -132,7 +132,7 @@ class ValueObjectVisitorDispatcherTest extends TestCase
     }
 
     /**
-     * @return \PHPUnit\Framework\MockObject\MockObject|Common\Output\Generator
+     * @return Common\Output\Generator|\PHPUnit\Framework\MockObject\MockObject
      */
     private function getOutputGeneratorMock()
     {

@@ -30,7 +30,7 @@ class FileSizeExtensionTest extends Twig_Test_IntegrationTestCase
     protected $suffixes = ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB'];
 
     /**
-     * @param TranslatorInterface|\PHPUnit\Framework\MockObject\MockObject
+     * @param \PHPUnit\Framework\MockObject\MockObject|TranslatorInterface
      */
     protected $translatorMock;
 
@@ -113,7 +113,7 @@ class FileSizeExtensionTest extends Twig_Test_IntegrationTestCase
     }
 
     /**
-     * @return TranslatorInterface|\PHPUnit\Framework\MockObject\MockObject
+     * @return \PHPUnit\Framework\MockObject\MockObject|TranslatorInterface
      */
     protected function getTranslatorInterfaceMock()
     {

@@ -25,7 +25,7 @@ interface Matcher
     /**
      * Returns matched Siteaccess or false if no siteaccess could be matched.
      *
-     * @return string|false
+     * @return false|string
      */
     public function match();
 

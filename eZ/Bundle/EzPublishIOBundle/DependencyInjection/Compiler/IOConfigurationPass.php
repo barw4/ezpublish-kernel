@@ -23,10 +23,10 @@ use Symfony\Component\DependencyInjection\DefinitionDecorator;
  */
 class IOConfigurationPass implements CompilerPassInterface
 {
-    /** @var \eZ\Bundle\EzPublishIOBundle\DependencyInjection\ConfigurationFactory[]|ArrayObject */
+    /** @var ArrayObject|\eZ\Bundle\EzPublishIOBundle\DependencyInjection\ConfigurationFactory[] */
     private $metadataHandlerFactories;
 
-    /** @var \eZ\Bundle\EzPublishIOBundle\DependencyInjection\ConfigurationFactory[]|ArrayObject */
+    /** @var ArrayObject|\eZ\Bundle\EzPublishIOBundle\DependencyInjection\ConfigurationFactory[] */
     private $binarydataHandlerFactories;
 
     public function __construct(
@@ -73,7 +73,7 @@ class IOConfigurationPass implements CompilerPassInterface
      * @param ContainerBuilder $container
      * @param Definition $factory The factory service that should receive the list of handlers
      * @param array $configuredHandlers Handlers configuration declared via semantic config
-     * @param \eZ\Bundle\EzPublishIOBundle\DependencyInjection\ConfigurationFactory[]|ArrayObject $factories Map of alias => handler service id
+     * @param ArrayObject|\eZ\Bundle\EzPublishIOBundle\DependencyInjection\ConfigurationFactory[] $factories Map of alias => handler service id
      * @param string $defaultHandler default handler id
      *
      * @internal param $HandlerTypesMap
@@ -106,7 +106,7 @@ class IOConfigurationPass implements CompilerPassInterface
      * Returns from $factories the factory for handler $type.
      *
      * @param ContainerBuilder $container
-     * @param \eZ\Bundle\EzPublishIOBundle\DependencyInjection\ConfigurationFactory[]|ArrayObject|ContainerAware[] $factories
+     * @param ArrayObject|ContainerAware[]|\eZ\Bundle\EzPublishIOBundle\DependencyInjection\ConfigurationFactory[] $factories
      * @param string $type
      *
      * @return \eZ\Bundle\EzPublishIOBundle\DependencyInjection\ConfigurationFactory

@@ -60,7 +60,7 @@ class Type extends FieldType
     /**
      * Inspects given $inputValue and potentially converts it into a dedicated value object.
      *
-     * @param string|\eZ\Publish\Core\FieldType\Url\Value $inputValue
+     * @param \eZ\Publish\Core\FieldType\Url\Value|string $inputValue
      *
      * @return \eZ\Publish\Core\FieldType\Url\Value The potentially converted and structurally plausible value.
      */

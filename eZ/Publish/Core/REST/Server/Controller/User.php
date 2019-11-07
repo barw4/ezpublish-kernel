@@ -980,7 +980,7 @@ class User extends RestController
      *
      * @throws \eZ\Publish\Core\Base\Exceptions\UnauthorizedException If the login or password are incorrect or invalid CSRF
      *
-     * @return Values\UserSession|Values\Conflict
+     * @return Values\Conflict|Values\UserSession
      *
      * @deprecated Deprecated since 6.5. Use SessionController::refreshSessionAction().
      */
@@ -1020,7 +1020,7 @@ class User extends RestController
      *
      * @param string $sessionId
      *
-     * @return Values\DeletedUserSession|\Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\Response|Values\DeletedUserSession
      *
      * @throws \eZ\Publish\Core\Base\Exceptions\UnauthorizedException If the CSRF token is missing or invalid.
      * @throws RestNotFoundException

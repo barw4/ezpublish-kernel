@@ -77,7 +77,7 @@ class ConfigurationProcessor
      * Triggers mapping process between semantic and internal configuration.
      *
      * @param array $config Parsed semantic configuration
-     * @param ConfigurationMapperInterface|callable $mapper Mapper to use. Can be either an instance of ConfigurationMapper or a callable.
+     * @param callable|ConfigurationMapperInterface $mapper Mapper to use. Can be either an instance of ConfigurationMapper or a callable.
      *                                                      HookableConfigurationMapper can also be used. In this case, preMap()
      *                                                      and postMap() will be also called respectively before and after the mapping loop.
      *

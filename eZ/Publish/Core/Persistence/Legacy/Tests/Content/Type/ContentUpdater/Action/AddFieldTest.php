@@ -539,7 +539,7 @@ class AddFieldTest extends TestCase
     /**
      * Returns a Content Gateway mock.
      *
-     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Persistence\Legacy\Content\Gateway
+     * @return \eZ\Publish\Core\Persistence\Legacy\Content\Gateway|\PHPUnit\Framework\MockObject\MockObject
      */
     protected function getContentGatewayMock()
     {
@@ -553,7 +553,7 @@ class AddFieldTest extends TestCase
     /**
      * Returns a FieldValue converter mock.
      *
-     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Persistence\Legacy\Content\FieldValue\Converter
+     * @return \eZ\Publish\Core\Persistence\Legacy\Content\FieldValue\Converter|\PHPUnit\Framework\MockObject\MockObject
      */
     protected function getFieldValueConverterMock()
     {
@@ -567,7 +567,7 @@ class AddFieldTest extends TestCase
     /**
      * Returns a Content StorageHandler mock.
      *
-     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Persistence\Legacy\Content\StorageHandler
+     * @return \eZ\Publish\Core\Persistence\Legacy\Content\StorageHandler|\PHPUnit\Framework\MockObject\MockObject
      */
     protected function getContentStorageHandlerMock()
     {
@@ -581,7 +581,7 @@ class AddFieldTest extends TestCase
     /**
      * Returns a Content mapper mock.
      *
-     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Persistence\Legacy\Content\Mapper
+     * @return \eZ\Publish\Core\Persistence\Legacy\Content\Mapper|\PHPUnit\Framework\MockObject\MockObject
      */
     protected function getContentMapperMock()
     {
@@ -634,7 +634,7 @@ class AddFieldTest extends TestCase
     /**
      * @param $methods
      *
-     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Persistence\Legacy\Content\Type\ContentUpdater\Action\AddField
+     * @return \eZ\Publish\Core\Persistence\Legacy\Content\Type\ContentUpdater\Action\AddField|\PHPUnit\Framework\MockObject\MockObject
      */
     protected function getMockedAction($methods = [])
     {

@@ -648,7 +648,7 @@ class DoctrineDatabase extends Gateway
     /**
      * Sets value for insert or update query.
      *
-     * @param \eZ\Publish\Core\Persistence\Database\Query|\eZ\Publish\Core\Persistence\Database\InsertQuery|\eZ\Publish\Core\Persistence\Database\UpdateQuery $query
+     * @param \eZ\Publish\Core\Persistence\Database\InsertQuery|\eZ\Publish\Core\Persistence\Database\Query|\eZ\Publish\Core\Persistence\Database\UpdateQuery $query
      * @param array $values
      *
      * @throws \Exception

@@ -98,8 +98,8 @@ class FieldNameResolver
      *
      * @param \eZ\Publish\API\Repository\Values\Content\Query\Criterion $criterion
      * @param string $fieldDefinitionIdentifier
-     * @param null|string $fieldTypeIdentifier
-     * @param null|string $name
+     * @param string|null $fieldTypeIdentifier
+     * @param string|null $name
      *
      * @return string[]
      */
@@ -127,8 +127,8 @@ class FieldNameResolver
      *
      * @param \eZ\Publish\API\Repository\Values\Content\Query\Criterion $criterion
      * @param string $fieldDefinitionIdentifier
-     * @param null|string $fieldTypeIdentifier
-     * @param null|string $name
+     * @param string|null $fieldTypeIdentifier
+     * @param string|null $name
      *
      * @return array<string, \eZ\Publish\SPI\Search\FieldType>
      */
@@ -189,9 +189,9 @@ class FieldNameResolver
      * @param \eZ\Publish\API\Repository\Values\Content\Query\SortClause $sortClause
      * @param string $contentTypeIdentifier
      * @param string $fieldDefinitionIdentifier
-     * @param null|string $name
+     * @param string|null $name
      *
-     * @return null|string
+     * @return string|null
      */
     public function getSortFieldName(
         SortClause $sortClause,

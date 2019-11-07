@@ -35,7 +35,7 @@ class RepositoryConfigFieldsGroupsListFactoryTest extends TestCase
     }
 
     /**
-     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Bundle\EzPublishCoreBundle\ApiLoader\RepositoryConfigurationProvider
+     * @return \eZ\Bundle\EzPublishCoreBundle\ApiLoader\RepositoryConfigurationProvider|\PHPUnit\Framework\MockObject\MockObject
      */
     protected function getRepositoryConfigMock()
     {

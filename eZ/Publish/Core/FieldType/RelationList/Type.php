@@ -301,7 +301,7 @@ class Type extends FieldType
     /**
      * Inspects given $inputValue and potentially converts it into a dedicated value object.
      *
-     * @param int|string|array|\eZ\Publish\API\Repository\Values\Content\ContentInfo|\eZ\Publish\Core\FieldType\RelationList\Value $inputValue
+     * @param array|\eZ\Publish\API\Repository\Values\Content\ContentInfo|\eZ\Publish\Core\FieldType\RelationList\Value|int|string $inputValue
      *
      * @return \eZ\Publish\Core\FieldType\RelationList\Value The potentially converted and structurally plausible value.
      */

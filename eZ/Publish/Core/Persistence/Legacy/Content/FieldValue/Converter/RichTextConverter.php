@@ -84,7 +84,7 @@ class RichTextConverter implements Converter
      * "sort_key_int" or "sort_key_string". This column is then used for
      * filtering and sorting for this type.
      *
-     * @return string|false
+     * @return false|string
      */
     public function getIndexColumn()
     {

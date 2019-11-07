@@ -35,7 +35,7 @@ class URIElement implements VersatileMatcher, URILexer
     /**
      * Constructor.
      *
-     * @param int|array $elementNumber Number of elements to take into account.
+     * @param array|int $elementNumber Number of elements to take into account.
      */
     public function __construct($elementNumber)
     {
@@ -55,7 +55,7 @@ class URIElement implements VersatileMatcher, URILexer
     /**
      * Returns matching Siteaccess.
      *
-     * @return string|false Siteaccess matched or false.
+     * @return false|string Siteaccess matched or false.
      */
     public function match()
     {

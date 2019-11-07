@@ -58,7 +58,7 @@ abstract class Render
         $hash = [];
 
         foreach ($configHash->childNodes as $node) {
-            /** @var \DOMText|\DOMElement $node */
+            /** @var \DOMElement|\DOMText $node */
             if ($node->nodeType === XML_ELEMENT_NODE) {
                 $hash[$node->getAttribute('key')] = $this->extractHash($node);
             } elseif ($node->nodeType === XML_TEXT_NODE && !$node->isWhitespaceInElementContent()) {

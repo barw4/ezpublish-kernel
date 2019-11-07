@@ -3444,7 +3444,7 @@ class UrlAliasTest extends BaseServiceMockTest
     }
 
     /**
-     * @return \PHPUnit_Framework_MockObject_MockObject|\eZ\Publish\Core\Repository\Helper\NameSchemaService
+     * @return \eZ\Publish\Core\Repository\Helper\NameSchemaService|\PHPUnit_Framework_MockObject_MockObject
      */
     protected function getNameSchemaServiceMock()
     {

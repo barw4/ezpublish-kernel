@@ -1138,7 +1138,7 @@ class SearchServiceLocationTest extends BaseTest
      *
      * @param LocationQuery $query
      * @param string $fixture
-     * @param null|callable $closure
+     * @param callable|null $closure
      */
     protected function assertQueryFixture(LocationQuery $query, $fixture, $closure = null, $ignoreScore = true)
     {

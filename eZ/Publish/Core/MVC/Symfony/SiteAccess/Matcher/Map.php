@@ -93,7 +93,7 @@ abstract class Map implements VersatileMatcher
     /**
      * Returns matching Siteaccess.
      *
-     * @return string|false Siteaccess matched or false.
+     * @return false|string Siteaccess matched or false.
      */
     public function match()
     {
