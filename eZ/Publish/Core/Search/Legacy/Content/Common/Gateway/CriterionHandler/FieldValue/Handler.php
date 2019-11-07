@@ -110,7 +110,7 @@ abstract class Handler
                     @trigger_error(
                         "Usage of '%' in Operator::LIKE criteria with Legacy Search Engine was never intended, " .
                         "and is deprecated for removal in 8.0. Please use '*' like in FullText, works across engines",
-                        E_USER_DEPRECATED
+                        \E_USER_DEPRECATED
                     );
                     $value = $this->lowerCase($criterion->value);
                 } else {

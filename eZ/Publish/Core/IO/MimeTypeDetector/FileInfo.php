@@ -49,7 +49,7 @@ class FileInfo implements MimeTypeDetector
     protected function getFileInfo()
     {
         if (!isset($this->fileInfo)) {
-            $this->fileInfo = new \finfo(FILEINFO_MIME_TYPE);
+            $this->fileInfo = new \finfo(\FILEINFO_MIME_TYPE);
         }
 
         return $this->fileInfo;

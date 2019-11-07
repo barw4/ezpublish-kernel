@@ -141,7 +141,7 @@ class LimitationConverterTest extends TestCase
         $this->assertArrayHasKey(Limitation::STATE, $policy->limitations);
 
         // Don't expect backend to return sorted result, so lets sort values before testing
-        sort($policy->limitations[Limitation::STATE], SORT_NUMERIC);
+        sort($policy->limitations[Limitation::STATE], \SORT_NUMERIC);
 
         $this->assertEquals(
             [1, 2, 5],

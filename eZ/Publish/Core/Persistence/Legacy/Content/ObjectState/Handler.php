@@ -260,7 +260,7 @@ class Handler implements BaseObjectStateHandler
             }
         }
 
-        asort($priorityList, SORT_NUMERIC);
+        asort($priorityList, \SORT_NUMERIC);
 
         foreach (array_keys($priorityList) as $objectStatePriority => $objectStateId) {
             $this->objectStateGateway->updateObjectStatePriority($objectStateId, $objectStatePriority);

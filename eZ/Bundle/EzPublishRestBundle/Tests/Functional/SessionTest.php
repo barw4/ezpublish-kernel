@@ -102,7 +102,7 @@ class SessionTest extends TestCase
 
         $domDocument = new DOMDocument();
         // load HTML, suppress error reporting due to buggy Sf toolbar code in dev/behat ENVs
-        $domDocument->loadHTML($response->getBody(), LIBXML_NOERROR);
+        $domDocument->loadHTML($response->getBody(), \LIBXML_NOERROR);
         $xpath = new DOMXPath($domDocument);
 
         $csrfDomElements = $xpath->query("//input[@name='_csrf_token']/@value");

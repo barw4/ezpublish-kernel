@@ -59,9 +59,9 @@ abstract class Render
 
         foreach ($configHash->childNodes as $node) {
             /** @var \DOMElement|\DOMText $node */
-            if ($node->nodeType === XML_ELEMENT_NODE) {
+            if ($node->nodeType === \XML_ELEMENT_NODE) {
                 $hash[$node->getAttribute('key')] = $this->extractHash($node);
-            } elseif ($node->nodeType === XML_TEXT_NODE && !$node->isWhitespaceInElementContent()) {
+            } elseif ($node->nodeType === \XML_TEXT_NODE && !$node->isWhitespaceInElementContent()) {
                 return $node->wholeText;
             }
         }

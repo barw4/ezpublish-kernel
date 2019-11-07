@@ -414,7 +414,7 @@ class LanguageServiceTest extends BaseTest
     {
         $repository = $this->getRepository();
 
-        $repository->getContentLanguageService()->loadLanguage(PHP_INT_MAX);
+        $repository->getContentLanguageService()->loadLanguage(\PHP_INT_MAX);
     }
 
     /**

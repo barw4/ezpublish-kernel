@@ -24,7 +24,7 @@ class LocalAdapterFactory
     {
         return new Local(
             $rootDir,
-            LOCK_EX,
+            \LOCK_EX,
             Local::DISALLOW_LINKS,
             ['file' => ['public' => $filesPermissions], 'dir' => ['public' => $directoriesPermissions]]
         );

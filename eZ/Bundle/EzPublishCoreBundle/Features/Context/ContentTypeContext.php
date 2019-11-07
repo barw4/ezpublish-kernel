@@ -170,7 +170,7 @@ class ContentTypeContext implements Context
 
         $fieldPosition = 0;
         foreach ($fields as $field) {
-            $field = array_change_key_case($field, CASE_LOWER);
+            $field = array_change_key_case($field, \CASE_LOWER);
             $fieldPosition += 10;
 
             $fieldCreateStruct = $contentTypeService

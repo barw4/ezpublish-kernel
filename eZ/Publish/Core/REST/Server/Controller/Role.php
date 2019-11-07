@@ -110,7 +110,7 @@ class Role extends RestController
             @trigger_error(
                 "Create and publish role in the same operation is deprecated, and will be removed in the future.\n" .
                 'Instead, publish the role draft using Role::publishRoleDraft().',
-                E_USER_DEPRECATED
+                \E_USER_DEPRECATED
             );
 
             $this->roleService->publishRoleDraft($roleDraft);

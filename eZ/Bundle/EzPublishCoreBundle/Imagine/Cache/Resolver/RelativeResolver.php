@@ -30,6 +30,6 @@ class RelativeResolver extends ImagineProxyResolver
      */
     protected function rewriteUrl($url)
     {
-        return parse_url($url, PHP_URL_PATH);
+        return parse_url($url, \PHP_URL_PATH);
     }
 }

@@ -63,7 +63,7 @@ class ParentDepthLimitationTypeTest extends Base
         return [
             [new ParentDepthLimitation()],
             [new ParentDepthLimitation([])],
-            [new ParentDepthLimitation(['limitationValues' => [0, 1, 2, PHP_INT_MAX]])],
+            [new ParentDepthLimitation(['limitationValues' => [0, 1, 2, \PHP_INT_MAX]])],
         ];
     }
 

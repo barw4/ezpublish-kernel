@@ -330,7 +330,7 @@ class TextBlockIntegrationTest extends SearchBaseIntegrationTest
 
     protected function getValidSearchValueOne()
     {
-        return 'caution is the " path to mediocrity' . PHP_EOL . 'something completely different';
+        return 'caution is the " path to mediocrity' . \PHP_EOL . 'something completely different';
     }
 
     protected function getSearchTargetValueOne()

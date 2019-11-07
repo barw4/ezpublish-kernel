@@ -21,7 +21,7 @@ class CleanInstaller extends DbBasedInstaller implements Installer
     {
         @trigger_error(
             'CleanInstaller is deprecated since 7.5 and will be removed in 8.0. Use CoreInstaller instead.',
-            E_USER_DEPRECATED
+            \E_USER_DEPRECATED
         );
 
         $this->runQueriesFromFile($this->getKernelSQLFileForDBMS('schema.sql'));

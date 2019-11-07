@@ -330,6 +330,6 @@ class IOService implements IOServiceInterface
      */
     protected function isAbsolutePath($path)
     {
-        return $path[0] === '/' || (PHP_OS === 'WINNT' && $path[1] === ':');
+        return $path[0] === '/' || (\PHP_OS === 'WINNT' && $path[1] === ':');
     }
 }

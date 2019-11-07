@@ -308,7 +308,7 @@ class DomainMapper
         }
 
         // Sort fields by content type field definition priority
-        ksort($fields, SORT_NUMERIC);
+        ksort($fields, \SORT_NUMERIC);
 
         // Flatten array
         return array_merge(...$fields);

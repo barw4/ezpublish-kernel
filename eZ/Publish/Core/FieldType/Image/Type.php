@@ -201,7 +201,7 @@ class Type extends FieldType
         if (
             file_exists($filePath) &&
             (
-                strtolower(pathinfo($filePath, PATHINFO_EXTENSION)) === 'php' ||
+                strtolower(pathinfo($filePath, \PATHINFO_EXTENSION)) === 'php' ||
                 !getimagesize($filePath)
             )
         ) {

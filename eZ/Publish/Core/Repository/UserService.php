@@ -1520,30 +1520,30 @@ class UserService implements UserServiceInterface
 
         switch ($type) {
             case APIUser::PASSWORD_HASH_MD5_PASSWORD:
-                @trigger_error(sprintf($deprecationWarningFormat, 'PASSWORD_HASH_MD5_PASSWORD'), E_USER_DEPRECATED);
+                @trigger_error(sprintf($deprecationWarningFormat, 'PASSWORD_HASH_MD5_PASSWORD'), \E_USER_DEPRECATED);
 
                 return md5($password);
 
             case APIUser::PASSWORD_HASH_MD5_USER:
-                @trigger_error(sprintf($deprecationWarningFormat, 'PASSWORD_HASH_MD5_USER'), E_USER_DEPRECATED);
+                @trigger_error(sprintf($deprecationWarningFormat, 'PASSWORD_HASH_MD5_USER'), \E_USER_DEPRECATED);
 
                 return md5("$login\n$password");
 
             case APIUser::PASSWORD_HASH_MD5_SITE:
-                @trigger_error(sprintf($deprecationWarningFormat, 'PASSWORD_HASH_MD5_SITE'), E_USER_DEPRECATED);
+                @trigger_error(sprintf($deprecationWarningFormat, 'PASSWORD_HASH_MD5_SITE'), \E_USER_DEPRECATED);
 
                 return md5("$login\n$password\n$site");
 
             case APIUser::PASSWORD_HASH_PLAINTEXT:
-                @trigger_error(sprintf($deprecationWarningFormat, 'PASSWORD_HASH_PLAINTEXT'), E_USER_DEPRECATED);
+                @trigger_error(sprintf($deprecationWarningFormat, 'PASSWORD_HASH_PLAINTEXT'), \E_USER_DEPRECATED);
 
                 return $password;
 
             case APIUser::PASSWORD_HASH_BCRYPT:
-                return password_hash($password, PASSWORD_BCRYPT);
+                return password_hash($password, \PASSWORD_BCRYPT);
 
             case APIUser::PASSWORD_HASH_PHP_DEFAULT:
-                return password_hash($password, PASSWORD_DEFAULT);
+                return password_hash($password, \PASSWORD_DEFAULT);
 
             default:
                 throw new InvalidArgumentException('type', "Password hash type '$type' is not recognized");

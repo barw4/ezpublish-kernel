@@ -367,7 +367,7 @@ class NameSchemaService
      */
     protected function tokenParts($token)
     {
-        return preg_split('#\\W#', $token, -1, PREG_SPLIT_NO_EMPTY);
+        return preg_split('#\\W#', $token, -1, \PREG_SPLIT_NO_EMPTY);
     }
 
     /**
@@ -425,7 +425,7 @@ class NameSchemaService
         preg_match_all($allTokens, $schemaString, $matches);
 
         foreach ($matches[1] as $match) {
-            $tmpArray[] = preg_split($identifiers, $match, -1, PREG_SPLIT_NO_EMPTY);
+            $tmpArray[] = preg_split($identifiers, $match, -1, \PREG_SPLIT_NO_EMPTY);
         }
 
         $retArray = [];

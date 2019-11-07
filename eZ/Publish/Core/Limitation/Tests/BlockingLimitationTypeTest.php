@@ -110,7 +110,7 @@ class BlockingLimitationTypeTest extends Base
         return [
             [new BlockingLimitation('Test', []), 1],
             [new BlockingLimitation('Test', ['limitationValues' => [0]]), 0],
-            [new BlockingLimitation('Test', ['limitationValues' => [0, PHP_INT_MAX]]), 0],
+            [new BlockingLimitation('Test', ['limitationValues' => [0, \PHP_INT_MAX]]), 0],
         ];
     }
 

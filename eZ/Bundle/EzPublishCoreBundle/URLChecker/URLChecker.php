@@ -78,7 +78,7 @@ class URLChecker implements URLCheckerInterface
         $grouped = [];
 
         foreach ($urls as $url) {
-            $scheme = parse_url($url->url, PHP_URL_SCHEME);
+            $scheme = parse_url($url->url, \PHP_URL_SCHEME);
             if (!$scheme) {
                 continue;
             }

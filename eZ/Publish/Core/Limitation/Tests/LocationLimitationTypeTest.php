@@ -66,7 +66,7 @@ class LocationLimitationTypeTest extends Base
         return [
             [new LocationLimitation()],
             [new LocationLimitation([])],
-            [new LocationLimitation(['limitationValues' => [0, PHP_INT_MAX, '2', 's3fdaf32r']])],
+            [new LocationLimitation(['limitationValues' => [0, \PHP_INT_MAX, '2', 's3fdaf32r']])],
         ];
     }
 
@@ -154,7 +154,7 @@ class LocationLimitationTypeTest extends Base
         return [
             [new LocationLimitation(), 0],
             [new LocationLimitation(['limitationValues' => [0]]), 1],
-            [new LocationLimitation(['limitationValues' => [0, PHP_INT_MAX]]), 2],
+            [new LocationLimitation(['limitationValues' => [0, \PHP_INT_MAX]]), 2],
         ];
     }
 

@@ -112,7 +112,7 @@ class StatusLimitationTypeTest extends Base
                     [
                         'limitationValues' => [
                             SPIVersionInfo::STATUS_PUBLISHED,
-                            PHP_INT_MAX,
+                            \PHP_INT_MAX,
                         ],
                     ]
                 ),

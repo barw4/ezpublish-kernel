@@ -102,7 +102,7 @@ class RelationListConverter implements Converter
             }
         }
 
-        asort($priorityByContentId, SORT_NUMERIC);
+        asort($priorityByContentId, \SORT_NUMERIC);
 
         $fieldValue->data['destinationContentIds'] = array_keys($priorityByContentId);
         $fieldValue->sortKey = $value->sortKeyString;

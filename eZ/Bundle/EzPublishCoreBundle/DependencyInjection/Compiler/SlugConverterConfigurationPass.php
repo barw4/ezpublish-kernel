@@ -68,7 +68,7 @@ class SlugConverterConfigurationPass implements CompilerPassInterface
                     SlugConverter::DEFAULT_CONFIGURATION['transformation'],
                     implode(', ', array_keys($transformationGroups))
                 ),
-                E_USER_DEPRECATED
+                \E_USER_DEPRECATED
             );
         }
 

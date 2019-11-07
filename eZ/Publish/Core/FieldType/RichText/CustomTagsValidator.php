@@ -61,7 +61,7 @@ class CustomTagsValidator
                 @trigger_error(
                     "Configuration for RichText Custom Tag '{$tagName}' not found. " .
                     'Custom Tags configuration is required since 7.1, its lack will result in validation error in 8.x',
-                    E_USER_DEPRECATED
+                    \E_USER_DEPRECATED
                 );
                 continue;
             }

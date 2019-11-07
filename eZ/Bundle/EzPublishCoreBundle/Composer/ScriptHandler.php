@@ -66,13 +66,13 @@ class ScriptHandler extends DistributionBundleScriptHandler
         }
 
         if (!is_dir($consoleDir)) {
-            echo 'The symfony console directory (' . $consoleDir . ') specified in composer.json was not found in ' . getcwd() . ', can not install assets.' . PHP_EOL;
+            echo 'The symfony console directory (' . $consoleDir . ') specified in composer.json was not found in ' . getcwd() . ', can not install assets.' . \PHP_EOL;
 
             return;
         }
 
         if (!is_dir($webDir)) {
-            echo 'The symfony-web-dir (' . $webDir . ') specified in composer.json was not found in ' . getcwd() . ', can not install assets.' . PHP_EOL;
+            echo 'The symfony-web-dir (' . $webDir . ') specified in composer.json was not found in ' . getcwd() . ', can not install assets.' . \PHP_EOL;
 
             return;
         }

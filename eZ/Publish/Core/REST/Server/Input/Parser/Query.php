@@ -40,7 +40,7 @@ abstract class Query extends CriterionParser
                 $data['Filter'] = $data['Criteria'];
             }
 
-            @trigger_error($message, E_USER_DEPRECATED);
+            @trigger_error($message, \E_USER_DEPRECATED);
         }
 
         if (array_key_exists('Filter', $data) && is_array($data['Filter'])) {

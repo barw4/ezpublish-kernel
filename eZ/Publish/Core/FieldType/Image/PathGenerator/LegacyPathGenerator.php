@@ -46,7 +46,7 @@ class LegacyPathGenerator extends PathGenerator
     {
         // our base string is the last 4 digits, defaulting to 0, reversed
         $idString = strrev(
-            substr(str_pad($id, 4, 0, STR_PAD_LEFT), -4)
+            substr(str_pad($id, 4, 0, \STR_PAD_LEFT), -4)
         );
 
         return trim(

@@ -55,7 +55,7 @@ class DatabaseConnectionFactory
         $params = ['url' => $databaseURL];
 
         // set DbPlatform based on database url scheme
-        $scheme = parse_url($databaseURL, PHP_URL_SCHEME);
+        $scheme = parse_url($databaseURL, \PHP_URL_SCHEME);
         $driverName = 'pdo_' . $scheme;
         if (isset($this->databasePlatforms[$driverName])) {
             $params['platform'] = $this->databasePlatforms[$driverName];

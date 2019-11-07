@@ -46,7 +46,7 @@ class IntegerValueValidator extends Validator
                     if ($value === false) {
                         @trigger_error(
                             "The IntegerValueValidator constraint value 'false' is deprecated, and will be removed in 7.0. Use 'null' instead.",
-                            E_USER_DEPRECATED
+                            \E_USER_DEPRECATED
                         );
                         $value = null;
                     }

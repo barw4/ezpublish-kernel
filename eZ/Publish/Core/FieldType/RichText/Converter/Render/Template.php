@@ -74,7 +74,7 @@ class Template extends Render implements Converter
             $templatesSorted[$depth][] = $template;
         }
 
-        ksort($templatesSorted, SORT_NUMERIC);
+        ksort($templatesSorted, \SORT_NUMERIC);
 
         foreach ($templatesSorted as $templates) {
             foreach ($templates as $template) {

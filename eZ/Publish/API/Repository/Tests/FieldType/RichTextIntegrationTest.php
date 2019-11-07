@@ -703,7 +703,7 @@ EOT;
         $document->preserveWhiteSpace = false;
         $document->formatOutput = false;
 
-        $document->loadXml(file_get_contents($filename), LIBXML_NOENT);
+        $document->loadXml(file_get_contents($filename), \LIBXML_NOENT);
 
         return $document;
     }

@@ -32,10 +32,10 @@ class RemoteProvider implements PlaceholderProvider
             $handler = curl_init();
 
             curl_setopt_array($handler, [
-                CURLOPT_URL => $placeholderUrl,
-                CURLOPT_FILE => fopen($path, 'wb'),
-                CURLOPT_TIMEOUT => $options['timeout'],
-                CURLOPT_FAILONERROR => true,
+                \CURLOPT_URL => $placeholderUrl,
+                \CURLOPT_FILE => fopen($path, 'wb'),
+                \CURLOPT_TIMEOUT => $options['timeout'],
+                \CURLOPT_FAILONERROR => true,
             ]);
 
             if (curl_exec($handler) === false) {

@@ -61,7 +61,7 @@ class Mapper
         $notification->isPending = (bool) $row['is_pending'];
         if ($row['data'] !== null) {
             $notification->data = json_decode($row['data'], true);
-            if (json_last_error() !== JSON_ERROR_NONE) {
+            if (json_last_error() !== \JSON_ERROR_NONE) {
                 throw new RuntimeException('Error while decoding notification data: ' . json_last_error_msg());
             }
         }

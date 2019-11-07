@@ -69,7 +69,7 @@ class GenericProvider implements PlaceholderProvider
 
         $path = $this->getTemporaryPath();
         $image->save($path, [
-            'format' => pathinfo($value->id, PATHINFO_EXTENSION),
+            'format' => pathinfo($value->id, \PATHINFO_EXTENSION),
         ]);
 
         return $path;

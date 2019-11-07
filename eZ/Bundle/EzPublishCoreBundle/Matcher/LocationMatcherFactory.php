@@ -31,7 +31,7 @@ class LocationMatcherFactory extends BaseMatcherFactory implements SiteAccessAwa
         @trigger_error(
             "Location view has been deprecated in 6.0, and will be removed in 6.1.\n" .
             'Use content view instead.',
-            E_USER_DEPRECATED
+            \E_USER_DEPRECATED
         );
 
         $this->configResolver = $configResolver;

@@ -164,7 +164,7 @@ class IORepositoryResolver implements ResolverInterface
 
         $baseUrl = $this->requestContext->getBaseUrl();
         if (substr($this->requestContext->getBaseUrl(), -4) === '.php') {
-            $baseUrl = pathinfo($this->requestContext->getBaseurl(), PATHINFO_DIRNAME);
+            $baseUrl = pathinfo($this->requestContext->getBaseurl(), \PATHINFO_DIRNAME);
         }
         $baseUrl = rtrim($baseUrl, '/\\');
 

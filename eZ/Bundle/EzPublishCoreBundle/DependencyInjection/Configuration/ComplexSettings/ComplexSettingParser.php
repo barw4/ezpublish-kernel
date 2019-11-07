@@ -61,7 +61,7 @@ class ComplexSettingParser extends DynamicSettingParser implements ComplexSettin
      */
     protected function matchDynamicSettings($string)
     {
-        preg_match_all('/' . $this->dynamicSettingRegex . '/', $string, $matches, PREG_PATTERN_ORDER);
+        preg_match_all('/' . $this->dynamicSettingRegex . '/', $string, $matches, \PREG_PATTERN_ORDER);
 
         return $matches[0];
     }

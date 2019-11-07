@@ -31,7 +31,7 @@ class BlockMatcherFactory extends BaseFactory implements SiteAccessAware, Contai
         @trigger_error(
             "BlockMatcherFactory is deprecated, and will be removed in ezpublish-kernel 6.1.\n" .
             'Use the ServiceAwareMatcherFactory with the relative namespace as a constructor argument.',
-            E_USER_DEPRECATED
+            \E_USER_DEPRECATED
         );
 
         $this->configResolver = $configResolver;

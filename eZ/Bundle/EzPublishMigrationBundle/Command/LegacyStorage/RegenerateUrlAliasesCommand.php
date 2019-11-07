@@ -117,7 +117,7 @@ EOT
                 '%s is deprecated since 6.7.8. Use the ezplatform:urls:regenerate-aliases command instead.',
                 $this->getName()
             ),
-            E_USER_DEPRECATED
+            \E_USER_DEPRECATED
         );
         $output->writeln('<error>This command is deprecated, use the ezplatform:urls:regenerate-aliases command instead.</error>');
 

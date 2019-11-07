@@ -318,7 +318,7 @@ class EzPublishCoreExtension extends Extension implements PrependExtensionInterf
             if (!empty($config['ezrichtext']['custom_tags']) || !empty($config['ezrichtext']['custom_styles'])) {
                 @trigger_error(
                     'ezpublish.ezrichtext configuration is deprecated since v7.4, move entire configuration node to ezrichtext extension',
-                    E_USER_DEPRECATED
+                    \E_USER_DEPRECATED
                 );
             }
         }

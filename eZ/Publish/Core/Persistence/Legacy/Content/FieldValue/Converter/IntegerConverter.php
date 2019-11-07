@@ -77,7 +77,7 @@ class IntegerConverter implements Converter
         if ($storageDef->dataInt1 === false || $storageDef->dataInt2 === false) {
             @trigger_error(
                 "The IntegerValueValidator constraint value 'false' is deprecated, and will be removed in 7.0. Use 'null' instead.",
-                E_USER_DEPRECATED
+                \E_USER_DEPRECATED
             );
             $storageDef->dataInt1 = $storageDef->dataInt1 === false ? null : $storageDef->dataInt1;
             $storageDef->dataInt2 = $storageDef->dataInt2 === false ? null : $storageDef->dataInt2;

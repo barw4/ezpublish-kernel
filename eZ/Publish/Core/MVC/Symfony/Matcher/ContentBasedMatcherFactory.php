@@ -23,7 +23,7 @@ abstract class ContentBasedMatcherFactory extends AbstractMatcherFactory
         @trigger_error(
             "ContentBasedMatcherFactory is deprecated, and will be removed in ezpublish-kernel 6.1.\n" .
             'Use the ServiceAwareMatcherFactory with the relative namespace as a constructor argument.',
-            E_USER_DEPRECATED
+            \E_USER_DEPRECATED
         );
 
         $matcher = parent::getMatcher($matcherIdentifier);

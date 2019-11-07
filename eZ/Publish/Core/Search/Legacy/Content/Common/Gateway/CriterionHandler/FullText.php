@@ -131,7 +131,7 @@ class FullText extends CriterionHandler
      */
     protected function tokenizeString($string)
     {
-        return preg_split('/[^\w|*]/u', $string, -1, PREG_SPLIT_NO_EMPTY);
+        return preg_split('/[^\w|*]/u', $string, -1, \PREG_SPLIT_NO_EMPTY);
     }
 
     /**

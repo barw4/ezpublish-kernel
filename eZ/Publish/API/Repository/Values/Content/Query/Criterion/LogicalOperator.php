@@ -60,7 +60,7 @@ abstract class LogicalOperator extends Criterion
      */
     public function getSpecifications()
     {
-        @trigger_error('The ' . __METHOD__ . ' method is deprecated since version 7.2 and will be removed in 8.0.', E_USER_DEPRECATED);
+        @trigger_error('The ' . __METHOD__ . ' method is deprecated since version 7.2 and will be removed in 8.0.', \E_USER_DEPRECATED);
 
         throw new NotImplementedException('getSpecifications() not implemented for LogicalOperators');
     }

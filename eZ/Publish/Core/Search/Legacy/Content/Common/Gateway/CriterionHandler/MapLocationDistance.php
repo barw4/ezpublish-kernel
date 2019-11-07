@@ -295,7 +295,7 @@ class MapLocationDistance extends FieldBase
         $highLatitudeRadians = $radiansLatitude + $angularDistance;
 
         // Check that bounding box does not include poles.
-        if ($lowLatitudeRadians > -M_PI_2 && $highLatitudeRadians < M_PI_2) {
+        if ($lowLatitudeRadians > -\M_PI_2 && $highLatitudeRadians < \M_PI_2) {
             $boundingCoordinates = [
                 'lowLatitude' => rad2deg($lowLatitudeRadians),
                 'lowLongitude' => rad2deg($radiansLongitude - $deltaLongitude),
@@ -308,10 +308,10 @@ class MapLocationDistance extends FieldBase
             // Note that calculation for distances over the polar regions with flat Earth formula
             // will be VERY imprecise.
             $boundingCoordinates = [
-                'lowLatitude' => rad2deg(max($lowLatitudeRadians, -M_PI_2)),
-                'lowLongitude' => rad2deg(-M_PI),
-                'highLatitude' => rad2deg(min($highLatitudeRadians, M_PI_2)),
-                'highLongitude' => rad2deg(M_PI),
+                'lowLatitude' => rad2deg(max($lowLatitudeRadians, -\M_PI_2)),
+                'lowLongitude' => rad2deg(-\M_PI),
+                'highLatitude' => rad2deg(min($highLatitudeRadians, \M_PI_2)),
+                'highLongitude' => rad2deg(\M_PI),
             ];
         }
 

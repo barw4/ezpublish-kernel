@@ -66,7 +66,7 @@ class Type extends FieldType
                 '%s is deprecated since eZ Platform v2.4, enable RichTextBundle instead',
                 __CLASS__
             ),
-            E_USER_DEPRECATED
+            \E_USER_DEPRECATED
         );
 
         $this->internalFormatValidator = $internalFormatValidator;
@@ -204,7 +204,7 @@ class Type extends FieldType
         // - substitute entities
         // - disable network access
         // - relax parser limits for document size/complexity
-        $success = $document->loadXML($xmlString, LIBXML_NOENT | LIBXML_NONET | LIBXML_PARSEHUGE);
+        $success = $document->loadXML($xmlString, \LIBXML_NOENT | \LIBXML_NONET | \LIBXML_PARSEHUGE);
 
         if (!$success) {
             $messages = [];

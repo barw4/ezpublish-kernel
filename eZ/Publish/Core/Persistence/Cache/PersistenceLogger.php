@@ -63,7 +63,7 @@ class PersistenceLogger
             $method,
             $arguments,
             \array_slice(
-                \debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 9),
+                \debug_backtrace(\DEBUG_BACKTRACE_IGNORE_ARGS, 9),
                 2
             ),
             'uncached'
@@ -85,7 +85,7 @@ class PersistenceLogger
             return;
         }
 
-        $trace = \debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 8 + $traceOffset);
+        $trace = \debug_backtrace(\DEBUG_BACKTRACE_IGNORE_ARGS, 8 + $traceOffset);
         $this->collectCacheCallData(
             $trace[$traceOffset - 1]['class'] . '::' . $trace[$traceOffset - 1]['function'],
             $arguments,
@@ -116,7 +116,7 @@ class PersistenceLogger
             return;
         }
 
-        $trace = \debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 8 + $traceOffset);
+        $trace = \debug_backtrace(\DEBUG_BACKTRACE_IGNORE_ARGS, 8 + $traceOffset);
         $this->collectCacheCallData(
             $trace[$traceOffset - 1]['class'] . '::' . $trace[$traceOffset - 1]['function'],
             $arguments,

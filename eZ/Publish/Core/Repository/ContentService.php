@@ -2170,7 +2170,7 @@ class ContentService implements ContentServiceInterface
     {
         @trigger_error(
             __METHOD__ . ' is deprecated, use deleteTranslation instead',
-            E_USER_DEPRECATED
+            \E_USER_DEPRECATED
         );
         $this->deleteTranslation($contentInfo, $languageCode);
     }

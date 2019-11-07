@@ -357,7 +357,7 @@ class PageConverter implements Converter
             $root = $dom->documentElement;
 
             foreach ($root->childNodes as $node) {
-                if ($node->nodeType !== XML_ELEMENT_NODE) {
+                if ($node->nodeType !== \XML_ELEMENT_NODE) {
                     continue;
                 }
 
@@ -426,7 +426,7 @@ class PageConverter implements Converter
         }
 
         foreach ($node->childNodes as $node) {
-            if ($node->nodeType !== XML_ELEMENT_NODE) {
+            if ($node->nodeType !== \XML_ELEMENT_NODE) {
                 continue;
             }
 
@@ -495,7 +495,7 @@ class PageConverter implements Converter
         }
 
         foreach ($node->childNodes as $node) {
-            if ($node->nodeType !== XML_ELEMENT_NODE) {
+            if ($node->nodeType !== \XML_ELEMENT_NODE) {
                 continue;
             }
 
@@ -509,7 +509,7 @@ class PageConverter implements Converter
                     }
 
                     foreach ($node->childNodes as $subNode) {
-                        if ($subNode->nodeType !== XML_ELEMENT_NODE) {
+                        if ($subNode->nodeType !== \XML_ELEMENT_NODE) {
                             continue;
                         }
 
@@ -522,7 +522,7 @@ class PageConverter implements Converter
                     }
 
                     foreach ($node->childNodes as $subNode) {
-                        if ($subNode->nodeType !== XML_ELEMENT_NODE) {
+                        if ($subNode->nodeType !== \XML_ELEMENT_NODE) {
                             continue;
                         }
 
@@ -586,7 +586,7 @@ class PageConverter implements Converter
         }
 
         foreach ($node->childNodes as $node) {
-            if ($node->nodeType !== XML_ELEMENT_NODE) {
+            if ($node->nodeType !== \XML_ELEMENT_NODE) {
                 continue;
             }
 

@@ -987,7 +987,7 @@ class User extends RestController
     public function createSession(Request $request)
     {
         @trigger_error(
-            E_USER_DEPRECATED,
+            \E_USER_DEPRECATED,
             'The session actions from the User controller are deprecated since 6.5. Use the SessionController instead.'
         );
 
@@ -1008,7 +1008,7 @@ class User extends RestController
     public function refreshSession($sessionId, Request $request)
     {
         @trigger_error(
-            E_USER_DEPRECATED,
+            \E_USER_DEPRECATED,
             'The session actions from the User controller are deprecated since 6.5. Use the SessionController instead.'
         );
 
@@ -1030,7 +1030,7 @@ class User extends RestController
     public function deleteSession($sessionId, Request $request)
     {
         @trigger_error(
-            E_USER_DEPRECATED,
+            \E_USER_DEPRECATED,
             'The session actions from the User controller are deprecated since 6.5. Use the SessionController instead.'
         );
 
@@ -1054,7 +1054,7 @@ class User extends RestController
     public function setTokenStorage(TokenStorageInterface $csrfTokenStorage)
     {
         @trigger_error(
-            E_USER_DEPRECATED,
+            \E_USER_DEPRECATED,
             'setTokenStorage() is deprecated since 6.5 and will be removed in 7.0.'
         );
 

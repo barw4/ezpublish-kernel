@@ -58,7 +58,7 @@ class URLAliasServiceTest extends BaseTest
             $this->markTestSkipped(
                 'This test cannot be executed, because the utilized ' .
                 'LocationService::loadLocation() failed with ' .
-                PHP_EOL . PHP_EOL .
+                \PHP_EOL . \PHP_EOL .
                 $e->getTraceAsString()
             );
         }

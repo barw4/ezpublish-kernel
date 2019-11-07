@@ -135,9 +135,9 @@ XML
         $this->assertEquals($expectedOutput, $output);
 
         $normalizedDocument = new DOMDocument();
-        $normalizedDocument->loadXML($output, LIBXML_NOENT);
+        $normalizedDocument->loadXML($output, \LIBXML_NOENT);
         $expectedDocument = new DOMDocument();
-        $expectedDocument->loadXML($expectedSaved, LIBXML_NOENT);
+        $expectedDocument->loadXML($expectedSaved, \LIBXML_NOENT);
 
         $this->assertEquals($expectedDocument, $normalizedDocument);
     }

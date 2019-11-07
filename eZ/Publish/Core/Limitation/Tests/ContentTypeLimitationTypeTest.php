@@ -66,7 +66,7 @@ class ContentTypeLimitationTypeTest extends Base
         return [
             [new ContentTypeLimitation()],
             [new ContentTypeLimitation([])],
-            [new ContentTypeLimitation(['limitationValues' => [0, PHP_INT_MAX, '2', 's3fdaf32r']])],
+            [new ContentTypeLimitation(['limitationValues' => [0, \PHP_INT_MAX, '2', 's3fdaf32r']])],
         ];
     }
 
@@ -154,7 +154,7 @@ class ContentTypeLimitationTypeTest extends Base
         return [
             [new ContentTypeLimitation(), 0],
             [new ContentTypeLimitation(['limitationValues' => [0]]), 1],
-            [new ContentTypeLimitation(['limitationValues' => [0, PHP_INT_MAX]]), 2],
+            [new ContentTypeLimitation(['limitationValues' => [0, \PHP_INT_MAX]]), 2],
         ];
     }
 

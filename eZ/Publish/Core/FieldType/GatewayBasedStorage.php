@@ -49,7 +49,7 @@ abstract class GatewayBasedStorage implements FieldStorage
                 self::class,
                 SPIGatewayBasedStorage::class
             ),
-            E_USER_DEPRECATED
+            \E_USER_DEPRECATED
         );
 
         foreach ($gateways as $identifier => $gateway) {
@@ -85,7 +85,7 @@ abstract class GatewayBasedStorage implements FieldStorage
                 '%s: Retrieving gateway based on $context is deprecated and will be removed in 7.0. Inject gateway directly into FieldStorage',
                 get_class($this)
             ),
-            E_USER_DEPRECATED
+            \E_USER_DEPRECATED
         );
 
         if (!isset($this->gateways[$context['identifier']])) {

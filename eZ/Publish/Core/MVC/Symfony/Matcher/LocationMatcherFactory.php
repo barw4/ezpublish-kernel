@@ -34,7 +34,7 @@ class LocationMatcherFactory extends ContentBasedMatcherFactory
         @trigger_error(
             "LocationMatcherFactory is deprecated, and will be removed in ezpublish-kernel 6.1.\n" .
             'Use the ServiceAwareMatcherFactory with the relative namespace as a constructor argument.',
-            E_USER_DEPRECATED
+            \E_USER_DEPRECATED
         );
 
         if (!$view instanceof LocationValueView) {

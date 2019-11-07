@@ -198,7 +198,7 @@ class InMemoryCache
         foreach ($this->cacheAccessCount as $key => $accessCount) {
             $groupedAccessCount[$accessCount][] = $key;
         }
-        \ksort($groupedAccessCount, SORT_NUMERIC);
+        \ksort($groupedAccessCount, \SORT_NUMERIC);
 
         // Merge the resulting sorted array of arrays to flatten the result
         foreach (\array_merge(...$groupedAccessCount) as $key) {

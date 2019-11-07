@@ -61,7 +61,7 @@ class SectionServiceTest extends BaseTest
             $this->markTestSkipped(
                 'This test cannot be executed, because the utilized ' .
                 'ContentService::loadContentInfoByRemoteId() failed with ' .
-                PHP_EOL . PHP_EOL .
+                \PHP_EOL . \PHP_EOL .
                 $e
             );
         }

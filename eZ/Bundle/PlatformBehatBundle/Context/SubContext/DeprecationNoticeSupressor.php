@@ -16,7 +16,7 @@ trait DeprecationNoticeSupressor
      */
     public function suppressDepreciationNotices()
     {
-        $this->originalErrorReporting = error_reporting(E_ALL & ~E_USER_DEPRECATED);
+        $this->originalErrorReporting = error_reporting(\E_ALL & ~\E_USER_DEPRECATED);
     }
 
     /**

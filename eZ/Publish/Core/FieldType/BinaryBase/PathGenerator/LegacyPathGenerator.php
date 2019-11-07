@@ -16,7 +16,7 @@ class LegacyPathGenerator extends PathGenerator
 {
     public function getStoragePathForField(Field $field, VersionInfo $versionInfo)
     {
-        $extension = pathinfo($field->value->externalData['fileName'], PATHINFO_EXTENSION);
+        $extension = pathinfo($field->value->externalData['fileName'], \PATHINFO_EXTENSION);
 
         return $this->getFirstPartOfMimeType($field->value->externalData['mimeType'])
             . '/' . md5(uniqid(microtime(true), true))

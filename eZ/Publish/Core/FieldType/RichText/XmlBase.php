@@ -33,9 +33,9 @@ abstract class XmlBase
      * @var array
      */
     protected $errorTypes = [
-        LIBXML_ERR_WARNING => 'Warning',
-        LIBXML_ERR_ERROR => 'Error',
-        LIBXML_ERR_FATAL => 'Fatal error',
+        \LIBXML_ERR_WARNING => 'Warning',
+        \LIBXML_ERR_ERROR => 'Error',
+        \LIBXML_ERR_FATAL => 'Fatal error',
     ];
 
     /**

@@ -161,7 +161,7 @@ class Pattern implements RequestParser
             '(' . self::STANDARD_VARIABLE_REGEX . '|' . self::SLASHES_VARIABLE_REGEX . ')',
             $url,
             $matches,
-            PREG_SET_ORDER
+            \PREG_SET_ORDER
         );
         foreach ($matches as $matchSet) {
             $variableName = empty($matchSet[1]) ? $matchSet[2] : $matchSet[1];

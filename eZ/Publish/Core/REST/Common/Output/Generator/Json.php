@@ -92,7 +92,7 @@ class Json extends Generator
 
         $jsonEncodeOptions = 0;
         if ($this->formatOutput && defined('JSON_PRETTY_PRINT')) {
-            $jsonEncodeOptions = JSON_PRETTY_PRINT;
+            $jsonEncodeOptions = \JSON_PRETTY_PRINT;
         }
 
         $this->json = $this->convertArrayObjects($this->json);

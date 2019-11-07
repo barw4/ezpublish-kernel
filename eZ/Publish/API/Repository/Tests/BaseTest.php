@@ -70,7 +70,7 @@ abstract class BaseTest extends TestCase
             $this->fail(
                 'Cannot create a repository with predefined user. ' .
                 'Check the UserService or RoleService implementation. ' .
-                PHP_EOL . PHP_EOL .
+                \PHP_EOL . \PHP_EOL .
                 'Exception: ' . $e
             );
         }

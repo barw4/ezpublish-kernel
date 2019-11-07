@@ -63,7 +63,7 @@ class NewObjectStateLimitationTypeTest extends Base
         return [
             [new NewObjectStateLimitation()],
             [new NewObjectStateLimitation([])],
-            [new NewObjectStateLimitation(['limitationValues' => [0, PHP_INT_MAX, '2', 's3fdaf32r']])],
+            [new NewObjectStateLimitation(['limitationValues' => [0, \PHP_INT_MAX, '2', 's3fdaf32r']])],
         ];
     }
 
@@ -151,7 +151,7 @@ class NewObjectStateLimitationTypeTest extends Base
         return [
             [new NewObjectStateLimitation(), 0],
             [new NewObjectStateLimitation(['limitationValues' => [0]]), 1],
-            [new NewObjectStateLimitation(['limitationValues' => [0, PHP_INT_MAX]]), 2],
+            [new NewObjectStateLimitation(['limitationValues' => [0, \PHP_INT_MAX]]), 2],
         ];
     }
 

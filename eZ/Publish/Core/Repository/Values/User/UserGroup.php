@@ -138,7 +138,7 @@ class UserGroup extends APIUserGroup
                 // trigger error for this, but for BC let it pass on to normal __get lookup for now
                 @trigger_error(
                     sprintf('%s is and internal property, usage is deprecated as of 6.10. UserGroup itself exposes everything needed.', $property),
-                    E_USER_DEPRECATED
+                    \E_USER_DEPRECATED
                 );
         }
 

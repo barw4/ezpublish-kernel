@@ -41,7 +41,7 @@ class ObjectStateGroup extends APIObjectStateGroup
         if ($property === 'defaultLanguageCode') {
             @trigger_error(
                 __CLASS__ . '::$defaultLanguageCode is deprecated. Use mainLanguageCode',
-                E_USER_DEPRECATED
+                \E_USER_DEPRECATED
             );
 
             return $this->mainLanguageCode;
@@ -55,7 +55,7 @@ class ObjectStateGroup extends APIObjectStateGroup
         if ($property === 'defaultLanguageCode') {
             @trigger_error(
                 __CLASS__ . '::$defaultLanguageCode is deprecated. Use mainLanguageCode',
-                E_USER_DEPRECATED
+                \E_USER_DEPRECATED
             );
 
             return true;

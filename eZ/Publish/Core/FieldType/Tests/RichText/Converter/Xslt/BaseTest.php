@@ -139,7 +139,7 @@ abstract class BaseTest extends TestCase
         $document->preserveWhiteSpace = false;
         $document->formatOutput = false;
 
-        $document->loadXml(file_get_contents($xmlFile), LIBXML_NOENT);
+        $document->loadXml(file_get_contents($xmlFile), \LIBXML_NOENT);
 
         return $document;
     }

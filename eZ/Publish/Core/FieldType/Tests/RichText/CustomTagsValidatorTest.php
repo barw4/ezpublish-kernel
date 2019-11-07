@@ -222,7 +222,7 @@ DOCBOOK
         $document->preserveWhiteSpace = false;
         $document->formatOutput = false;
 
-        $document->loadXml($source, LIBXML_NOENT);
+        $document->loadXml($source, \LIBXML_NOENT);
 
         return $document;
     }

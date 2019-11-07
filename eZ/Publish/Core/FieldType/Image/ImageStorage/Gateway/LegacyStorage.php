@@ -41,7 +41,7 @@ class LegacyStorage extends Gateway
     {
         @trigger_error(
             sprintf('%s is deprecated, use %s instead', self::class, DoctrineStorage::class),
-            E_USER_DEPRECATED
+            \E_USER_DEPRECATED
         );
         $this->redecorator = $redecorator;
         $this->dbHandler = $dbHandler;

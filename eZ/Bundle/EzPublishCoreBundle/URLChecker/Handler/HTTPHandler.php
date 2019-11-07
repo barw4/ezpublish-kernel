@@ -32,9 +32,9 @@ class HTTPHandler extends AbstractURLHandler
         }
 
         do {
-            while (($execrun = curl_multi_exec($master, $running)) == CURLM_CALL_MULTI_PERFORM);
+            while (($execrun = curl_multi_exec($master, $running)) == \CURLM_CALL_MULTI_PERFORM);
 
-            if ($execrun != CURLM_OK) {
+            if ($execrun != \CURLM_OK) {
                 break;
             }
 
@@ -91,19 +91,19 @@ class HTTPHandler extends AbstractURLHandler
         $handler = curl_init();
 
         curl_setopt_array($handler, [
-            CURLOPT_URL => $url->url,
-            CURLOPT_RETURNTRANSFER => false,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_CONNECTTIMEOUT => $this->options['connection_timeout'],
-            CURLOPT_TIMEOUT => $this->options['timeout'],
-            CURLOPT_FAILONERROR => true,
-            CURLOPT_NOBODY => true,
+            \CURLOPT_URL => $url->url,
+            \CURLOPT_RETURNTRANSFER => false,
+            \CURLOPT_FOLLOWLOCATION => true,
+            \CURLOPT_CONNECTTIMEOUT => $this->options['connection_timeout'],
+            \CURLOPT_TIMEOUT => $this->options['timeout'],
+            \CURLOPT_FAILONERROR => true,
+            \CURLOPT_NOBODY => true,
         ]);
 
         if ($this->options['ignore_certificate']) {
             curl_setopt_array($handler, [
-                CURLOPT_SSL_VERIFYPEER => false,
-                CURLOPT_SSL_VERIFYHOST => false,
+                \CURLOPT_SSL_VERIFYPEER => false,
+                \CURLOPT_SSL_VERIFYHOST => false,
             ]);
         }
 
@@ -120,7 +120,7 @@ class HTTPHandler extends AbstractURLHandler
      */
     private function doValidate(URL $url, $handler)
     {
-        $this->setUrlStatus($url, $this->isSuccessful(curl_getinfo($handler, CURLINFO_HTTP_CODE)));
+        $this->setUrlStatus($url, $this->isSuccessful(curl_getinfo($handler, \CURLINFO_HTTP_CODE)));
     }
 
     private function isSuccessful($statusCode)

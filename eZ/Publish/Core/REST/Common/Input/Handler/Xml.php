@@ -139,7 +139,7 @@ class Xml extends Handler
         $parentTagName = $node instanceof \DOMElement ? $node->tagName : false;
         foreach ($node->childNodes as $childNode) {
             switch ($childNode->nodeType) {
-                case XML_ELEMENT_NODE:
+                case \XML_ELEMENT_NODE:
                     $tagName = $childNode->tagName;
 
                     if (in_array($tagName, $this->fieldTypeHashElements)) {
@@ -166,11 +166,11 @@ class Xml extends Handler
 
                     break;
 
-                case XML_TEXT_NODE:
+                case \XML_TEXT_NODE:
                     $text .= $childNode->wholeText;
                     break;
 
-                case XML_CDATA_SECTION_NODE:
+                case \XML_CDATA_SECTION_NODE:
                     $text .= $childNode->data;
                     break;
             }
@@ -220,7 +220,7 @@ class Xml extends Handler
 
         foreach ($valueNodes as $valueNode) {
             switch ($valueNode->nodeType) {
-                case XML_ELEMENT_NODE:
+                case \XML_ELEMENT_NODE:
                     if ($valueNode->tagName !== 'value') {
                         throw new \RuntimeException(
                             sprintf(
@@ -238,11 +238,11 @@ class Xml extends Handler
                     }
                     break;
 
-                case XML_TEXT_NODE:
+                case \XML_TEXT_NODE:
                     $resultString .= $valueNode->wholeText;
                     break;
 
-                case XML_CDATA_SECTION_NODE:
+                case \XML_CDATA_SECTION_NODE:
                     $resultString .= $valueNode->data;
                     break;
             }

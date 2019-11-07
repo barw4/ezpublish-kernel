@@ -2144,7 +2144,7 @@ XML
             $draftedVersions[1]->status,
             $draftedVersions[1]->getContentInfo()->remoteId,
         ];
-        sort($actual, SORT_STRING);
+        sort($actual, \SORT_STRING);
 
         $this->assertEquals(
             [

@@ -868,7 +868,7 @@ class Handler implements BaseContentHandler
     {
         @trigger_error(
             __METHOD__ . ' is deprecated, use deleteTranslationFromContent instead',
-            E_USER_DEPRECATED
+            \E_USER_DEPRECATED
         );
         $this->deleteTranslationFromContent($contentId, $languageCode);
     }
@@ -909,7 +909,7 @@ class Handler implements BaseContentHandler
             function ($lang) use ($languageCode) {
                 return $lang !== $languageCode;
             },
-            ARRAY_FILTER_USE_KEY
+            \ARRAY_FILTER_USE_KEY
         );
         // set new Content name
         foreach ($names as $language => $name) {

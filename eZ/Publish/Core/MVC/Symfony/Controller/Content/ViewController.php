@@ -140,7 +140,7 @@ class ViewController extends Controller
         @trigger_error(
             "ViewController::viewLocation() is deprecated since kernel 6.0.0, and will be removed in the future.\n" .
             'Use ViewController::viewAction() instead.',
-            E_USER_DEPRECATED
+            \E_USER_DEPRECATED
         );
 
         $this->performAccessChecks();
@@ -200,7 +200,7 @@ class ViewController extends Controller
         @trigger_error(
             "ViewController::embedLocation() is deprecated since kernel 6.0.0, and will be removed in the future.\n" .
             'Use ViewController::viewAction() instead.',
-            E_USER_DEPRECATED
+            \E_USER_DEPRECATED
         );
 
         $this->performAccessChecks();
@@ -284,7 +284,7 @@ class ViewController extends Controller
         @trigger_error(
             "ViewController::viewContent() is deprecated since kernel 6.0.0, and will be removed in the future.\n" .
             'Use ViewController::viewAction() instead.',
-            E_USER_DEPRECATED
+            \E_USER_DEPRECATED
         );
 
         if ($viewType === 'embed') {
@@ -341,7 +341,7 @@ class ViewController extends Controller
         @trigger_error(
             "ViewController::embedContent() is deprecated since kernel 6.0.0, and will be removed in the future.\n" .
             'Use ViewController::viewAction() instead.',
-            E_USER_DEPRECATED
+            \E_USER_DEPRECATED
         );
 
         $this->performAccessChecks();

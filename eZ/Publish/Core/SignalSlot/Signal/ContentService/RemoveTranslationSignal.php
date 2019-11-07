@@ -14,7 +14,7 @@ namespace eZ\Publish\Core\SignalSlot\Signal\ContentService;
         RemoveTranslationSignal::class,
         DeleteTranslationSignal::class
     ),
-    E_USER_DEPRECATED
+    \E_USER_DEPRECATED
 );
 
 /**

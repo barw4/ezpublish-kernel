@@ -2071,7 +2071,7 @@ class UserServiceTest extends BaseTest
         }
         /* END: Use Case */
 
-        sort($userGroupNames, SORT_STRING);
+        sort($userGroupNames, \SORT_STRING);
 
         $this->assertEquals(
             [

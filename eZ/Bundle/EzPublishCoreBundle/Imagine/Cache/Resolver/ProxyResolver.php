@@ -26,7 +26,7 @@ class ProxyResolver extends ImagineProxyResolver
         }
 
         $proxyHost = rtrim(reset($this->hosts), '/');
-        $relativeUrl = parse_url($url, PHP_URL_PATH);
+        $relativeUrl = parse_url($url, \PHP_URL_PATH);
 
         return $proxyHost . $relativeUrl;
     }

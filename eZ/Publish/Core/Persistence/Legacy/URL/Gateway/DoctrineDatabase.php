@@ -76,7 +76,7 @@ class DoctrineDatabase extends Gateway
 
         $query = $this->createSelectQuery();
         $query->where($this->criteriaConverter->convertCriteria($query, $criterion));
-        $query->limit($limit > 0 ? $limit : PHP_INT_MAX, $offset);
+        $query->limit($limit > 0 ? $limit : \PHP_INT_MAX, $offset);
 
         foreach ($sortClauses as $sortClause) {
             $column = $this->handler->quoteColumn($sortClause->target, self::URL_TABLE);

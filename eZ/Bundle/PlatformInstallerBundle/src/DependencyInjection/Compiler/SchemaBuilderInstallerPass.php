@@ -46,7 +46,7 @@ class SchemaBuilderInstallerPass implements CompilerPassInterface
                     'is deprecated since v2.5 LTS and will cause a fatal error in eZ Platform v3.0',
                     'https://github.com/ezsystems/doctrine-dbal-schema'
                 ),
-                E_USER_DEPRECATED
+                \E_USER_DEPRECATED
             );
         } elseif ($container->hasDefinition(self::CLEAN_INSTALLER_DEF_ID)) {
             // remove the actual definition first for alias to work properly
@@ -96,7 +96,7 @@ class SchemaBuilderInstallerPass implements CompilerPassInterface
                     $parent,
                     $oldNewNameMap[$parent]
                 ),
-                E_USER_DEPRECATED
+                \E_USER_DEPRECATED
             );
         }
     }
