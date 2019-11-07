@@ -274,7 +274,7 @@ class Embed extends Render implements Converter
             /** @var \DOMElement|\DOMText $node */
             foreach ($parentNode->childNodes as $node) {
                 if (!($node->nodeType === XML_TEXT_NODE && $node->isWhitespaceInElementContent())) {
-                    $childCount += 1;
+                    ++$childCount;
                 }
             }
 

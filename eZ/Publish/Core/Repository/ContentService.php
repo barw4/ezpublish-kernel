@@ -907,7 +907,7 @@ class ContentService implements ContentServiceInterface
         $propertyCount = 0;
         foreach ($contentMetadataUpdateStruct as $propertyName => $propertyValue) {
             if (isset($contentMetadataUpdateStruct->$propertyName)) {
-                $propertyCount += 1;
+                ++$propertyCount;
             }
         }
         if ($propertyCount === 0) {

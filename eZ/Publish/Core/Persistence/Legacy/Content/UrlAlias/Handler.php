@@ -219,7 +219,7 @@ class Handler implements UrlAliasHandlerInterface
                         if ($e instanceof UniqueConstraintViolationException) {
                             // Concurrency! someone else inserted the same row that we where going to.
                             // let's do another loop pass
-                            $uniqueCounter += 1;
+                            ++$uniqueCounter;
                             continue 2;
                         }
                     }
@@ -279,7 +279,7 @@ class Handler implements UrlAliasHandlerInterface
             }
 
             // If existing row is not reusable, increment $uniqueCounter and try again
-            $uniqueCounter += 1;
+            ++$uniqueCounter;
         }
 
         /* @var $newText */
