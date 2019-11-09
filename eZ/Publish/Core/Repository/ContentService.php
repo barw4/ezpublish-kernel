@@ -1,11 +1,11 @@
 <?php
 
 /**
- * File containing the eZ\Publish\Core\Repository\ContentService class.
- *
  * @copyright Copyright (C) eZ Systems AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+declare(strict_types=1);
+
 namespace eZ\Publish\Core\Repository;
 
 use eZ\Publish\API\Repository\ContentService as ContentServiceInterface;
@@ -50,12 +50,11 @@ use eZ\Publish\SPI\Persistence\Content\CreateStruct as SPIContentCreateStruct;
 use eZ\Publish\SPI\Persistence\Content\UpdateStruct as SPIContentUpdateStruct;
 use eZ\Publish\SPI\Persistence\Content\Field as SPIField;
 use eZ\Publish\SPI\Persistence\Content\Relation\CreateStruct as SPIRelationCreateStruct;
+use eZ\Publish\SPI\Persistence\Content\ContentInfo as SPIContentInfo;
 use Exception;
 
 /**
  * This class provides service methods for managing content.
- *
- * @example Examples/content.php
  */
 class ContentService implements ContentServiceInterface
 {
@@ -119,9 +118,9 @@ class ContentService implements ContentServiceInterface
      *
      * @return \eZ\Publish\API\Repository\Values\Content\ContentInfo
      */
-    public function loadContentInfo($contentId)
+    public function loadContentInfo(int $contentId): ContentInfo
     {
-        $contentInfo = $this->internalLoadContentInfo($contentId);
+        $contentInfo = $this->internalLoadContentInfoById($contentId);
         if (!$this->permissionResolver->canUser('content', 'read', $contentInfo)) {
             throw new UnauthorizedException('content', 'read', ['contentId' => $contentId]);
         }
@@ -149,29 +148,40 @@ class ContentService implements ContentServiceInterface
     /**
      * Loads a content info object.
      *
-     * To load fields use loadContent
-     *
      * @throws \eZ\Publish\API\Repository\Exceptions\NotFoundException - if the content with the given id does not exist
      *
-     * @param mixed $id
-     * @param bool $isRemoteId
+     * @param int $id
      *
      * @return \eZ\Publish\API\Repository\Values\Content\ContentInfo
      */
-    public function internalLoadContentInfo($id, $isRemoteId = false)
+    public function internalLoadContentInfoById(int $id): ContentInfo
     {
         try {
-            $method = $isRemoteId ? 'loadContentInfoByRemoteId' : 'loadContentInfo';
-
             return $this->domainMapper->buildContentInfoDomainObject(
-                $this->persistenceHandler->contentHandler()->$method($id)
+                $this->persistenceHandler->contentHandler()->loadContentInfo($id)
             );
         } catch (APINotFoundException $e) {
-            throw new NotFoundException(
-                'Content',
-                $id,
-                $e
+            throw new NotFoundException('Content', $id, $e);
+        }
+    }
+
+    /**
+     * Loads a content info object by remote id.
+     *
+     * @throws \eZ\Publish\API\Repository\Exceptions\NotFoundException - if the content with the given id does not exist
+     *
+     * @param string $remoteId
+     *
+     * @return \eZ\Publish\API\Repository\Values\Content\ContentInfo
+     */
+    public function internalLoadContentInfoByRemoteId(string $remoteId): ContentInfo
+    {
+        try {
+            return $this->domainMapper->buildContentInfoDomainObject(
+                $this->persistenceHandler->contentHandler()->loadContentInfoByRemoteId($remoteId)
             );
+        } catch (APINotFoundException $e) {
+            throw new NotFoundException('Content', $remoteId, $e);
         }
     }
 
@@ -187,9 +197,9 @@ class ContentService implements ContentServiceInterface
      *
      * @return \eZ\Publish\API\Repository\Values\Content\ContentInfo
      */
-    public function loadContentInfoByRemoteId($remoteId)
+    public function loadContentInfoByRemoteId(string $remoteId): ContentInfo
     {
-        $contentInfo = $this->internalLoadContentInfo($remoteId, true);
+        $contentInfo = $this->internalLoadContentInfoByRemoteId($remoteId);
 
         if (!$this->permissionResolver->canUser('content', 'read', $contentInfo)) {
             throw new UnauthorizedException('content', 'read', ['remoteId' => $remoteId]);
@@ -207,11 +217,11 @@ class ContentService implements ContentServiceInterface
      * @throws \eZ\Publish\API\Repository\Exceptions\UnauthorizedException if the user is not allowed to load this version
      *
      * @param \eZ\Publish\API\Repository\Values\Content\ContentInfo $contentInfo
-     * @param int $versionNo the version number. If not given the current version is returned.
+     * @param int|null $versionNo the version number. If not given the current version is returned.
      *
      * @return \eZ\Publish\API\Repository\Values\Content\VersionInfo
      */
-    public function loadVersionInfo(ContentInfo $contentInfo, $versionNo = null)
+    public function loadVersionInfo(ContentInfo $contentInfo, ?int $versionNo = null): APIVersionInfo
     {
         return $this->loadVersionInfoById($contentInfo->id, $versionNo);
     }
@@ -224,12 +234,12 @@ class ContentService implements ContentServiceInterface
      * @throws \eZ\Publish\API\Repository\Exceptions\NotFoundException - if the version with the given number does not exist
      * @throws \eZ\Publish\API\Repository\Exceptions\UnauthorizedException if the user is not allowed to load this version
      *
-     * @param mixed $contentId
-     * @param int $versionNo the version number. If not given the current version is returned.
+     * @param int $contentId
+     * @param int|null $versionNo the version number. If not given the current version is returned.
      *
      * @return \eZ\Publish\API\Repository\Values\Content\VersionInfo
      */
-    public function loadVersionInfoById($contentId, $versionNo = null)
+    public function loadVersionInfoById(int $contentId, ?int $versionNo = null): APIVersionInfo
     {
         try {
             $spiVersionInfo = $this->persistenceHandler->contentHandler()->loadVersionInfo(
@@ -265,7 +275,7 @@ class ContentService implements ContentServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function loadContentByContentInfo(ContentInfo $contentInfo, array $languages = null, $versionNo = null, $useAlwaysAvailable = true)
+    public function loadContentByContentInfo(ContentInfo $contentInfo, array $languages = null, ?int $versionNo = null, bool $useAlwaysAvailable = true): APIContent
     {
         // Change $useAlwaysAvailable to false to avoid contentInfo lookup if we know alwaysAvailable is disabled
         if ($useAlwaysAvailable && !$contentInfo->alwaysAvailable) {
@@ -283,7 +293,7 @@ class ContentService implements ContentServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function loadContentByVersionInfo(APIVersionInfo $versionInfo, array $languages = null, $useAlwaysAvailable = true)
+    public function loadContentByVersionInfo(APIVersionInfo $versionInfo, array $languages = null, bool $useAlwaysAvailable = true): APIContent
     {
         // Change $useAlwaysAvailable to false to avoid contentInfo lookup if we know alwaysAvailable is disabled
         if ($useAlwaysAvailable && !$versionInfo->getContentInfo()->alwaysAvailable) {
@@ -301,9 +311,9 @@ class ContentService implements ContentServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function loadContent($contentId, array $languages = null, $versionNo = null, $useAlwaysAvailable = true)
+    public function loadContent(int $contentId, array $languages = null, ?int $versionNo = null, bool $useAlwaysAvailable = true): APIContent
     {
-        $content = $this->internalLoadContent($contentId, $languages, $versionNo, false, $useAlwaysAvailable);
+        $content = $this->internalLoadContentById($contentId, $languages, $versionNo, $useAlwaysAvailable);
 
         if (!$this->permissionResolver->canUser('content', 'read', $content)) {
             throw new UnauthorizedException('content', 'read', ['contentId' => $contentId]);
@@ -318,65 +328,78 @@ class ContentService implements ContentServiceInterface
         return $content;
     }
 
-    /**
-     * Loads content in a version of the given content object.
-     *
-     * If no version number is given, the method returns the current version
-     *
-     * @internal
-     * @throws \eZ\Publish\API\Repository\Exceptions\NotFoundException if the content or version with the given id and languages does not exist
-     *
-     * @param mixed $id
-     * @param array|null $languages A language priority, filters returned fields and is used as prioritized language code on
-     *                         returned value object. If not given all languages are returned.
-     * @param int|null $versionNo the version number. If not given the current version is returned
-     * @param bool $isRemoteId
-     * @param bool $useAlwaysAvailable Add Main language to \$languages if true (default) and if alwaysAvailable is true
-     *
-     * @return \eZ\Publish\API\Repository\Values\Content\Content
-     */
-    public function internalLoadContent($id, array $languages = null, $versionNo = null, $isRemoteId = false, $useAlwaysAvailable = true)
-    {
+    public function internalLoadContentById(
+        int $id,
+        ?array $languages = null,
+        int $versionNo = null,
+        bool $useAlwaysAvailable = true
+    ): APIContent {
         try {
-            // Get Content ID if lookup by remote ID
-            if ($isRemoteId) {
-                $spiContentInfo = $this->persistenceHandler->contentHandler()->loadContentInfoByRemoteId($id);
-                $id = $spiContentInfo->id;
-                // Set $isRemoteId to false as the next loads will be for content id now that we have it (for exception use now)
-                $isRemoteId = false;
-            }
+            $spiContentInfo = $this->persistenceHandler->contentHandler()->loadContentInfo($id);
 
-            $loadLanguages = $languages;
-            $alwaysAvailableLanguageCode = null;
-            // Set main language on $languages filter if not empty (all) and $useAlwaysAvailable being true
-            // @todo Move use always available logic to SPI load methods, like done in location handler in 7.x
-            if (!empty($loadLanguages) && $useAlwaysAvailable) {
-                if (!isset($spiContentInfo)) {
-                    $spiContentInfo = $this->persistenceHandler->contentHandler()->loadContentInfo($id);
-                }
-
-                if ($spiContentInfo->alwaysAvailable) {
-                    $loadLanguages[] = $alwaysAvailableLanguageCode = $spiContentInfo->mainLanguageCode;
-                    $loadLanguages = array_unique($loadLanguages);
-                }
-            }
-
-            $spiContent = $this->persistenceHandler->contentHandler()->load(
-                $id,
+            return $this->internalLoadContentBySPIContentInfo(
+                $spiContentInfo,
+                $languages,
                 $versionNo,
-                $loadLanguages
+                $useAlwaysAvailable
             );
         } catch (APINotFoundException $e) {
             throw new NotFoundException(
                 'Content',
                 [
-                    $isRemoteId ? 'remoteId' : 'id' => $id,
+                    'id' => $id,
                     'languages' => $languages,
                     'versionNo' => $versionNo,
                 ],
                 $e
             );
         }
+    }
+
+    public function internalLoadContentByRemoteId(
+        string $remoteId,
+        array $languages = null,
+        int $versionNo = null,
+        bool $useAlwaysAvailable = true
+    ): APIContent {
+        try {
+            $spiContentInfo = $this->persistenceHandler->contentHandler()->loadContentInfoByRemoteId($remoteId);
+
+            return $this->internalLoadContentBySPIContentInfo(
+                $spiContentInfo,
+                $languages,
+                $versionNo,
+                $useAlwaysAvailable
+            );
+        } catch (APINotFoundException $e) {
+            throw new NotFoundException(
+                'Content',
+                [
+                    'remoteId' => $remoteId,
+                    'languages' => $languages,
+                    'versionNo' => $versionNo,
+                ],
+                $e
+            );
+        }
+    }
+
+    private function internalLoadContentBySPIContentInfo(SPIContentInfo $spiContentInfo, array $languages = null, int $versionNo = null, bool $useAlwaysAvailable = true): APIContent
+    {
+        $loadLanguages = $languages;
+        $alwaysAvailableLanguageCode = null;
+        // Set main language on $languages filter if not empty (all) and $useAlwaysAvailable being true
+        // @todo Move use always available logic to SPI load methods, like done in location handler in 7.x
+        if (!empty($loadLanguages) && $useAlwaysAvailable && $spiContentInfo->alwaysAvailable) {
+            $loadLanguages[] = $alwaysAvailableLanguageCode = $spiContentInfo->mainLanguageCode;
+            $loadLanguages = array_unique($loadLanguages);
+        }
+
+        $spiContent = $this->persistenceHandler->contentHandler()->load(
+            $spiContentInfo->id,
+            $versionNo,
+            $loadLanguages
+        );
 
         if ($languages === null) {
             $languages = [];
@@ -408,9 +431,9 @@ class ContentService implements ContentServiceInterface
      *
      * @return \eZ\Publish\API\Repository\Values\Content\Content
      */
-    public function loadContentByRemoteId($remoteId, array $languages = null, $versionNo = null, $useAlwaysAvailable = true)
+    public function loadContentByRemoteId(string $remoteId, array $languages = null, ?int $versionNo = null, bool $useAlwaysAvailable = true): APIContent
     {
-        $content = $this->internalLoadContent($remoteId, $languages, $versionNo, true, $useAlwaysAvailable);
+        $content = $this->internalLoadContentByRemoteId($remoteId, $languages, $versionNo, $useAlwaysAvailable);
 
         if (!$this->permissionResolver->canUser('content', 'read', $content)) {
             throw new UnauthorizedException('content', 'read', ['remoteId' => $remoteId]);
@@ -444,8 +467,8 @@ class ContentService implements ContentServiceInterface
     public function loadContentListByContentInfo(
         array $contentInfoList,
         array $languages = [],
-        $useAlwaysAvailable = true
-    ) {
+        bool $useAlwaysAvailable = true
+    ): iterable {
         $loadAllLanguages = $languages === Language::ALL;
         $contentIds = [];
         $contentTypeIds = [];
@@ -508,7 +531,7 @@ class ContentService implements ContentServiceInterface
      *
      * @return \eZ\Publish\API\Repository\Values\Content\Content - the newly created content draft
      */
-    public function createContent(APIContentCreateStruct $contentCreateStruct, array $locationCreateStructs = [])
+    public function createContent(APIContentCreateStruct $contentCreateStruct, array $locationCreateStructs = []): APIContent
     {
         if ($contentCreateStruct->mainLanguageCode === null) {
             throw new InvalidArgumentException('$contentCreateStruct', "'mainLanguageCode' property must be set");
@@ -716,7 +739,7 @@ class ContentService implements ContentServiceInterface
      *
      * @return \eZ\Publish\SPI\Persistence\Content\ObjectState[]
      */
-    protected function getDefaultObjectStates()
+    protected function getDefaultObjectStates(): array
     {
         $defaultObjectStatesMap = [];
         $objectStateHandler = $this->persistenceHandler->objectStateHandler();
@@ -741,7 +764,7 @@ class ContentService implements ContentServiceInterface
      *
      * @return string[]
      */
-    protected function getLanguageCodesForCreate(APIContentCreateStruct $contentCreateStruct)
+    protected function getLanguageCodesForCreate(APIContentCreateStruct $contentCreateStruct): array
     {
         $languageCodes = [];
 
@@ -777,7 +800,7 @@ class ContentService implements ContentServiceInterface
      *
      * @return array
      */
-    protected function mapFieldsForCreate(APIContentCreateStruct $contentCreateStruct)
+    protected function mapFieldsForCreate(APIContentCreateStruct $contentCreateStruct): array
     {
         $fields = [];
 
@@ -819,7 +842,7 @@ class ContentService implements ContentServiceInterface
      *
      * @return Field
      */
-    private function cloneField(Field $field, array $overrides = [])
+    private function cloneField(Field $field, array $overrides = []): Field
     {
         $fieldData = array_merge(
             [
@@ -842,7 +865,7 @@ class ContentService implements ContentServiceInterface
      *
      * @return \eZ\Publish\SPI\Persistence\Content\Location\CreateStruct[]
      */
-    protected function buildSPILocationCreateStructs(array $locationCreateStructs)
+    protected function buildSPILocationCreateStructs(array $locationCreateStructs): array
     {
         $spiLocationCreateStructs = [];
         $parentLocationIdSet = [];
@@ -898,7 +921,7 @@ class ContentService implements ContentServiceInterface
      *
      * @return \eZ\Publish\API\Repository\Values\Content\Content the content with the updated attributes
      */
-    public function updateContentMetadata(ContentInfo $contentInfo, ContentMetadataUpdateStruct $contentMetadataUpdateStruct)
+    public function updateContentMetadata(ContentInfo $contentInfo, ContentMetadataUpdateStruct $contentMetadataUpdateStruct): APIContent
     {
         $propertyCount = 0;
         foreach ($contentMetadataUpdateStruct as $propertyName => $propertyValue) {
@@ -993,7 +1016,7 @@ class ContentService implements ContentServiceInterface
      * @param bool $updatePathIdentificationString this parameter is legacy storage specific for updating
      *                      ezcontentobject_tree.path_identification_string, it is ignored by other storage engines
      */
-    protected function publishUrlAliasesForContent(APIContent $content, $updatePathIdentificationString = true)
+    protected function publishUrlAliasesForContent(APIContent $content, bool $updatePathIdentificationString = true): void
     {
         $urlAliasNames = $this->nameSchemaService->resolveUrlAliasSchema($content);
         $locations = $this->repository->getLocationService()->loadLocations(
@@ -1029,9 +1052,9 @@ class ContentService implements ContentServiceInterface
      *
      * @return mixed[] Affected Location Id's
      */
-    public function deleteContent(ContentInfo $contentInfo)
+    public function deleteContent(ContentInfo $contentInfo): iterable
     {
-        $contentInfo = $this->internalLoadContentInfo($contentInfo->id);
+        $contentInfo = $this->internalLoadContentInfoById($contentInfo->id);
 
         if (!$this->permissionResolver->canUser('content', 'remove', $contentInfo)) {
             throw new UnauthorizedException('content', 'remove', ['contentId' => $contentInfo->id]);
@@ -1063,8 +1086,8 @@ class ContentService implements ContentServiceInterface
      * If no version is given, the current published version is used.
      *
      * @param \eZ\Publish\API\Repository\Values\Content\ContentInfo $contentInfo
-     * @param \eZ\Publish\API\Repository\Values\Content\VersionInfo $versionInfo
-     * @param \eZ\Publish\API\Repository\Values\User\User $creator if set given user is used to create the draft - otherwise the current-user is used
+     * @param \eZ\Publish\API\Repository\Values\Content\VersionInfo|null $versionInfo
+     * @param \eZ\Publish\API\Repository\Values\User\User|null $creator if set given user is used to create the draft - otherwise the current-user is used
      * @param \eZ\Publish\API\Repository\Values\Content\Language|null if not set the draft is created with the initialLanguage code of the source version or if not present with the main language.
      *
      * @return \eZ\Publish\API\Repository\Values\Content\Content - the newly created content draft
@@ -1075,10 +1098,10 @@ class ContentService implements ContentServiceInterface
      */
     public function createContentDraft(
         ContentInfo $contentInfo,
-        APIVersionInfo $versionInfo = null,
-        User $creator = null,
+        ?APIVersionInfo $versionInfo = null,
+        ?User $creator = null,
         ?Language $language = null
-    ) {
+    ): APIContent {
         $contentInfo = $this->loadContentInfo($contentInfo->id);
 
         if ($versionInfo !== null) {
@@ -1186,7 +1209,7 @@ class ContentService implements ContentServiceInterface
      * @throws \eZ\Publish\API\Repository\Exceptions\UnauthorizedException
      * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
      */
-    public function loadContentDrafts(User $user = null)
+    public function loadContentDrafts(?User $user = null): iterable
     {
         // throw early if user has absolutely no access to versionread
         if ($this->permissionResolver->hasAccess('content', 'versionread') === false) {
@@ -1262,7 +1285,7 @@ class ContentService implements ContentServiceInterface
      * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException if a property on the struct is invalid.
      * @throws \eZ\Publish\API\Repository\Exceptions\NotFoundException
      */
-    public function updateContent(APIVersionInfo $versionInfo, APIContentUpdateStruct $contentUpdateStruct)
+    public function updateContent(APIVersionInfo $versionInfo, APIContentUpdateStruct $contentUpdateStruct): APIContent
     {
         $contentUpdateStruct = clone $contentUpdateStruct;
 
@@ -1457,7 +1480,7 @@ class ContentService implements ContentServiceInterface
      *
      * @return array
      */
-    private function getUpdatedLanguageCodes(APIContentUpdateStruct $contentUpdateStruct)
+    private function getUpdatedLanguageCodes(APIContentUpdateStruct $contentUpdateStruct): array
     {
         $languageCodes = [
             $contentUpdateStruct->initialLanguageCode => true,
@@ -1484,7 +1507,7 @@ class ContentService implements ContentServiceInterface
      *
      * @return array
      */
-    protected function getLanguageCodesForUpdate(APIContentUpdateStruct $contentUpdateStruct, APIContent $content)
+    protected function getLanguageCodesForUpdate(APIContentUpdateStruct $contentUpdateStruct, APIContent $content): array
     {
         $languageCodes = array_fill_keys($content->versionInfo->languageCodes, true);
         $languageCodes[$contentUpdateStruct->initialLanguageCode] = true;
@@ -1513,8 +1536,8 @@ class ContentService implements ContentServiceInterface
     protected function mapFieldsForUpdate(
         APIContentUpdateStruct $contentUpdateStruct,
         ContentType $contentType,
-        $mainLanguageCode
-    ) {
+        string $mainLanguageCode
+    ): array {
         $fields = [];
 
         foreach ($contentUpdateStruct->fields as $field) {
@@ -1565,9 +1588,9 @@ class ContentService implements ContentServiceInterface
      * @throws \eZ\Publish\API\Repository\Exceptions\NotFoundException
      * @throws \eZ\Publish\API\Repository\Exceptions\UnauthorizedException
      */
-    public function publishVersion(APIVersionInfo $versionInfo, array $translations = Language::ALL)
+    public function publishVersion(APIVersionInfo $versionInfo, array $translations = Language::ALL): APIContent
     {
-        $content = $this->internalLoadContent(
+        $content = $this->internalLoadContentById(
             $versionInfo->contentInfo->id,
             null,
             $versionInfo->versionNo
@@ -1575,7 +1598,7 @@ class ContentService implements ContentServiceInterface
 
         $fromContent = null;
         if ($content->contentInfo->currentVersionNo !== $versionInfo->versionNo) {
-            $fromContent = $this->internalLoadContent(
+            $fromContent = $this->internalLoadContentById(
                 $content->contentInfo->id,
                 null,
                 $content->contentInfo->currentVersionNo
@@ -1624,7 +1647,7 @@ class ContentService implements ContentServiceInterface
     {
         $contendId = $versionInfo->contentInfo->id;
 
-        $currentContent = $this->internalLoadContent($contendId);
+        $currentContent = $this->internalLoadContentById($contendId);
         $currentVersionInfo = $currentContent->versionInfo;
 
         // Copying occurs only if:
@@ -1659,7 +1682,7 @@ class ContentService implements ContentServiceInterface
         $updateStruct = $this->newContentUpdateStruct();
         $updateStruct->initialLanguageCode = $versionInfo->initialLanguageCode;
 
-        $contentToPublish = $this->internalLoadContent($contendId, null, $versionInfo->versionNo);
+        $contentToPublish = $this->internalLoadContentById($contendId, null, $versionInfo->versionNo);
         $fallbackUpdateStruct = $this->newContentUpdateStruct();
 
         foreach ($currentContent->getFields() as $field) {
@@ -1784,7 +1807,7 @@ class ContentService implements ContentServiceInterface
     /**
      * @return int
      */
-    protected function getUnixTimestamp()
+    protected function getUnixTimestamp(): int
     {
         return time();
     }
@@ -1798,7 +1821,7 @@ class ContentService implements ContentServiceInterface
      *
      * @param \eZ\Publish\API\Repository\Values\Content\VersionInfo $versionInfo
      */
-    public function deleteVersion(APIVersionInfo $versionInfo)
+    public function deleteVersion(APIVersionInfo $versionInfo): void
     {
         if ($versionInfo->isPublished()) {
             throw new BadStateException(
@@ -1852,7 +1875,7 @@ class ContentService implements ContentServiceInterface
      *
      * @return \eZ\Publish\API\Repository\Values\Content\VersionInfo[] Sorted by creation date
      */
-    public function loadVersions(ContentInfo $contentInfo, ?int $status = null)
+    public function loadVersions(ContentInfo $contentInfo, ?int $status = null): iterable
     {
         if (!$this->permissionResolver->canUser('content', 'versionread', $contentInfo)) {
             throw new UnauthorizedException('content', 'versionread', ['contentId' => $contentInfo->id]);
@@ -1894,7 +1917,7 @@ class ContentService implements ContentServiceInterface
      *
      * @return \eZ\Publish\API\Repository\Values\Content\Content
      */
-    public function copyContent(ContentInfo $contentInfo, LocationCreateStruct $destinationLocationCreateStruct, APIVersionInfo $versionInfo = null)
+    public function copyContent(ContentInfo $contentInfo, LocationCreateStruct $destinationLocationCreateStruct, ?APIVersionInfo $versionInfo = null): APIContent
     {
         $destinationLocation = $this->repository->getLocationService()->loadLocation(
             $destinationLocationCreateStruct->parentLocationId
@@ -1947,7 +1970,7 @@ class ContentService implements ContentServiceInterface
             throw $e;
         }
 
-        return $this->internalLoadContent($content->id);
+        return $this->internalLoadContentById($content->id);
     }
 
     /**
@@ -1959,7 +1982,7 @@ class ContentService implements ContentServiceInterface
      *
      * @return \eZ\Publish\API\Repository\Values\Content\Relation[]
      */
-    public function loadRelations(APIVersionInfo $versionInfo)
+    public function loadRelations(APIVersionInfo $versionInfo): iterable
     {
         if ($versionInfo->isPublished()) {
             $function = 'read';
@@ -1980,7 +2003,7 @@ class ContentService implements ContentServiceInterface
         /** @var $relations \eZ\Publish\API\Repository\Values\Content\Relation[] */
         $relations = [];
         foreach ($spiRelations as $spiRelation) {
-            $destinationContentInfo = $this->internalLoadContentInfo($spiRelation->destinationContentId);
+            $destinationContentInfo = $this->internalLoadContentInfoById($spiRelation->destinationContentId);
             if (!$this->permissionResolver->canUser('content', 'read', $destinationContentInfo)) {
                 continue;
             }
@@ -2020,7 +2043,7 @@ class ContentService implements ContentServiceInterface
      *
      * @return \eZ\Publish\API\Repository\Values\Content\Relation[]
      */
-    public function loadReverseRelations(ContentInfo $contentInfo)
+    public function loadReverseRelations(ContentInfo $contentInfo): iterable
     {
         if (!$this->permissionResolver->canUser('content', 'reverserelatedlist', $contentInfo)) {
             throw new UnauthorizedException('content', 'reverserelatedlist', ['contentId' => $contentInfo->id]);
@@ -2032,7 +2055,7 @@ class ContentService implements ContentServiceInterface
 
         $returnArray = [];
         foreach ($spiRelations as $spiRelation) {
-            $sourceContentInfo = $this->internalLoadContentInfo($spiRelation->sourceContentId);
+            $sourceContentInfo = $this->internalLoadContentInfoById($spiRelation->sourceContentId);
             if (!$this->permissionResolver->canUser('content', 'read', $sourceContentInfo)) {
                 continue;
             }
@@ -2067,7 +2090,7 @@ class ContentService implements ContentServiceInterface
                 $limit
             );
             foreach ($spiRelationList as $spiRelation) {
-                $sourceContentInfo = $this->internalLoadContentInfo($spiRelation->sourceContentId);
+                $sourceContentInfo = $this->internalLoadContentInfoById($spiRelation->sourceContentId);
                 if ($this->repository->getPermissionResolver()->canUser('content', 'read', $sourceContentInfo)) {
                     $relation = $this->domainMapper->buildRelationDomainObject(
                         $spiRelation,
@@ -2102,7 +2125,7 @@ class ContentService implements ContentServiceInterface
      *
      * @return \eZ\Publish\API\Repository\Values\Content\Relation the newly created relation
      */
-    public function addRelation(APIVersionInfo $sourceVersion, ContentInfo $destinationContent)
+    public function addRelation(APIVersionInfo $sourceVersion, ContentInfo $destinationContent): APIRelation
     {
         $sourceVersion = $this->loadVersionInfoById(
             $sourceVersion->contentInfo->id,
@@ -2154,7 +2177,7 @@ class ContentService implements ContentServiceInterface
      * @param \eZ\Publish\API\Repository\Values\Content\VersionInfo $sourceVersion
      * @param \eZ\Publish\API\Repository\Values\Content\ContentInfo $destinationContent
      */
-    public function deleteRelation(APIVersionInfo $sourceVersion, ContentInfo $destinationContent)
+    public function deleteRelation(APIVersionInfo $sourceVersion, ContentInfo $destinationContent): void
     {
         $sourceVersion = $this->loadVersionInfoById(
             $sourceVersion->contentInfo->id,
@@ -2208,7 +2231,7 @@ class ContentService implements ContentServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function removeTranslation(ContentInfo $contentInfo, $languageCode)
+    public function removeTranslation(ContentInfo $contentInfo, string $languageCode): void
     {
         @trigger_error(
             __METHOD__ . ' is deprecated, use deleteTranslation instead',
@@ -2234,7 +2257,7 @@ class ContentService implements ContentServiceInterface
      *
      * @since 6.13
      */
-    public function deleteTranslation(ContentInfo $contentInfo, $languageCode)
+    public function deleteTranslation(ContentInfo $contentInfo, string $languageCode): void
     {
         if ($contentInfo->mainLanguageCode === $languageCode) {
             throw new BadStateException(
@@ -2330,7 +2353,7 @@ class ContentService implements ContentServiceInterface
      *
      * @since 6.12
      */
-    public function deleteTranslationFromDraft(APIVersionInfo $versionInfo, $languageCode)
+    public function deleteTranslationFromDraft(APIVersionInfo $versionInfo, string $languageCode): APIContent
     {
         if (!$versionInfo->isDraft()) {
             throw new BadStateException(
@@ -2477,7 +2500,7 @@ class ContentService implements ContentServiceInterface
      *
      * @return \eZ\Publish\API\Repository\Values\Content\ContentCreateStruct
      */
-    public function newContentCreateStruct(ContentType $contentType, $mainLanguageCode)
+    public function newContentCreateStruct(ContentType $contentType, string $mainLanguageCode): APIContentCreateStruct
     {
         return new ContentCreateStruct(
             [
@@ -2493,7 +2516,7 @@ class ContentService implements ContentServiceInterface
      *
      * @return \eZ\Publish\API\Repository\Values\Content\ContentMetadataUpdateStruct
      */
-    public function newContentMetadataUpdateStruct()
+    public function newContentMetadataUpdateStruct(): ContentMetadataUpdateStruct
     {
         return new ContentMetadataUpdateStruct();
     }
@@ -2503,7 +2526,7 @@ class ContentService implements ContentServiceInterface
      *
      * @return \eZ\Publish\API\Repository\Values\Content\ContentUpdateStruct
      */
-    public function newContentUpdateStruct()
+    public function newContentUpdateStruct(): APIContentUpdateStruct
     {
         return new ContentUpdateStruct();
     }

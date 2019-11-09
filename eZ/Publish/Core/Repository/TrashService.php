@@ -102,7 +102,7 @@ class TrashService implements TrashServiceInterface
         $spiTrashItem = $this->persistenceHandler->trashHandler()->loadTrashItem($trashItemId);
         $trash = $this->buildDomainTrashItemObject(
             $spiTrashItem,
-            $this->repository->getContentService()->internalLoadContent($spiTrashItem->contentId)
+            $this->repository->getContentService()->internalLoadContentById($spiTrashItem->contentId)
         );
         if (!$this->permissionResolver->canUser('content', 'read', $trash->getContentInfo())) {
             throw new UnauthorizedException('content', 'read');
@@ -152,7 +152,7 @@ class TrashService implements TrashServiceInterface
             return isset($spiTrashItem)
                 ? $this->buildDomainTrashItemObject(
                     $spiTrashItem,
-                    $this->repository->getContentService()->internalLoadContent($spiTrashItem->contentId)
+                    $this->repository->getContentService()->internalLoadContentById($spiTrashItem->contentId)
                 )
                 : null;
         } catch (Exception $e) {

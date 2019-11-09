@@ -630,11 +630,12 @@ class SearchTest extends BaseServiceMockTest
             ->will($this->returnValue(true));
 
         $languageFilter = [];
-        $spiContentInfo = new SPIContentInfo();
+        $spiContentInfo = new SPIContentInfo(['id' => 123]);
         $contentMock = $this->getMockForAbstractClass(Content::class);
 
         /* @var \PHPUnit\Framework\MockObject\MockObject $searchHandlerMock */
-        $searchHandlerMock->expects($this->once())
+        $searchHandlerMock
+            ->expects($this->once())
             ->method('findSingle')
             ->with($this->equalTo($criterionMock), $this->equalTo($languageFilter))
             ->will($this->returnValue($spiContentInfo));
@@ -644,7 +645,7 @@ class SearchTest extends BaseServiceMockTest
 
         $contentServiceMock
             ->expects($this->once())
-            ->method('internalLoadContent')
+            ->method('internalLoadContentById')
             ->will($this->returnValue($contentMock));
 
         $result = $service->findSingle($criterionMock, $languageFilter, true);

@@ -186,7 +186,7 @@ class DoctrineDatabase extends Gateway
 
         $q->prepare()->execute();
 
-        return $this->dbHandler->lastInsertId(
+        return (int)$this->dbHandler->lastInsertId(
             $this->dbHandler->getSequenceName('ezcontentobject', 'id')
         );
     }
@@ -275,7 +275,7 @@ class DoctrineDatabase extends Gateway
 
         $q->prepare()->execute();
 
-        return $this->dbHandler->lastInsertId(
+        return (int)$this->dbHandler->lastInsertId(
             $this->dbHandler->getSequenceName('ezcontentobject_version', 'id')
         );
     }
@@ -689,7 +689,7 @@ HEREDOC;
 
         $q->prepare()->execute();
 
-        return $this->dbHandler->lastInsertId(
+        return (int)$this->dbHandler->lastInsertId(
             $this->dbHandler->getSequenceName('ezcontentobject_attribute', 'id')
         );
     }
@@ -2113,7 +2113,7 @@ HEREDOC;
 
         $q->prepare()->execute();
 
-        return $this->dbHandler->lastInsertId(
+        return (int)$this->dbHandler->lastInsertId(
             $this->dbHandler->getSequenceName('ezcontentobject_link', 'id')
         );
     }
