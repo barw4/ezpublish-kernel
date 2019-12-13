@@ -29,7 +29,7 @@ class IOTest extends AbstractParserTestCase
         $this->container->setParameter('ezsettings.default.storage_dir', 'storage');
         $this->container->setParameter('ezsettings.ezdemo_site.var_dir', 'var/ezdemo_site');
 
-        $this->container->set('ezpublish.config.resolver.chain', $this->getChainConfigResolver());
+        $this->container->set(ChainConfigResolver::class, $this->getChainConfigResolver());
     }
 
     protected function getContainerExtensions(): array
