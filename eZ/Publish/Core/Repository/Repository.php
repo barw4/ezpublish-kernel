@@ -228,19 +228,6 @@ class Repository implements RepositoryInterface
     /** @var \eZ\Publish\SPI\Repository\Strategy\ContentThumbnail\ThumbnailStrategy */
     private $thumbnailStrategy;
 
-    /**
-     * Construct repository object with provided storage engine.
-     *
-     * @param \eZ\Publish\SPI\Persistence\Handler $persistenceHandler
-     * @param \eZ\Publish\SPI\Search\Handler $searchHandler
-     * @param \eZ\Publish\Core\Search\Common\BackgroundIndexer $backgroundIndexer
-     * @param \eZ\Publish\Core\Repository\Helper\RelationProcessor $relationProcessor
-     * @param \eZ\Publish\Core\FieldType\FieldTypeRegistry $fieldTypeRegistry
-     * @param \eZ\Publish\Core\Repository\User\PasswordHashServiceInterface $passwordHashGenerator
-     * @param \eZ\Publish\SPI\Repository\Strategy\ContentThumbnail\ThumbnailStrategy $thumbnailStrategy
-     * @param array $serviceSettings
-     * @param \Psr\Log\LoggerInterface|null $logger
-     */
     public function __construct(
         PersistenceHandler $persistenceHandler,
         SearchHandler $searchHandler,
