@@ -56,6 +56,7 @@ class RepositoryFactory implements ContainerAwareInterface
         FieldTypeRegistry $fieldTypeRegistry,
         PasswordHashServiceInterface $passwordHashService,
         ThumbnailStrategy $thumbnailStrategy,
+        Mapper\ContentDomainMapper $contentDomainMapper,
         Mapper\ContentTypeDomainMapper $contentTypeDomainMapper,
         LimitationService $limitationService
     ): Repository {
@@ -67,6 +68,7 @@ class RepositoryFactory implements ContainerAwareInterface
             $fieldTypeRegistry,
             $passwordHashService,
             $thumbnailStrategy,
+            $contentDomainMapper,
             $contentTypeDomainMapper,
             $limitationService,
             [

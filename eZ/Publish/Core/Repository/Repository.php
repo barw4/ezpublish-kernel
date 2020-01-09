@@ -225,6 +225,7 @@ class Repository implements RepositoryInterface
         FieldTypeRegistry $fieldTypeRegistry,
         PasswordHashServiceInterface $passwordHashGenerator,
         ThumbnailStrategy $thumbnailStrategy,
+        Mapper\ContentDomainMapper $contentDomainMapper,
         Mapper\ContentTypeDomainMapper $contentTypeDomainMapper,
         LimitationService $limitationService,
         array $serviceSettings = [],
@@ -237,6 +238,7 @@ class Repository implements RepositoryInterface
         $this->fieldTypeRegistry = $fieldTypeRegistry;
         $this->passwordHashService = $passwordHashGenerator;
         $this->thumbnailStrategy = $thumbnailStrategy;
+        $this->contentDomainMapper = $contentDomainMapper;
         $this->contentTypeDomainMapper = $contentTypeDomainMapper;
         $this->limitationService = $limitationService;
         $this->serviceSettings = $serviceSettings + [
@@ -290,7 +292,7 @@ class Repository implements RepositoryInterface
         $this->contentService = new ContentService(
             $this,
             $this->persistenceHandler,
-            $this->getContentDomainMapper(),
+            $this->contentDomainMapper,
             $this->getRelationProcessor(),
             $this->getNameSchemaService(),
             $this->fieldTypeRegistry,
@@ -342,7 +344,7 @@ class Repository implements RepositoryInterface
             $this,
             $this->persistenceHandler->contentTypeHandler(),
             $this->persistenceHandler->userHandler(),
-            $this->getContentDomainMapper(),
+            $this->contentDomainMapper,
             $this->contentTypeDomainMapper,
             $this->fieldTypeRegistry,
             $this->getPermissionResolver(),
@@ -368,7 +370,7 @@ class Repository implements RepositoryInterface
         $this->locationService = new LocationService(
             $this,
             $this->persistenceHandler,
-            $this->getContentDomainMapper(),
+            $this->contentDomainMapper,
             $this->getNameSchemaService(),
             $this->getPermissionCriterionResolver(),
             $this->getPermissionResolver(),
@@ -624,7 +626,7 @@ class Repository implements RepositoryInterface
         $this->searchService = new SearchService(
             $this,
             $this->searchHandler,
-            $this->getContentDomainMapper(),
+            $this->contentDomainMapper,
             $this->getPermissionCriterionResolver(),
             $this->backgroundIndexer,
             $this->serviceSettings['search']
@@ -714,30 +716,6 @@ class Repository implements RepositoryInterface
     protected function getRelationProcessor()
     {
         return $this->relationProcessor;
-    }
-
-    /**
-     * Get Content Domain Mapper.
-     *
-     * @todo Move out from this & other repo instances when services becomes proper services in DIC terms using factory.
-     */
-    protected function getContentDomainMapper(): Mapper\ContentDomainMapper
-    {
-        if ($this->contentDomainMapper !== null) {
-            return $this->contentDomainMapper;
-        }
-
-        $this->contentDomainMapper = new Mapper\ContentDomainMapper(
-            $this->persistenceHandler->contentHandler(),
-            $this->persistenceHandler->locationHandler(),
-            $this->persistenceHandler->contentTypeHandler(),
-            $this->contentTypeDomainMapper,
-            $this->persistenceHandler->contentLanguageHandler(),
-            $this->fieldTypeRegistry,
-            $this->thumbnailStrategy
-        );
-
-        return $this->contentDomainMapper;
     }
 
     /**
