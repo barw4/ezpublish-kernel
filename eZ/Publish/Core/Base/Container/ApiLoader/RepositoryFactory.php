@@ -7,6 +7,7 @@
 namespace eZ\Publish\Core\Base\Container\ApiLoader;
 
 use eZ\Publish\Core\FieldType\FieldTypeRegistry;
+use eZ\Publish\Core\Repository\Permission\LimitationService;
 use eZ\Publish\Core\Repository\User\PasswordHashServiceInterface;
 use eZ\Publish\Core\Repository\Helper\RelationProcessor;
 use eZ\Publish\Core\Search\Common\BackgroundIndexer;
@@ -61,7 +62,8 @@ class RepositoryFactory implements ContainerAwareInterface
         RelationProcessor $relationProcessor,
         FieldTypeRegistry $fieldTypeRegistry,
         PasswordHashServiceInterface $passwordHashService,
-        ThumbnailStrategy $thumbnailStrategy
+        ThumbnailStrategy $thumbnailStrategy,
+        LimitationService $limitationService
     ): Repository {
         return new $this->repositoryClass(
             $persistenceHandler,
@@ -71,6 +73,7 @@ class RepositoryFactory implements ContainerAwareInterface
             $fieldTypeRegistry,
             $passwordHashService,
             $thumbnailStrategy,
+            $limitationService,
             [
                 'role' => [
                     'limitationTypes' => $this->roleLimitations,
