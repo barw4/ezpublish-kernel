@@ -63,7 +63,7 @@ class ContentProxy extends APIContent
     /**
      * Return content info, in proxy form if we have not loaded object yet.
      *
-     * For usage in among others DomainMapper->buildLocation() to make sure we can lazy load content info retrieval.
+     * For usage in among others ContentDomainMapper->buildLocation() to make sure we can lazy load content info retrieval.
      *
      * @return \eZ\Publish\API\Repository\Values\Content\ContentInfo
      */

@@ -14,7 +14,7 @@ use eZ\Publish\API\Repository\Values\Content\Search\SearchHit;
 use eZ\Publish\API\Repository\Values\Content\Search\SearchResult;
 use eZ\Publish\API\Repository\Values\Content\VersionInfo as APIVersionInfo;
 use eZ\Publish\Core\Repository\Tests\Service\Mock\Base as BaseServiceMockTest;
-use eZ\Publish\Core\Repository\Helper\DomainMapper;
+use eZ\Publish\Core\Repository\Mapper\ContentDomainMapper;
 use eZ\Publish\Core\Repository\Values\Content\Content;
 use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
 use eZ\Publish\SPI\Persistence\Content\ContentInfo;
@@ -24,12 +24,12 @@ use eZ\Publish\SPI\Persistence\Content\VersionInfo as SPIVersionInfo;
 use eZ\Publish\SPI\Persistence\Content\ContentInfo as SPIContentInfo;
 
 /**
- * Mock test case for internal DomainMapper.
+ * Mock test case for internal ContentDomainMapper.
  */
 class DomainMapperTest extends BaseServiceMockTest
 {
     /**
-     * @covers \eZ\Publish\Core\Repository\Helper\DomainMapper::buildVersionInfoDomainObject
+     * @covers \eZ\Publish\Core\Repository\Mapper\ContentDomainMapper::buildVersionInfoDomainObject
      * @dataProvider providerForBuildVersionInfo
      */
     public function testBuildVersionInfo(SPIVersionInfo $spiVersionInfo)
@@ -37,18 +37,18 @@ class DomainMapperTest extends BaseServiceMockTest
         $languageHandlerMock = $this->getLanguageHandlerMock();
         $languageHandlerMock->expects($this->never())->method('load');
 
-        $versionInfo = $this->getDomainMapper()->buildVersionInfoDomainObject($spiVersionInfo);
+        $versionInfo = $this->getContentDomainMapper()->buildVersionInfoDomainObject($spiVersionInfo);
 
         $this->assertInstanceOf(APIVersionInfo::class, $versionInfo);
     }
 
     /**
-     * @covers \eZ\Publish\Core\Repository\Helper\DomainMapper::buildLocationWithContent
+     * @covers \eZ\Publish\Core\Repository\Mapper\ContentDomainMapper::buildLocationWithContent
      */
     public function testBuildLocationWithContentForRootLocation()
     {
         $spiRootLocation = new Location(['id' => 1, 'parentId' => 1]);
-        $apiRootLocation = $this->getDomainMapper()->buildLocationWithContent($spiRootLocation, null);
+        $apiRootLocation = $this->getContentDomainMapper()->buildLocationWithContent($spiRootLocation, null);
 
         $legacyDateTime = new DateTime();
         $legacyDateTime->setTimestamp(1030968000);
@@ -89,7 +89,7 @@ class DomainMapperTest extends BaseServiceMockTest
     }
 
     /**
-     * @covers \eZ\Publish\Core\Repository\Helper\DomainMapper::buildLocationWithContent
+     * @covers \eZ\Publish\Core\Repository\Mapper\ContentDomainMapper::buildLocationWithContent
      */
     public function testBuildLocationWithContentThrowsInvalidArgumentException()
     {
@@ -98,7 +98,7 @@ class DomainMapperTest extends BaseServiceMockTest
 
         $nonRootLocation = new Location(['id' => 2, 'parentId' => 1]);
 
-        $this->getDomainMapper()->buildLocationWithContent($nonRootLocation, null);
+        $this->getContentDomainMapper()->buildLocationWithContent($nonRootLocation, null);
     }
 
     public function testBuildLocationWithContentIsAlignedWithBuildLocation()
@@ -106,8 +106,8 @@ class DomainMapperTest extends BaseServiceMockTest
         $spiRootLocation = new Location(['id' => 1, 'parentId' => 1]);
 
         $this->assertEquals(
-            $this->getDomainMapper()->buildLocationWithContent($spiRootLocation, null),
-            $this->getDomainMapper()->buildLocation($spiRootLocation)
+            $this->getContentDomainMapper()->buildLocationWithContent($spiRootLocation, null),
+            $this->getContentDomainMapper()->buildLocation($spiRootLocation)
         );
     }
 
@@ -173,7 +173,7 @@ class DomainMapperTest extends BaseServiceMockTest
     }
 
     /**
-     * @covers \eZ\Publish\Core\Repository\Helper\DomainMapper::buildLocationDomainObjectsOnSearchResult
+     * @covers \eZ\Publish\Core\Repository\Mapper\ContentDomainMapper::buildLocationDomainObjectsOnSearchResult
      * @dataProvider providerForBuildLocationDomainObjectsOnSearchResult
      *
      * @param array $locationHits
@@ -202,7 +202,7 @@ class DomainMapperTest extends BaseServiceMockTest
         }
 
         $spiResult = clone $result;
-        $missingLocations = $this->getDomainMapper()->buildLocationDomainObjectsOnSearchResult($result, $languageFilter);
+        $missingLocations = $this->getContentDomainMapper()->buildLocationDomainObjectsOnSearchResult($result, $languageFilter);
         $this->assertIsArray($missingLocations);
 
         if (!$missing) {
@@ -217,13 +217,13 @@ class DomainMapperTest extends BaseServiceMockTest
     }
 
     /**
-     * Returns DomainMapper.
+     * Returns ContentDomainMapper.
      *
-     * @return \eZ\Publish\Core\Repository\Helper\DomainMapper
+     * @return \eZ\Publish\Core\Repository\Mapper\ContentDomainMapper
      */
-    protected function getDomainMapper()
+    protected function getContentDomainMapper(): ContentDomainMapper
     {
-        return new DomainMapper(
+        return new ContentDomainMapper(
             $this->getContentHandlerMock(),
             $this->getPersistenceMockHandler('Content\\Location\\Handler'),
             $this->getTypeHandlerMock(),

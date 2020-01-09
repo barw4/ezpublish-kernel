@@ -192,12 +192,8 @@ class Repository implements RepositoryInterface
     /** @var \eZ\Publish\Core\Repository\Helper\RoleDomainMapper */
     protected $roleDomainMapper;
 
-    /**
-     * Instance of domain mapper.
-     *
-     * @var \eZ\Publish\Core\Repository\Helper\DomainMapper
-     */
-    protected $domainMapper;
+    /** @var \eZ\Publish\Core\Repository\Mapper\ContentDomainMapper */
+    protected $contentDomainMapper;
 
     /**
      * Instance of content type domain mapper.
@@ -296,7 +292,7 @@ class Repository implements RepositoryInterface
         $this->contentService = new ContentService(
             $this,
             $this->persistenceHandler,
-            $this->getDomainMapper(),
+            $this->getContentDomainMapper(),
             $this->getRelationProcessor(),
             $this->getNameSchemaService(),
             $this->fieldTypeRegistry,
@@ -348,7 +344,7 @@ class Repository implements RepositoryInterface
             $this,
             $this->persistenceHandler->contentTypeHandler(),
             $this->persistenceHandler->userHandler(),
-            $this->getDomainMapper(),
+            $this->getContentDomainMapper(),
             $this->getContentTypeDomainMapper(),
             $this->fieldTypeRegistry,
             $this->getPermissionResolver(),
@@ -374,7 +370,7 @@ class Repository implements RepositoryInterface
         $this->locationService = new LocationService(
             $this,
             $this->persistenceHandler,
-            $this->getDomainMapper(),
+            $this->getContentDomainMapper(),
             $this->getNameSchemaService(),
             $this->getPermissionCriterionResolver(),
             $this->getPermissionResolver(),
@@ -630,7 +626,7 @@ class Repository implements RepositoryInterface
         $this->searchService = new SearchService(
             $this,
             $this->searchHandler,
-            $this->getDomainMapper(),
+            $this->getContentDomainMapper(),
             $this->getPermissionCriterionResolver(),
             $this->backgroundIndexer,
             $this->serviceSettings['search']
@@ -726,16 +722,14 @@ class Repository implements RepositoryInterface
      * Get Content Domain Mapper.
      *
      * @todo Move out from this & other repo instances when services becomes proper services in DIC terms using factory.
-     *
-     * @return \eZ\Publish\Core\Repository\Helper\DomainMapper
      */
-    protected function getDomainMapper()
+    protected function getContentDomainMapper(): Mapper\ContentDomainMapper
     {
-        if ($this->domainMapper !== null) {
-            return $this->domainMapper;
+        if ($this->contentDomainMapper !== null) {
+            return $this->contentDomainMapper;
         }
 
-        $this->domainMapper = new Helper\DomainMapper(
+        $this->contentDomainMapper = new Mapper\ContentDomainMapper(
             $this->persistenceHandler->contentHandler(),
             $this->persistenceHandler->locationHandler(),
             $this->persistenceHandler->contentTypeHandler(),
@@ -745,7 +739,7 @@ class Repository implements RepositoryInterface
             $this->thumbnailStrategy
         );
 
-        return $this->domainMapper;
+        return $this->contentDomainMapper;
     }
 
     /**
