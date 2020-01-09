@@ -9,7 +9,6 @@ namespace eZ\Publish\Core\Repository\Mapper;
 use eZ\Publish\API\Repository\Values\Content\Search\SearchResult;
 use eZ\Publish\API\Repository\Values\Content\Content as APIContent;
 use eZ\Publish\Core\FieldType\FieldTypeRegistry;
-use eZ\Publish\Core\Repository\Helper\ContentTypeDomainMapper;
 use eZ\Publish\SPI\Persistence\Content\Handler as ContentHandler;
 use eZ\Publish\SPI\Persistence\Content\Location\Handler as LocationHandler;
 use eZ\Publish\SPI\Persistence\Content\Language\Handler as LanguageHandler;
@@ -57,7 +56,7 @@ class ContentDomainMapper
     /** @var \eZ\Publish\SPI\Persistence\Content\Type\Handler */
     protected $contentTypeHandler;
 
-    /** @var \eZ\Publish\Core\Repository\Helper\ContentTypeDomainMapper */
+    /** @var \eZ\Publish\Core\Repository\Mapper\ContentTypeDomainMapper */
     protected $contentTypeDomainMapper;
 
     /** @var \eZ\Publish\SPI\Persistence\Content\Language\Handler */
@@ -75,7 +74,7 @@ class ContentDomainMapper
      * @param \eZ\Publish\SPI\Persistence\Content\Handler $contentHandler
      * @param \eZ\Publish\SPI\Persistence\Content\Location\Handler $locationHandler
      * @param \eZ\Publish\SPI\Persistence\Content\Type\Handler $contentTypeHandler
-     * @param \eZ\Publish\Core\Repository\Helper\ContentTypeDomainMapper $contentTypeDomainMapper
+     * @param \eZ\Publish\Core\Repository\Mapper\ContentTypeDomainMapper $contentTypeDomainMapper
      * @param \eZ\Publish\SPI\Persistence\Content\Language\Handler $contentLanguageHandler
      * @param \eZ\Publish\Core\FieldType\FieldTypeRegistry $fieldTypeRegistry
      * @param \eZ\Publish\SPI\Repository\Strategy\ContentThumbnail\ThumbnailStrategy $thumbnailStrategy

@@ -22,7 +22,7 @@ use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\API\Repository\Repository as APIRepository;
 use eZ\Publish\Core\Repository\Values\User\User;
 use eZ\Publish\Core\Repository\FieldTypeService;
-use eZ\Publish\Core\Repository\Helper\ContentTypeDomainMapper;
+use eZ\Publish\Core\Repository\Mapper\ContentTypeDomainMapper;
 use eZ\Publish\SPI\Persistence\Handler;
 
 /**
@@ -54,7 +54,7 @@ abstract class Base extends TestCase
      */
     private $spiMockHandlers = [];
 
-    /** @var \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Repository\Helper\ContentTypeDomainMapper */
+    /** @var \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Repository\Mapper\ContentTypeDomainMapper */
     private $contentTypeDomainMapperMock;
 
     /** @var \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Repository\Permission\LimitationService */
@@ -157,7 +157,7 @@ abstract class Base extends TestCase
     }
 
     /**
-     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Repository\Helper\ContentTypeDomainMapper
+     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Repository\Mapper\ContentTypeDomainMapper
      */
     protected function getContentTypeDomainMapperMock()
     {
