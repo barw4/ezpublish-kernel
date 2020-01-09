@@ -144,6 +144,13 @@ services:
         calls:
             - ['setLogger', ['@?logger']]
 
+    # Mappers
+    eZ\Publish\Core\Repository\Mapper\ContentTypeDomainMapper:
+        arguments:
+            $contentTypeHandler: '@ezpublish.spi.persistence.content_type_handler'
+            $contentLanguageHandler: '@ezpublish.spi.persistence.language_handler'
+            $fieldTypeRegistry: '@eZ\Publish\Core\FieldType\FieldTypeRegistry'
+
     # Permission-related
     eZ\Publish\Core\Repository\Permission\LimitationService:
         arguments:
