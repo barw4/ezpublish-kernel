@@ -12,6 +12,7 @@ use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use eZ\Publish\Core\Repository\Permission\LimitationService;
 use eZ\Publish\Core\Repository\User\PasswordHashServiceInterface;
 use eZ\Publish\Core\Repository\Helper\RelationProcessor;
+use eZ\Publish\Core\Repository\Mapper;
 use eZ\Publish\Core\Search\Common\BackgroundIndexer;
 use eZ\Publish\SPI\Persistence\Handler as PersistenceHandler;
 use eZ\Publish\SPI\Repository\Strategy\ContentThumbnail\ThumbnailStrategy;
@@ -67,6 +68,7 @@ class RepositoryFactory implements ContainerAwareInterface
         FieldTypeRegistry $fieldTypeRegistry,
         PasswordHashServiceInterface $passwordHashService,
         ThumbnailStrategy $thumbnailStrategy,
+        Mapper\ContentTypeDomainMapper $contentTypeDomainMapper,
         LimitationService $limitationService
     ): Repository {
         $config = $this->container->get('ezpublish.api.repository_configuration_provider')->getRepositoryConfig();
@@ -79,6 +81,7 @@ class RepositoryFactory implements ContainerAwareInterface
             $fieldTypeRegistry,
             $passwordHashService,
             $thumbnailStrategy,
+            $contentTypeDomainMapper,
             $limitationService,
             [
                 'role' => [

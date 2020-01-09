@@ -78,6 +78,7 @@ abstract class Base extends TestCase
                 $this->getFieldTypeRegistryMock(),
                 $this->createMock(PasswordHashServiceInterface::class),
                 $this->getThumbnailStrategy(),
+                $this->getContentTypeDomainMapperMock(),
                 $this->getLimitationServiceMock(),
                 $serviceSettings,
             );

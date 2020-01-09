@@ -225,6 +225,7 @@ class Repository implements RepositoryInterface
         FieldTypeRegistry $fieldTypeRegistry,
         PasswordHashServiceInterface $passwordHashGenerator,
         ThumbnailStrategy $thumbnailStrategy,
+        Mapper\ContentTypeDomainMapper $contentTypeDomainMapper,
         LimitationService $limitationService,
         array $serviceSettings = [],
         LoggerInterface $logger = null
@@ -236,6 +237,7 @@ class Repository implements RepositoryInterface
         $this->fieldTypeRegistry = $fieldTypeRegistry;
         $this->passwordHashService = $passwordHashGenerator;
         $this->thumbnailStrategy = $thumbnailStrategy;
+        $this->contentTypeDomainMapper = $contentTypeDomainMapper;
         $this->limitationService = $limitationService;
         $this->serviceSettings = $serviceSettings + [
             'content' => [],
@@ -341,7 +343,7 @@ class Repository implements RepositoryInterface
             $this->persistenceHandler->contentTypeHandler(),
             $this->persistenceHandler->userHandler(),
             $this->getContentDomainMapper(),
-            $this->getContentTypeDomainMapper(),
+            $this->contentTypeDomainMapper,
             $this->fieldTypeRegistry,
             $this->getPermissionResolver(),
             $this->serviceSettings['contentType']
@@ -676,7 +678,7 @@ class Repository implements RepositoryInterface
 
         $this->nameSchemaService = new Helper\NameSchemaService(
             $this->persistenceHandler->contentTypeHandler(),
-            $this->getContentTypeDomainMapper(),
+            $this->contentTypeDomainMapper,
             $this->fieldTypeRegistry,
             $this->serviceSettings['nameSchema']
         );
@@ -729,33 +731,13 @@ class Repository implements RepositoryInterface
             $this->persistenceHandler->contentHandler(),
             $this->persistenceHandler->locationHandler(),
             $this->persistenceHandler->contentTypeHandler(),
-            $this->getContentTypeDomainMapper(),
+            $this->contentTypeDomainMapper,
             $this->persistenceHandler->contentLanguageHandler(),
             $this->fieldTypeRegistry,
             $this->thumbnailStrategy
         );
 
         return $this->contentDomainMapper;
-    }
-
-    /**
-     * Get ContentType Domain Mapper.
-     *
-     * @todo Move out from this & other repo instances when services becomes proper services in DIC terms using factory.
-     */
-    protected function getContentTypeDomainMapper(): Mapper\ContentTypeDomainMapper
-    {
-        if ($this->contentTypeDomainMapper !== null) {
-            return $this->contentTypeDomainMapper;
-        }
-
-        $this->contentTypeDomainMapper = new Mapper\ContentTypeDomainMapper(
-            $this->persistenceHandler->contentTypeHandler(),
-            $this->persistenceHandler->contentLanguageHandler(),
-            $this->fieldTypeRegistry
-        );
-
-        return $this->contentTypeDomainMapper;
     }
 
     /**
