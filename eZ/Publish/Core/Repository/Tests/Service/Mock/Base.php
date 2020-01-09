@@ -7,11 +7,13 @@
 namespace eZ\Publish\Core\Repository\Tests\Service\Mock;
 
 use eZ\Publish\API\Repository\PermissionResolver;
+use eZ\Publish\Core\Repository\Permission\LimitationService;
 use eZ\Publish\Core\Repository\User\PasswordHashServiceInterface;
 use eZ\Publish\Core\FieldType\FieldTypeRegistry;
 use eZ\Publish\Core\Repository\Helper\RelationProcessor;
 use eZ\Publish\Core\Search\Common\BackgroundIndexer\NullIndexer;
 use eZ\Publish\SPI\Repository\Strategy\ContentThumbnail\ThumbnailStrategy;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use eZ\Publish\Core\Repository\Repository;
 use eZ\Publish\Core\Repository\Values\Content\Content;
@@ -55,6 +57,9 @@ abstract class Base extends TestCase
     /** @var \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Repository\Helper\ContentTypeDomainMapper */
     private $contentTypeDomainMapperMock;
 
+    /** @var \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Repository\Permission\LimitationService */
+    protected $limitationServiceMock;
+
     /**
      * Get Real repository with mocked dependencies.
      *
@@ -73,6 +78,7 @@ abstract class Base extends TestCase
                 $this->getFieldTypeRegistryMock(),
                 $this->createMock(PasswordHashServiceInterface::class),
                 $this->getThumbnailStrategy(),
+                $this->getLimitationServiceMock(),
                 $serviceSettings,
             );
 
@@ -280,5 +286,17 @@ abstract class Base extends TestCase
                 ),
             ]
         );
+    }
+
+    /**
+     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\Repository\Permission\LimitationService
+     */
+    protected function getLimitationServiceMock(): MockObject
+    {
+        if ($this->limitationServiceMock === null) {
+            $this->limitationServiceMock = $this->createMock(LimitationService::class);
+        }
+
+        return $this->limitationServiceMock;
     }
 }
