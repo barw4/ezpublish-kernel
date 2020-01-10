@@ -46,12 +46,6 @@ matrix:
       php: 7.3
       env: CHECK_CS=1
 
-# test only master, stable branches and pull requests
-branches:
-  only:
-    - master
-    - /^\d.\d+$/
-
 # setup requirements for running unit/integration/behat tests
 before_install:
   # Disable memory_limit for composer
